@@ -403,7 +403,11 @@ class Query
             $result = $pdo->fetchColumn();
             if (isset($cache)) {
                 // 缓存数据
-                Cache::set($key, $result, $cache['expire']);
+                if (isset($cache['tag'])) {
+                    Cache::tag($cache['tag'])->set($key, $result, $cache['expire']);
+                } else {
+                    Cache::set($key, $result, $cache['expire']);
+                }
             }
         } else {
             // 清空查询条件
@@ -468,7 +472,11 @@ class Query
             }
             if (isset($cache) && isset($guid)) {
                 // 缓存数据
-                Cache::set($guid, $result, $cache['expire']);
+                if (isset($cache['tag'])) {
+                    Cache::tag($cache['tag'])->set($guid, $result, $cache['expire']);
+                } else {
+                    Cache::set($guid, $result, $cache['expire']);
+                }
             }
         } else {
             // 清空查询条件
@@ -908,9 +916,11 @@ class Query
                 $where = $field;
             } elseif ($field) {
                 // 字符串查询
-                $where[] = ['exp', $field];
-            } else {
-                $where = '';
+                if (is_numeric($field)) {
+                    $where[] = ['exp', $field];
+                } else {
+                    $where[$field] = ['null', ''];
+                }
             }
         } elseif (is_array($op)) {
             $where[$field] = $param;
@@ -997,7 +1007,8 @@ class Query
         if (!$simple) {
             $options = $this->getOptions();
             $total   = $this->count();
-            $results = $this->options($options)->page($page, $listRows)->select();
+            $bind    = $this->bind;
+            $results = $this->options($options)->bind($bind)->page($page, $listRows)->select();
         } else {
             $results = $this->limit(($page - 1) * $listRows, $listRows + 1)->select();
             $total   = null;
@@ -1065,9 +1076,10 @@ class Query
      * @access public
      * @param mixed   $key    缓存key
      * @param integer $expire 缓存有效期
+     * @param string  $tag    缓存标签
      * @return $this
      */
-    public function cache($key = true, $expire = null)
+    public function cache($key = true, $expire = null, $tag = null)
     {
         // 增加快捷调用方式 cache(10) 等同于 cache(true, 10)
         if (is_numeric($key) && is_null($expire)) {
@@ -1075,7 +1087,7 @@ class Query
             $key    = true;
         }
         if (false !== $key) {
-            $this->options['cache'] = ['key' => $key, 'expire' => $expire];
+            $this->options['cache'] = ['key' => $key, 'expire' => $expire, 'tag' => $tag];
         }
         return $this;
     }
@@ -1227,7 +1239,7 @@ class Query
     /**
      * 设置查询数据不存在是否抛出异常
      * @access public
-     * @param bool $fail 是否严格检查字段
+     * @param bool $fail 数据不存在是否抛出异常
      * @return $this
      */
     public function failException($fail = true)
@@ -1361,7 +1373,7 @@ class Query
             $tableName = $this->parseSqlTable($tableName);
         }
 
-        $guid = $tableName;
+        list($guid) = explode(' ', $tableName);
         if (!isset(self::$info[$guid])) {
             $info   = $this->connection->getFields($tableName);
             $fields = array_keys($info);
@@ -1855,7 +1867,8 @@ class Query
         $resultSet = false;
         if (empty($options['fetch_sql']) && !empty($options['cache'])) {
             // 判断查询缓存
-            $cache     = $options['cache'];
+            $cache = $options['cache'];
+            unset($options['cache']);
             $key       = is_string($cache['key']) ? $cache['key'] : md5(serialize($options));
             $resultSet = Cache::get($key);
         }
@@ -1878,12 +1891,16 @@ class Query
 
             if (isset($cache)) {
                 // 缓存数据集
-                Cache::set($key, $resultSet, $cache['expire']);
+                if (isset($cache['tag'])) {
+                    Cache::tag($cache['tag'])->set($key, $resultSet, $cache['expire']);
+                } else {
+                    Cache::set($key, $resultSet, $cache['expire']);
+                }
             }
         }
 
         // 返回结果处理
-        if ($this->connection->getNumRows()) {
+        if (count($resultSet) > 0) {
             // 数据列表读取后的处理
             if (!empty($this->model)) {
                 // 生成模型对象
@@ -1965,7 +1982,11 @@ class Query
 
             if (isset($cache)) {
                 // 缓存数据
-                Cache::set($key, $result, $cache['expire']);
+                if (isset($cache['tag'])) {
+                    Cache::tag($cache['tag'])->set($key, $result, $cache['expire']);
+                } else {
+                    Cache::set($key, $result, $cache['expire']);
+                }
             }
         }
 
@@ -1977,6 +1998,9 @@ class Query
                 $model = $this->model;
                 $data  = new $model($data);
                 $data->isUpdate(true, isset($options['where']['AND']) ? $options['where']['AND'] : null);
+                if ($this->allowField) {
+                    $data->allowField($this->allowField);
+                }
                 // 关联查询
                 if (!empty($options['relation'])) {
                     $data->relationQuery($options['relation']);

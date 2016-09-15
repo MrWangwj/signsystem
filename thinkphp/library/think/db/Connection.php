@@ -412,13 +412,17 @@ abstract class Connection
     {
         if ($bind) {
             foreach ($bind as $key => $val) {
-                $val = $this->quote(is_array($val) ? $val[0] : $val);
+                $value = is_array($val) ? $val[0] : $val;
+                $type  = is_array($val) ? $val[1] : PDO::PARAM_STR;
+                if (PDO::PARAM_STR == $type) {
+                    $value = $this->quote($value);
+                }
                 // 判断占位符
                 $sql = is_numeric($key) ?
-                substr_replace($sql, $val, strpos($sql, '?'), 1) :
+                substr_replace($sql, $value, strpos($sql, '?'), 1) :
                 str_replace(
                     [':' . $key . ')', ':' . $key . ',', ':' . $key . ' '],
-                    [$val . ')', $val . ',', $val . ' '],
+                    [$value . ')', $value . ',', $value . ' '],
                     $sql . ' ');
             }
         }
@@ -733,11 +737,12 @@ abstract class Connection
      * SQL指令安全过滤
      * @access public
      * @param string $str SQL字符串
+     * @param bool   $master 是否主库查询
      * @return string
      */
-    public function quote($str)
+    public function quote($str, $master = true)
     {
-        $this->initConnect();
+        $this->initConnect($master);
         return $this->linkID ? $this->linkID->quote($str) : $str;
     }
 

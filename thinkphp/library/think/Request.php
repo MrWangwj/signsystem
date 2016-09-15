@@ -93,7 +93,6 @@ class Request
      * @var array 资源类型
      */
     protected $mimeType = [
-        'html' => 'text/html,application/xhtml+xml,*/*',
         'xml'  => 'application/xml,text/xml,application/x-xml',
         'json' => 'application/json,text/x-json,application/jsonrequest,text/json',
         'js'   => 'text/javascript,application/javascript,application/x-javascript',
@@ -107,6 +106,7 @@ class Request
         'jpg'  => 'image/jpg,image/jpeg,image/pjpeg',
         'gif'  => 'image/gif',
         'csv'  => 'text/csv',
+        'html' => 'text/html,application/xhtml+xml,*/*',
     ];
 
     protected $content;
@@ -115,6 +115,8 @@ class Request
     protected $filter;
     // Hook扩展方法
     protected static $hook = [];
+    // 绑定的属性
+    protected $bind = [];
 
     /**
      * 架构函数
@@ -240,7 +242,7 @@ class Request
         $options['baseUrl']     = $info['path'];
         $options['pathinfo']    = '/' == $info['path'] ? '/' : ltrim($info['path'], '/');
         $options['method']      = $server['REQUEST_METHOD'];
-        $options['domain']      = $server['HTTP_HOST'];
+        $options['domain']      = $info['scheme'] . '://' . $server['HTTP_HOST'];
         $options['content']     = $content;
         self::$instance         = new self($options);
         return self::$instance;
@@ -974,6 +976,7 @@ class Request
         $filter[] = $default;
         if (is_array($data)) {
             array_walk_recursive($data, [$this, 'filterValue'], $filter);
+            reset($data);
         } else {
             $this->filterValue($data, $name, $filter);
         }
@@ -1434,5 +1437,31 @@ class Request
         }
         Session::set($name, $token);
         return $token;
+    }
+
+    /**
+     * 设置当前请求绑定的对象实例
+     * @access public
+     * @param string $name 绑定的对象标识
+     * @param mixed  $obj 绑定的对象实例
+     * @return mixed
+     */
+    public function bind($name, $obj = null)
+    {
+        if (is_array($name)) {
+            $this->bind = array_merge($this->bind, $name);
+        } else {
+            $this->bind[$name] = $obj;
+        }
+    }
+
+    public function __set($name, $value)
+    {
+        $this->bind[$name] = $value;
+    }
+
+    public function __get($name)
+    {
+        return isset($this->bind[$name]) ? $this->bind[$name] : null;
     }
 }
