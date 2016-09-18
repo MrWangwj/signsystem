@@ -2,7 +2,7 @@
 // +----------------------------------------------------------------------
 // | ThinkPHP [ WE CAN DO IT JUST THINK IT ]
 // +----------------------------------------------------------------------
-// | Copyright (c) 2006-2015 http://thinkphp.cn All rights reserved.
+// | Copyright (c) 2006-2016 http://thinkphp.cn All rights reserved.
 // +----------------------------------------------------------------------
 // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
@@ -78,7 +78,7 @@ class Config extends Command
 
         // 加载公共文件
         if (is_file($path . 'common' . EXT)) {
-            $content .= substr(file_get_contents($path . 'common' . EXT), 5) . PHP_EOL;
+            $content .= substr(php_strip_whitespace($path . 'common' . EXT), 5) . PHP_EOL;
         }
 
         $content .= '\think\Config::set(' . var_export(\think\Config::get(), true) . ');';

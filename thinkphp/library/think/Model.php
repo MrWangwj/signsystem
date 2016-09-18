@@ -158,7 +158,7 @@ abstract class Model implements \JsonSerializable, \ArrayAccess
 
             if (!empty($this->field)) {
                 if (true === $this->field) {
-                    $type = $this->db()->getTableInfo('', 'type');
+                    $type = $query->getTableInfo('', 'type');
                 } else {
                     $type = [];
                     foreach ((array) $this->field as $key => $val) {
@@ -238,6 +238,8 @@ abstract class Model implements \JsonSerializable, \ArrayAccess
         if (is_string($data)) {
             $this->data[$data] = $value;
         } else {
+            // 清空数据
+            $this->data = [];
             if (is_object($data)) {
                 $data = get_object_vars($data);
             }
@@ -319,10 +321,12 @@ abstract class Model implements \JsonSerializable, \ArrayAccess
             }
             switch ($type) {
                 case 'datetime':
+                case 'date':
                     $format = !empty($param) ? $param : $this->dateFormat;
                     $value  = date($format, $_SERVER['REQUEST_TIME']);
                     break;
                 case 'timestamp':
+                case 'int':
                     $value = $_SERVER['REQUEST_TIME'];
                     break;
             }
@@ -628,7 +632,7 @@ abstract class Model implements \JsonSerializable, \ArrayAccess
         // 检测字段
         if (!empty($this->field)) {
             foreach ($this->data as $key => $val) {
-                if (!in_array($key, $this->field)) {
+                if (!in_array($key, $this->field) && !array_key_exists($key, $this->field)) {
                     unset($this->data[$key]);
                 }
             }
@@ -1063,6 +1067,8 @@ abstract class Model implements \JsonSerializable, \ArrayAccess
         } elseif ($data instanceof \Closure) {
             call_user_func_array($data, [ & $query]);
             $data = null;
+        } elseif (is_null($data)) {
+            return 0;
         }
         $resultSet = $query->select($data);
         $count     = 0;
@@ -1136,7 +1142,7 @@ abstract class Model implements \JsonSerializable, \ArrayAccess
         switch ($info['type']) {
             case Relation::HAS_MANY:
                 return $model->db()->alias('a')
-                    ->join($table . ' b', 'a.' . $info['localKey'] . '=b.' . $info['foreignKey'])
+                    ->join($table . ' b', 'a.' . $info['localKey'] . '=b.' . $info['foreignKey'], $info['joinType'])
                     ->group('b.' . $info['foreignKey'])
                     ->having('count(' . $id . ')' . $operator . $count);
             case Relation::HAS_MANY_THROUGH:
@@ -1169,7 +1175,7 @@ abstract class Model implements \JsonSerializable, \ArrayAccess
                 }
                 return $model->db()->alias('a')
                     ->field('a.*')
-                    ->join($table . ' b', 'a.' . $info['localKey'] . '=b.' . $info['foreignKey'])
+                    ->join($table . ' b', 'a.' . $info['localKey'] . '=b.' . $info['foreignKey'], $info['joinType'])
                     ->where($where);
             case Relation::HAS_MANY_THROUGH:
                 // TODO
