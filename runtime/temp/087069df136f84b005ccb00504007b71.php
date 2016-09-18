@@ -1,6 +1,7 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:64:"D:\MyDrivers\htdocs\Sign/application/admin\view\login\login.html";i:1474018498;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:64:"D:\MyDrivers\htdocs\Sign/application/admin\view\login\login.html";i:1474115863;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
+<?php echo \think\Config::get('parse_str.__MODULE__'); ?>
 	<head>
 		<meta charset="utf-8" />
 		<title>登录页面 - Bootstrap后台管理系统模版Ace下载</title>
@@ -70,27 +71,28 @@
 
 											<div class="space-6"></div>
 
-											<form>
+											<form  action="javascript:promot();"method="post" role="form">
 												<fieldset>
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="text" class="form-control" placeholder="Username" />
+															<input type="text" id="admin" class="form-control" placeholder="Username" required autofocus />
 															<i class="icon-user"></i>
 														</span>
 													</label>
 
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="password" class="form-control" placeholder="Password" />
+															<input type="password" id="password" class="form-control" placeholder="Password" required autofocus/>
 															<i class="icon-lock"></i>
 														</span>
 													</label>
 
-													<label class="clearfix">
+													<label class="clearfix" style="width:291px;">
 														<span class="input-icon input-icon-right" style="width:145px;">
-															<input type="text" class="form-control" placeholder="identifying code" />
+															<input type="text" id="code" class="form-control" placeholder="identifying code"/>
 															<i class="icon-lock"></i>
 														</span>
+														<div style="float:right;"><img src="<?php echo captcha_src(); ?>" alt="captcha" onclick="this.src='<?php echo captcha_src(); ?>?d='+Math.random();" /></div>
 													</label>
 
 													<div class="space"></div>
@@ -101,7 +103,7 @@
 															<span class="lbl"> Remember Me</span>
 														</label> -->
 
-														<button type="button" class="width-35 pull-right btn btn-sm btn-primary">
+														<button type="submit" class="width-35 pull-right btn btn-sm btn-primary" onclick="login();">
 															<i class="icon-key"></i>
 															Login
 														</button>
@@ -286,7 +288,7 @@
 		<!--[if !IE]> -->
 
 		<script type="text/javascript">
-			window.jQuery || document.write("<script src='assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+			window.jQuery || document.write("<script src='<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
 		</script>
 
 		<!-- <![endif]-->
@@ -298,7 +300,7 @@
 <![endif]-->
 
 		<script type="text/javascript">
-			if("ontouchend" in document) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+			if("ontouchend" in document) document.write("<script src='<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 		</script>
 
 		<!-- inline scripts related to this page -->
@@ -307,6 +309,30 @@
 			function show_box(id) {
 			 jQuery('.widget-box.visible').removeClass('visible');
 			 jQuery('#'+id).addClass('visible');
+			}
+		</script>
+		<script type="text/javascript">
+			function  login(){
+				var rest = $("#admin").val()
+				alert(rest);
+				var number = {
+					id: $("#admin").val(),
+					password: $("#password").val(),
+					code: $("#code").val(),
+				}
+				$.ajax({
+					type: 'POST', 
+		         	url: '<?php echo \think\Config::get('parse_str.__MODULE__'); ?>/Login/test', 
+		          	data: number,  
+		          	async: false,  
+					cache: false, 
+		          	success: function (returndata) {
+
+		          	},
+		          	error:function(){
+
+		          	},
+				});
 			}
 		</script>
 	</body>

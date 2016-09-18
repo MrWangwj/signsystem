@@ -16,6 +16,24 @@ return [
     'parse_str'=>[
     '__PUBLIC__'=>'/Sign/public/admin/',
     '__ROOT__' => '/',
+    '__MODULE__'=>'/Sign/index.php/admin',
+    ],
+    //验证码
+    'captcha'  => [
+        // 验证码字符集合
+        'codeSet'  => '2345678abcdefhijkmnpqrstuvwxyzABCDEFGHJKLMNPQRTUVWXY', 
+        // 验证码字体大小(px)
+        'fontSize' => 15, 
+        // 是否画混淆曲线
+        'useCurve' => true, 
+         // 验证码图片高度
+        'imageH'   => 34,
+        // 验证码图片宽度
+        'imageW'   => 135, 
+        // 验证码位数
+        'length'   => 5, 
+        // 验证成功后是否重置        
+        'reset'    => true
     ],
     // 应用命名空间
     'app_namespace'          => 'app',
@@ -92,7 +110,7 @@ return [
     // URL普通方式参数 用于自动生成
     'url_common_param'       => false,
     // URL参数方式 0 按名称成对解析 1 按顺序解析
-    'url_param_type'         => 0,
+    'url_param_type'         => 1,
     // 是否开启路由
     'url_route_on'           => true,
     // 路由配置文件（支持配置多个）
