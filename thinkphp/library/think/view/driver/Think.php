@@ -144,6 +144,7 @@ class Think
         } else {
             $this->template->$name = $value;
             $this->config[$name]   = $value;
+
         }
     }
 
