@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:68:"D:\MyDrivers\htdocs\Sign/application/admin\view\manager\manager.html";i:1474014112;s:62:"D:\MyDrivers\htdocs\Sign/application/admin\view\base\base.html";i:1474012342;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:68:"D:\MyDrivers\htdocs\Sign/application/admin\view\manager\manager.html";i:1474014202;s:62:"D:\MyDrivers\htdocs\Sign/application/admin\view\base\base.html";i:1474035568;}*/ ?>
  <!DOCTYPE html>
 <html lang="en">
 <head>

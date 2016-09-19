@@ -1,7 +1,6 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:64:"D:\MyDrivers\htdocs\Sign/application/admin\view\login\login.html";i:1474115863;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:64:"D:\MyDrivers\htdocs\Sign/application/admin\view\login\login.html";i:1474295218;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
-<?php echo \think\Config::get('parse_str.__MODULE__'); ?>
 	<head>
 		<meta charset="utf-8" />
 		<title>登录页面 - Bootstrap后台管理系统模版Ace下载</title>
@@ -71,7 +70,7 @@
 
 											<div class="space-6"></div>
 
-											<form  action="javascript:promot();"method="post" role="form">
+											<form  action="javascript:login();"method="post" role="form">
 												<fieldset>
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
@@ -103,7 +102,7 @@
 															<span class="lbl"> Remember Me</span>
 														</label> -->
 
-														<button type="submit" class="width-35 pull-right btn btn-sm btn-primary" onclick="login();">
+														<button type="submit" class="width-35 pull-right btn btn-sm btn-primary" >
 															<i class="icon-key"></i>
 															Login
 														</button>
@@ -327,10 +326,15 @@
 		          	async: false,  
 					cache: false, 
 		          	success: function (returndata) {
-
+		          		var json = JSON.parse(returndata);
+		          		if( json['flag']=='success'){
+		          			window.location.href = json['dress'];	
+		          		}else{
+		          			alert(json['flag']);
+		          		}	
 		          	},
 		          	error:function(){
-
+		          		alert("数据加载失败"); 
 		          	},
 				});
 			}

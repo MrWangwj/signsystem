@@ -13,13 +13,13 @@ return [
     // 数据库类型
     'type'           => 'mysql',
     // 服务器地址
-    'hostname'       => '101.201.237.60',
+    'hostname'       => '123.206.46.202',
     // 数据库名
     'database'       => 'SignSystem2',
     // 用户名
     'username'       => 'root',
     // 密码
-    'password'       => '666',
+    'password'       => '666666',
     // 端口
     'hostport'       => '3306',
     // 连接dsn
