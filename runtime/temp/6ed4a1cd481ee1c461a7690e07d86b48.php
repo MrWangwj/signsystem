@@ -1,10 +1,11 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:69:"D:\Apache24\htdocs\SignSystem2/application/home\view\index\index.html";i:1474271671;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <!--{css href="/SignSystem2/public/home/css/bootstrap.css" /}-->
-    <link rel="stylesheet" type="text/css" href="{$Think.config.parse_str.__PUBLIC__}home/css/bootstrap.css">
+    <!--<link rel="stylesheet" type="text/css" href="/SignSystem2/public/home/css/bootstrap.css" />-->
+    <link rel="stylesheet" type="text/css" href="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>home/css/bootstrap.css">
     <!--<link rel="stylesheet" type="text/css" href="/__CSS__/bootstrap.min.css">-->
 </head>
 <body>
