@@ -1,0 +1,29 @@
+header{
+    width: 100%;
+    height: 100px;
+    background: #BEEBEE;
+}
+footer{
+    width: 100%;
+    height: 100px;
+    background: #BEEBEE;
+}
+#title{
+    width: 60%;
+    margin: 0 20%;
+}
+#logo_div{
+    margin-left: 10%;
+    float: left;
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+}
+#sign_div{
+    float: left;
+    margin-left: 50px;
+    height: 100px;
+    display: inline-block;
+    font-size: 50px;
+    line-height: 100px;
+}

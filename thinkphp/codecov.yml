@@ -2,7 +2,7 @@ comment:
   layout: header, changes, diff
 coverage:
   ignore:
-  - base.php
+  - Base.php
   - helper.php
   - convention.php
   - lang/zh-cn.php
