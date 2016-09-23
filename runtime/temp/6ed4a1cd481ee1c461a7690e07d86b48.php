@@ -1,12 +1,14 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:69:"D:\Apache24\htdocs\SignSystem2/application/home\view\index\index.html";i:1474369275;s:68:"D:\Apache24\htdocs\SignSystem2/application/home\view\index\base.html";i:1474373268;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:69:"D:\Apache24\htdocs\SignSystem2/application/home\view\index\index.html";i:1474432311;s:68:"D:\Apache24\htdocs\SignSystem2/application/home\view\index\base.html";i:1474431729;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>三月签到系统</title>
     <link rel="stylesheet" type="text/css" href="<?php echo \think\Config::get('parse_str.__CSS__'); ?>bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo \think\Config::get('parse_str.__CSS__'); ?>index.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo \think\Config::get('parse_str.__CSS__'); ?>base.css">
     
+    <link rel="stylesheet" type="text/css" href="<?php echo \think\Config::get('parse_str.__CSS__'); ?>index.css">
+
 </head>
 <body>
     <header>
@@ -19,13 +21,20 @@
             </div>
         </div>
     </header>
-    <center>
-        
-<div>aaaaaaaaaaaaaaaaaaaaaa</div>
+    <!--<center>-->
 
-    </center>
+    <!--</center>-->
+    <div id="content">
+        
+<div style="width: 100%;height: 500px;">
+    <div id="login_div">
+
+    </div>
+</div>
+
+    </div>
     <footer>
-        <center>三月签到系统页脚</center>
+        <div>三月签到系统页脚</div>
     </footer>
 
     
