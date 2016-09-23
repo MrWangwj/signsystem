@@ -8,7 +8,15 @@ use think\Controller;
 */
 class Schedule extends Controller{
 	
+	public function index(){
+		
+		return $this->fetch();
+	}
 
+	public function add(){
+		return "你好";
+	}
 
 }
+
 ?>

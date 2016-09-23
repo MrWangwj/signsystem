@@ -14,8 +14,8 @@ return [
     // | 应用设置
     // +----------------------------------------------------------------------
     'parse_str'=>[
-    '__PUBLIC__'=>'/Sign/public/admin/',
-    '__ROOT__' => '/',
+    '__PUBLIC__'=>'../public/',
+    '__ROOT__' => '../',
     '__MODULE__'=>'/Sign/index.php/admin',
     ],
     
