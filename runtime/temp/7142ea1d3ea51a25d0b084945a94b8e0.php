@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:63:"/var/www/html/SignSystem2/application/admin/view/base/base.html";i:1474439076;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:63:"/var/www/html/SignSystem2/application/admin/view/base/base.html";i:1474609839;}*/ ?>
  <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,8 +9,8 @@
 		<meta name="description" content="JS代码网提供Bootstrap模版,Bootstrap教程,Bootstrap中文翻译等相关Bootstrap插件下载" /> -->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<!-- basic styles -->
-		<link href="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/css/bootstrap.min.css" rel="stylesheet" />
-		<link rel="stylesheet" href="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/css/font-awesome.min.css" />
+		<link href="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>admin/assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>admin/assets/css/font-awesome.min.css" />
 
 		<!--[if IE 7]>
 		  <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
@@ -22,9 +22,9 @@
 
 		<!-- ace styles -->
 
-		<link rel="stylesheet" href="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/css/ace.min.css" />
-		<link rel="stylesheet" href="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/css/ace-rtl.min.css" />
-		<link rel="stylesheet" href="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/css/ace-skins.min.css" />
+		<link rel="stylesheet" href="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>admin/assets/css/ace.min.css" />
+		<link rel="stylesheet" href="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>admin/assets/css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>admin/assets/css/ace-skins.min.css" />
 
 		<!--[if lte IE 8]>
 		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
@@ -34,7 +34,7 @@
 
 		<!-- ace settings handler -->
 
-		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/ace-extra.min.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>admin/assets/js/ace-extra.min.js"></script>
 
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 
@@ -696,10 +696,10 @@
 <![endif]-->
 
 		<script type="text/javascript">
-			if("ontouchend" in document) document.write("<script src='<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/jquery.mobile.custom.min.js'>"+"<"+"script>");
+			if("ontouchend" in document) document.write("<script src='<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>admin/assets/js/jquery.mobile.custom.min.js'>"+"<"+"script>");
 		</script>
-		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/bootstrap.min.js"></script>
-		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/typeahead-bs2.min.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>admin/assets/js/bootstrap.min.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>admin/assets/js/typeahead-bs2.min.js"></script>
 
 		<!-- page specific plugin scripts -->
 
@@ -707,19 +707,19 @@
 		  <script src="assets/js/excanvas.min.js"></script>
 		<![endif]-->
 
-		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/jquery-ui-1.10.3.custom.min.js"></script>
-		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/jquery.ui.touch-punch.min.js"></script>
-		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/jquery.slimscroll.min.js"></script>
-		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/jquery.easy-pie-chart.min.js"></script>
-		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/jquery.sparkline.min.js"></script>
-		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/flot/jquery.flot.min.js"></script>
-		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/flot/jquery.flot.pie.min.js"></script>
-		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/flot/jquery.flot.resize.min.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>admin/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>admin/assets/js/jquery.ui.touch-punch.min.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>admin/assets/js/jquery.slimscroll.min.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>admin/assets/js/jquery.easy-pie-chart.min.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>admin/assets/js/jquery.sparkline.min.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>admin/assets/js/flot/jquery.flot.min.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>admin/assets/js/flot/jquery.flot.pie.min.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>admin/assets/js/flot/jquery.flot.resize.min.js"></script>
 
 		<!-- ace scripts -->
 
-		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/ace-elements.min.js"></script>
-		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/ace.min.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>admin/assets/js/ace-elements.min.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>admin/assets/js/ace.min.js"></script>
 
 		<!-- inline scripts related to this page -->
 
