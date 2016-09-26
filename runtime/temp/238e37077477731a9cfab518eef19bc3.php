@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:67:"/var/www/html/SignSystem2/application/home/view/schedule/index.html";i:1474554073;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:67:"/var/www/html/SignSystem2/application/home/view/schedule/index.html";i:1474878931;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,7 +26,11 @@
 	.main table th{
 		text-align: center;
 	}
+	.color{
+		background: #A6A6A6 !important ;
+	}
 </style>
+
 <body>
 	<div class="main">
 		<div>
@@ -43,57 +47,19 @@
 					<th>星期六</th>
 					<th>星期日</th>
 				</tr>
-				<tr>
-					<td>
-						<div>
-							<span>大学物理</span>
-							<br/>
-							<span>@6205</span>
-						</div>
-					</td>
-					<td>
-						<div>
-							<span>大学物理</span>
-							<br/>
-							<span>@6205</span>
-						</div>
-					</td>
-					<td>
-						<div>
-							<span>大学物理</span>
-							<br/>
-							<span>@6205</span>
-						</div>
-					</td>
-					<td>
-						<div>
-							<span>大学物理</span>
-							<br/>
-							<span>@6205</span>
-						</div>
-					</td>
-					<td>
-						<div>
-							<span>大学物理</span>
-							<br/>
-							<span>@6205</span>
-						</div>
-					</td>
-					<td>
-						<div>
-							<span>大学物理</span>
-							<br/>
-							<span>@6205</span>
-						</div>
-					</td>
-					<td>
-						<div>
-							<span>大学物理</span>
-							<br/>
-							<span>@6205</span>
-						</div>
-					</td>
-				</tr>   			
+				<?php if(is_array($data) || $data instanceof \think\Collection): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+					<tr>
+						<?php if(is_array($vo) || $vo instanceof \think\Collection): $i = 0; $__LIST__ = $vo;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo2): $mod = ($i % 2 );++$i;?>
+							<td class='<?php if($vo2['whether_course'] == '0'): ?>color<?php endif; ?> course' data-toggle="modal" data-target="#myModal" data-id=<?php echo $vo2['id']; ?>>
+								<div >
+									<span><?php echo $vo2['name']; ?></span>
+									<br/>
+									<span><?php echo $vo2['classroom']; ?></span>
+								</div>								
+							</td>
+						<?php endforeach; endif; else: echo "" ;endif; ?>						
+					</tr>
+				<?php endforeach; endif; else: echo "" ;endif; ?>
   			</table>
 		</div>
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -118,7 +84,17 @@
 	</div>
 
 	<script>
-		
+		$('.course').on('click', function() {
+			$.get(
+				"<?php echo url('Schedule/schedule'); ?>",
+				{
+					id:$(this).data('id'),
+				},
+				function(data){
+					alert(data);	
+				}
+			);
+		});
 	</script>
 </body>
 </html>

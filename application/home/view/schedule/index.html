@@ -25,7 +25,11 @@
 	.main table th{
 		text-align: center;
 	}
+	.color{
+		background: #A6A6A6 !important ;
+	}
 </style>
+
 <body>
 	<div class="main">
 		<div>
@@ -42,57 +46,19 @@
 					<th>星期六</th>
 					<th>星期日</th>
 				</tr>
-				<tr>
-					<td>
-						<div>
-							<span>大学物理</span>
-							<br/>
-							<span>@6205</span>
-						</div>
-					</td>
-					<td>
-						<div>
-							<span>大学物理</span>
-							<br/>
-							<span>@6205</span>
-						</div>
-					</td>
-					<td>
-						<div>
-							<span>大学物理</span>
-							<br/>
-							<span>@6205</span>
-						</div>
-					</td>
-					<td>
-						<div>
-							<span>大学物理</span>
-							<br/>
-							<span>@6205</span>
-						</div>
-					</td>
-					<td>
-						<div>
-							<span>大学物理</span>
-							<br/>
-							<span>@6205</span>
-						</div>
-					</td>
-					<td>
-						<div>
-							<span>大学物理</span>
-							<br/>
-							<span>@6205</span>
-						</div>
-					</td>
-					<td>
-						<div>
-							<span>大学物理</span>
-							<br/>
-							<span>@6205</span>
-						</div>
-					</td>
-				</tr>   			
+				{volist name="data" id="vo"}
+					<tr>
+						{volist name="vo" id="vo2"}
+							<td class='{eq name="vo2.whether_course" value="0"}color{/eq} course' data-toggle="modal" data-target="#myModal" data-id={$vo2.id}>
+								<div >
+									<span>{$vo2.name}</span>
+									<br/>
+									<span>{$vo2.classroom}</span>
+								</div>								
+							</td>
+						{/volist}						
+					</tr>
+				{/volist}
   			</table>
 		</div>
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -117,7 +83,16 @@
 	</div>
 
 	<script>
-		
+		$('.course').on('click', function() {
+			$.get(
+				"{:url('Schedule/schedule')}",
+				{
+					id:$(this).data('id'),
+				},
+				function(data){	
+				}
+			);
+		});
 	</script>
 </body>
 </html>

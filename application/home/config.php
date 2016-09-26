@@ -8,4 +8,5 @@ return [
         '__JS__'     =>  '/SignSystem2/public/home/js/',
         '__IMAGE__'     =>  '/SignSystem2/public/home/image/',
     ],
+    'SCHOOLTIME' => '2016-09-06',
 ];
