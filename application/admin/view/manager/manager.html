@@ -1,61 +1,138 @@
-{extend name="base:base"}
-{block name="head"}
-<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/jquery-ui-1.10.3.full.min.css" />
-{/block}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>角色列表</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- basic styles -->
+		<link href="{$Think.config.parse_str.__PUBLIC__}assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/font-awesome.min.css" />
+		<link href="{$Think.config.parse_str.__CSS__}style.min.css?v=4.1.0" rel="stylesheet">
+		<!--[if IE 7]>
+		  <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
+		<![endif]-->
 
-{block name="content"}
-	<div class="main-content">
-					<div class="breadcrumbs" id="breadcrumbs">
-						<script type="text/javascript">
-							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
-						</script>
+		<!-- page specific plugin styles -->
 
-						<ul class="breadcrumb">
-							<li>
-								<i class="icon-home home-icon"></i>
-								<a href="#">Home</a>
-							</li>
+		<!-- fonts -->
 
-							<li>
-								<a href="#">UI Elements</a>
-							</li>
-							<li class="active">jQuery UI</li>
-						</ul><!-- .breadcrumb -->
+		<!-- ace styles -->
 
-						<div class="nav-search" id="nav-search">
-							<form class="form-search">
-								<span class="input-icon">
-									<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
-									<i class="icon-search nav-search-icon"></i>
-								</span>
-							</form>
-						</div><!-- #nav-search -->
-					</div>
+		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/ace.min.css" />
+		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/ace-skins.min.css" />
+		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/jquery-ui-1.10.3.full.min.css" />
 
+		<!--[if lte IE 8]>
+		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
+		<![endif]-->
+
+		<!-- inline styles related to this page -->
+
+		<!-- ace settings handler -->
+
+		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/ace-extra.min.js"></script>
+
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+		<!--[if lt IE 9]>
+		<script src="assets/js/html5shiv.js"></script>
+		<script src="assets/js/respond.min.js"></script>
+		<![endif]-->
+    
+</head>
+<body class="gray-bg">
+	<div>
 					<div class="page-content">
-						<div class="page-header">
-							<h1>
-								jQuery UI
-								<small>
-									<i class="icon-double-angle-right"></i>
-									Restyling jQuery UI Widgets and Elements
-								</small>
-							</h1>
-						</div><!-- /.page-header -->
-
 						<div class="row">
 							<div class="col-xs-12">
 								<!-- PAGE CONTENT BEGINS -->
 
-								<div class="row">
-									<div class="col-sm-6">
-										<h3 class="header blue lighter smaller">
-											<i class="icon-calendar-empty smaller-90"></i>
-											Datepicker
-										</h3>
+								<form class="form-horizontal" role="form" method="post" action="javascript:adduser();">
+								<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 学&nbsp号</label>
 
-										<div class="row">
-											<div class="col-xs-6">
+										<div class="col-sm-9">
+											<input type="text" id="form-field-2"  placeholder="Username" class="col-xs-10 col-sm-5" required >
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 用户名 </label>
+
+										<div class="col-sm-9">
+											<input type="text" id="form-field-1"  placeholder="Username" class="col-xs-10 col-sm-5" required >
+										</div>
+									</div>
+
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 组&nbsp别 </label>
+										
+										<div class="col-sm-9">
+											<select name="field" id="group_id" style="width:240px;">
+											{volist name="data" id="vo"}
+												<option value="{$vo.group_id}">{$vo.group_name}</option>
+                                    		{/volist}	
+                                			</select>								
+												<span class="middle">选择匹配的小组名</span>
+										</div>
+									</div>
+
+									<div class="space-4"></div>
+
+									<!-- <div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-input-readonly"> Readonly field </label>
+
+										<div class="col-sm-9">
+											<input readonly="" type="text" class="col-xs-10 col-sm-5" id="form-input-readonly" value="This text field is readonly!">
+											<span class="help-inline col-xs-12 col-sm-7">
+												<label class="middle">
+													<input class="ace" type="checkbox" id="id-disable-check">
+													<span class="lbl"> Disable it!</span>
+												</label>
+											</span>
+										</div>
+									</div> -->
+
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-4">性&nbsp别</label>
+										<div class="col-sm-9" style="margin-top:3px;">
+											<input name="user_sex" type="radio" id="sex-1"  value="0">
+											<label for="sex-1">男</label>
+              								<input name="user_sex" type="radio" id="sex-2"  value="1">
+              								<label for="sex-2">女</label></br>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 班&nbsp级 </label>
+
+										<div class="col-sm-9">
+											<input type="text" id="form-field-2" placeholder="" class="col-xs-10 col-sm-5">
+										</div>
+									</div>
+
+									<!-- <div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-5">Grid Sizing</label>
+
+										<div class="col-sm-9">
+											<div class="clearfix">
+												<input class="col-xs-1" type="text" id="form-field-5" placeholder=".col-xs-1">
+											</div>
+
+											<div class="space-2"></div>
+
+											<div class="help-block ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" id="input-span-slider" aria-disabled="false"><div class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min" style="width: 0%;"></div><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left: 0%;"></a></div>
+										</div>
+									</div> -->
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right">进入时间</label>
+
+										<div class="row" >
+											<div class="col-xs-6"style="width:270px;">
 												<div class="input-group input-group-sm">
 													<input type="text" id="datepicker" class="form-control" />
 													<span class="input-group-addon">
@@ -64,338 +141,84 @@
 												</div>
 											</div>
 										</div>
-									</div><!-- ./span -->
 
-									<div class="col-sm-6">
-										<h3 class="header blue lighter smaller">
-											<i class="icon-list-alt smaller-90"></i>
-											Dialogs
-										</h3>
-										<a href="#" id="id-btn-dialog2" class="btn btn-info btn-sm">Confirm Dialog</a>
-										<a href="#" id="id-btn-dialog1" class="btn btn-purple btn-sm">Modal Dialog</a>
+									</div>
 
-										<div id="dialog-message" class="hide">
-											<p>
-												This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.
-											</p>
+									<div class="space-4"></div>
 
-											<div class="hr hr-12 hr-double"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-6">电&nbsp话</label>
 
-											<p>
-												Currently using
-												<b>36% of your storage space</b>
-												.
-											</p>
-										</div><!-- #dialog-message -->
-
-										<div id="dialog-confirm" class="hide">
-											<div class="alert alert-info bigger-110">
-												These items will be permanently deleted and cannot be recovered.
-											</div>
-
-											<div class="space-6"></div>
-
-											<p class="bigger-110 bolder center grey">
-												<i class="icon-hand-right blue bigger-120"></i>
-												Are you sure?
-											</p>
-										</div><!-- #dialog-confirm -->
-									</div><!-- ./span -->
-								</div><!-- ./row-fluid -->
-
-								<div class="space-12"></div>
-
-								<div class="row">
-									<div class="col-sm-6">
-										<h3 class="header blue lighter smaller">
-											<i class="icon-terminal smaller-90"></i>
-											Autocomplete
-										</h3>
-
-										<div class="row">
-											<div class="col-sm-8 col-md-7">
-												<input id="tags" type="text" class="form-control" />
-												<div class="space-4"></div>
-
-												<input id="search" type="text" class="form-control" placeholder="Type 'a' or 'h'" />
-											</div>
+										<div class="col-sm-9" >
+											<input data-rel="tooltip" type="text" id="form-field-6" style="width:250px;" placeholder="Tel-phone" title="" data-placement="bottom" data-original-title="Hello Tooltip!">
 										</div>
+									</div>
 
-										<div class="row">
-											<div class="col-xs-12">
-												<h3 class="header blue lighter smaller">
-													<i class="icon-info smaller-90"></i>
-													Tooltip
-												</h3>
+									<div class="clearfix form-actions">
+										<div class="col-md-offset-3 col-md-9">
+											<button class="btn btn-info" type="submit">
+												<i class="icon-ok bigger-110"></i>
+												Submit
+											</button>
 
-												<div class="bigger-110">
-													<p>
-														<a class="grey" id="show-option" href="#" title="slide down on show">
-															<i class="icon-hand-right"></i>
-															slide down on show
-														</a>
-													</p>
-
-													<p>
-														<a class="blue" id="hide-option" href="#" title="explode on hide">
-															<i class="icon-hand-right"></i>
-															explode on hide
-														</a>
-													</p>
-
-													<p>
-														<a class="pink" id="open-event" href="#" title="move down on show">
-															<i class="icon-hand-right"></i>
-															move down on show
-														</a>
-													</p>
-												</div>
-											</div>
-										</div><!-- ./row-fluid -->
-									</div><!-- ./span -->
-
-									<div class="col-sm-6">
-										<h3 class="header blue lighter smaller">
-											<i class="icon-reorder smaller-90"></i>
-											Menu
-										</h3>
-
-										<ul id="menu">
-											<li class="ui-state-disabled">
-												<a href="#">Aberdeen</a>
-											</li>
-
-											<li>
-												<a href="#">Ada</a>
-											</li>
-
-											<li>
-												<a href="#">Adamsville</a>
-											</li>
-
-											<li>
-												<a href="#">Addyston</a>
-											</li>
-
-											<li>
-												<a href="#">Delphi</a>
-
-												<ul>
-													<li class="ui-state-disabled">
-														<a href="#">Ada</a>
-													</li>
-
-													<li>
-														<a href="#">Saarland</a>
-													</li>
-
-													<li>
-														<a href="#">Salzburg</a>
-													</li>
-												</ul>
-											</li>
-
-											<li>
-												<a href="#">Saarland</a>
-											</li>
-
-											<li>
-												<a href="#">Salzburg</a>
-
-												<ul>
-													<li>
-														<a href="#">Delphi</a>
-
-														<ul>
-															<li>
-																<a href="#">Ada</a>
-															</li>
-
-															<li>
-																<a href="#">Saarland</a>
-															</li>
-
-															<li>
-																<a href="#">Salzburg</a>
-															</li>
-														</ul>
-													</li>
-
-													<li>
-														<a href="#">Delphi</a>
-
-														<ul>
-															<li>
-																<a href="#">Ada</a>
-															</li>
-
-															<li>
-																<a href="#">Saarland</a>
-															</li>
-
-															<li>
-																<a href="#">Salzburg</a>
-															</li>
-														</ul>
-													</li>
-
-													<li>
-														<a href="#">Perch</a>
-													</li>
-												</ul>
-											</li>
-
-											<li class="ui-state-disabled">
-												<a href="#">Amesville</a>
-											</li>
-										</ul>
-									</div><!-- ./span -->
-								</div><!-- ./row-fluid -->
-
-								<div class="space-12"></div>
-
-								<div class="row">
-									<div class="col-sm-6">
-										<h3 class="header blue lighter smaller">
-											<i class="icon-retweet smaller-90"></i>
-											Spinner
-										</h3>
-
-										<input id="spinner" name="value" type="text" />
-									</div><!-- ./span -->
-
-									<div class="col-sm-6">
-										<h3 class="header blue lighter smaller">
-											<i class="icon-resize-horizontal smaller-90"></i>
-											Slider
-										</h3>
-
-										<p>
-											Please see
-											<a href="form-elements.html">form elements page</a>
-											for more slider examples.
-										</p>
-
-										<div class="space-4"></div>
-
-										<div id="slider"></div>
-									</div><!-- ./span -->
-								</div><!-- ./row-fluid -->
-
-								<div class="space-12"></div>
-
-								<div class="row">
-									<div class="col-sm-6">
-										<h3 class="header blue lighter smaller">
-											<i class="icon-list smaller-90"></i>
-											Sortable Accordion
-										</h3>
-
-										<div id="accordion" class="accordion-style2">
-											<div class="group">
-												<h3 class="accordion-header">Section 1</h3>
-
-												<div>
-													<p>
-														Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer
-			ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit
-			amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut
-			odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
-													</p>
-												</div>
-											</div>
-
-											<div class="group">
-												<h3 class="accordion-header">Section 2</h3>
-
-												<div>
-													<p>
-														Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet
-			purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor
-			velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In
-			suscipit faucibus urna.
-													</p>
-												</div>
-											</div>
-
-											<div class="group">
-												<h3 class="accordion-header">Section 3</h3>
-
-												<div>
-													<p>
-														Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis.
-			Phasellus pellentesque purus in massa. Aenean in pede. Phasellus ac libero
-			ac tellus pellentesque semper. Sed ac felis. Sed commodo, magna quis
-			lacinia ornare, quam ante aliquam nisi, eu iaculis leo purus venenatis dui.
-													</p>
-
-													<ul>
-														<li>List item one</li>
-														<li>List item two</li>
-														<li>List item three</li>
-													</ul>
-												</div>
-											</div>
-										</div><!-- #accordion -->
-									</div><!-- ./span -->
-
-									<div class="col-sm-6">
-										<h3 class="header blue lighter smaller">
-											<i class="icon-folder-close-alt smaller-90"></i>
-											Tabs
-										</h3>
-
-										<div id="tabs">
-											<ul>
-												<li>
-													<a href="#tabs-1">Nunc tincidunt</a>
-												</li>
-
-												<li>
-													<a href="#tabs-2">Proin dolor</a>
-												</li>
-
-												<li>
-													<a href="#tabs-3">Aenean lacinia</a>
-												</li>
-											</ul>
-
-											<div id="tabs-1">
-												<p>Proin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris. Nam elementum quam ullamcorper ante. Duis orci. Aliquam sodales tortor vitae ipsum. Ut et mauris vel pede varius sollicitudin.</p>
-											</div>
-
-											<div id="tabs-2">
-												<p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque molestie turpis. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel metus. Ut posuere viverra nulla..</p>
-											</div>
-
-											<div id="tabs-3">
-												<p>Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel vehicula accumsan, mi neque rutrum erat, eu congue orci lorem eget lorem. Praesent eu risus hendrerit ligula tempus pretium.</p>
-											</div>
+											&nbsp; &nbsp; &nbsp;
+											<a href="/houtai/public/index.php/admin/user/member">
+											<button class="btn" type="button">
+												<i class="icon-undo bigger-110"></i>
+												Reset
+											</button>
+											</a>			
 										</div>
-									</div><!-- ./span -->
-								</div><!-- ./row-fluid -->
-
-								<div class="space-12"></div>
-
-								<div class="row">
-									<div class="col-sm-6">
-										<h3 class="header blue lighter smaller">
-											<i class="icon-spinner"></i>
-											Progressbar
-										</h3>
-
-										<div id="progressbar"></div>
-									</div><!-- ./span -->
-								</div><!-- ./row-fluid -->
-
-								<!-- PAGE CONTENT ENDS -->
+									</div>		
+								</form>
+								<div class="hr hr-18 dotted hr-double"></div>
 							</div><!-- /.col -->
 						</div><!-- /.row -->
 					</div><!-- /.page-content -->
-				</div><!-- /.main-content -->
-{/block}
-{block name="js"}
+				</div><!-- /.main-content -->			
+<!-- basic scripts -->
 
+		<!--[if !IE]> -->
+
+		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/jquery.min.js"></script>
+
+		<!-- <![endif]-->
+
+		<!--[if IE]>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<![endif]-->
+
+		<!--[if !IE]> -->
+
+		<script type="text/javascript">
+			window.jQuery || document.write("<script src='{$Think.config.parse_str.__PUBLIC__}assets/jsassets/js/jquery-2.0.3.min.js'>"+"<"+"script>");
+		</script>
+
+		<!-- <![endif]-->
+
+		<!--[if IE]>
+<script type="text/javascript">
+ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+"<"+"script>");
+</script>
+<![endif]-->
+
+		<script type="text/javascript">
+			if("ontouchend" in document) document.write("<script src='{$Think.config.parse_str.__PUBLIC__}assets/js/jquery.mobile.custom.min.js'>"+"<"+"script>");
+		</script>
+		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/bootstrap.min.js"></script>
+		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/typeahead-bs2.min.js"></script>
+
+		<!-- page specific plugin scripts -->
+
+		<!--[if lte IE 8]>
+		  <script src="assets/js/excanvas.min.js"></script>
+		<![endif]-->
+		<!-- ace scripts -->
+
+		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/ace-elements.min.js"></script>
+		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/ace.min.js"></script>
+
+		<!-- inline scripts related to this page -->
 <script src="{$Think.config.parse_str.__PUBLIC__}assets/js/jquery-ui-1.10.3.full.min.js"></script>
 	<script type="text/javascript">
 			jQuery(function($) {
@@ -641,7 +464,28 @@
 							   .children(0).addClass('progress-bar progress-bar-success');
 					}
 				});
-					
 			});
+			function adduser(){
+				var number = {
+					Username:$("#form-field-1").val(),
+					group_id:$("#group_id").val(),
+					User_id:$("#form-field-2").val()
+				}
+					$.ajax({
+						type: 'POST', 
+			         	url: '{$Think.config.parse_str.__MODULE__}/Manager/User', 
+			          	data: number,  
+			          	async: false,  
+						cache: false, 
+			          	success: function (returndata) {
+			          		alert(returndata);
+			          		window.location.href = '/houtai/public/index.php/admin/User/member';
+			          	},
+			          	error:function(){
+			          		alert("数据加载失败"); 
+			          	},
+					});
+				}
 		</script>
-{/block}
+</body>		
+</html>
