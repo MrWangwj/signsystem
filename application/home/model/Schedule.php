@@ -2,7 +2,6 @@
 namespace app\home\model;
 
 use think\Model;
-use think\Db;
 use think\Validate;
 
 class Schedule extends Model{
@@ -32,7 +31,7 @@ class Schedule extends Model{
 	 * @return [type]          [description]
 	 */
 	public function getSchedules($user_id){
-		$data = Db::table('schedule')->field("b.*")
+		$data = db('schedule')->field("b.*")
 					->alias("a")
 					->join("curriculum AS b "," a.curriculum_id=b.id")
 					->where('user_id',$user_id)
@@ -46,7 +45,7 @@ class Schedule extends Model{
 	 * @return [type]       [description]
 	 */
 	public function getCurriculum($data, $week){
-		$nothing = Db::table('curriculum')->where('id',1)->find();
+		$nothing = db('curriculum')->where('id',1)->find();
 		$n = 0;
 		//循环创建课表数组
 		for ($i=0; $i < 5; $i++) { 
@@ -114,7 +113,7 @@ class Schedule extends Model{
 	}
 
 	public function getSchedule($id){
-		$schedule = Db::table('curriculum')->where('id',$id)->find();
+		$schedule = db('curriculum')->where('id',$id)->find();
 		return $schedule;
 	}
 
