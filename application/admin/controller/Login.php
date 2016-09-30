@@ -1,37 +1,73 @@
 <?php
+// +----------------------------------------------------------------------
+// | snake
+// +----------------------------------------------------------------------
+// | Copyright (c) 2016~2022 http://baiyf.cn All rights reserved.
+// +----------------------------------------------------------------------
+// | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
+// +----------------------------------------------------------------------
+// | Author: NickBai <1902822973@qq.com>
+// +----------------------------------------------------------------------
 namespace app\admin\controller;
+
+use app\admin\model\UserType;
 use think\Controller;
-use think\Db;
+use org\Verify;
 
 class Login extends Controller
 {
-	
-	public function login()
-	{
-		return $this->fetch();
-	}
-	public function test() {
-		if(!empty($_POST)) {
-			$admin_id = $_POST['id'];
-			$password = $_POST['password'];
-			$code = $_POST['code'];
-			if(captcha_check($code)){
-				$result = Db::table('admin')->where('admin_id',$admin_id)->value('password');
-				if($result) {
-					if($result == $password) {
-						$dress = '/Sign/index.php/admin/Base/base';
-						$ret = array('flag' => "success",'dress' => $dress);
-						return json_encode($ret) ; 
-					}else{
-					 	$ret = array('flag' => "账号或密码错误");
-					 	return json_encode($ret) ;
-					}
-				}
-			}else{
-				 $ret = array('flag' => "验证码错误");
-                  return(json_encode($ret));
-			}
-		}	
-	}
+    //登录页面
+    public function index()
+    {
+        return $this->fetch('/login');
+    }
+
+    //登录操作
+    public function doLogin()
+    {
+        $username = input("param.username");
+        $password = input("param.password");
+        $code = input("param.code");
+
+        $result = $this->validate(compact('username', 'password', "code"), 'AdminValidate');
+        if(true !== $result){
+            return json(['code' => -5, 'data' => '', 'msg' => $result]);
+        }
+
+        $verify = new Verify();
+        if (!$verify->check($code)) {
+            return json(['code' => -4, 'data' => '', 'msg' => '验证码错误']);
+        }
+
+        $hasUser = db('admin')->where('admin_id', $username)->find();
+//        echo dump($hasUser);
+        if(empty($hasUser)){
+            return json(['code' => -1, 'data' => '', 'msg' => '管理员不存在']);
+        }
+
+        if($password != $hasUser['password']){
+            return json(['code' => -2, 'data' => '', 'msg' => '密码错误']);
+        }
+        return json(['code' => 1, 'data' => url('index/index'), 'msg' => '登录成功']);
+    }
+
+    //验证码
+    public function checkVerify()
+    {
+        $verify = new Verify();
+        $verify->imageH = 32;
+        $verify->imageW = 100;
+        $verify->length = 4;
+        $verify->useNoise = false;
+        $verify->fontSize = 14;
+        $verify->reset = true;
+        return $verify->entry();
+    }
+
+    //退出操作
+    public function loginOut()
+    {
+        session('username', null);
+        $this->redirect(url('index'));
+    }
 }
-?>
