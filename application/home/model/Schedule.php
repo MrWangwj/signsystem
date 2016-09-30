@@ -3,8 +3,29 @@ namespace app\home\model;
 
 use think\Model;
 use think\Db;
+use think\Validate;
 
 class Schedule extends Model{
+
+    protected $rule =   [
+        'name'  => 'require|max:20',
+        'classroom'   => 'require|max:8',
+        'teacher'   => 'require|max:10',
+        'weeks' => 'require',    
+    ];
+
+    protected $msg  =   [
+        'name.require' => '名称不能为空',
+        'name.max'     => '名称最多不能超过20个字符',
+        'classroom.require' => '教室不能为空',
+        'classroom.max'     => '名称最多不能超过8个字符',
+        'teacher.require' => '老师不能为空',
+        'teacher.max'     => '名称最多不能超过10个字符',
+        'weeks.require'   => '周数不能为空',
+    ]; 	
+
+
+
 	/**
 	 * [用户课程]
 	 * @param  [type] $user_id 用户id
@@ -24,8 +45,8 @@ class Schedule extends Model{
 	 * @param  [type] $data 用户课程
 	 * @return [type]       [description]
 	 */
-	public function getCurriculum($data){
-		$nothing = Db::table('curriculum')->where('id',1)->select();
+	public function getCurriculum($data, $week){
+		$nothing = Db::table('curriculum')->where('id',1)->find();
 		$n = 0;
 		//循环创建课表数组
 		for ($i=0; $i < 5; $i++) { 
@@ -37,8 +58,12 @@ class Schedule extends Model{
 						break;
 					}				
 				}
-				if(!isset($schedule[$i][$j])) 
-					$schedule[$i][$j]=$this->whetherCourse($nothing,count($this->getNowWeek()),0)[0];
+				if(!isset($schedule[$i][$j])) {
+					$nothing['week'] = $j+1;
+					$nothing['section'] = $i+1;
+					$schedule[$i][$j]=$nothing;
+				}
+				$schedule[$i][$j]['whether_course'] = $this->whetherCourse($schedule[$i][$j],$week);
 			}
 		}
 		return $schedule;
@@ -49,17 +74,16 @@ class Schedule extends Model{
 	 * @param  [type] $nowWeek 指定周
 	 * @return [type]          [description]
 	 */
-	public function whetherCourse($data,$nowWeek){
-		foreach ($data as $key => $value) {
-			if(($nowWeek >=$value['start_week']) && ($nowWeek <=$value['end_week'])){
-				if($value['single_and_double'] == 0 || ($nowWeek % 2 == $value['single_and_double'] % 2)){
-					$data[$key]['whether_course'] = 1;
-					continue;
-				}
+	public function whetherCourse($schedule,$Week){
+		$whetherCourse = 0;
+		$weeks = explode(",", $schedule['weeks_number']);
+		foreach ($weeks as $key => $value) {
+			if($value == $Week){
+				$whetherCourse = 1;
+				break;
 			}
-			$data[$key]['whether_course'] = 0;
 		}
-		return $data;
+		return $whetherCourse;	
 	}
 
 	/**
@@ -90,7 +114,12 @@ class Schedule extends Model{
 	}
 
 	public function getSchedule($id){
-		$schedule = Db::table('schedule')->where('id',$id)->find();
+		$schedule = Db::table('curriculum')->where('id',$id)->find();
 		return $schedule;
+	}
+
+	public function judge($data){
+		$validate = new Validate($this->rule, $this->msg);
+		return $validate->check($data) ? true : $validate->getError();
 	}
 }

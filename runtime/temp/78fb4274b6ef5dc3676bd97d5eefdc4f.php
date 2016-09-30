@@ -1,11 +1,12 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:77:"/var/www/html/SignSystem2/public/../application/home/view/schedule/index.html";i:1475069659;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
-	<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}css/bootstrap.min.css">
-	<script src="{$Think.config.parse_str.__PUBLIC__}js/jquery-3.0.0.min.js"></script>
-	<script src="{$Think.config.parse_str.__PUBLIC__}js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>css/bootstrap.min.css">
+	<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>js/jquery-3.0.0.min.js"></script>
+	<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>js/bootstrap.min.js"></script>
 </head>
 <style >
 	.main{
@@ -56,19 +57,19 @@
 					<th>星期六</th>
 					<th>星期日</th>
 				</tr>
-				{volist name="data" id="vo"}
+				<?php if(is_array($data) || $data instanceof \think\Collection): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
 					<tr>
-						{volist name="vo" id="vo2"}
-							<td class='{eq name="vo2.whether_course" value="0"}color{/eq} course' data-toggle="modal" data-target="#myModal" data-id={$vo2.id}>
+						<?php if(is_array($vo) || $vo instanceof \think\Collection): $i = 0; $__LIST__ = $vo;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo2): $mod = ($i % 2 );++$i;?>
+							<td class='<?php if($vo2['whether_course'] == '0'): ?>color<?php endif; ?> course' data-toggle="modal" data-target="#myModal" data-id=<?php echo $vo2['id']; ?>>
 								<div >
-									<span>{$vo2.name}</span>
+									<span><?php echo $vo2['name']; ?></span>
 									<br/>
-									<span>{$vo2.classroom}</span>
+									<span><?php echo $vo2['classroom']; ?></span>
 								</div>								
 							</td>
-						{/volist}						
+						<?php endforeach; endif; else: echo "" ;endif; ?>						
 					</tr>
-				{/volist}
+				<?php endforeach; endif; else: echo "" ;endif; ?>
   			</table>
 		</div>
 		<div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -149,7 +150,7 @@
 			var section = $(this).parent().index();
 			var week = $(this).index()+1;
 			$.get(
-				"{:url('Schedule/schedule')}",
+				"<?php echo url('Schedule/schedule'); ?>",
 				{
 					id:$(this).data('id'),
 				},
@@ -193,7 +194,7 @@
 
 		$('#save').on('click', function(event) {
 			$.post(
-				"{:url('Schedule/save')}",
+				"<?php echo url('Schedule/save'); ?>",
 				{
 					name: $('#name').val(),
 					classroom: $('#classroom').val(),
