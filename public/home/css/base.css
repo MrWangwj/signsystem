@@ -39,6 +39,5 @@ footer{
     letter-spacing: 10px;
 }
 #content{
-    background: #fbfbfc;
-    min-height: 500px;
+    min-height: 300px;
 }

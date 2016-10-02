@@ -1,0 +1,39 @@
+#login_div{
+    margin: 100px auto 0;
+    width: 600px;
+    height: 250px;
+    border: 1px solid #d8e2d3;
+    background-color: #f1f8fd;
+    /*background: blue;*/
+}
+#input_span{
+    display: block;
+    height: 30px;
+    font-size: 15px;
+}
+#input_div{
+    margin: 5% auto 5%;
+    width: 400px;
+}
+#info_span{
+    display: block;
+    font-size: 13px;
+    height: 30px;
+    line-height: 30px;
+    visibility:hidden
+}
+#up_btn{
+    /*margin-top: 30px;*/
+    margin-left: 60px;
+}
+#into_btn{
+    /*margin-top: 30px;*/
+    margin-left: 60px;
+}
+#info_span2{
+    margin-left: 50px;
+    color:red;
+}
+textarea{
+    resize:none;
+}
