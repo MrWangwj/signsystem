@@ -10,7 +10,26 @@ class Index extends Controller
     {
         return $this->fetch();
     }
+    //签到检测
+    public function docheck(){
+        $userid = $_POST['userid'];
+        $result = $this->validate(compact( 'userid'), 'UseridValidate');
+        if(true !== $result){
+            return json(['code' => -1, 'msg' => $result]);
+        }
+        $result_user = db('user')
+            ->field("user_id")
+            ->select();
+        foreach($result_user as $user){
+            if($userid == $user["user_id"]){
+               session('userid',$userid);
+                return json(['code' => 1, 'msg' => "成功"]);
+            }
+        }
+        return json(['code' => -1, 'msg' => "（注意：你来自外星吗？）"]);
 
+    }
+    //申请加入
     public function doLogin()
     {
         $userid = $_POST['userid'];
@@ -45,11 +64,4 @@ class Index extends Controller
         db('check')->insert($data);
         return json(['code' => 1]);
     }
-    public function test(){
-        $result_id = db('user')
-            ->field("user_id,name")
-            ->select();
-        echo dump($result_id);
-    }
-
 }

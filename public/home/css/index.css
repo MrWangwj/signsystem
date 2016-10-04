@@ -16,11 +16,12 @@
     width: 400px;
 }
 #info_span{
+    color:red;
     display: block;
     font-size: 13px;
     height: 30px;
     line-height: 30px;
-    visibility:hidden
+    visibility: hidden;
 }
 #up_btn{
     /*margin-top: 30px;*/

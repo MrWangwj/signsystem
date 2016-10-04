@@ -8,7 +8,7 @@
         <form method="post" action="index.html">
             <div id="input_div">
                 <span id="input_span">请输入学号：</span>
-                <input type="email" class="form-control" id="username" placeholder="Enter ID">
+                <input type="email" class="form-control" id="userID" placeholder="Enter ID">
                 <span id="info_span">提示信息</span>
                 <button type="button" class="btn btn-default" id="up_btn">确定签到</button>
                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal" id="into_btn">申请加入</button>
@@ -30,7 +30,7 @@
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                 <h4 class="modal-title" id="myModalLabel">申请加入签到</h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" id="body1">
                 <form class="form-horizontal" role="form">
                     <div class="form-group">
                         <label class="col-sm-2 control-label">学号：</label>
@@ -51,9 +51,19 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <span id="info_span2">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
+                        <span id="info_span2">提示信息</span>
                     </div>
 
+                </form>
+            </div>
+
+
+            <div class="modal-body" id="body2">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <span class="label label-success" style="margin-left: 50px">Success</span>
+                        <span style="color: red">申请成功，请等待管理员审核~~</span>
+                    </div>
                 </form>
             </div>
 
@@ -64,11 +74,35 @@
         </div>
     </div>
 </div>
+
 {/block}
 {block name="js"}
 <script>
+    //签到登录
+    $("#up_btn").click(function () {
+        var userId = $("#userID").val();
+        $.post("{:url('index/docheck')}",{'userid':userId},function (data) {
+            if(data.code==-1){
+                $("#info_span").css("visibility","visible").html(data.msg);
+            }else if(data.code==1){
+                layer.msg('玩命卖萌中',{
+                    time:1000
+                }, function(){
+                    $("#info_span").css("visibility","hidden")
+                    window.location.href="{:url('homepage/index')}";
+                });
+
+            }
+        })
+    })
+    //申请加入
     $("#info_span2").hide();
+    $("#body2").hide();
+    $("#input_btn").show();
     $("#into_btn").click(function () {
+        $("#body1").show();
+        $("#body2").hide();
+        $("#input_btn").show();
         $("#inputID").val("");
         $("#inputName").val("");
         $("#inputArea").val("");
@@ -79,11 +113,15 @@
         var note = $("#inputArea").val();
         $.post("{:url('index/doLogin')}",{'userid':userid, 'username':username, 'note':note},function (data) {
             if(data.code==-1){
-                $("#info_span2").show().html(data.msg);
+                    $("#info_span2").show().html(data.msg);
+
             }else if(data.code==1){
-                $("#myModal").hide();
+                $("#body1").hide();
+                $("#body2").show();
+                $("#input_btn").hide();
             }
         })
     })
+
 </script>
 {/block}
