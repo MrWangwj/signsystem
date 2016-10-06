@@ -10,7 +10,7 @@ class Schedule extends Model{
         'name'  => 'require|max:20',
         'classroom'   => 'require|max:8',
         'teacher'   => 'require|max:10',
-        'weeks' => 'require',    
+        'weeks_number' => 'require',    
     ];
 
     protected $msg  =   [
@@ -20,7 +20,7 @@ class Schedule extends Model{
         'classroom.max'     => '名称最多不能超过8个字符',
         'teacher.require' => '老师不能为空',
         'teacher.max'     => '名称最多不能超过10个字符',
-        'weeks.require'   => '周数不能为空',
+        'weeks_number.require'   => '周数不能为空',
     ]; 	
 
 
@@ -111,14 +111,98 @@ class Schedule extends Model{
             return $arr;     
         } 
 	}
-
+	/**
+	 * 获得课程信息
+	 * @param  [type] $id [description]
+	 * @return [type]     [description]
+	 */
 	public function getSchedule($id){
+		input('get.id') && $id  = input('get.id');
 		$schedule = db('curriculum')->where('id',$id)->find();
 		return $schedule;
 	}
 
-	public function judge($data){
+	/**
+	 * 判断课程信息是否正确
+	 * @return [type] [description]
+	 */
+	public function judge(){
 		$validate = new Validate($this->rule, $this->msg);
-		return $validate->check($data) ? true : $validate->getError();
+		return $validate;
+	}
+	/**
+	 * 判断课程是否存在
+	 * @param  [type] $data [description]
+	 * @return [type]       [description]
+	 */
+	public function judgeRepeat($data){
+		$curriculums = db('curriculum',[],false)->select();
+		foreach ($curriculums as $key => $value) {
+			foreach ($value as $key2 => $value2) {
+				if($key2 != 'id') $curriculum2[$key2] = $value2;
+			}
+			$curriculum = array_intersect($curriculum2, $data);
+			if(count($curriculum) == count($data)){
+				return $value['id'];
+			}
+		}
+		return false;
+	}    
+
+	/**
+	 * 判断用户课表信息是否存在
+	 * 存在修改
+	 * 不存在增加
+	 * @param  [type] $user  [description]
+	 * @param  [type] $id    [description]
+	 * @param  [type] $newId [description]
+	 * @return [type]        [description]
+	 */
+	public function upSchedule($user, $id, $newId){
+		$schedule = db('schedule', [], false)->where(['curriculum_id'=>$id, 'user_id' => $user])->find();
+		if($schedule != false){
+			if($id == $newId){
+				$result = true;
+			}else{
+				$result = db('schedule')->where(['curriculum_id'=>$id, 'user_id' => $user])->update(['curriculum_id' => $newId]);
+			}
+		}else{
+			$result = db('schedule', [], false)->insert(['curriculum_id'=>$newId, 'user_id' => $user]);
+		}
+		if($result != false) return true;
+		return false;
+	}
+
+	/**
+	 * 待解决问题
+	 * 1.一节课中有两个课程
+	 * @param  [type] $userid [description]
+	 * @param  [type] $data   [description]
+	 * @return [type]         [description]
+	 */
+	public function judgeClash($userid, $data){
+		$weeks = db('curriculum', [], false)
+		->alias('a')
+		->field('a.weeks_number')
+		->join('schedule b', 'a.id = b.curriculum_id')
+		->where(['week' => $data['week'], 'section' => $data['section']])
+		->select();
+	}
+
+	/**
+	 * 获得课程的id
+	 * @param  [type] $user    用户id
+	 * @param  [type] $week    周数
+	 * @param  [type] $section 节数
+	 * @return [type]          [description]
+	 */
+	public function getId($user, $week, $section){
+		$id = db('curriculum', [], false)
+		->alias('a')
+		->field('a.id')
+		->join('schedule b', 'a.id = b.curriculum_id')
+		->where(['a.week' => $week, 'a.section' => $section, 'b.user_id' => $user])
+		->find();
+		return $id['id'];		
 	}
 }

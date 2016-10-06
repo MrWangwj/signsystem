@@ -6,6 +6,7 @@
 	<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}css/bootstrap.min.css">
 	<script src="{$Think.config.parse_str.__PUBLIC__}js/jquery-3.0.0.min.js"></script>
 	<script src="{$Think.config.parse_str.__PUBLIC__}js/bootstrap.min.js"></script>
+	<script src="{$Think.config.parse_str.__PUBLIC__}js/layer/layer.js"></script>
 </head>
 <style >
 	.main{
@@ -21,12 +22,13 @@
 		color: white;
 		height: 100px;
 		cursor: pointer;
+		width: 14.4%
 	}
 	.schedule th{
 		text-align: center;
 	}
 	.color{
-		background: #A6A6A6 !important ;
+		background: #B0AEB2 !important ;
 	}
 	.week td{
 		width: 35px;
@@ -38,12 +40,51 @@
 	.haveClass{
 		background-color: #d9edf7;
 	}
+	.hint{
+		position: absolute;
+		z-index: 10;
+		width: 94%;
+		height: 200px;
+		overflow: overlay;
+		display: none;
+	}
+	.hint div div{
+		float: left;
+		font-size: 12px;
+	}
+	.hint button{
+		float: right;
+	}
+
+
 </style>
 
 <body>
 	<div class="main">
 		<div>
-			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">编辑课表</button>
+			<select class="form-control">
+				<option>本周</option>
+				<option>第1周</option>
+				<option>第2周</option>
+				<option>第3周</option>
+				<option>第4周</option>
+				<option>第5周</option>
+				<option>第6周</option>
+				<option>第7周</option>
+				<option>第8周</option>
+				<option>第9周</option>
+				<option>第10周</option>
+				<option>第11周</option>
+				<option>第12周</option>
+				<option>第13周</option>
+				<option>第14周</option>
+				<option>第15周</option>
+				<option>第16周</option>
+				<option>第17周</option>
+				<option>第18周</option>
+				<option>第19周</option>
+				<option>第20周</option>
+			</select>
 		</div>
 		<div class="table-responsive curriculum">
   			<table class="table table-bordered schedule">
@@ -82,8 +123,11 @@
         				<form action="" class="form-horizontal" role="form">
         					<div class="form-group">
     							<label for="" class="col-sm-2 control-label">名称</label>
-    							<div class="col-sm-10">
+    							<div class="col-sm-10 test">
       								<input type="text" class="form-control" id="name" placeholder="未填写">
+									<div class="list-group hint">
+											
+									</div>
     							</div>
   							</div>
   							<div class="form-group">
@@ -101,10 +145,10 @@
   							<div class="form-group">
     							<label for="" class="col-sm-2 control-label">节数</label>
     							<div class="col-sm-10">
-      							<select class="form-control" style="width:40%;float: left;margin-right: 50px;" id="week">
+      								<select class="form-control" style="width:40%;float:left;margin-right: 50px;" id="week"  disabled="disabled">
 									
 									</select>
-      							<select class="form-control" style="width:40%;float:left;" id="section">
+      								<select class="form-control" style="width:40%;float:left;" id="section"  disabled="disabled">
 	
 									</select>
     							</div>
@@ -122,38 +166,42 @@
 										<input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 全部
 									</label>
 									<label class="radio-inline">
-										<input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option4" checked> 其他
+										<input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option4"> 其他
 									</label>
 									<table class="table-bordered week">
 
 									</table>
     							</div>		
 							</div>
+
         				</form>
       				</div>
       				<div class="modal-footer">
+        				<button type="button" class="btn btn-primary" id="save" >保存</button>
+        				<button type="button" class="btn btn-warning" id="nothing">无课</button>
         				<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-        				<button type="button" class="btn btn-default" data-dismiss="modal">无课</button>
-        				<button type="button" class="btn btn-primary" id="save">保存</button>
       				</div>
     			</div>
   			</div>
 		</div>
 	</div>
-
 	<script>
 		/**
 		 * 表格的单机事件
 		 */
+		var section = 0;
+		var week = 0;
 		$('.course').on('click', function() {
-			var section = $(this).parent().index();
-			var week = $(this).index()+1;
+			section = $(this).parent().index();
+			week = $(this).index()+1;
 			$.get(
 				"{:url('Schedule/schedule')}",
 				{
-					id:$(this).data('id'),
+					week: week,
+					section: section,
 				},
 				function(data){
+					$('.hint').html('');
 					$('#name').val(data.name);
 					$('#classroom').val(data.classroom);
 					$('#teacher').val(data.teacher);
@@ -192,21 +240,86 @@
 
 
 		$('#save').on('click', function(event) {
+			var id = $(this).data('id');
 			$.post(
 				"{:url('Schedule/save')}",
-				{
+				{	
 					name: $('#name').val(),
 					classroom: $('#classroom').val(),
 					teacher: $('#teacher').val(),
-					week: $('#week').val(),
-					section: $('#section').val(),
-					weeks: Weeks(),
+					week: week,
+					section: section,
+					weeks_number: Weeks(),
 				},
 				function(data){
-					alert(data);
+					if(data.code == 0){
+						layer.msg(data.msg, {icon: 2});
+					}else{
+						$('#myModal').modal('hide');
+						var icon = 1;
+						if(data.code != 2){
+							icon = 2;
+						}
+						layer.msg(data.msg, {icon: icon}, function(){
+							window.location.reload();
+						});						
+					}	
+							
 				}
 			);
 		});
+
+		$('#nothing').on('click', function(event) {
+    		layer.confirm('选择无课将删除当前课程，确定要这样做吗？', {
+  				btn: ['确定','取消'], //按钮
+  				icon : 0,
+			}, function(){
+  				$.post(
+  					"{:url('Schedule:nothing')}", 
+  					{
+  						week:week,
+  						section:section,
+  					}, function(data, textStatus, xhr){
+  						$('#myModal').modal('hide');
+  						layer.msg(data.msg, {icon: data.code}, function(){
+  							window.location.reload();
+  						});
+  					}
+  				);
+			});
+		});
+
+		$('#name').on('keyup', function(event) {
+			$('.hint').show();
+			var name = $(this).val();
+			$.get("{:url('Schedule:curriculum')}", {
+				name: name,
+				week: week,
+				section: section,
+			}, function(data) {
+				$('.hint').html(getHint(data));
+			});
+
+		});
+
+		$('.test').on('blur', function(event) {
+			$('.hint').hide();
+		});
+
+		$('.hint').on('click', '.addschedu', function(event) {
+			var id = $(this).data('id');
+			$.get(
+				"{:url('Schedule/schedule')}",
+				{
+					id: id,
+				},
+				function(data){
+					alert(data.id);
+				}
+			);
+		});
+
+
 		/**
 		 * 获得当前课程是周几
 		 * @param  {[type]} week 课程周
@@ -285,6 +398,22 @@
 					weeks += ",";
 			});
 			return weeks;			
+		}
+
+		function getHint(data){
+			var html  = '';
+			for (var i = 0; i < data.length; i++) {
+				html += '<div class="list-group-item clearfix">';
+				html += '<h5>'+data[i].name+'</h5>';
+				html += '<div>';
+				html += '<span>老师: '+data[i].teacher+'</span><br/>';
+				html += '<span>教室: '+data[i].classroom+'</span><br/>';
+				html += '<span>时间: '+data[i].weeks_number+'</span>';
+				html += '</div>';
+				html += '<button type="button" class="btn btn-success addschedu" data-id="'+data[i].id+'">＋添加到课表</button>';
+				html += '</div>';
+			}
+			return html;																	
 		}
 	</script>
 </body>
