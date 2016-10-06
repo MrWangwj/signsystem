@@ -11,13 +11,15 @@ class Manager extends Controller
 		$this -> assign('data',$data);
 		return $this->fetch();
 	}
-	public function remanager($user_id)
+	public function remanager($user_id = '')
 	{
+		
 		$data = Db::table('user') ->where('user_id',$user_id)->find();
 		$info = Db::table('group') ->select();
 		$this -> assign('info',$info);
 		$this -> assign('data',$data);
 		return $this->fetch();
+		//return $user_id."12312312";
 	}
 	public function User(){
 		if(!empty($_POST)){

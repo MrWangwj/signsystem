@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:75:"/var/www/html/SignSystem2/public/../application/admin/view/user/member.html";i:1475225584;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:75:"/var/www/html/SignSystem2/public/../application/admin/view/user/member.html";i:1475282036;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -124,7 +124,7 @@
 															<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
 															
 																<button class="btn btn-xs btn-info" type="submit" onclick="update();">
-																	<a href="<?php echo url('Manager/remanager',['user_id' => $vo['user_id']],''); ?>"><i class="icon-edit bigger-120"></i></a>
+																	<a href="<?php echo \think\Config::get('parse_str.__MODULE__'); ?>/Manager/remanager/<?php echo $vo['user_id']; ?>"><i class="icon-edit bigger-120"></i></a>
 																</button>
 															
 																<button class="btn btn-xs btn-danger group_id" value="<?php echo $vo['user_id']; ?>">
