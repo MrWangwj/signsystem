@@ -9,3 +9,18 @@
     height: 250px;
     border: 1px solid;
 }
+.homebox{
+    text-align: center;
+}
+.my_btn{
+    width: 100px;
+    margin: 20px;
+}
+#homeinfo_div{
+    width: 35%;
+    height: 100px;
+    margin-left: 32%;
+    border: 1px solid;
+    overflow-y: auto;
+    /*overflow: hidden;*/
+}

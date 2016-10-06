@@ -3,7 +3,7 @@ namespace app\home\controller;
 
 use app\home\model\User;
 use think\Controller;
-
+session_start();
 class Index extends Controller
 {
     public function index()
@@ -22,7 +22,7 @@ class Index extends Controller
             ->select();
         foreach($result_user as $user){
             if($userid == $user["user_id"]){
-               session('userid',$userid);
+                session('userid', $userid);
                 return json(['code' => 1, 'msg' => "成功"]);
             }
         }
@@ -63,5 +63,9 @@ class Index extends Controller
         $data = ['id' => $userid, 'name' => $username, 'note' => $note];
         db('check')->insert($data);
         return json(['code' => 1]);
+    }
+
+    public function test(){
+        
     }
 }
