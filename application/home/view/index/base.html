@@ -8,7 +8,7 @@
     {block name="css"}{/block}
 </head>
 <body>
-    <header>
+    <header style="background: url('{$Think.config.parse_str.__IMAGE__}header.gif')">
         <div id="title">
             <div id="logo_div">
                 <img src="{$Think.config.parse_str.__IMAGE__}Logo.png"  class="img-circle">
@@ -24,10 +24,13 @@
     <div id="content">
         {block name="content"}{/block}
     </div>
-    <footer>
+    <footer style="background: url('{$Think.config.parse_str.__IMAGE__}header.gif')">
         <div>三月签到系统页脚</div>
     </footer>
-
-    {block name="js"}{/block}
+    <script type="text/javascript" src="{$Think.config.parse_str.__JS__}jquery-3.0.0.min.js"></script>
+    <script type="text/javascript" src="{$Think.config.parse_str.__JS__}bootstrap.min.js"></script>
+    <script type="text/javascript" src="{$Think.config.parse_str.__PUBLIC__}js/layer/layer.js"></script>
+    {block name="js"}
+    {/block}
 </body>
 </html>
