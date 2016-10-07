@@ -3,9 +3,6 @@
 <link rel="stylesheet" type="text/css" href="{$Think.config.parse_str.__CSS__}homepage.css">
 {/block}
 {block name="content"}
-<div id="inner">
-    <div id="nav_div">
-    </div>
     <div id="hometop_div">
         <div class="homebox">
             <button type="button" class="btn btn-info my_btn" id="sign_btn">签到</button>
@@ -13,7 +10,8 @@
             <button type="button" class="btn btn-info my_btn" id="reSign_btn">补签</button>
         </div>
         <div class="homebox">
-            <div id="homeinfo_div" >
+            <div class="box" id="boxtitle">签到板</div>
+            <div id="homeinfo_div" class="box" >
 
             </div>
         </div>
@@ -198,7 +196,7 @@
                 layer.msg(data.msg,{time:1000},function () {
                     resign2_div.show();
                     resign1_div.hide();
-
+                    $("#redign_YMD").html("");
                     var now = new Date();
                     //获取当前年月日
                     var str = now.getFullYear() + "-" + Appendzero (now.getMonth()+1) + "-" + Appendzero (now.getDate());
