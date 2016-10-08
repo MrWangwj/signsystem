@@ -1,12 +1,13 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:77:"/var/www/html/SignSystem2/public/../application/home/view/schedule/index.html";i:1475763984;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
-	<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}css/bootstrap.min.css">
-	<script src="{$Think.config.parse_str.__PUBLIC__}js/jquery-3.0.0.min.js"></script>
-	<script src="{$Think.config.parse_str.__PUBLIC__}js/bootstrap.min.js"></script>
-	<script src="{$Think.config.parse_str.__PUBLIC__}js/layer/layer.js"></script>
+	<link rel="stylesheet" href="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>css/bootstrap.min.css">
+	<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>js/jquery-3.0.0.min.js"></script>
+	<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>js/bootstrap.min.js"></script>
+	<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>js/layer/layer.js"></script>
 </head>
 <style >
 	.main{
@@ -76,7 +77,7 @@
 
 	<div class="main">
 		<div>
-			<form action="{:url('Schedule/index')}" method="get" id="test">
+			<form action="<?php echo url('Schedule/index'); ?>" method="get" id="test">
 				<select class="form-control" id="weeks" name="week">
 					<option value='0'>本周</option>
 					<option value='1'>第1周</option>
@@ -118,19 +119,19 @@
 					<th>星期六</th>
 					<th>星期日</th>
 				</tr>
-				{volist name="data" id="vo"}
+				<?php if(is_array($data) || $data instanceof \think\Collection): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
 					<tr>
-						{volist name="vo" id="vo2"}
-							<td class='{if condition="$vo2.whether_course == 0"}color0{elseif condition="$vo2.whether_course eq 1"/}color1{/if} course' data-toggle="modal" data-target="#myModal" data-id={$vo2.id}>
+						<?php if(is_array($vo) || $vo instanceof \think\Collection): $i = 0; $__LIST__ = $vo;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo2): $mod = ($i % 2 );++$i;?>
+							<td class='<?php if($vo2['whether_course'] == 0): ?>color0<?php elseif($vo2['whether_course'] == 1): ?>color1<?php endif; ?> course' data-toggle="modal" data-target="#myModal" data-id=<?php echo $vo2['id']; ?>>
 								<div >
-									<span>{$vo2.name}</span>
+									<span><?php echo $vo2['name']; ?></span>
 									<br/>
-									<span>{$vo2.classroom}</span>
+									<span><?php echo $vo2['classroom']; ?></span>
 								</div>								
 							</td>
-						{/volist}						
+						<?php endforeach; endif; else: echo "" ;endif; ?>						
 					</tr>
-				{/volist}
+				<?php endforeach; endif; else: echo "" ;endif; ?>
   			</table>
 		</div>
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -241,13 +242,13 @@
 		var week = 0;
 
 
-		$('#weeks').find("option[value={$week}]").attr("selected",true);
+		$('#weeks').find("option[value=<?php echo $week; ?>]").attr("selected",true);
 		console.log();
 		$('.course').on('click', function() {
 			section = $(this).parent().index();
 			week = $(this).index()+1;
 			$.get(
-				"{:url('Schedule/schedule')}",
+				"<?php echo url('Schedule/schedule'); ?>",
 				{
 					week: week,
 					section: section,
@@ -294,7 +295,7 @@
 		$('#save').on('click', function(event) {
 			var id = $(this).data('id');
 			$.post(
-				"{:url('Schedule/save')}",
+				"<?php echo url('Schedule/save'); ?>",
 				{	
 					name: $('#name').val(),
 					classroom: $('#classroom').val(),
@@ -327,7 +328,7 @@
   				icon : 0,
 			}, function(){
   				$.post(
-  					"{:url('Schedule:nothing')}", 
+  					"<?php echo url('Schedule:nothing'); ?>", 
   					{
   						week:week,
   						section:section,
@@ -344,7 +345,7 @@
 		$('#name').on('keyup blur', function(event) {
 			$('.hint').show();
 			var name = $(this).val();
-			$.get("{:url('Schedule:curriculum')}", {
+			$.get("<?php echo url('Schedule:curriculum'); ?>", {
 				name: name,
 				week: week,
 				section: section,
@@ -372,7 +373,7 @@
 		$('.hint').on('click', '.addschedu', function(event) {
 			var id = $(this).data('id');
 			$.get(
-				"{:url('Schedule/schedule')}",
+				"<?php echo url('Schedule/schedule'); ?>",
 				{
 					id: id,
 				},
@@ -391,7 +392,7 @@
 		$('#weeks').on('change', function(event) {
 			var id=$("#weeks").find("option:selected").val();
 			if(id == 0){
-				window.location.href = "{:url('Schedule/index','','')}";
+				window.location.href = "<?php echo url('Schedule/index','',''); ?>";
 			}else{
 				$('#test').submit();
 			}
@@ -401,7 +402,7 @@
 		$('#input').on('click', function(event) {
 			var account = $('#account').val();
 			$.get(
-    			"{:url('Schedule/inputSch')}",
+    			"<?php echo url('Schedule/inputSch'); ?>",
     			{
     				user_id: account,
     			},

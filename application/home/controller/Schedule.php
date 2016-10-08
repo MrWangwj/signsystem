@@ -8,31 +8,33 @@ use think\Request;
 课表
 */
 class Schedule extends Controller{
-	protected $user = 3;
+	protected $user = 20151515138;
 
 	public function index(){
 		$schedule = model('Schedule');
-		$data = $schedule->getCurriculum($schedule->getSchedules(3),count($schedule->getNowWeek()));
-		$this->assign('data',$data);
+		$data = $schedule->getCurriculum($schedule->getSchedules($this->user),count($schedule->getNowWeek()));
+		$this->assign('data',$data[0]);
+		$this->assign('week',$data[1]);
 		return $this->fetch();
 	}
 
 	public function add(){
-		$schedule = model('Schedule');
-		$data = $schedule->getSchedules(3);
-		$w = "";
-		for ($i=0; $i < count($data,0); $i++) { 
-		for ($j=0; $j <= 20; $j++) { 
-			if( $j >= $data[$i]['start_week'] && $j <= $data[$i]['end_week'] && ($data[$i]['single_and_double'] == 0 || $data[$i]['single_and_double']%2 == $j%2)){
-				$w .= $j;
-				if($j != $data[$i]['end_week']) $w.=",";
-			}
+		// $schedule = model('Schedule');
+		// $data = $schedule->getSchedules($this->user);
+		// $w = "";
+		// for ($i=0; $i < count($data,0); $i++) { 
+		// for ($j=0; $j <= 20; $j++) { 
+		// 	if( $j >= $data[$i]['start_week'] && $j <= $data[$i]['end_week'] && ($data[$i]['single_and_double'] == 0 || $data[$i]['single_and_double']%2 == $j%2)){
+		// 		$w .= $j;
+		// 		if($j != $data[$i]['end_week']) $w.=",";
+		// 	}
 			
-		}
-		Db::table('curriculum')->where('id',$data[$i]['id'])->update(['weeks_number' => $w,]);
-		$w="";
-		}
-		return $w;
+		// }
+		// Db::table('curriculum')->where('id',$data[$i]['id'])->update(['weeks_number' => $w,]);
+		// $w="";
+		// }
+		db('schedule')->where(['user_id' => '2147483647'])->update(['user_id' => '20151515105']);
+		return "";
 	}
 
 	public function schedule(){
@@ -46,12 +48,14 @@ class Schedule extends Controller{
 		return $curriculum;
 	} 
 
-	public function test(){
-		$curriculums = db('curriculum')
-					->where('name', 'like', getLike(input('get.name')))
-					->where(['week' => input('get.week'), 'section' => input('get.section')])
-					->select();
-		return dump($curriculums);
+	public function test($week=''){
+		// $data = [
+		// 	['user_id' => '1', 'curriculum_id' => 9],
+		// 	['user_id' => '2', 'curriculum_id' => 0],
+		// 	['user_id' => '3', 'curriculum_id' => 9]
+		// ];
+		// db('schedule', [], false)->insertAll($data);
+		return $this->fetch();
 	} 
 
 	/**
@@ -68,7 +72,7 @@ class Schedule extends Controller{
 			if($result == false){      //判断信息是否重复
 				$newId = db('curriculum', [], false)->insertGetId($data);
 			}
-			if($schedule->upSchedule(3, $id, $newId)){ //判断信息是否更新成功
+			if($schedule->upSchedule($this->user, $id, $newId)){ //判断信息是否更新成功
 				return ['code' => 2, 'msg' => '保存成功'];
 			}
 			return ['code' => 1, 'msg' => '修改失败!']; 
@@ -95,6 +99,21 @@ class Schedule extends Controller{
 					->where(['week' => input('get.week'), 'section' => input('get.section')])
 					->select();
 		return $curriculums;
+	}
+
+	public function inputSch(){
+		$schedule = model('Schedule');
+		$user = input('get.user_id');
+		if($user != $this->user){
+			$scheduleId = $schedule->getScheduleId($user);
+			if($scheduleId){
+				$result = $schedule->cpSchedule($this->user, $scheduleId);
+				return ['code' => 2, 'msg' => '成功导入'.$result.'条'];
+				// return dump($result);
+			}
+			return ['code' => 1, 'msg' => '用户存在或该用户没有录入课表！'];
+		}
+		return ['code' => 0, 'msg' => '无法导入自己的课表'];
 	}
 }
 

@@ -45,6 +45,7 @@ class Schedule extends Model{
 	 * @return [type]       [description]
 	 */
 	public function getCurriculum($data, $week){
+		input('get.week') && $week = input('get.week');
 		$nothing = db('curriculum')->where('id',1)->find();
 		$n = 0;
 		//循环创建课表数组
@@ -65,21 +66,24 @@ class Schedule extends Model{
 				$schedule[$i][$j]['whether_course'] = $this->whetherCourse($schedule[$i][$j],$week);
 			}
 		}
-		return $schedule;
+		return [$schedule,$week];
 	}
 	/**
-	 * 判断 指定周是否有课
+	 * 判断 指定周是否有课  0：没有课程  1:本周不用上课 2：有课 
 	 * @param  [type] $data    课程数组 
 	 * @param  [type] $nowWeek 指定周
 	 * @return [type]          [description]
 	 */
 	public function whetherCourse($schedule,$Week){
 		$whetherCourse = 0;
-		$weeks = explode(",", $schedule['weeks_number']);
-		foreach ($weeks as $key => $value) {
-			if($value == $Week){
-				$whetherCourse = 1;
-				break;
+		if($schedule['id'] != 1){
+			$whetherCourse = 1;
+			$weeks = explode(",", $schedule['weeks_number']);
+			foreach ($weeks as $key => $value) {
+				if($value == $Week){
+					$whetherCourse = 2;
+					break;
+				}
 			}
 		}
 		return $whetherCourse;	
@@ -151,7 +155,7 @@ class Schedule extends Model{
 
 	/**
 	 * 判断用户课表信息是否存在
-	 * 存在修改
+	 * 存在修改 
 	 * 不存在增加
 	 * @param  [type] $user  [description]
 	 * @param  [type] $id    [description]
@@ -204,5 +208,26 @@ class Schedule extends Model{
 		->where(['a.week' => $week, 'a.section' => $section, 'b.user_id' => $user])
 		->find();
 		return $id['id'];		
+	}
+
+
+	public function cpSchedule($user, $schedule){
+		$count = 0;
+		db('schedule', [], false)
+		->where(['user_id' => $user])
+		->delete();
+		foreach ($schedule as $key => $value) {
+			$schedule[$key]['user_id'] = $user;
+		}
+		$count =db('schedule', [], false)->insertAll($schedule);
+	 	return $count;
+	}
+
+	public function getScheduleId($user){
+		$schedule = db('schedule', [], false)
+					->field('curriculum_id')
+					->where(['user_id' => $user])
+					->select();
+		return $schedule;
 	}
 }
