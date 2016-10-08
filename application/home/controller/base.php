@@ -14,7 +14,6 @@ class Base extends Controller
 {
     public function _initialize(){
         if(empty(session('userid'))){
-
             $this->redirect(url('index/index'));
         }
     }

@@ -1,0 +1,13 @@
+#top_box{
+    width: 79%;
+    min-height: 300px;
+    border: 1px solid #5b6a73;
+    margin-left: 10%;
+}
+#under_box{
+    width: 79%;
+    min-height: 300px;
+    border: 1px solid #5b6a73;
+    margin-left: 10%;
+    margin-top: 10px;
+}

@@ -220,7 +220,7 @@ if (XRegExp) {
     // references specified are passed forward to the next regex or returned. E.g.:
     // var xregexpImgFileNames = XRegExp.matchChain(html, [
     //     {regex: /<img\b([^>]+)>/i, backref: 1}, // <img> tag attributes
-    //     {regex: XRegExp('(?ix) \\s src=" (?<src> [^"]+ )'), backref: "src"}, // src attribute values
+    //     {regex: XRegExp('(?ix) \\s chart=" (?<chart> [^"]+ )'), backref: "chart"}, // chart attribute values
     //     {regex: XRegExp("^http://xregexp\\.com(/[^#?]+)", "i"), backref: 1}, // xregexp.com paths
     //     /[^\/]+$/ // filenames (strip directory paths)
     // ]);
@@ -2762,13 +2762,13 @@ typeof(exports) != 'undefined' ? exports.SyntaxHighlighter = SyntaxHighlighter :
 						'border-right border-bottom border-left border-top-color border-right-color border-bottom-color border-left-color ' +
 						'border-top-style border-right-style border-bottom-style border-left-style border-top-width border-right-width ' +
 						'border-bottom-width border-left-width border-width border bottom cap-height caption-side centerline clear clip color ' +
-						'content counter-increment counter-reset cue-after cue-before cue cursor definition-src descent direction display ' +
+						'content counter-increment counter-reset cue-after cue-before cue cursor definition-chart descent direction display ' +
 						'elevation empty-cells float font-size-adjust font-family font-size font-stretch font-style font-variant font-weight font ' +
 						'height left letter-spacing line-height list-style-image list-style-position list-style-type list-style margin-top ' +
 						'margin-right margin-bottom margin-left margin marker-offset marks mathline max-height max-width min-height min-width orphans ' +
 						'outline-color outline-style outline-width outline overflow padding-top padding-right padding-bottom padding-left padding page ' +
 						'page-break-after page-break-before page-break-inside pause pause-after pause-before pitch pitch-range play-during position ' +
-						'quotes right richness size slope src speak-header speak-numeral speak-punctuation speak speech-rate stemh stemv stress ' +
+						'quotes right richness size slope chart speak-header speak-numeral speak-punctuation speak speech-rate stemh stemv stress ' +
 						'table-layout text-align top text-decoration text-indent text-shadow text-transform unicode-bidi unicode-range units-per-em ' +
 						'vertical-align visibility voice-family volume white-space widows width widths word-spacing x-height z-index';
 
@@ -3419,13 +3419,13 @@ typeof(exports) != 'undefined' ? exports.SyntaxHighlighter = SyntaxHighlighter :
 						'border-right border-bottom border-left border-top-color border-right-color border-bottom-color border-left-color ' +
 						'border-top-style border-right-style border-bottom-style border-left-style border-top-width border-right-width ' +
 						'border-bottom-width border-left-width border-width border bottom cap-height caption-side centerline clear clip color ' +
-						'content counter-increment counter-reset cue-after cue-before cue cursor definition-src descent direction display ' +
+						'content counter-increment counter-reset cue-after cue-before cue cursor definition-chart descent direction display ' +
 						'elevation empty-cells float font-size-adjust font-family font-size font-stretch font-style font-variant font-weight font ' +
 						'height left letter-spacing line-height list-style-image list-style-position list-style-type list-style margin-top ' +
 						'margin-right margin-bottom margin-left margin marker-offset marks mathline max-height max-width min-height min-width orphans ' +
 						'outline-color outline-style outline-width outline overflow padding-top padding-right padding-bottom padding-left padding page ' +
 						'page-break-after page-break-before page-break-inside pause pause-after pause-before pitch pitch-range play-during position ' +
-						'quotes right richness size slope src speak-header speak-numeral speak-punctuation speak speech-rate stemh stemv stress ' +
+						'quotes right richness size slope chart speak-header speak-numeral speak-punctuation speak speech-rate stemh stemv stress ' +
 						'table-layout text-align top text-decoration text-indent text-shadow text-transform unicode-bidi unicode-range units-per-em ' +
 						'vertical-align visibility voice-family volume white-space widows width widths word-spacing x-height z-index';
 		

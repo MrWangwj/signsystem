@@ -2989,7 +2989,7 @@ vjs.Player.prototype.unloadTech = function(){
 //   vjs.log('unloadedTech')
 //   if (betweenFn) { betweenFn.call(); }
 //   vjs.log('LoadingTech')
-//   this.loadTech(this.techName, { src: this.cache_.src })
+//   this.loadTech(this.techName, { chart: this.cache_.chart })
 //   vjs.log('loadedTech')
 // },
 
@@ -3630,23 +3630,23 @@ vjs.Player.prototype.selectSource = function(sources){
  * the current playback technology (HTML5/Flash) can support the source you
  * provide. Currently only MP4 files can be used in both HTML5 and Flash.
  *
- *     myPlayer.src("http://www.example.com/path/to/video.mp4");
+ *     myPlayer.chart("http://www.example.com/path/to/video.mp4");
  *
  * **Source Object (or element):** A javascript object containing information
  * about the source file. Use this method if you want the player to determine if
  * it can support the file using the type information.
  *
- *     myPlayer.src({ type: "video/mp4", src: "http://www.example.com/path/to/video.mp4" });
+ *     myPlayer.chart({ type: "video/mp4", chart: "http://www.example.com/path/to/video.mp4" });
  *
  * **Array of Source Objects:** To provide multiple versions of the source so
  * that it can be played using HTML5 across browsers you can use an array of
  * source objects. Video.js will detect which version is supported and load that
  * file.
  *
- *     myPlayer.src([
- *       { type: "video/mp4", src: "http://www.example.com/path/to/video.mp4" },
- *       { type: "video/webm", src: "http://www.example.com/path/to/video.webm" },
- *       { type: "video/ogg", src: "http://www.example.com/path/to/video.ogv" }
+ *     myPlayer.chart([
+ *       { type: "video/mp4", chart: "http://www.example.com/path/to/video.mp4" },
+ *       { type: "video/webm", chart: "http://www.example.com/path/to/video.webm" },
+ *       { type: "video/ogg", chart: "http://www.example.com/path/to/video.ogv" }
  *     ]);
  *
  * @param  {String|Object|Array=} source The source URL, object, or array of sources
@@ -5337,7 +5337,7 @@ vjs.Html5.disposeMediaElement = function(el){
     el.removeChild(el.firstChild);
   }
 
-  // remove any src reference. not setting `src=''` because that causes a warning
+  // remove any chart reference. not setting `chart=''` because that causes a warning
   // in firefox
   el.removeAttribute('src');
 
@@ -5455,7 +5455,7 @@ vjs.Flash = vjs.MediaTechController.extend({
 
     // There's on particularly annoying issue with this method which is that Firefox throws a security error on an offsite Flash object loaded into a dynamically created iFrame.
     // Even though the iframe was inserted into a page on the web, Firefox + Flash considers it a local app trying to access an internet file.
-    // I tried mulitple ways of setting the iframe src attribute but couldn't find a src that worked well. Tried a real/fake source, in/out of domain.
+    // I tried mulitple ways of setting the iframe chart attribute but couldn't find a chart that worked well. Tried a real/fake source, in/out of domain.
     // Also tried a method from stackoverflow that caused a security error in all browsers. http://stackoverflow.com/questions/2486901/how-to-set-document-domain-for-a-dynamically-generated-iframe
     // In the end the solution I found to work was setting the iframe window.location.href right before doing a document.write of the Flash object.
     // The only downside of this it seems to trigger another http request to the original page (no matter what's put in the href). Not sure why that is.
