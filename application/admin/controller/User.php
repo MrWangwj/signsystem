@@ -100,6 +100,8 @@ class User extends Base
 			$data = Db::table('check') -> where('id',$_POST['id'])->delete();
 			if($data){
 				return '已拒绝';
+			}else{
+				return '此次拒绝失败';
 			}
 		}
 	}
