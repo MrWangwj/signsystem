@@ -1,18 +1,97 @@
 {extend name="index/base"}
 {block name="css"}
 <link rel="stylesheet" type="text/css" href="{$Think.config.parse_str.__CSS__}attendance.css">
-<script href="{$Think.config.parse_str_.__JS__}chart/chart.js"></script>
+<script type="text/javascript" href="{$Think.config.parse_str_.__JS__}Chart-1.0.1-beta.4.js"></script>
+<script>
+    var data = {
+        labels : ["January","February","March","April","May","June","July"],
+        datasets : [
+            {
+                barItemName: "name1",
+                fillColor : "rgba(220,220,220,0.5)",
+                strokeColor : "rgba(220,220,220,1)",
+                data : [65,59,90,81,56,55,40]
+            },
+            {
+                barItemName: "name2",
+                fillColor : "rgba(151,187,205,0.5)",
+                strokeColor : "rgba(151,187,205,1)",
+                data : [28,48,40,19,96,27,100]
+            }
+        ]
+    };
+
+    var chartBar = null;
+    window.onload = function() {
+        var ctx = document.getElementById("myChart").getContext("2d");
+        chartBar = new Chart(ctx).Bar(data);
+
+        initEvent(chartBar, clickCall);
+    }
+
+    function clickCall(evt){
+        var activeBar = chartBar.getBarSingleAtEvent(evt);
+        if ( activeBar !== null )
+            alert(activeBar.label + ": " + activeBar.barItemName + " ____ " + activeBar.value);
+    }
+
+    function initEvent(chart, handler) {
+        var method = handler;
+        var eventType = "click";
+        var node = chart.chart.canvas;
+
+        if (node.addEventListener) {
+            node.addEventListener(eventType, method);
+        } else if (node.attachEvent) {
+            node.attachEvent("on" + eventType, method);
+        } else {
+            node["on" + eventType] = method;
+        }
+    }
+</script>
 {/block}
 {block name="content"}
 <div id="top_box">
-
+    <div id="topleft_box">
+        <canvas id="myChart" width="400" height="400"></canvas>
+    </div>
+    <div id="topright_box">
+        <div id="ownaAttendance_box">
+                <p id="alltime"></p>
+                <p id="weektime"></p>
+                <p id="lasttime"></p>
+        </div>
+    </div>
 </div>
 <div id="under_box">
+
 
 </div>
 {/block}
 {block name="js"}
 <script>
-
+    window.onload = function(){
+        $.post("{:url('Attendance/getSum')}",function (data) {
+            if(data.code==-1){
+                $("#alltime").html("欢迎"+data.name+"同学来小组")
+            }else if(data.code == 1){
+                $("#alltime").html(data.name+"同学已经在小组学习了"+data.time)
+            }
+        })
+        $.post("{:url('Attendance/getWeekSum')}",function (data) {
+            if(data.code==-1){
+                $("#weektime").html("本周暂无签到记录")
+            }else if(data.code == 1){
+                $("#weektime").html(data.name+"同学本周在线"+data.time)
+            }
+        })
+        $.post("{:url('Attendance/lastOnline')}",function (data) {
+            if(data.code==-1){
+                $("#lasttime").html("快去签个到吧")
+            }else if(data.code == 1){
+                $("#lasttime").html("最后操作时间"+data.time)
+            }
+        })
+    }
 </script>
 {/block}
