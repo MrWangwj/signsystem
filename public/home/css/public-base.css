@@ -1,0 +1,244 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+a{
+	color: black;
+	
+}
+a:hover{
+	color: black;
+	text-decoration: none;
+}
+li{
+	list-style: none;
+}
+body{
+	background-color: #F6F6F6;
+}
+.backgd{
+	background-color: #F6F6F6;
+	min-width: 1024px;
+} 
+.title{
+	color: white;
+	height: 80px;
+	width: 100%;
+	background-color:#62D422; 
+	min-width: 1024px;
+}
+.title nav{
+	width: 1024px;
+	margin: 0 auto;
+}
+.title nav>div{
+	height: 80px;
+}
+.logo{
+	background-image: url(../image/Logo.png);
+	background-size: 100% 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	width: 50px;
+	height: 50px;
+	float: left;
+	margin-top: 15px;
+	margin-right: 15px;
+}
+.title-left{
+	width: 500px;
+	float: left;
+	line-height: 80px;
+}
+.title-left span{
+	float: left;
+	font-size: 24px;
+}
+
+.title-right{
+	float: right;
+}
+.title-right ul{
+	
+}
+
+.title-right>ul>li{
+	float: left;
+	height: 80px;
+	list-style: none;
+	border-left: 1px solid white; 
+}
+.notice{
+	position: relative;
+	cursor: pointer;
+}
+.notice:hover .notice-text{
+	display: block;
+}
+.notice>label{
+	background-image: url(../image/letter.png);
+	background-size: 95% 95%;
+	background-position: center;
+	background-repeat: no-repeat;
+	width: 40px;
+	height: 28px;
+	margin: 26px 10px 26px 10px;
+	position: relative;
+	cursor: pointer;
+}
+.notice label label{
+	width: 20px;
+	height: 20px;
+	background-color: red;
+	position: absolute;
+	right: -10px;
+	top: -10px;
+	text-align: center;
+	border-radius: 10px;
+	color: black;
+}
+
+.notice-text{
+	width: 350px;
+	background-color: white;
+	position: absolute;
+	top: 80px;
+    right: 0;
+    color: black;
+    border:1px solid #F9F9F9;
+    display: none;
+}
+.notice-text>div:last-child{
+	border-top: 1px solid #F9F9F9;
+	text-align: center;
+	height: 30px;
+	line-height: 30px;
+}
+.notice-option{
+	height: 244px;
+	overflow-y: overlay;
+}
+.notice-option>div{
+	width: 100%;
+	height: 80px;
+    border-bottom: 1px solid #F9F9F9;
+}
+.notice-option>div>div{
+	width: 90%;
+	margin: 0 auto;
+	padding-top: 10px;
+}
+.notice-option>div>div img{
+	width: 60px;
+	height: 60px;
+	float: left;
+}
+.notice-option>div>div>div{
+	float: right;
+	margin-left: 5px;
+	width: 240px;
+}
+.notice-option>div>div>div>div:first-child{
+	height: 30px;
+	line-height: 30px;
+}
+.notice-option>div>div>div>div:first-child span:first-child{
+	font-size: 16px;
+}
+.notice-option>div>div>div>div:first-child span:last-child{
+	float: right;
+}
+.notice-content>div{
+	height: 20px;
+	width: 220px;
+	overflow: hidden;
+	float: left;
+}
+.notice-content span{
+	
+}
+.picture{
+	width: 90px;
+	height: 80px;
+	position: relative;
+}
+.picture>div:first-child{
+	width: 60px;
+	height: 60px;
+	margin: 0 auto;
+	position: relative;
+	margin-top:10px;
+	cursor: pointer; 
+}
+.picture>div:first-child img{
+	width: 50px;
+	height: 50px;
+	margin: 0 auto;
+	display: block;
+	margin-top: 10px; 
+}
+.picture>div:first-child span{
+	width: 10px;
+	height: 10px;
+	position: absolute;
+	bottom: 2px;
+	right: 0;
+	background-image: url(../image/1.png);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+.picture:hover>div:first-child span{
+	display: none;
+}
+.menu{
+	display: none;
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background-color: white;
+    top: 80px;
+}
+
+.menu ul li{
+	height: 40px;
+	line-height: 40px;
+	border-bottom: 1px solid  #F9F9F9;
+	font-size: 18px;
+	color: black;
+	padding-left: 10px;
+}
+.picture:hover .menu{
+	display: block;
+}
+.user{
+	position: relative;
+	width: 110px;
+	height: 80px;
+}
+.user div{
+	position: absolute;
+	height: 30px;
+	bottom: 0;
+}
+.user a{
+	color: yellow;
+	text-decoration: none;
+}
+.main{
+	padding-bottom: 60px;
+	width: 1024px;
+	margin: 0 auto;
+}
+.test{
+	
+}
+.footer{
+	color: white;
+	height: 60px;
+	text-align: center;
+	width: 100%;
+	line-height: 60px;
+	background-color: #62D422;
+	position: fixed;
+	bottom: 0;
+}
