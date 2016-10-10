@@ -11,15 +11,23 @@ class Manager extends Controller
 		$this -> assign('data',$data);
 		return $this->fetch();
 	}
-	public function remanager($user_id = '')
+	public function remanager($user_id)
 	{
-		
 		$data = Db::table('user') ->where('user_id',$user_id)->find();
 		$info = Db::table('group') ->select();
 		$this -> assign('info',$info);
 		$this -> assign('data',$data);
 		return $this->fetch();
-		//return $user_id."12312312";
+	}
+	public function notice(){
+		$data = Db::table('user') ->join('admin','admin.user_id=user.user_id','LEFT')->join('notice','notice.admin_id=admin.admin_id')->select();
+		$this -> assign('data',$data);
+		return $this ->fetch();
+	}
+	public function renotice($notice_id){
+		$data = Db::table('notice')->where('notice_id',$notice_id)->find();
+		$this -> assign('data',$data);
+		return $this ->fetch();
 	}
 	public function User(){
 		if(!empty($_POST)){
@@ -62,6 +70,46 @@ class Manager extends Controller
 			}catch (\Exception $e) {
 				//回滚事务
 				Db::rollback();
+			}
+		}
+	}
+	public function addnotice(){
+		if(!empty($_POST)){
+			$result = Db::table('notice') -> insert(['notice'=>$_POST['notice'],'admin_id'=>123456]);
+			if($result){
+				return '添加成功';
+			}else{
+				return '添加失败';
+			}
+		}
+	}
+	public function updatenotice(){
+		if(!empty($_POST)){
+			$result = Db::table('notice')->where('notice_id',$_POST['id'])->update(['notice'=>$_POST['notice']]);
+			if($result){
+				return '修改成功';
+			}else{
+				return '修改失败';
+			}
+		}
+	}
+	public function delete_notice(){
+		if(!empty($_POST)){
+			$result = Db::table('notice') ->where('notice_id',$_POST['id'])->delete();
+			if($result){
+				return '删除成功';
+			}else{
+				return '删除失败';
+			}
+		}
+	}
+	public function deletes_notice(){
+		if(!empty($_POST)){
+			$result = Db::table('notice') ->where("notice_id in(".$_POST['invalue'].")")->delete();
+			if($result){
+				return '删除成功';
+			}else{
+				return '删除失败';
 			}
 		}
 	}

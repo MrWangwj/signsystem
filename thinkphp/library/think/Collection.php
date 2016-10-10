@@ -370,4 +370,9 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate, JsonSeria
         }
         return (array)$items;
     }
+
+    public function setItems($items) 
+    {
+        $this->items = $items;
+    }
 }
