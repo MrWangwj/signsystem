@@ -20,38 +20,47 @@ class User extends Base
     //用户列表
 
 	public function member()
-	{   
-		
-		if(!empty($_POST['name'])){
-				$data = Db::table('user') ->where('name',$_POST['name']) -> paginate(2);
+	{    
+		$group_id = input('group_id');
+		$name = input('name');
+		if(!empty($name)){
+				$data = Db::table('user') ->where('name',$name) -> paginate(2);
 				$merit = Db::table('user_group') -> select();
-		}else if(!empty($_POST['group_id'])){
-				$merit = Db::table('user_group') ->where('group_id',$_POST['group_id']) -> select();
-				$map = Db::table('user_group') ->where('group_id',$_POST['group_id']) -> column('user_id');
-				$data = db('user') -> where("user_id in(".$map.")") -> paginate(2);
-				
+		}else if(!empty($group_id)){
+				$merit = Db::table('user_group') ->where('group_id',$group_id) -> select();
+				$data = Db::table('user') -> join('user_group','user_group.user_id=user.user_id','LEFT') -> where('user_group.group_id',$group_id)->paginate(10);
 		}else{
-			$data = Db::name('user') -> paginate(2);
+			$data = Db::name('user') -> paginate(15);
 			$merit = Db::table('user_group') -> select();
 		}
-		$info = Db::table('group') ->select();
+		$info = Db::name('group')->select();
+
+		$tempData = $data->all();
+
+		foreach($info as $k => $v) {
+			$groupData[$v['group_id']] = $v['group_name'];
+		}
+
+		foreach($merit as $k => $v) {
+			$userGroupData[$v['user_id']] = $v['group_id'];
+		}
+
+		foreach($tempData as $k => $v) {
+			$tempData[$k]['group_name'] = '';
+			if (isset($userGroupData[$v['user_id']])) {
+				$tempData[$k]['group_name'] = isset($groupData[$userGroupData[$v['user_id']]]) ? $groupData[$userGroupData[$v['user_id']]] : '';
+			}
+		}
+
+		$data->setItems($tempData);
+		unset($tempData);
+		unset($groupData);
 		$this -> assign('info',$info);
 		$this -> assign('data',$data);
 		$this -> assign('merit',$merit);
-		return $this->fetch();
+		return $this -> fetch();
 	}
-	public function group()
-	{
-		if(!empty($_POST)){
-			$data = [ 'group_name' => $_POST['group']];
-			$result = Db::table('group')->insert($data);
-			if ($result) {
-				return '添加成功';
-			}else{
-				return '添加失败';
-			}
-		}
-	}
+	
 	public function delete(){
 		if(!empty($_POST)){
 			Db::startTrans();
@@ -94,6 +103,7 @@ class User extends Base
 			}catch (\Exception $e) {
 			    // 回滚事务
 			    Db::rollback();
+			    return '删除失败';
 			}
 		}
 	}

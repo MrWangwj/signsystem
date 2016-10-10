@@ -13,12 +13,12 @@ return [
 
     //模板参数替换
     'parse_str'=>[
-        '__PUBLIC__'=>'/',
+        '__PUBLIC__'=>'/SignSystem2/public/',
         '__ROOT__' => '/',
-        '__CSS__'     =>  '/static/admin/css/',
-        '__JS__'     =>  '/static/admin/js/',
-        '__IMAGE__'     =>  '/static/admin/images/',
-        '__MODULE__'=>'/index.php/admin',
+        '__CSS__'     =>  '/SignSystem2/public/static/admin/css/',
+        '__JS__'     =>  '/SignSystem2/public/static/admin/js/',
+        '__IMAGE__'     =>  '/SignSystem2/public/static/admin/images/',
+        '__MODULE__'=>'/SignSystem2/public/index.php/admin',
     ],
 
     //管理员状态

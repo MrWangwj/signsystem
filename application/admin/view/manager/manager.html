@@ -36,8 +36,8 @@
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 
 		<!--[if lt IE 9]>
-		<script chart="assets/js/html5shiv.js"></script>
-		<script chart="assets/js/respond.min.js"></script>
+		<script src="assets/js/html5shiv.js"></script>
+		<script src="assets/js/respond.min.js"></script>
 		<![endif]-->
     
 </head>
@@ -81,22 +81,6 @@
 
 									<div class="space-4"></div>
 
-									<!-- <div class="form-group">
-										<label class="col-sm-3 control-label no-padding-right" for="form-input-readonly"> Readonly field </label>
-
-										<div class="col-sm-9">
-											<input readonly="" type="text" class="col-xs-10 col-sm-5" id="form-input-readonly" value="This text field is readonly!">
-											<span class="help-inline col-xs-12 col-sm-7">
-												<label class="middle">
-													<input class="ace" type="checkbox" id="id-disable-check">
-													<span class="lbl"> Disable it!</span>
-												</label>
-											</span>
-										</div>
-									</div> -->
-
-									<div class="space-4"></div>
-
 									<div class="form-group">
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-4">性&nbsp别</label>
 										<div class="col-sm-9" style="margin-top:3px;">
@@ -113,20 +97,6 @@
 											<input type="text" id="form-field-2" placeholder="" class="col-xs-10 col-sm-5">
 										</div>
 									</div>
-
-									<!-- <div class="form-group">
-										<label class="col-sm-3 control-label no-padding-right" for="form-field-5">Grid Sizing</label>
-
-										<div class="col-sm-9">
-											<div class="clearfix">
-												<input class="col-xs-1" type="text" id="form-field-5" placeholder=".col-xs-1">
-											</div>
-
-											<div class="space-2"></div>
-
-											<div class="help-block ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" id="input-span-slider" aria-disabled="false"><div class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min" style="width: 0%;"></div><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left: 0%;"></a></div>
-										</div>
-									</div> -->
 
 									<div class="form-group">
 										<label class="col-sm-3 control-label no-padding-right">进入时间</label>
@@ -162,7 +132,7 @@
 											</button>
 
 											&nbsp; &nbsp; &nbsp;
-											<a href="{:url('User/member')}">
+											<a href="/SignSystem2/public/index.php/admin/user/member">
 											<button class="btn" type="button">
 												<i class="icon-undo bigger-110"></i>
 												Reset
@@ -221,271 +191,27 @@
 		<!-- inline scripts related to this page -->
 <script src="{$Think.config.parse_str.__PUBLIC__}assets/js/jquery-ui-1.10.3.full.min.js"></script>
 	<script type="text/javascript">
-			jQuery(function($) {
-			
-				$( "#datepicker" ).datepicker({
-					showOtherMonths: true,
-					selectOtherMonths: false, 
-					//isRTL:true,
-			
-					
-					/*
-					changeMonth: true,
-					changeYear: true,
-					
-					showButtonPanel: true,
-					beforeShow: function() {
-						//change button colors
-						var datepicker = $(this).datepicker( "widget" );
-						setTimeout(function(){
-							var buttons = datepicker.find('.ui-datepicker-buttonpane')
-							.find('button');
-							buttons.eq(0).addClass('btn btn-xs');
-							buttons.eq(1).addClass('btn btn-xs btn-success');
-							buttons.wrapInner('<span class="bigger-110" />');
-						}, 0);
-					}
-			*/
+		function adduser(){
+			var number = {
+				Username:$("#form-field-1").val(),
+				group_id:$("#group_id").val(),
+				User_id:$("#form-field-2").val()
+			}
+				$.ajax({
+					type: 'POST', 
+		         	url: '{$Think.config.parse_str.__MODULE__}/Manager/User', 
+		          	data: number,  
+		          	async: false,  
+					cache: false, 
+		          	success: function (returndata) {
+		          		alert(returndata);
+		          		window.location.href = '/SignSystem2/public/index.php/admin/User/member';
+		          	},
+		          	error:function(){
+		          		alert("数据加载失败"); 
+		          	},
 				});
-			
-			
-				//override dialog's title function to allow for HTML titles
-				$.widget("ui.dialog", $.extend({}, $.ui.dialog.prototype, {
-					_title: function(title) {
-						var $title = this.options.title || '&nbsp;'
-						if( ("title_html" in this.options) && this.options.title_html == true )
-							title.html($title);
-						else title.text($title);
-					}
-				}));
-			
-				$( "#id-btn-dialog1" ).on('click', function(e) {
-					e.preventDefault();
-			
-					var dialog = $( "#dialog-message" ).removeClass('hide').dialog({
-						modal: true,
-						title: "<div class='widget-header widget-header-small'><h4 class='smaller'><i class='icon-ok'></i> jQuery UI Dialog</h4></div>",
-						title_html: true,
-						buttons: [ 
-							{
-								text: "Cancel",
-								"class" : "btn btn-xs",
-								click: function() {
-									$( this ).dialog( "close" ); 
-								} 
-							},
-							{
-								text: "OK",
-								"class" : "btn btn-primary btn-xs",
-								click: function() {
-									$( this ).dialog( "close" ); 
-								} 
-							}
-						]
-					});
-			
-					/**
-					dialog.data( "uiDialog" )._title = function(title) {
-						title.html( this.options.title );
-					};
-					**/
-				});
-			
-			
-				$( "#id-btn-dialog2" ).on('click', function(e) {
-					e.preventDefault();
-				
-					$( "#dialog-confirm" ).removeClass('hide').dialog({
-						resizable: false,
-						modal: true,
-						title: "<div class='widget-header'><h4 class='smaller'><i class='icon-warning-sign red'></i> Empty the recycle bin?</h4></div>",
-						title_html: true,
-						buttons: [
-							{
-								html: "<i class='icon-trash bigger-110'></i>&nbsp; Delete all items",
-								"class" : "btn btn-danger btn-xs",
-								click: function() {
-									$( this ).dialog( "close" );
-								}
-							}
-							,
-							{
-								html: "<i class='icon-remove bigger-110'></i>&nbsp; Cancel",
-								"class" : "btn btn-xs",
-								click: function() {
-									$( this ).dialog( "close" );
-								}
-							}
-						]
-					});
-				});
-			
-			
-				
-				//autocomplete
-				 var availableTags = [
-					"ActionScript",
-					"AppleScript",
-					"Asp",
-					"BASIC",
-					"C",
-					"C++",
-					"Clojure",
-					"COBOL",
-					"ColdFusion",
-					"Erlang",
-					"Fortran",
-					"Groovy",
-					"Haskell",
-					"Java",
-					"JavaScript",
-					"Lisp",
-					"Perl",
-					"PHP",
-					"Python",
-					"Ruby",
-					"Scala",
-					"Scheme"
-				];
-				$( "#tags" ).autocomplete({
-					source: availableTags
-				});
-			
-				//custom autocomplete (category selection)
-				$.widget( "custom.catcomplete", $.ui.autocomplete, {
-					_renderMenu: function( ul, items ) {
-						var that = this,
-						currentCategory = "";
-						$.each( items, function( index, item ) {
-							if ( item.category != currentCategory ) {
-								ul.append( "<li class='ui-autocomplete-category'>" + item.category + "</li>" );
-								currentCategory = item.category;
-							}
-							that._renderItemData( ul, item );
-						});
-					}
-				});
-				
-				 var data = [
-					{ label: "anders", category: "" },
-					{ label: "andreas", category: "" },
-					{ label: "antal", category: "" },
-					{ label: "annhhx10", category: "Products" },
-					{ label: "annk K12", category: "Products" },
-					{ label: "annttop C13", category: "Products" },
-					{ label: "anders andersson", category: "People" },
-					{ label: "andreas andersson", category: "People" },
-					{ label: "andreas johnson", category: "People" }
-				];
-				$( "#search" ).catcomplete({
-					delay: 0,
-					source: data
-				});
-				
-				
-				//tooltips
-				$( "#show-option" ).tooltip({
-					show: {
-						effect: "slideDown",
-						delay: 250
-					}
-				});
-			
-				$( "#hide-option" ).tooltip({
-					hide: {
-						effect: "explode",
-						delay: 250
-					}
-				});
-			
-				$( "#open-event" ).tooltip({
-					show: null,
-					position: {
-						my: "left top",
-						at: "left bottom"
-					},
-					open: function( event, ui ) {
-						ui.tooltip.animate({ top: ui.tooltip.position().top + 10 }, "fast" );
-					}
-				});
-			
-			
-				//Menu
-				$( "#menu" ).menu();
-			
-			
-				//spinner
-				var spinner = $( "#spinner" ).spinner({
-					create: function( event, ui ) {
-						//add custom classes and icons
-						$(this)
-						.next().addClass('btn btn-success').html('<i class="icon-plus"></i>')
-						.next().addClass('btn btn-danger').html('<i class="icon-minus"></i>')
-						
-						//larger buttons on touch devices
-						if(ace.click_event == "tap") $(this).closest('.ui-spinner').addClass('ui-spinner-touch');
-					}
-				});
-			
-				//slider example
-				$( "#slider" ).slider({
-					range: true,
-					min: 0,
-					max: 500,
-					values: [ 75, 300 ]
-				});
-			
-			
-			
-				//jquery accordion
-				$( "#accordion" ).accordion({
-					collapsible: true ,
-					heightStyle: "content",
-					animate: 250,
-					header: ".accordion-header"
-				}).sortable({
-					axis: "y",
-					handle: ".accordion-header",
-					stop: function( event, ui ) {
-						// IE doesn't register the blur when sorting
-						// so trigger focusout handlers to remove .ui-state-focus
-						ui.item.children( ".accordion-header" ).triggerHandler( "focusout" );
-					}
-				});
-				//jquery tabs
-				$( "#tabs" ).tabs();
-				
-				
-				//progressbar
-				$( "#progressbar" ).progressbar({
-					value: 37,
-					create: function( event, ui ) {
-						$(this).addClass('progress progress-striped active')
-							   .children(0).addClass('progress-bar progress-bar-success');
-					}
-				});
-			});
-			function adduser(){
-				var number = {
-					Username:$("#form-field-1").val(),
-					group_id:$("#group_id").val(),
-					User_id:$("#form-field-2").val()
-				}
-					$.ajax({
-						type: 'POST', 
-			         	url: '{$Think.config.parse_str.__MODULE__}/Manager/User', 
-			          	data: number,  
-			          	async: false,  
-						cache: false, 
-			          	success: function (returndata) {
-			          		alert(returndata);
-			          		window.location.href = '/houtai/public/index.php/admin/User/member';
-			          	},
-			          	error:function(){
-			          		alert("数据加载失败"); 
-			          	},
-					});
-				}
-		</script>
+			}
+	</script>
 </body>		
 </html>

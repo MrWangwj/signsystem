@@ -38,8 +38,8 @@
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 
 		<!--[if lt IE 9]>
-		<script chart="assets/js/html5shiv.js"></script>
-		<script chart="assets/js/respond.min.js"></script>
+		<script src="assets/js/html5shiv.js"></script>
+		<script src="assets/js/respond.min.js"></script>
 		<![endif]-->
     
 </head>
@@ -48,29 +48,11 @@
 					<div class="page-content">
 						<div class="row">
 							<div class="col-xs-12">
-								<!-- PAGE CONTENT BEGINS -->
-								<!-- <div class="row" style="margin:0 0 10px 0;">
-									 <form class="form-inline" style="width:500px;float:left;" role="form" method="post" action="javascript:;">
-									 	<a class="btn btn-info" href="/SignSystem2/public/index.php/admin/Manager/manager">新增</a>
-									 	<label class="inline">用户搜索</label>
-									 	<select name="field" class="control">
-                                    		<option value="user">用户名</option>
-                                    		<option value="phone">电话</option>
-                                    		<option value="qq">QQ</option>
-                                    		<option value="email">邮箱</option>
-                                		</select>
-                                		<input type="text" name="keyword" class="control" value="" class="form-control">
-                                		<button type="submit" class="btn btn-purple btn-sm">
-                                		<i class="icon-search icon-on-right bigger-110"></i>
-											Search
-										</button>
-										</form>
-									<form role="form" method="post" action="javascript:addgroup();" >
-									 	<label class="inline">添加组别</label>
-									 	<input type="text" name="keyword" id="group" class="control" value="" class="form-control" required >
-									 	<button type="submit" class="btn btn-info">添加</button>
-									</form>
-								</div> -->
+							<form role="form" method="post" action="javascript:addgroup();" type="float:left;">
+							 	<label class="inline">添加组别</label>
+							 	<input type="text" name="keyword" id="group" class="control" value="" class="form-control" required >
+							 	<button type="submit" class="btn btn-info">添加</button>
+							</form>
 								<div class="row">
 									<div class="col-xs-12">
 										<div class="table-responsive">
@@ -95,7 +77,7 @@
 													<tr>
 														<td class="center" style="width:50px;">
 															<label>
-																<input type="checkbox" class="ace" />
+																<input type="checkbox" name="chkid" class="ace" value="{$vo.group_id}" />
 																<span class="lbl"></span>
 															</label>
 														</td>
@@ -105,11 +87,7 @@
 														</td>
 														
 														<td>
-														{volist name="merit" id="vt"}
-														{if $vt.group_id eq $vo.group_id}
-														{volist name="data" id="vi"}{if $vt.user_id eq $vi.user_id}{$vi.name}&nbsp{/if}{/volist}
-														{/if}
-														{/volist}
+														{volist name="data" id="vi"}{if $vo.group_id eq $vi.group_id}{$vi.name}&nbsp{/if}{/volist}	
 														</td>
 														
 														<td style="width:150px;">
@@ -121,17 +99,20 @@
 																<button class="btn btn-xs btn-danger delgroup" type="submit" value="{$vo.group_id}">
 																	<i class="icon-trash bigger-120"></i>
 																</button>
+																<button class="btn btn-xs btn-info " value="">
+																	<i class="icon-zoom-in bigger-130"></i>
+																</button>
 															</div>
 
 															<div class="visible-xs visible-sm hidden-md hidden-lg">
 																<div class="inline position-relative">
-																	<button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown">
+																	<button class="btn btn-minier btn-primary dropdown-toggle " data-toggle="dropdown">
 																		<i class="icon-cog icon-only bigger-110"></i>
 																	</button>
 
 																	<ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
 																		<li>
-																			<a href="#" class="tooltip-success" data-rel="tooltip" title="Edit" onclick="update();">
+																			<a href="#" class="tooltip-success updgroup" data-rel="tooltip" title="Edit" value="{$vo.group_id}">
 																				<span class="green">
 																					<i class="icon-edit bigger-120"></i>
 																				</span>
@@ -139,9 +120,17 @@
 																		</li>
 
 																		<li>
-																			<a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
+																			<a href="#" class="tooltip-error delgroup" data-rel="tooltip" title="Delete" value="{$vo.group_id}">
 																				<span class="red">
 																					<i class="icon-trash bigger-120"></i>
+																				</span>
+																			</a>
+																		</li>
+
+																		<li>
+																			<a href="#" class="tooltip-error delgroup" data-rel="tooltip" title="Delete" value="{$vo.group_id}">
+																				<span class="red">
+																					<i class="icon-zoom-in bigger-130"></i>
 																				</span>
 																			</a>
 																		</li>
@@ -157,7 +146,9 @@
 										</div><!-- /.table-responsive -->
 									</div><!-- /span -->
 								</div><!-- /row -->						
-
+								<div class="cf" style="folat:right;width:100px;">
+                               		 <input id="submit" class="btn btn-outline btn-primary" type="button" value="删除">                              		 
+                            	</div>
 								<div class="hr hr-18 dotted hr-double"></div>
 							</div><!-- /.col -->
 						</div><!-- /.row -->
@@ -209,6 +200,23 @@
 		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/jquery.dataTables.min.js"></script>
 		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/jquery.dataTables.bootstrap.js"></script>
 <script type="text/javascript">
+function addgroup(){
+		var group = $("#group").val();
+		$.ajax({
+			type: 'POST', 
+         	url: '{$Think.config.parse_str.__MODULE__}/Group/groupadd', 
+          	data:  'group='+group,  
+          	async: false,  
+			cache: false, 
+          	success: function (returndata) {
+          		alert(returndata);
+          		window.location.reload();
+          	},
+          	error:function(){
+          		alert("数据加载失败"); 
+          	},
+		});
+	}
 $('.updgroup').on('click',function(){
 	var group_name = prompt("组名:", ""); //将输入的内容赋给变量 name ，
 	if(group_name){
@@ -234,15 +242,26 @@ $('.updgroup').on('click',function(){
 	}	
 });
 //删除
-$('.delgroup').on('click',function(){
-	 
+$('#submit').on('click',function(){
+	 var chks = $("input:checked");
+        var data = [];
+        for (var i = 0;i< chks.length;i++){
+          var checkbox = chks[i];
+          if(checkbox.name ==="chkid" && checkbox.type==="checkbox" && checkbox.checked === true){
+            data.push(checkbox.value);
+          }
+        }
+        var str = data.toString();
+        var datavalue = {
+          invalue:str,
+        }
+        alert(str);
 	if(confirm("确定删除吗？")){  
-      var group_id = $(this).attr("value");
-      alert(group_id);
+     
       	$.ajax({
           type: 'POST', 
           url: '{$Think.config.parse_str.__MODULE__}/Group/deletegroup', 
-          data:  'group_id='+group_id,  
+          data:  datavalue,  
           async: false,  
           cache: false, 
             success: function (returndata) {

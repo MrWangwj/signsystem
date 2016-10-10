@@ -36,8 +36,8 @@
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 
 		<!--[if lt IE 9]>
-		<script chart="assets/js/html5shiv.js"></script>
-		<script chart="assets/js/respond.min.js"></script>
+		<script src="assets/js/html5shiv.js"></script>
+		<script src="assets/js/respond.min.js"></script>
 		<![endif]-->
     
 </head>
@@ -154,8 +154,9 @@
 												<i class="icon-ok bigger-110"></i>
 												Submit
 											</button>
+
 											&nbsp; &nbsp; &nbsp;
-											<a  href="{:url('User/member')}">
+											<a  href="/SignSystem2/public/index.php/admin/user/member">
 											<button class="btn "  type="button">
 												<i class="icon-undo bigger-110"></i> 
 												Reset		
@@ -229,7 +230,7 @@
 				cache: false, 
 		      	success: function (returndata) {
 		      		alert(returndata);
-		      		window.location.href = '/houtai/public/index.php/admin/User/member';
+		      		window.location.href = '/SignSystem2/public/index.php/admin/User/member';
 		      	},
 		      	error:function(){
 		      		alert("数据加载失败"); 

@@ -20,11 +20,8 @@
 
 		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/ace-rtl.min.css" />
 		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/ace-skins.min.css" />
-		<!-- <link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/ace.min.css" /> -->.
-		
+		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/ace.min.css" />
 		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/ace-rtl.min.css" />
-		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/ace-skins.min.css" />
-
 		<!--[if lte IE 8]>
 		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
 		<![endif]-->
@@ -38,8 +35,8 @@
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 
 		<!--[if lt IE 9]>
-		<script chart="assets/js/html5shiv.js"></script>
-		<script chart="assets/js/respond.min.js"></script>
+		<script src="assets/js/html5shiv.js"></script>
+		<script src="assets/js/respond.min.js"></script>
 		<![endif]-->
 </head>
 <body  class="gray-bg">
@@ -49,28 +46,25 @@
 						<div class="row">
 							<div class="col-xs-12">
 								<!-- PAGE CONTENT BEGINS -->
-								<div class="row" style="margin:0 0 10px 0;">
-									 <form class="form-inline" style="width:500px;float:left;" role="form" method="post" action="javascript:;">
-									 	<a class="btn btn-outline btn-primary" href="/houtai/public/index.php/admin/Manager/manager">新增</a>
-									 	<label class="inline">用户搜索</label>
+								<div class="row" style="float:left; width:40%;margin:0 0 10px 0;">
+						
+
+									 	<a class="btn btn-outline btn-primary" href="/SignSystem2/public/index.php/admin/Manager/manager">新增</a>
+									 	<label class="inline" style="margin-left:25px;">用户搜索:</label>
 									 	<select name="field" class="control" id="group1">
                                     		{volist name="info" id="vo"}
 												<option  value="{$vo.group_id}">{$vo.group_name}</option>
                                     		{/volist}	
                                 		</select>
+                                		<label class="inline">或者输入名字:</label>
                                 		<input type="text" id="field" name="keyword" class="control" value="" class="form-control">
-                                		<!-- <input type="text" id="keywords" name="keywords" /> -->
-                                		<button type="submit"  class="btn btn-purple btn-sm" onclick="search();" />
+                                		<button type="submit"  class="btn btn-purple btn-sm" onclick="search();"/>
                                 		<i class="icon-search icon-on-right bigger-110"></i>
 											Search
 										</button>
-										</form>
-									<form role="form" method="post" action="javascript:addgroup();" >
-									 	<label class="inline">添加组别</label>
-									 	<input type="text" name="keyword" id="group" class="control" value="" class="form-control" required >
-									 	<button type="submit" class="btn btn-info">添加</button>
-									</form>
 								</div>
+									
+								
 								<div class="row">
 									<div class="col-xs-12">
 										<div class="table-responsive">
@@ -79,8 +73,7 @@
 													<tr>
 														<th class="center">
 															<label>
-																<!-- <input type="checkbox"  class="ace" />
-																<span class="lbl"></span> -->
+																
 															</label>
 														</th>
 														<th>用户名</th>
@@ -110,7 +103,9 @@
 														<td>
 															<a href="#">{$vo.name}</a>
 														</td>
-														<td>{volist name="merit" id="vi"}{if $vi.user_id eq $vo.user_id}{volist name="info" id="v"}{if $v.group_id eq $vi.group_id}{$v.group_name}{/if}{/volist}{/if}{/volist}</td>
+														<td>
+														{$vo.group_name}
+														</td>
 														<td class="hidden-480">男</td>
 														<td>2015-10-10</td>
 
@@ -139,7 +134,7 @@
 
 																	<ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
 																		<li>
-																			<a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
+																			<a href="{$Think.config.parse_str.__MODULE__}/Manager/remanager/{$vo.user_id}" class="tooltip-success" data-rel="tooltip" title="Edit" onclick="update();">
 																				<span class="green">
 																					<i class="icon-edit bigger-120"></i>
 																				</span>
@@ -147,7 +142,7 @@
 																		</li>
 
 																		<li>
-																			<a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
+																			<a href="#" class="tooltip-error group_id" value="{$vo.user_id}" data-rel="tooltip" title="Delete">
 																				<span class="red">
 																					<i class="icon-trash bigger-120"></i>
 																				</span>
@@ -224,24 +219,7 @@
 		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/jquery.dataTables.min.js"></script>
 		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/jquery.dataTables.bootstrap.js"></script>
 <script type="text/javascript">
-	function addgroup(){
-		var group = $("#group").val();
-		alert(group);
-		$.ajax({
-			type: 'POST', 
-         	url: '{$Think.config.parse_str.__MODULE__}/User/group', 
-          	data:  'group='+group,  
-          	async: false,  
-			cache: false, 
-          	success: function (returndata) {
-          		alert(returndata);
-          		window.location.reload();
-          	},
-          	error:function(){
-          		alert("数据加载失败"); 
-          	},
-		});
-	}
+	
 	$("#submit").on('click',function(){
 		var chks = $("input:checked");
         var data = [];
@@ -255,6 +233,7 @@
         var datavalue = {
           invalue:str,
         }
+        alert(str);
        if(confirm("确定删除吗？")){  
 	        $.ajax({
 	        	type:'POST',
@@ -296,26 +275,10 @@
 	});
 	//查询
 	function search(){
-	   if(!($.trim(field)=='')||$("#group1").val()!=''){
-			var number = {
-				group_id:$("#group1").val(),
-				name: $('#field').val()
-			}
-			alert($("#group1").val());
-			$.ajax({
-				type: 'POST', 
-	         	url: '{$Think.config.parse_str.__MODULE__}/User/member', 
-	          	data:  number,  
-	          	async: false,  
-				cache: false, 
-	          	success: function (returndata) {
-	          		alert(returndata);
-	          		window.location.reload();
-	          	},
-	          	error:function(){
-	          		alert("数据加载失败"); 
-	          	},
-			});
+		var	group_id = $("#group1").val();
+		var name = $('#field').val();
+	   if(!($.trim(name)=='')||group_id!=''){
+	  	window.location.href='{$Think.config.parse_str.__MODULE__}/User/member?group_id='+group_id+'&name='+name;
 		}
 	}
 </script> 
