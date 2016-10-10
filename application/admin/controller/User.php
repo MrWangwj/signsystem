@@ -60,7 +60,49 @@ class User extends Base
 		$this -> assign('merit',$merit);
 		return $this -> fetch();
 	}
-	
+	public function useradd(){
+		$data = Db::table('check')->select();
+		$this -> assign('data',$data);
+		return $this -> fetch();
+	}
+	public function aduser(){
+		if(!empty($_POST)){
+			 Db::startTrans();
+			 try{
+			 	$data = Db::table('check') -> where('id',$_POST['id']) ->find();
+			 	$rlt_1 = Db::table('user') -> insert(['name' => $data['name'],'user_id'=>$data['id']]);
+			 	if($rlt_1 === false){
+			 		Db::rollback();
+			 		return '添加失败';
+			 	}
+			 	$rlt_2 = Db::table('user_group') -> insert(['user_id'=>$data['id'],'group_id'=>1]);
+			 	if($rlt_2 === false){
+			 		Db::rollback();
+			 		return '添加失败';
+			 	}
+			 	$rlt_3 = Db::table('check') -> where('id',$_POST['id']) ->delete();
+			 	if($rlt_3 === false){
+			 		Db::rollback();
+			 		return '添加失败';
+			 	}
+			 	Db::commit();    
+			 	return '添加成功';
+			 }catch (\Exception $e) {
+			 	dump("dsaf00");
+			    // 回滚事务
+			    Db::rollback();
+			      return '添加失败';
+			}
+		}
+	}
+	public function refuse_user(){
+		if (!empty($_POST)) {
+			$data = Db::table('check') -> where('id',$_POST['id'])->delete();
+			if($data){
+				return '已拒绝';
+			}
+		}
+	}
 	public function delete(){
 		if(!empty($_POST)){
 			Db::startTrans();
@@ -80,6 +122,7 @@ class User extends Base
 			}catch (\Exception $e) {
 			    // 回滚事务
 			    Db::rollback();
+			      return '删除失败';
 			}
 		}
 	}

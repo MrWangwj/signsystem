@@ -48,6 +48,7 @@ class Manager extends Controller
 			 }catch (\Exception $e) {
     			//回滚事务
     			Db::rollback();
+    			  return '添加失败';
 			}
 		}
 	}
@@ -70,6 +71,7 @@ class Manager extends Controller
 			}catch (\Exception $e) {
 				//回滚事务
 				Db::rollback();
+				  return '修改失败';
 			}
 		}
 	}

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:84:"D:\MyDrivers\htdocs\SignSystem2\public/../application/admin\view\manager\notice.html";i:1476004395;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:84:"D:\MyDrivers\htdocs\SignSystem2\public/../application/admin\view\manager\notice.html";i:1476079387;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,122 +47,131 @@
 </head>
 <body class="gray-bg">
 	<div>
-					<div class="page-content">
-						<div class="row">
-							<div class="col-xs-12">
-								<!-- PAGE CONTENT BEGINS -->
-								<div class="table-responsive">
-											<table id="sample-table-1" class="table table-striped table-bordered table-hover">
-												<thead>
-													<tr>
-														<th class="center">
-															<label>
-																
-															</label>
-														</th>
-														<th>管理员姓名</th>
-														<th>公告内容</th>
-														<th class="hidden-480">发布时间</th>
-														<th></th>
-													</tr>
-												</thead>
+		<div class="page-content">
+			<div class="page-header">
+				<h1>
+					分组管理
+					<small>
+						<i class="icon-double-angle-right"></i>
+						发布公告
+					</small>
+				</h1>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<!-- PAGE CONTENT BEGINS -->
+					<div class="table-responsive">
+								<table id="sample-table-1" class="table table-striped table-bordered table-hover">
+									<thead>
+										<tr>
+											<th class="center">
+												<label>
+													
+												</label>
+											</th>
+											<th>管理员姓名</th>
+											<th>公告内容</th>
+											<th class="hidden-480">发布时间</th>
+											<th></th>
+										</tr>
+									</thead>
 
-												<tbody>
-													<?php if(is_array($data) || $data instanceof \think\Collection): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
-													<tr>	
-														<td class="center" style="width:100px;">
-															<label>
-																<input type="checkbox" name="chkid" class="ace" value="<?php echo $vo['notice_id']; ?>" />
-																<span class="lbl"></span>
-															</label>
-														</td>
-														
-														<td style="width:150px;">
-															<a href="#"><?php echo $vo['name']; ?></a>
-														</td>
-														<td><?php echo $vo['notice']; ?></td>
-														<td style="width:150px;">2015-10-10</td>														
-														<td style="width:150px;">
-															<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
-															
-																<button class="btn btn-xs btn-info" type="submit" onclick="update();">
-																	<a href="<?php echo \think\Config::get('parse_str.__MODULE__'); ?>/Manager/renotice/<?php echo $vo['notice_id']; ?>"><i class="icon-edit bigger-120"></i></a>
-																</button>
-															
-																<button class="btn btn-xs btn-danger group_id" value="<?php echo $vo['notice_id']; ?>">
-																	<i class="icon-trash bigger-120"></i>
-																</button>
-															</div>
+									<tbody>
+										<?php if(is_array($data) || $data instanceof \think\Collection): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+										<tr>	
+											<td class="center" style="width:100px;">
+												<label>
+													<input type="checkbox" name="chkid" class="ace" value="<?php echo $vo['notice_id']; ?>" />
+													<span class="lbl"></span>
+												</label>
+											</td>
+											
+											<td style="width:150px;">
+												<a href="#"><?php echo $vo['name']; ?></a>
+											</td>
+											<td><?php echo $vo['notice']; ?></td>
+											<td style="width:150px;">2015-10-10</td>														
+											<td style="width:150px;">
+												<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
+												
+													<button class="btn btn-xs btn-info" type="submit" onclick="update();">
+														<a href="<?php echo \think\Config::get('parse_str.__MODULE__'); ?>/Manager/renotice/<?php echo $vo['notice_id']; ?>"><i class="icon-edit bigger-120"></i></a>
+													</button>
+												
+													<button class="btn btn-xs btn-danger group_id" value="<?php echo $vo['notice_id']; ?>">
+														<i class="icon-trash bigger-120"></i>
+													</button>
+												</div>
 
-															<div class="visible-xs visible-sm hidden-md hidden-lg">
-																<div class="inline position-relative">
-																	<button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown">
-																		<i class="icon-cog icon-only bigger-110"></i>
-																	</button>
+												<div class="visible-xs visible-sm hidden-md hidden-lg">
+													<div class="inline position-relative">
+														<button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown">
+															<i class="icon-cog icon-only bigger-110"></i>
+														</button>
 
-																	<ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
-																		<li>
-																			<a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
-																				<span class="green">
-																					<i class="icon-edit bigger-120"></i>
-																				</span>
-																			</a>
-																		</li>
+														<ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
+															<li>
+																<a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
+																	<span class="green">
+																		<i class="icon-edit bigger-120"></i>
+																	</span>
+																</a>
+															</li>
 
-																		<li>
-																			<a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
-																				<span class="red">
-																					<i class="icon-trash bigger-120"></i>
-																				</span>
-																			</a>
-																		</li>
-																	</ul>
-																</div>
-															</div>
-														</td>
-													</tr>	
-													<?php endforeach; endif; else: echo "" ;endif; ?>
-												</tbody>
-											</table>
-								</div><!-- /.table-responsive -->
-								<div class="cf" style="margin-bottom:40px;">
-                               		 <input id="submit" class="btn btn-outline btn-primary" type="button" value="删除"> 	 
-                            	</div>
-								<form class="form-horizontal" role="form" method="post" action="javascript:alter();">
-									<div class="form-group">
-										<label class="col-sm-3 control-label no-padding-right" for="form-field-1" style="width:100px;"> 公告标题 </label>
+															<li>
+																<a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
+																	<span class="red">
+																		<i class="icon-trash bigger-120"></i>
+																	</span>
+																</a>
+															</li>
+														</ul>
+													</div>
+												</div>
+											</td>
+										</tr>	
+										<?php endforeach; endif; else: echo "" ;endif; ?>
+									</tbody>
+								</table>
+					</div><!-- /.table-responsive -->
+					<div class="cf" style="margin-bottom:40px;">
+                   		 <input id="submit" class="btn btn-outline btn-primary" type="button" value="删除"> 	 
+                	</div>
+					<form class="form-horizontal" role="form" method="post" action="javascript:alter();">
+						<div class="form-group">
+							<label class="col-sm-3 control-label no-padding-right" for="form-field-1" style="width:100px;"> 公告标题 </label>
 
-										<div class="col-sm-9">
-											<input type="text" id="form-field-1"  placeholder="Username" class="col-xs-10 col-sm-5" required value="" >
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="col-sm-3 control-label no-padding-right" for="form-field-1" style="width:100px;"> 公告内容 </label>
+							<div class="col-sm-9">
+								<input type="text" id="form-field-1"  placeholder="Username" class="col-xs-10 col-sm-5" required value="" >
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label no-padding-right" for="form-field-1" style="width:100px;"> 公告内容 </label>
 
-										<div class="col-sm-9" >
-											<textarea name="editor"  id="editor" style="height:300px;"></textarea>
-										</div>
-									</div>		
-									<div class="clearfix form-actions">
-										<div class="col-md-offset-3 col-md-9" style="margin-left:4%;">
-											<button class="btn btn-info" type="submit" id="user" value="">
-												<i class="icon-ok bigger-110"></i>
-												Submit
-											</button>
-											<a  href="/houtai/public/index.php/admin/user/member">
-											<button class="btn "  type="button">
-												<i class="icon-undo bigger-110"></i> 
-												Reset		
-											</button>
-											</a>
-										</div>
-									</div>		
-								</form>
-								<div class="hr hr-18 dotted hr-double"></div>
-							</div><!-- /.col -->
-						</div><!-- /.row -->
-					</div><!-- /.page-content -->
-				</div><!-- /.main-content -->
+							<div class="col-sm-9" >
+								<textarea name="editor"  id="editor" style="height:300px;"></textarea>
+							</div>
+						</div>		
+						<div class="clearfix form-actions">
+							<div class="col-md-offset-3 col-md-9" style="margin-left:4%;">
+								<button class="btn btn-info" type="submit" id="user" value="">
+									<i class="icon-ok bigger-110"></i>
+									Submit
+								</button>
+								<a  href="/houtai/public/index.php/admin/user/member">
+								<button class="btn "  type="button">
+									<i class="icon-undo bigger-110"></i> 
+									Reset		
+								</button>
+								</a>
+							</div>
+						</div>		
+					</form>
+					<div class="hr hr-18 dotted hr-double"></div>
+				</div><!-- /.col -->
+			</div><!-- /.row -->
+		</div><!-- /.page-content -->
+	</div><!-- /.main-content -->
 
 <!-- basic scripts -->
 

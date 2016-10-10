@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:81:"D:\MyDrivers\htdocs\SignSystem2\public/../application/admin\view\user\member.html";i:1476023599;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:81:"D:\MyDrivers\htdocs\SignSystem2\public/../application/admin\view\user\member.html";i:1476081400;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,7 +43,15 @@
 <body  class="gray-bg">
 <div class="wrapper wrapper-content animated fadeInRight">
 					<div class="page-content">
-						
+						<div class="page-header">
+							<h1>
+								分组管理
+								<small>
+									<i class="icon-double-angle-right"></i>
+									用户信息
+								</small>
+							</h1>
+						</div>
 						<div class="row">
 							<div class="col-xs-12">
 								<!-- PAGE CONTENT BEGINS -->
@@ -81,10 +89,7 @@
 														<th>组  别</th>
 														<th class="hidden-480">性  别</th>
 
-														<th>
-															<i class="icon-time bigger-110 hidden-480"></i>
-															进入时间
-														</th>
+														
 														<th class="hidden-480">电话</th>
 
 														<th></th>
@@ -108,8 +113,7 @@
 														<?php echo $vo['group_name']; ?>
 														</td>
 														<td class="hidden-480">男</td>
-														<td>2015-10-10</td>
-
+	
 														<td class="hidden-480">
 															<!-- <span class="label label-sm label-warning">Expiring</span> -->
 															18738519352

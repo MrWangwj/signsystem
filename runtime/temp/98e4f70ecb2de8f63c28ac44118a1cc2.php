@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:85:"D:\MyDrivers\htdocs\SignSystem2\public/../application/admin\view\manager\manager.html";i:1476073804;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:85:"D:\MyDrivers\htdocs\SignSystem2\public/../application/admin\view\manager\manager.html";i:1476081565;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -98,23 +98,7 @@
 											<input type="text" id="form-field-2" placeholder="" class="col-xs-10 col-sm-5">
 										</div>
 									</div>
-
-									<div class="form-group">
-										<label class="col-sm-3 control-label no-padding-right">进入时间</label>
-
-										<div class="row" >
-											<div class="col-xs-6"style="width:270px;">
-												<div class="input-group input-group-sm">
-													<input type="text" id="datepicker" class="form-control" />
-													<span class="input-group-addon">
-														<i class="icon-calendar"></i>
-													</span>
-												</div>
-											</div>
-										</div>
-
-									</div>
-
+									
 									<div class="space-4"></div>
 
 									<div class="form-group">

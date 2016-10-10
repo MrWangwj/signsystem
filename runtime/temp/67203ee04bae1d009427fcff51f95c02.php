@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:87:"D:\MyDrivers\htdocs\SignSystem2\public/../application/admin\view\manager\remanager.html";i:1475907039;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:87:"D:\MyDrivers\htdocs\SignSystem2\public/../application/admin\view\manager\remanager.html";i:1476081504;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>

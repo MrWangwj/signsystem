@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:75:"D:\MyDrivers\htdocs\SignSystem2\public/../application/admin\view\index.html";i:1476004262;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:75:"D:\MyDrivers\htdocs\SignSystem2\public/../application/admin\view\index.html";i:1476102585;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -96,6 +96,11 @@
                         <span class="nav-label">分组管理</span>
                         <span class="fa arrow"></span>
                     </a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a class="J_menuItem" href="<?php echo url('admin/user/useradd'); ?>">审批信息</a>
+                        </li>
+                    </ul>
                     <ul class="nav nav-second-level">
                         <li>
                             <a class="J_menuItem" href="<?php echo url('admin/user/member'); ?>">当前组别</a>

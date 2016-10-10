@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:81:"D:\MyDrivers\htdocs\SignSystem2\public/../application/admin\view\group\group.html";i:1476079310;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:82:"D:\MyDrivers\htdocs\SignSystem2\public/../application/admin\view\user\useradd.html";i:1476102238;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,13 +19,10 @@
 
 		<!-- ace styles -->
 
-		<link rel="stylesheet" href="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/css/ace.min.css" />
 		<link rel="stylesheet" href="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/css/ace-rtl.min.css" />
 		<link rel="stylesheet" href="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/css/ace-skins.min.css" />
 		<link rel="stylesheet" href="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/css/ace.min.css" />
 		<link rel="stylesheet" href="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/css/ace-rtl.min.css" />
-		<link rel="stylesheet" href="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/css/ace-skins.min.css" />
-
 		<!--[if lte IE 8]>
 		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
 		<![endif]-->
@@ -42,27 +39,21 @@
 		<script src="assets/js/html5shiv.js"></script>
 		<script src="assets/js/respond.min.js"></script>
 		<![endif]-->
-    
 </head>
-<body class="gray-bg">
-	<div>
+<body  class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
 					<div class="page-content">
-					<div class="page-header">
+						<div class="page-header">
 							<h1>
 								分组管理
 								<small>
 									<i class="icon-double-angle-right"></i>
-									分组信息
+									审批信息
 								</small>
 							</h1>
 						</div>
 						<div class="row">
-							<div class="col-xs-12">
-							<form role="form" method="post" action="javascript:addgroup();" type="float:left;">
-							 	<label class="inline">添加组别</label>
-							 	<input type="text" name="keyword" id="group" class="control" value="" class="form-control" required >
-							 	<button type="submit" class="btn btn-info">添加</button>
-							</form>
+							<div class="col-xs-12">			
 								<div class="row">
 									<div class="col-xs-12">
 										<div class="table-responsive">
@@ -71,58 +62,65 @@
 													<tr>
 														<th class="center">
 															<label>
-																<input type="checkbox" class="ace" />
-																<span class="lbl"></span>
+																
 															</label>
 														</th>
-														<th>分组</th>
-														<th>人员</th>
+														<th>学  号</th>
+														<th>用户名</th>
+														<th>组  别</th>
+														<th class="hidden-480">性  别</th>
+
+														<th class="hidden-480">电话</th>
+
 														<th></th>
 													</tr>
 												</thead>
 
 												<tbody>
-												<?php if(is_array($info) || $info instanceof \think\Collection): if( count($info)==0 ) : echo "" ;else: foreach($info as $key=>$vo): ?>
-												 
-													<tr>
-														<td class="center" style="width:50px;">
+												<?php if(is_array($data) || $data instanceof \think\Collection): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+													<tr>	
+														<td class="center">
 															<label>
-																<input type="checkbox" name="chkid" class="ace" value="<?php echo $vo['group_id']; ?>" />
+																<input type="checkbox" name="chkid" class="ace" value="" />
 																<span class="lbl"></span>
 															</label>
 														</td>
+														<td>
+															<?php echo $vo['id']; ?>
+														</td>
+														<td>
+															<?php echo $vo['name']; ?>
+														</td>
+														<td>
+															开发一组
+														</td>
+														<td class="hidden-480">男</td>
 
-														<td style="width:200px;">
-															<a   href="#"><?php echo $vo['group_name']; ?></a>
+														<td class="hidden-480">
+															18738519352
 														</td>
 														
 														<td>
-														<?php if(is_array($data) || $data instanceof \think\Collection): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vi): $mod = ($i % 2 );++$i;if($vo['group_id'] == $vi['group_id']): ?><?php echo $vi['name']; ?>&nbsp<?php endif; endforeach; endif; else: echo "" ;endif; ?>	
-														</td>
-														
-														<td style="width:150px;">
 															<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
-																<button class="btn btn-xs btn-info updgroup" type="submit"  value="<?php echo $vo['group_id']; ?>">
-																	<i class="icon-edit bigger-120"></i>
+															
+																<button class="btn btn-xs btn-info  check" type="submit" value="<?php echo $vo['id']; ?>">
+																	同意
 																</button>
-
-																<button class="btn btn-xs btn-danger delgroup" type="submit" value="<?php echo $vo['group_id']; ?>">
-																	<i class="icon-trash bigger-120"></i>
-																</button>
-																<button class="btn btn-xs btn-info " value="">
-																	<i class="icon-zoom-in bigger-130"></i>
+															
+																<button class="btn btn-xs btn-danger refuse" value="<?php echo $vo['id']; ?>">
+																	拒绝
 																</button>
 															</div>
 
 															<div class="visible-xs visible-sm hidden-md hidden-lg">
 																<div class="inline position-relative">
-																	<button class="btn btn-minier btn-primary dropdown-toggle " data-toggle="dropdown">
+																	<button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown">
 																		<i class="icon-cog icon-only bigger-110"></i>
 																	</button>
 
 																	<ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
 																		<li>
-																			<a href="#" class="tooltip-success updgroup" data-rel="tooltip" title="Edit" value="<?php echo $vo['group_id']; ?>">
+																			<a href="<?php echo \think\Config::get('parse_str.__MODULE__'); ?>/Manager/remanager/" class="tooltip-success" data-rel="tooltip" title="Edit" onclick="update();">
 																				<span class="green">
 																					<i class="icon-edit bigger-120"></i>
 																				</span>
@@ -130,39 +128,36 @@
 																		</li>
 
 																		<li>
-																			<a href="#" class="tooltip-error delgroup" data-rel="tooltip" title="Delete" value="<?php echo $vo['group_id']; ?>">
+																			<a href="#" class="tooltip-error group_id" value="" data-rel="tooltip" title="Delete">
 																				<span class="red">
 																					<i class="icon-trash bigger-120"></i>
 																				</span>
 																			</a>
 																		</li>
-
-																		<li>
-																			<a href="#" class="tooltip-error delgroup" data-rel="tooltip" title="Delete" value="<?php echo $vo['group_id']; ?>">
-																				<span class="red">
-																					<i class="icon-zoom-in bigger-130"></i>
-																				</span>
-																			</a>
-																		</li>
 																	</ul>
 																</div>
-															</div>															
+															</div>
 														</td>
-														
-													</tr>												
-													<?php endforeach; endif; else: echo "" ;endif; ?>										
+													</tr>
+												<?php endforeach; endif; else: echo "" ;endif; ?>
 												</tbody>
 											</table>
 										</div><!-- /.table-responsive -->
 									</div><!-- /span -->
-								</div><!-- /row -->						
+								</div><!-- /row -->
+								<div style="float:right;">	
+								
+
+								</div>				
 								<div class="cf" style="folat:right;width:100px;">
-                               		 <input id="submit" class="btn btn-outline btn-primary" type="button" value="删除">                              		 
+                               		 <input id="submit" class="btn btn-outline btn-primary" type="button" value="同意">                              		 
                             	</div>
-								<div class="hr hr-18 dotted hr-double"></div>
+								
+                            	<div class="hr hr-18 dotted hr-double"></div>
 							</div><!-- /.col -->
 						</div><!-- /.row -->
 					</div><!-- /.page-content -->
+						
 				</div><!-- /.main-content -->
 <!-- basic scripts -->
 
@@ -210,80 +205,40 @@
 		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/jquery.dataTables.min.js"></script>
 		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/jquery.dataTables.bootstrap.js"></script>
 <script type="text/javascript">
-function addgroup(){
-		var group = $("#group").val();
+	$('.check').on('click',function(){
+		var user_id = $(this).attr("value");
 		$.ajax({
-			type: 'POST', 
-         	url: '<?php echo \think\Config::get('parse_str.__MODULE__'); ?>/Group/groupadd', 
-          	data:  'group='+group,  
-          	async: false,  
-			cache: false, 
-          	success: function (returndata) {
-          		alert(returndata);
-          		window.location.reload();
-          	},
-          	error:function(){
-          		alert("数据加载失败"); 
-          	},
-		});
-	}
-$('.updgroup').on('click',function(){
-	var group_name = prompt("组名:", ""); //将输入的内容赋给变量 name ，
-	if(group_name){
-		var group_id = $(this).attr("value");
-		var number = {
-			group_name:group_name,
-			id:group_id
-		}
+				type: 'POST', 
+	         	url: '<?php echo \think\Config::get('parse_str.__MODULE__'); ?>/User/aduser', 
+	          	data:  'id='+user_id,  
+	          	async: false,  
+				cache: false, 
+	          	success: function (returndata) {
+	          		alert(returndata);
+	          		window.location.reload();
+	          	},
+	          	error:function(){
+	          		alert("数据加载失败"); 
+	          	},
+			});
+	});
+	$('.refuse').on('click',function(){
+		var user_id = $(this).attr("value");
 		$.ajax({
-			type: 'POST', 
-         	url: '<?php echo \think\Config::get('parse_str.__MODULE__'); ?>/Group/upgroup', 
-          	data:  number,  
-          	async: false,  
-			cache: false, 
-          	success: function (returndata) {
-          		alert(returndata);
-          		window.location.reload();
-          	},
-          	error:function(){
-          		alert("数据加载失败"); 
-          	},
-         });
-	}	
-});
-//删除
-$('#submit').on('click',function(){
-	 var chks = $("input:checked");
-        var data = [];
-        for (var i = 0;i< chks.length;i++){
-          var checkbox = chks[i];
-          if(checkbox.name ==="chkid" && checkbox.type==="checkbox" && checkbox.checked === true){
-            data.push(checkbox.value);
-          }
-        }
-        var str = data.toString();
-        var datavalue = {
-          invalue:str,
-        }
-        alert(str);
-	if(confirm("确定删除吗？")){  
-     
-      	$.ajax({
-          type: 'POST', 
-          url: '<?php echo \think\Config::get('parse_str.__MODULE__'); ?>/Group/deletegroup', 
-          data:  datavalue,  
-          async: false,  
-          cache: false, 
-            success: function (returndata) {
-                  alert(returndata);
-                  window.location.reload();
-                },
-            erro: function(){
-              alert("数据加载失败"); 
-            },
-      	});
-    }
-});
-</script>
+				type: 'POST', 
+	         	url: '<?php echo \think\Config::get('parse_str.__MODULE__'); ?>/User/refuse_user', 
+	          	data:  'id='+user_id,  
+	          	async: false,  
+				cache: false, 
+	          	success: function (returndata) {
+	          		alert(returndata);
+	          		window.location.reload();
+	          	},
+	          	error:function(){
+	          		alert("数据加载失败"); 
+	          	},
+			});
+	});
+</script> 
 </body>
 </html>
