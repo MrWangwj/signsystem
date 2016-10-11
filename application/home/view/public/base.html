@@ -3,13 +3,13 @@
 <head>
 	<meta charset="UTF-8">
 	<title>{block name="title"}标题{/block}</title>
-	{block name="link"}{/block}
 	<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}css/bootstrap.min.css">
 	<link rel="stylesheet" href="{$Think.config.parse_str.__CSS__}public-base.css">
 	<script src="{$Think.config.parse_str.__PUBLIC__}js/jquery-3.0.0.min.js"></script>
 	<script src="{$Think.config.parse_str.__PUBLIC__}js/bootstrap.min.js"></script>
 	<script src="{$Think.config.parse_str.__PUBLIC__}js/layer/layer.js"></script>
 	<script src="{$Think.config.parse_str.__PUBLIC__}js/public-base.js"></script>	
+	{block name="link"}{/block}
 </head>
 <body>
 	<div class="backgd">
@@ -114,9 +114,7 @@
 			</nav>
 		</div>
 		<div class="main">
-			<div class="test">
-				{block name="main"}内容{/block}
-			</div>
+			{block name="main"}内容{/block}
 		</div>
 		<div class="footer">
 			<span>三月软件@版权所有</span>

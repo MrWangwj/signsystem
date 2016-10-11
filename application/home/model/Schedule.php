@@ -201,6 +201,7 @@ class Schedule extends Model{
 	 * @return [type]          [description]
 	 */
 	public function getId($user, $week, $section){
+		input('get.otheruser') && $user = input('get.otheruser');
 		$id = db('curriculum', [], false)
 		->alias('a')
 		->field('a.id')
@@ -230,4 +231,52 @@ class Schedule extends Model{
 					->select();
 		return $schedule;
 	}
+	public function getCount(){
+		$week = count($this->getNowWeek());
+		$status = 1;
+		input('get.week') && $week = input('get.week');
+		input('get.status') && $status = input('get.status');
+		$fun = 'getHaveClass';
+		if($status == 2) $fun = 'getNoClass';
+		for ($i=0; $i < 5; $i++) { 
+			for ($j=0; $j < 7; $j++) {
+				// 循环用户课程，添加无课 
+				$tables[$i][$j] = $this->$fun($j+1,$i+1,$week); 
+			}
+		}
+		return $tables;
+	}
+
+	public function getHaveClass($week, $section, $weekNum){
+		$data = db('schedule', [], false)
+				->alias('a')
+				->field('b.name,c.id,c.weeks_number')
+				->join('user AS b', 'a.user_id = b.user_id')
+				->join('curriculum AS c', 'a.curriculum_id = c.id')
+				->where(['week' => $week, 'section' => $section])
+				->select();
+		$names = '';
+		foreach ($data as $key => $value) {
+			if($this->whetherCourse($value, $weekNum) == 2){
+				$names[$key] = $value;	
+			}
+		}
+		return $names;
+	}
+
+	public function getNoClass($week, $section, $weekNum){
+		$haveclass = $this->getHaveClass($week, $section, $weekNum);
+		$data[0] = '无';
+		if($haveclass){
+			foreach ($haveclass as $key => $value) {
+				$data[$key] = $value['name'];
+			}
+		}
+		$names = db('user', [], false)	
+				->field('name')
+				->where('name', 'not in', $data)
+				->select();
+		return $names;
+	}
 }
+
