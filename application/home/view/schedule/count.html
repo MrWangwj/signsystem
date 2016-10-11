@@ -1,0 +1,129 @@
+{extend name="public/base" /}
+{block name="link"}
+	<link rel="stylesheet" href="{$Think.config.parse_str.__CSS__}schedule-count.css">
+{/block}
+{block name="main"}
+<div>
+	<div class="setup clearfix">
+		<form action="{:url('Schedule/count')}" method="get" id="test">
+			<span>当前周：</span>
+			<select class="form-control" name="week" id="weeks">
+				<option value='0'>本周</option>
+				<option value='1'>第1周</option>
+				<option value='2'>第2周</option>
+				<option value='3'>第3周</option>
+				<option value='4'>第4周</option>
+				<option value='5'>第5周</option>
+				<option value='6'>第6周</option>
+				<option value='7'>第7周</option>
+				<option value='8'>第8周</option>
+				<option value='9'>第9周</option>
+				<option value='10'>第10周</option>
+				<option value='11'>第11周</option>
+				<option value='12'>第12周</option>
+				<option value='13'>第13周</option>
+				<option value='14'>第14周</option>
+				<option value='15'>第15周</option>
+				<option value='16'>第16周</option>
+				<option value='17'>第17周</option>
+				<option value='18'>第18周</option>
+				<option value='19'>第19周</option>
+				<option value='20'>第20周</option>
+			</select>	
+			<div class="seeStatus">
+				<span>
+					查看：
+				</span>
+				<select class="form-control" name="status" id="seestatus">
+					<option value='1'>有课人员表</option>
+					<option value='2'>无课人员表</option>
+				</select>
+			</div>			
+		</form>
+	</div>
+	<div class="term">
+		<div class="term-result clearfix">
+			<label for="">筛选条件：</label>
+			<div class="term-label">
+				
+			</div>
+			<div class="term-but">
+				<button  class="btn btn-primary">+添加新的条件</button>
+			</div>
+		</div>
+		<div class="term-input clearfix">
+			<span>组别：</span>
+			<select name="1" id="term-group" class="form-control">
+				<option value="">全部</option>
+				<option value="">开发一组</option>
+				<option value="">开发二组</option>
+				<option value="">开发三组</option>
+				<option value="">开发四组</option>
+				<option value="">开发五组</option>
+				<option value="">开发六组</option>
+				<option value="">开发七组</option>
+				<option value="">开发八组</option>
+			</select>
+			<span>职务：</span>
+			<select class="form-control" id="term-post">
+  				<option>全部</option>
+  				<option>事务负责人</option>
+  				<option>成员</option>
+			</select>
+			<span>人员：</span>
+			<select class="form-control" id="term-personnel">
+				<option value="">全部</option>
+  				<option>王巍瑾</option>
+  				<option>刘海洋</option>
+  				<option>刘海洋</option>
+  				<option>刘海洋</option>
+  				<option>刘海洋</option>
+  				<option>刘海洋</option>
+  				<option>刘海洋</option>
+  				<option>刘海洋</option>
+  				<option>刘海洋</option>
+  				<option>刘海洋</option>
+  				<option>刘海洋</option>
+  				<option>刘海洋</option>
+  				<option>刘海洋</option>
+  				<option>刘海洋</option>
+  				<option>刘海洋</option>
+			</select>
+		</div>
+	</div>
+	<div class="table-responsive personnel">
+ 			<table class="table table-bordered">
+				<tr>
+					<th>星期一</th>
+					<th>星期二</th>
+					<th>星期三</th>
+					<th>星期四</th>
+					<th>星期五</th>
+					<th>星期六</th>
+					<th>星期日</th>
+				</tr>
+				{volist name="data" id="vo"}
+					<tr>
+						{volist name="vo" id="vo2"}
+							<td >
+								{volist name="vo2" id="vo3"}	
+									{$vo3.name},
+								{/volist}							
+							</td>
+						{/volist}						
+					</tr>
+				{/volist}
+ 			</table>
+	</div>
+</div>
+<script>
+	$('#seestatus').find("option[value={$Think.get.status|default=1}]").attr("selected",true);
+	$('#weeks').find("option[value={$Think.get.week|default=1}]").attr("selected",true);
+	$('#weeks').on('change', function(event) {
+			$('#test').submit();
+	});
+	$('#seestatus').on('change', function(event) {
+		$('#test').submit();
+	});
+</script>
+{/block}

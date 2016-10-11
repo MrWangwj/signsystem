@@ -8,7 +8,7 @@ use think\Request;
 课表
 */
 class Schedule extends Controller{
-	protected $user = 20151515138;
+	protected $user = 20151515135;
 
 	public function index(){
 		$schedule = model('Schedule');
@@ -49,13 +49,10 @@ class Schedule extends Controller{
 	} 
 
 	public function test($week=''){
-		// $data = [
-		// 	['user_id' => '1', 'curriculum_id' => 9],
-		// 	['user_id' => '2', 'curriculum_id' => 0],
-		// 	['user_id' => '3', 'curriculum_id' => 9]
-		// ];
-		// db('schedule', [], false)->insertAll($data);
-		return $this->fetch();
+		$schedule = model('Schedule');
+		
+
+		return dump($schedule->getHaveClass(1,2));
 	} 
 
 	/**
@@ -114,6 +111,43 @@ class Schedule extends Controller{
 			return ['code' => 1, 'msg' => '用户存在或该用户没有录入课表！'];
 		}
 		return ['code' => 0, 'msg' => '无法导入自己的课表'];
+	}
+
+	public function otheruser(){
+		$otheruser = input('get.user_id');
+		$user = model('user');
+		if($user->existUser($otheruser)){
+			// $this->redirect(url('Schedule/other','','').'/'.$otheruser);
+			return ['code' => 1, 'msg' => '用户存在', 'url' => url('Schedule/other','','').'/'.$otheruser];
+		};
+		return ['code' => 0, 'msg' => '用户不存在', 'url' => ""];
+	}
+
+	public function other($otheruser){
+		$schedule = model('Schedule');
+		$user = db('user', [], false)->where(['user_id' => $otheruser])->find();
+		if($user){
+			if($user['user_id'] != $this->user){
+				$data = $schedule->getCurriculum($schedule->getSchedules($otheruser),count($schedule->getNowWeek()));
+				$this->assign('data',$data[0]);
+				$this->assign('week',$data[1]);
+				$this->assign('otheruser',$user);
+				return $this->fetch();		
+			}
+			$this->redirect(url("Schedule/index"));
+		}
+		$this->error('用户不存在');
+		
+	}
+
+	public function count(){
+		$schedule = model('Schedule');
+		$group = db('group',[], false)->select();
+
+		$data = $schedule->getCount();
+		$this->assign('data',$data);
+		$this->assign('group',$group);
+		return $this->fetch();
 	}
 }
 

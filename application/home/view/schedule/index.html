@@ -1,82 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Document</title>
-	<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}css/bootstrap.min.css">
-	<script src="{$Think.config.parse_str.__PUBLIC__}js/jquery-3.0.0.min.js"></script>
-	<script src="{$Think.config.parse_str.__PUBLIC__}js/bootstrap.min.js"></script>
-	<script src="{$Think.config.parse_str.__PUBLIC__}js/layer/layer.js"></script>
-</head>
-<style >
-	.main{
-		width: 1024px;
-		margin: 0 auto;
-	}
-	.curriculum{
-		width: 800px;
-		margin: 0 auto;
-	}
-	.schedule{
-		border:2px solid #1BBF1F;
-	}
-	.schedule td{
-		background: #1BBF1F;
-		color: white;
-		height: 100px;
-		cursor: pointer;
-		width: 14.4%;
-	}
-	.schedule th{
-		text-align: center;
-	}
-	.color1{
-		background: #E5E5E5 !important ;
-		color: #B0AEB2 !important ;
-	}
-	.color0{
-		background: white !important ;
-	}
-	.week td{
-		width: 35px;
-		height: 35px;
-		text-align: center;
-		cursor: pointer;
-		border: 1px solid #ddd;
-	}
-	.haveClass{
-		background-color: #d9edf7;
-	}
-	.hint{
-		position: absolute;
-		z-index: 10;
-		width: 94%;
-		height: 200px;
-		overflow: overlay;
-		display: none;
-	}
-	.hint div div{
-		float: left;
-		font-size: 12px;
-	}
-	.hint button{
-		float: right;
-	}
-	#weeks{
-		width: 90px;
-		text-align: center;
-	}
-	#weeks option{
-		text-align: center;
-	}
+{extend name="public/base" /}
+{block name="link"}
+	<link rel="stylesheet" href="{$Think.config.parse_str.__CSS__}schedule-index.css">
+	<script src="{$Think.config.parse_str.__JS__}/schedule-index.js"></script>
+{/block}
 
-</style>
-
-<body>
-
-	<div class="main">
-		<div>
+{block name="main"}
+	<div class="text">
+		<div class="text-week clearfix">
 			<form action="{:url('Schedule/index')}" method="get" id="test">
+				<span>当前周：</span>
 				<select class="form-control" id="weeks" name="week">
 					<option value='0'>本周</option>
 					<option value='1'>第1周</option>
@@ -104,7 +36,7 @@
 			<div>
 				<button type="button" class="btn btn-success"  data-toggle="modal" data-target=".bs-example-modal-sm">导入</button>
 				<button type="button" class="btn btn-success">导出</button>
-				<button type="button" class="btn btn-success" >查看他人课表</button>
+				<button type="button" class="btn btn-success" data-toggle="modal" data-target=".other">查看他人课表</button>
 			</div>
 		</div>
 		<div class="table-responsive curriculum">
@@ -205,7 +137,8 @@
     			</div>
   			</div>
 		</div>
-
+		
+		<!-- 查看他人课表弹框 -->
 		<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
   			<div class="modal-dialog modal-sm">
     			<div class="modal-content">
@@ -230,20 +163,43 @@
     			</div>
   			</div>
 		</div>
+
+
+		<div class="modal fade other" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  			<div class="modal-dialog modal-sm">
+    			<div class="modal-content">
+      				<div class="modal-header">
+        				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        				<h4 class="modal-title" id="myModalLabel">查看他人课表</h4>
+      				</div>
+      				<div class="modal-body">
+        				<form action="" class="form-horizontal" role="form">
+        					<div class="form-group">
+    							<label for="" class="col-sm-2 control-label" style="width: 20%;">学号</label>
+    							<div class="col-sm-10 test" style="width: 80%;">
+      								<input type="number" class="form-control" id="account2" placeholder="填写学号">
+    							</div>
+  							</div>
+        				</form>
+      				</div>
+      				<div class="modal-footer">
+        				<button type="button" class="btn btn-success" id="seeother">查看</button>
+        				<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+      				</div>
+    			</div>
+  			</div>
+		</div>
+
+
+
+
+
 	</div>
 	<script>
-		/**
-		 * 表格的单机事件
-		 */
-		
-
 		var section = 0;
 		var week = 0;
-
-
 		$('#weeks').find("option[value={$week}]").attr("selected",true);
-		console.log();
-		$('.course').on('click', function() {
+		$('.main').on('click', '.course',function() {
 			section = $(this).parent().index();
 			week = $(this).index()+1;
 			$.get(
@@ -281,7 +237,6 @@
 			}
 			$('.week').html(getWeeks(weeks));		
 		});
-
 		$('.week').on('click', 'td', function(event) {
 			if($(this).hasClass('haveClass')){
 				$(this).removeClass('haveClass');
@@ -289,8 +244,6 @@
 				$(this).addClass('haveClass');
 			}
 		});
-
-
 		$('#save').on('click', function(event) {
 			var id = $(this).data('id');
 			$.post(
@@ -320,27 +273,25 @@
 				}
 			);
 		});
-
 		$('#nothing').on('click', function(event) {
-    		layer.confirm('选择无课将删除当前课程，确定要这样做吗？', {
-  				btn: ['确定','取消'], //按钮
-  				icon : 0,
+	   		layer.confirm('选择无课将删除当前课程，确定要这样做吗？', {
+	 				btn: ['确定','取消'], //按钮
+	 				icon : 0,
 			}, function(){
-  				$.post(
-  					"{:url('Schedule:nothing')}", 
-  					{
-  						week:week,
-  						section:section,
-  					}, function(data, textStatus, xhr){
-  						$('#myModal').modal('hide');
-  						layer.msg(data.msg, {icon: data.code}, function(){
-  							window.location.reload();
-  						});
-  					}
-  				);
+	 				$.post(
+	 					"{:url('Schedule:nothing')}", 
+	 					{
+	 						week:week,
+	 						section:section,
+	 					}, function(data, textStatus, xhr){
+	 						$('#myModal').modal('hide');
+	 						layer.msg(data.msg, {icon: data.code}, function(){
+	 							window.location.reload();
+	 						});
+	 					}
+	 				);
 			});
 		});
-
 		$('#name').on('keyup blur', function(event) {
 			$('.hint').show();
 			var name = $(this).val();
@@ -351,11 +302,7 @@
 			}, function(data) {
 				$('.hint').html(getHint(data));
 			});
-
 		});
-
-
-
 		//待解决问题，提示版隐藏问题
 		$('.hint').on('click', function(event) {
 			$('#name').focus();
@@ -364,11 +311,12 @@
 		$('#name').on('click', function(event) {
 			event.stopPropagation();
 		});
-
 		$('#myModal').on('click', function(event) {
 			$('.hint').hide();
-		});
+		});	
+	
 
+		
 		$('.hint').on('click', '.addschedu', function(event) {
 			var id = $(this).data('id');
 			$.get(
@@ -387,7 +335,6 @@
 				}
 			);
 		});
-
 		$('#weeks').on('change', function(event) {
 			var id=$("#weeks").find("option:selected").val();
 			if(id == 0){
@@ -396,121 +343,40 @@
 				$('#test').submit();
 			}
 		});
-
-
 		$('#input').on('click', function(event) {
 			var account = $('#account').val();
 			$.get(
-    			"{:url('Schedule/inputSch')}",
-    			{
-    				user_id: account,
-    			},
-    			function(data){
-    				if(data.code == 2){
-    					layer.msg(data.msg, {icon: 1}, function(){
-  							window.location.reload();
-  						});
-    				}else{
-    					layer.msg(data.msg, {icon: 2});
-    				}
-    			}
+	   			"{:url('Schedule/inputSch')}",
+	   			{
+	   				user_id: account,
+	   			},
+	   			function(data){
+	   				if(data.code == 2){
+	   					layer.msg(data.msg, {icon: 1}, function(){
+	 							window.location.reload();
+	 						});
+	   				}else{
+	   					layer.msg(data.msg, {icon: 2});
+	   				}
+	   			}
 			);
-		});		
-		/**
-		 * 获得当前课程是周几
-		 * @param  {[type]} week 课程周
-		 * @return {[type]}      [description]
-		 */
-		function getWeek(week){
-			var weektext = "";
-			var term = "";
-			var weeks = ["星期一","星期二","星期三","星期四","星期五","星期六","星期日"];
-			for (var i = 1; i <= 7; i++) {
-				if(i != week){
-					term = "";
-				}else{
-					term = "selected='selected'";
-				}
-				weektext += "<option value='"+i+"' "+term+">"+weeks[i-1]+"</option>";
-			}
-			return weektext;
-		}
+		});	
+		$('#seeother').on('click', function(event) {
+			var account = $('#account2').val();
+			$.get(
+	   			"{:url('Schedule/otheruser')}",
+	   			{
+	   				user_id: account,
+	   			},
+	   			function(data){
+	   				if(data.code == 1){
+	   					window.location.href = data.url;
+	   				}else{
+	   					layer.msg(data.msg, {icon: 2});
+	   				}
+	   			}
+			);
+		});
 
-		/**
-		 * 获得当前课程是第几节
-		 * @param  {[type]} section 节数id
-		 * 
-		 * @return {[type]}         [description]
-		 */
-		function getSection(section){
-			var sectiontext = "";
-			var term = "";
-			var sections = ["1节 ~ 2节","3节 ~ 4节","5节 ~ 6节","7节 ~ 8节","9节 ~ 10节"];
-			for (var i = 1; i <= 5; i++) {
-				if(i != section){
-					term = "";
-				}else{
-					term = "selected='selected'";
-				}	
-				sectiontext += "<option value='"+i+"' "+term+">"+sections[i-1]+"</option>";			
-			}
-			return sectiontext;
-		}
-		/**
-		 * 得到课程的上课周
-		 * @param  {[type]} weeks [description]
-		 * @return {[type]}       [description]
-		 */
-		function getWeeks(weeks){
-			var term = "";
-			var weekstext = "<tr>";
-			var weeksarray = weeks.split(",");
-			for (var i = 1; i <= 20; i++) {
-				for (var j = 0; j <= weeksarray.length; j++) {
-					if(weeksarray[j] == i){
-						term = "class='haveClass";
-						break;
-					}
-				}
-				weekstext +="<td "+term+" data-index='"+i+"'>"+i+"</td>";
-				term = "";
-				if(i%5 == 0){
-					weekstext +="</tr><tr>";
-				}
-			}
-			weekstext += "</tr>";
-			return weekstext;
-		}
-
-		/**
-		 * 得到选择课程的周数
-		 */
-		function Weeks(){
-			var weeks = "";
-			var length = $('.haveClass').length;
-			$('.haveClass').each(function(index, el) {
-				weeks += $(this).text();
-				if(index != length-1)
-					weeks += ",";
-			});
-			return weeks;			
-		}
-
-		function getHint(data){
-			var html  = '';
-			for (var i = 0; i < data.length; i++) {
-				html += '<div class="list-group-item clearfix">';
-				html += '<h5>'+data[i].name+'</h5>';
-				html += '<div>';
-				html += '<span>老师: '+data[i].teacher+'</span><br/>';
-				html += '<span>教室: '+data[i].classroom+'</span><br/>';
-				html += '<span>时间: '+data[i].weeks_number+'</span>';
-				html += '</div>';
-				html += '<button type="button" class="btn btn-success addschedu" data-id="'+data[i].id+'">＋添加到课表</button>';
-				html += '</div>';
-			}
-			return html;																	
-		}
 	</script>
-</body>
-</html>
+{/block}

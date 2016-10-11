@@ -1,0 +1,75 @@
+.text{
+	width: 800px;
+	margin: 0 auto;
+}
+.curriculum{
+	width: 800px;
+	margin: 0 auto;
+}
+.schedule{
+	border:2px solid #1BBF1F;
+}
+.schedule td{
+	background: #1BBF1F;
+	color: white;
+	height: 80px;
+	cursor: pointer;
+	width: 14.4%;
+}
+.schedule th{
+	text-align: center;
+}
+.color1{
+	background: #E5E5E5 !important ;
+	color: #B0AEB2 !important ;
+}
+.color0{
+	background: white !important ;
+}
+.week td{
+	width: 35px;
+	height: 35px;
+	text-align: center;
+	cursor: pointer;
+	border: 1px solid #ddd;
+}
+.haveClass{
+	background-color: #d9edf7;
+}
+.hint{
+	position: absolute;
+	z-index: 10;
+	width: 94%;
+	height: 200px;
+	overflow: overlay;
+	display: none;
+}
+.hint div div{
+	float: left;
+	font-size: 12px;
+}
+.hint button{
+	float: right;
+}
+#weeks{
+	width: 90px;
+	text-align: center;
+	margin-top: 15px;
+}
+#weeks option{
+	text-align: center;
+}
+
+#test{
+	float: left;
+}
+#test>span{
+	float: left;
+}
+.text-week{
+	height: 60px;
+	line-height: 60px;
+}
+.text-week>div{
+	float: right;
+}
