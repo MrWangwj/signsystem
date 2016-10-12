@@ -52,7 +52,7 @@ class Schedule extends Controller{
 		$schedule = model('Schedule');
 		
 
-		return dump($schedule->getHaveClass(1,2));
+		return dump($schedule->getCount());
 	} 
 
 	/**
@@ -143,12 +143,20 @@ class Schedule extends Controller{
 	public function count(){
 		$schedule = model('Schedule');
 		$group = db('group',[], false)->select();
-
+		$user = db('user', [], false)->field('user_id,name')->order('name')->select();
 		$data = $schedule->getCount();
 		$this->assign('data',$data);
 		$this->assign('group',$group);
+		$this->assign('user',$user);
 		return $this->fetch();
 	}
+
+	public function countterm(){
+		$schedule = model('Schedule');
+		$group = db('group',[], false)->select();
+		$data = $schedule->getCount();
+		return $data;
+	}	
 }
 
 ?>

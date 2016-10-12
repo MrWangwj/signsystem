@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:77:"/var/www/html/SignSystem2/public/../application/home/view/schedule/count.html";i:1476186831;s:74:"/var/www/html/SignSystem2/public/../application/home/view/public/base.html";i:1475926995;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:77:"/var/www/html/SignSystem2/public/../application/home/view/schedule/count.html";i:1476279667;s:74:"/var/www/html/SignSystem2/public/../application/home/view/public/base.html";i:1475926995;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -119,8 +119,8 @@
 		<div class="main">
 			
 <div>
-	<div class="setup clearfix">
-		<form action="<?php echo url('Schedule/count'); ?>" method="get" id="test">
+	<form action="<?php echo url('Schedule/test'); ?>" method="post" id="test">
+		<div class="setup clearfix">
 			<span>当前周：</span>
 			<select class="form-control" name="week" id="weeks">
 				<option value='0'>本周</option>
@@ -154,58 +154,45 @@
 					<option value='2'>无课人员表</option>
 				</select>
 			</div>			
-		</form>
-	</div>
-	<div class="term">
-		<div class="term-result clearfix">
-			<label for="">筛选条件：</label>
-			<div class="term-label">
-				
-			</div>
-			<div class="term-but">
-				<button  class="btn btn-primary">+添加新的条件</button>
+		</div>
+		<div class="term">
+			<div class="term-result clearfix">
+				<label for="">筛选条件：</label>
+				<div class="term-label">
+					<input type="hidden" name="term[][][]" id="term">
+					<div class="term-label2 foucus">
+						
+					</div>
+				</div>
+				<div class="term-but">
+					<span  class="btn btn-primary" id="addterm">+添加新的条件</span>
+				</div>
 			</div>
 		</div>
+	</form>
 		<div class="term-input clearfix">
 			<span>组别：</span>
 			<select name="1" id="term-group" class="form-control">
-				<option value="">全部</option>
-				<option value="">开发一组</option>
-				<option value="">开发二组</option>
-				<option value="">开发三组</option>
-				<option value="">开发四组</option>
-				<option value="">开发五组</option>
-				<option value="">开发六组</option>
-				<option value="">开发七组</option>
-				<option value="">开发八组</option>
+				<option value="0">全部</option>
+				<?php if(is_array($group) || $group instanceof \think\Collection): $i = 0; $__LIST__ = $group;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+					<option value="<?php echo $vo['group_id']; ?>"><?php echo $vo['group_name']; ?></option>
+				<?php endforeach; endif; else: echo "" ;endif; ?>
 			</select>
 			<span>职务：</span>
 			<select class="form-control" id="term-post">
-  				<option>全部</option>
-  				<option>事务负责人</option>
-  				<option>成员</option>
+  				<option value="0">全部</option>
+  				<option value="2">事务负责人</option>
+  				<option value="1">成员</option>
 			</select>
 			<span>人员：</span>
 			<select class="form-control" id="term-personnel">
 				<option value="">全部</option>
-  				<option>王巍瑾</option>
-  				<option>刘海洋</option>
-  				<option>刘海洋</option>
-  				<option>刘海洋</option>
-  				<option>刘海洋</option>
-  				<option>刘海洋</option>
-  				<option>刘海洋</option>
-  				<option>刘海洋</option>
-  				<option>刘海洋</option>
-  				<option>刘海洋</option>
-  				<option>刘海洋</option>
-  				<option>刘海洋</option>
-  				<option>刘海洋</option>
-  				<option>刘海洋</option>
-  				<option>刘海洋</option>
+  				<?php if(is_array($user) || $user instanceof \think\Collection): $i = 0; $__LIST__ = $user;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+					<option value="<?php echo $vo['user_id']; ?>"><?php echo $vo['name']; ?></option>
+				<?php endforeach; endif; else: echo "" ;endif; ?>
 			</select>
 		</div>
-	</div>
+	
 	<div class="table-responsive personnel">
  			<table class="table table-bordered">
 				<tr>
@@ -232,14 +219,98 @@
 	</div>
 </div>
 <script>
-	$('#seestatus').find("option[value=<?php echo (isset($_GET['status']) && ($_GET['status'] !== '')?$_GET['status']:1); ?>]").attr("selected",true);
-	$('#weeks').find("option[value=<?php echo (isset($_GET['week']) && ($_GET['week'] !== '')?$_GET['week']:1); ?>]").attr("selected",true);
+	
+	$('#seestatus').find("option[value=<?php echo (isset($_POST['status']) && ($_POST['status'] !== '')?$_POST['status']:1); ?>]").attr("selected",true);
+	$('#weeks').find("option[value=<?php echo (isset($_POST['week']) && ($_POST['week'] !== '')?$_POST['week']:0); ?>]").attr("selected",true);
 	$('#weeks').on('change', function(event) {
-			$('#test').submit();
+		$('#test').submit();
 	});
 	$('#seestatus').on('change', function(event) {
 		$('#test').submit();
 	});
+	$('.term-label').on('click', '.term-label2', function(event) {
+		if(!$(this).hasClass('foucus')){
+			$('.term-label2').each(function(index, el) {
+				if($(this).hasClass('foucus')){
+					$(this).removeClass('foucus');
+				}
+			});
+			$(this).addClass('foucus');
+		}
+	});
+
+	/**
+	 * 去除条件
+	 * @param  {[type]} event) {		$(this).parent().remove();	} [description]
+	 * @return {[type]}        [description]
+	 */
+	$('.term-label').on('click', '.term-close', function(event) {
+		$(this).parent().remove();
+	});
+
+	$('#addterm').on('click', function(event) {
+		$('.term-label').append("<div class='term-label2'></div>");
+	});
+
+	$('#term-group').on('change', function(event) {
+		var text = $(this).find('option:selected').text();
+		var val = $(this).val()
+		if(val != 0){
+			var htmltext = "<label data-where='group_id' data-val='"+val+"'>"+text+"<span class='term-close'>X</span></label>"
+			$('.foucus').append(htmltext);
+		}
+		$('#term').val(getTerm());
+		$('#test').submit();
+
+	});
+	$('#term-post').on('change', function(event) {
+		var text = $(this).find('option:selected').text();
+		var val = $(this).val()
+		if(val != 0){
+			var htmltext = "<label data-where='position' data-val='"+val+"'>"+text+"<span class='term-close'>X</span></label>"
+			$('.foucus').append(htmltext);
+		}
+		$('#term').val(getTerm());
+		$('#test').submit();
+	});
+	$('#term-personnel').on('change', function(event) {
+		var text = $(this).find('option:selected').text();
+		var val = $(this).val()
+		if(val != 0){
+			var htmltext = "<label data-where='user_id' data-val='"+val+"'>"+text+"<span class='term-close'>X</span></label>"
+			$('.foucus').append(htmltext);
+		}
+		$('#term').val(getTerm());
+		$('#test').submit();
+	});
+
+
+	function getTerm(){
+		var where = new Array('1','2');
+		// var where = "";
+ 	// 	$('.term-label2').each(function(index, el) {
+ 	// 		var labels = $(this).find('label');
+ 	// 		if(labels.length){
+ 	// 			if(index != 0) where += " OR ";	
+	 // 			var termlabel = labels.length;
+	 // 			where += " (";
+		// 		labels.each(function(index2, el2) {
+		// 			var labval = $(this).data('val');
+		// 			var labwhere = $(this).data('where');
+		// 			var mark = "=";
+		// 			if(labwhere == 'position')
+		// 				if(labval != 1){
+		// 					mark = "!=";
+		// 					labval = 0;	
+		// 				} 
+	 // 				where += labwhere+mark+labval;
+	 // 				if(index2 != termlabel-1) where += " AND ";
+	 // 			});
+	 // 			where += ") ";
+ 	// 		}
+ 	// 	});
+ 		return where; 
+	}
 </script>
 
 		</div>
