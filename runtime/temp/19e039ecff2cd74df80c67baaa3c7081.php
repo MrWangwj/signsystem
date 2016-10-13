@@ -1,14 +1,20 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:81:"D:\MyDrivers\htdocs\SignSystem2\public/../application/home\view\user\message.html";i:1476344172;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:81:"D:\MyDrivers\htdocs\SignSystem2\public/../application/home\view\user\message.html";i:1476375415;s:80:"D:\MyDrivers\htdocs\SignSystem2\public/../application/home\view\public\base.html";i:1476192107;}*/ ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>角色列表</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta charset="UTF-8">
+	<title>标题</title>
+	<link rel="stylesheet" href="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>css/bootstrap.min.css">
+	<link rel="stylesheet" href="<?php echo \think\Config::get('parse_str.__CSS__'); ?>public-base.css">
+	<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>js/jquery-3.0.0.min.js"></script>
+	<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>js/bootstrap.min.js"></script>
+	<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>js/layer/layer.js"></script>
+	<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>js/public-base.js"></script>	
+	
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<!-- basic styles -->
 		<link href="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/css/bootstrap.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/css/font-awesome.min.css" />
-		<link href="<?php echo \think\Config::get('parse_str.__CSS__'); ?>style.min.css?v=4.1.0" rel="stylesheet">
 		<!--[if IE 7]>
 		  <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
 		<![endif]-->
@@ -40,11 +46,120 @@
 		<script src="assets/js/html5shiv.js"></script>
 		<script src="assets/js/respond.min.js"></script>
 		<![endif]-->
+		<style type="text/css">
+		.sdjf{
+			
+		}
+		</style>
+
 </head>
-<body class="gray-bg">
-	<div>
+<body>
+	<div class="backgd">
+		<div class="title">
+			<nav>
+				<div class="title-left">
+						<label class="logo"></label>
+						<span>三月软件</span>
+				</div>
+				<div class="title-right">
+					<ul>
+						<li class="notice">
+							<label >
+								<label>1</label>
+							</label>
+							<div class="notice-text">
+								<div class="notice-option">
+									<div class="clearfix">	
+										<div>
+											<img src="" alt="">
+											<div>
+												<div>
+													<span>王佳发布的公告</span>
+													<span>2016.10.01</span>
+												</div>
+												<div class="notice-content">
+													<div>
+														1ewqrwwefwefwefwefwefwefeffefeefefwefefs
+													</div>
+													<span>...</span>
+												</div>
+											</div>
+										</div>
+
+									</div>
+									<div>	
+										<div>
+											<img src="" alt="">
+											<div>
+												<div>
+													<span>王佳发布的公告</span>
+													<span>2016.10.01</span>
+												</div>
+												<div class="notice-content">
+													<div>
+														1ewqrwwefwefwefwefwefwefeffefeefefwefefs
+													</div>
+													<span>...</span>
+												</div>
+											</div>
+										</div>
+
+									</div>
+									<div>	
+										<div>
+											<img src="" alt="">
+											<div>
+												<div>
+													<span>王佳发布的公告</span>
+													<span>2016.10.01</span>
+												</div>
+												<div class="notice-content">
+													<div>
+														1ewqrwwefwefwefwefwefwefeffefeefefwefefs
+													</div>
+													<span>...</span>
+												</div>
+											</div>
+										</div>
+
+									</div>
+								</div>
+								<div>
+									<span><a href="">查看全部</a></span>
+								</div>
+							</div>
+						</li>
+						<li class="picture">
+							<div>
+								<img src="<?php echo \think\Config::get('parse_str.__IMAGE__'); ?>picture1.jpg" alt="">
+								<span></span>
+							</div>
+							<div class="menu">
+								<ul>
+									<a href=""><li>个人信息</li></a>
+									<a href=""><li>查看课表</li></a>
+									<a href=""><li>退出</li></a>
+								</ul>
+							</div>
+						</li>
+						<li class="user">
+							<div>
+								<p>
+									欢迎
+									<a href="">李雪冰</a>
+									登陆
+								</p>
+							</div>
+						</li>
+					</ul>
+				</div>				
+			</nav>
+		</div>
+		<div class="main">
+			
+	<div style="margin-top:60px; ">
 		<div class="page-content">
-			<div class="row" style="border:4px solid green;width: 800px;margin: auto;">
+			<div class="row" style="border:4px solid green;width:100%;min-height:100%;margin: auto;">
 			<div style="margin-left:45%;"><h3>个人信息</h3></div>
 				<div class="col-xs-12">
 					<!-- PAGE CONTENT BEGINS -->
@@ -119,7 +234,7 @@
 								</button>
 
 								&nbsp; &nbsp; &nbsp;
-								<a href="">
+								<a href="/SignSystem2/public/index.php/home/schedule/count">
 								<button class="btn" type="button">
 									<i class="icon-undo bigger-110" ></i>
 									退出
@@ -200,5 +315,15 @@
 				});
 			}
 	</script>
-</body>		
+
+		</div>
+		<div class="footer">
+			<span>三月软件@版权所有</span>
+		</div>
+	</div>
+
+
+
+
+</body>
 </html>
