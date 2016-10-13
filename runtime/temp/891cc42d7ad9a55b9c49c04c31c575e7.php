@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:84:"D:\MyDrivers\htdocs\SignSystem2\public/../application/admin\view\manager\notice.html";i:1476079387;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:84:"D:\MyDrivers\htdocs\SignSystem2\public/../application/admin\view\manager\notice.html";i:1476371497;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -70,7 +70,7 @@
 												</label>
 											</th>
 											<th>管理员姓名</th>
-											<th>公告内容</th>
+											<th>公告标题</th>
 											<th class="hidden-480">发布时间</th>
 											<th></th>
 										</tr>
@@ -89,7 +89,7 @@
 											<td style="width:150px;">
 												<a href="#"><?php echo $vo['name']; ?></a>
 											</td>
-											<td><?php echo $vo['notice']; ?></td>
+											<td><?php echo $vo['notice_title']; ?></td>
 											<td style="width:150px;">2015-10-10</td>														
 											<td style="width:150px;">
 												<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
@@ -142,7 +142,7 @@
 							<label class="col-sm-3 control-label no-padding-right" for="form-field-1" style="width:100px;"> 公告标题 </label>
 
 							<div class="col-sm-9">
-								<input type="text" id="form-field-1"  placeholder="Username" class="col-xs-10 col-sm-5" required value="" >
+								<input type="text" id="form-field-1"  placeholder="title" class="col-xs-10 col-sm-5" required value="" >
 							</div>
 						</div>
 						<div class="form-group">

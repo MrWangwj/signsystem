@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:81:"D:\MyDrivers\htdocs\SignSystem2\public/../application/admin\view\group\group.html";i:1476079310;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:81:"D:\MyDrivers\htdocs\SignSystem2\public/../application/admin\view\group\group.html";i:1476190074;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -106,7 +106,7 @@
 																	<i class="icon-edit bigger-120"></i>
 																</button>
 
-																<button class="btn btn-xs btn-danger delgroup" type="submit" value="<?php echo $vo['group_id']; ?>">
+																<button class="btn btn-xs btn-danger deluser" type="submit" value="<?php echo $vo['group_id']; ?>">
 																	<i class="icon-trash bigger-120"></i>
 																</button>
 																<button class="btn btn-xs btn-info " value="">
@@ -250,6 +250,23 @@ $('.updgroup').on('click',function(){
           	},
          });
 	}	
+});
+$('.deluser').on('click',function(){
+	var group_id = $(this).attr("value");
+	$.ajax({
+		type: 'POST', 
+	  	url: '<?php echo \think\Config::get('parse_str.__MODULE__'); ?>/Group/deletegroup', 
+	  	data:  datavalue,  
+	  	async: false,  
+	  	cache: false, 
+	    success: function (returndata) {
+	          alert(returndata);
+	          window.location.reload();
+	    },
+	    erro: function(){
+	      alert("数据加载失败"); 
+	    },
+	});
 });
 //删除
 $('#submit').on('click',function(){
