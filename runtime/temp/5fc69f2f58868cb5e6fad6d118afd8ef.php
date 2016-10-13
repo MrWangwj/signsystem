@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:79:"D:\Apache24\htdocs\SignSystem2\public/../application/admin\view\sign\index.html";i:1476328414;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>角色列表</title>
     <link rel="shortcut icon" href="favicon.ico">
-    <link href="{$Think.config.parse_str.__CSS__}bootstrap.min.css?v=3.3.6" rel="stylesheet">
-    <link href="{$Think.config.parse_str.__CSS__}font-awesome.min.css?v=4.4.0" rel="stylesheet">
-    <link href="{$Think.config.parse_str.__CSS__}plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
-    <link href="{$Think.config.parse_str.__CSS__}animate.min.css" rel="stylesheet">
-    <link href="{$Think.config.parse_str.__CSS__}style.min.css?v=4.1.0" rel="stylesheet">
-    <link href="{$Think.config.parse_str.__CSS__}plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <link href="<?php echo \think\Config::get('parse_str.__CSS__'); ?>bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="<?php echo \think\Config::get('parse_str.__CSS__'); ?>font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="<?php echo \think\Config::get('parse_str.__CSS__'); ?>plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+    <link href="<?php echo \think\Config::get('parse_str.__CSS__'); ?>animate.min.css" rel="stylesheet">
+    <link href="<?php echo \think\Config::get('parse_str.__CSS__'); ?>style.min.css?v=4.1.0" rel="stylesheet">
+    <link href="<?php echo \think\Config::get('parse_str.__CSS__'); ?>plugins/sweetalert/sweetalert.css" rel="stylesheet">
 </head>
 <body class="gray-bg">
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -52,20 +53,20 @@
 <script type="text/javascript">
     zNodes = '';
 </script>
-<script src="{$Think.config.parse_str.__JS__}jquery.min.js?v=2.1.4"></script>
-<script src="{$Think.config.parse_str.__JS__}bootstrap.min.js?v=3.3.6"></script>
-<script src="{$Think.config.parse_str.__JS__}content.min.js?v=1.0.0"></script>
-<script src="{$Think.config.parse_str.__JS__}plugins/bootstrap-table/bootstrap-table.min.js"></script>
-<script src="{$Think.config.parse_str.__JS__}plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
-<script src="{$Think.config.parse_str.__JS__}plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
-<script src="{$Think.config.parse_str.__JS__}plugins/suggest/bootstrap-suggest.min.js"></script>
-<script src="{$Think.config.parse_str.__JS__}plugins/layer/laydate/laydate.js"></script>
-<script src="{$Think.config.parse_str.__JS__}plugins/sweetalert/sweetalert.min.js"></script>
-<script src="{$Think.config.parse_str.__JS__}plugins/layer/layer.min.js"></script>
-<link rel="stylesheet" href="{$Think.config.parse_str.__JS__}plugins/zTree/zTreeStyle.css" type="text/css">
-<script type="text/javascript" src="{$Think.config.parse_str.__JS__}plugins/zTree/jquery.ztree.core-3.5.js"></script>
-<script type="text/javascript" src="{$Think.config.parse_str.__JS__}plugins/zTree/jquery.ztree.excheck-3.5.js"></script>
-<script type="text/javascript" src="{$Think.config.parse_str.__JS__}plugins/zTree/jquery.ztree.exedit-3.5.js"></script>
+<script src="<?php echo \think\Config::get('parse_str.__JS__'); ?>jquery.min.js?v=2.1.4"></script>
+<script src="<?php echo \think\Config::get('parse_str.__JS__'); ?>bootstrap.min.js?v=3.3.6"></script>
+<script src="<?php echo \think\Config::get('parse_str.__JS__'); ?>content.min.js?v=1.0.0"></script>
+<script src="<?php echo \think\Config::get('parse_str.__JS__'); ?>plugins/bootstrap-table/bootstrap-table.min.js"></script>
+<script src="<?php echo \think\Config::get('parse_str.__JS__'); ?>plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+<script src="<?php echo \think\Config::get('parse_str.__JS__'); ?>plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="<?php echo \think\Config::get('parse_str.__JS__'); ?>plugins/suggest/bootstrap-suggest.min.js"></script>
+<script src="<?php echo \think\Config::get('parse_str.__JS__'); ?>plugins/layer/laydate/laydate.js"></script>
+<script src="<?php echo \think\Config::get('parse_str.__JS__'); ?>plugins/sweetalert/sweetalert.min.js"></script>
+<script src="<?php echo \think\Config::get('parse_str.__JS__'); ?>plugins/layer/layer.min.js"></script>
+<link rel="stylesheet" href="<?php echo \think\Config::get('parse_str.__JS__'); ?>plugins/zTree/zTreeStyle.css" type="text/css">
+<script type="text/javascript" src="<?php echo \think\Config::get('parse_str.__JS__'); ?>plugins/zTree/jquery.ztree.core-3.5.js"></script>
+<script type="text/javascript" src="<?php echo \think\Config::get('parse_str.__JS__'); ?>plugins/zTree/jquery.ztree.excheck-3.5.js"></script>
+<script type="text/javascript" src="<?php echo \think\Config::get('parse_str.__JS__'); ?>plugins/zTree/jquery.ztree.exedit-3.5.js"></script>
 <script>
     var table = $('#table');
 
@@ -78,7 +79,7 @@
             showRefresh:"true",
             toolbar:"true",
             method: "post",  //使用get请求到服务器获取数据
-            url: "{:url('admin/sign/attendance_check')}", //获取数据的地址
+            url: "<?php echo url('admin/sign/attendance_check'); ?>", //获取数据的地址
             striped: true,  //表格显示条纹
             pagination: true, //启动分页
             pageSize: 10,  //每页显示的记录数
@@ -92,7 +93,7 @@
                     var userid = $(this).parents().find('td').eq(2).html();
                     var starTime = $(this).parents().find('td').eq(3).html();
                     var overTime = $(this).parents().find('td').eq(4).html();
-                    $.post("{:url('admin/sign/check_sign')}",{"id":id,"userid":userid,"starTime":starTime,"overTime":overTime},function (data) {
+                    $.post("<?php echo url('admin/sign/check_sign'); ?>",{"id":id,"userid":userid,"starTime":starTime,"overTime":overTime},function (data) {
 
                         if(data.code==1){
                             initTable();
@@ -103,7 +104,7 @@
                 })
                 $(".reject").click(function () {
                     var id =  $(this).parents().find('td').eq(0).html();
-                    $.post("{:url('admin/sign/reject_sign')}",{"id":id},function (data) {
+                    $.post("<?php echo url('admin/sign/reject_sign'); ?>",{"id":id},function (data) {
                         if(data.code==1){
                             initTable();
                             layer.msg(data.msg, {time : 1500});

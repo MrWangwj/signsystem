@@ -67,22 +67,11 @@ class Index extends Controller
     }
 
     public function test(){
-        $userid = session('userid');
-        $list  = db('sign_info')
-            -> where('user_id','20151515111')
-            ->group('now desc')
-            ->limit(1)
+        $startime = db('sign')
+            ->field("start_time")
+            ->where('user_id','20151515111')
+            ->where('state','1')
             ->select();
-            echo $list[0]['now'];
-//            echo strtotime($list[0]['now']);
-        $time = $list[0]['now'];
-            echo date("Y-m-d H:i:s",$time);
-//        if(empty($list)){
-////            return json(['code' => -1, 'time' => "暂无记录"]);
-//            echo 1;
-//        }else{
-//            echo 2;
-////            return json(['code' => 1,'name'=>$list[0]['name'], 'time' =>date('Y-m-d H:i:s',strtotime("$list[0]['now']"))]);
-//        }
+        echo dump($startime[0]['start_time']);
     }
 }

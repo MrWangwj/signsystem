@@ -1,8 +1,84 @@
-{extend name="index/base"}
-{block name="css"}
-<link rel="stylesheet" type="text/css" href="{$Think.config.parse_str.__CSS__}homepage.css">
-{/block}
-{block name="content"}
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:82:"D:\Apache24\htdocs\SignSystem2\public/../application/home\view\homepage\index.html";i:1476326102;s:78:"D:\Apache24\htdocs\SignSystem2\public/../application/home\view\index\base.html";i:1475762330;}*/ ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>三月签到系统</title>
+    <link rel="stylesheet" type="text/css" href="<?php echo \think\Config::get('parse_str.__CSS__'); ?>bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo \think\Config::get('parse_str.__CSS__'); ?>base.css">
+    
+<link rel="stylesheet" type="text/css" href="<?php echo \think\Config::get('parse_str.__CSS__'); ?>homepage.css">
+
+</head>
+<body>
+    <header style="background: url('<?php echo \think\Config::get('parse_str.__IMAGE__'); ?>header.gif')">
+        <div id="title">
+            <div id="logo_div">
+                <img src="<?php echo \think\Config::get('parse_str.__IMAGE__'); ?>Logo.png"  class="img-circle">
+            </div>
+            <div id="sign_div">
+                三月签到系统
+            </div>
+        </div>
+    </header>
+    <!--<center>-->
+    <div id="inner">
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">三月</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="<?php echo url('homepage/index'); ?>">首页</a></li>
+                        <li><a href="#">课表</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">统计 <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="<?php echo url('Attendance/index'); ?>">个人考勤</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">One more separated link</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search">
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </form>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#">Link</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+    <!--</center>-->
+    <div id="content">
+        
     <div id="hometop_div">
         <div class="homebox">
             <button type="button" class="btn btn-info my_btn" id="sign_btn">签到</button>
@@ -154,8 +230,15 @@
         </div>
     </div>
 </div>
-{/block}
-{block name="js"}
+
+    </div>
+    <footer style="background: url('<?php echo \think\Config::get('parse_str.__IMAGE__'); ?>header.gif')">
+        <div>三月签到系统页脚</div>
+    </footer>
+    <script type="text/javascript" src="<?php echo \think\Config::get('parse_str.__JS__'); ?>jquery-3.0.0.min.js"></script>
+    <script type="text/javascript" src="<?php echo \think\Config::get('parse_str.__JS__'); ?>bootstrap.min.js"></script>
+    <script type="text/javascript" src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>js/layer/layer.js"></script>
+    
 <script>
     var temp = 0;
     var overtime=0;
@@ -170,7 +253,7 @@
 //        alert(1)
     });
     $("#sign_btn").click(function () {
-        $.post("{:url('homepage/sign')}",function (data) {
+        $.post("<?php echo url('homepage/sign'); ?>",function (data) {
                 layer.msg(data.msg,{time:1000},function () {
                     if(data.code==1){
                         getSignInfo();
@@ -180,7 +263,7 @@
     })
 
     $("#signoff_btn").click(function () {
-        $.post("{:url('homepage/signoff')}",function (data) {
+        $.post("<?php echo url('homepage/signoff'); ?>",function (data) {
                 layer.msg(data.msg,{time:1000},function () {
                     if(data.code==1){
                         getSignInfo();
@@ -189,7 +272,7 @@
         })
     })
     $("#reSign_btn").click(function () {
-        $.post("{:url('homepage/reSign')}",function (data) {
+        $.post("<?php echo url('homepage/reSign'); ?>",function (data) {
             if(data.code==-1){
                 layer.msg(data.msg,{time:1000});
             }else if(data.code==-2){
@@ -233,7 +316,7 @@
             var overH = $("#overH_select").find("option:selected").text()*60*60;
             var startTime =starM+starH;
             var overTime =overM+overH;
-            $.post("{:url('homepage/reSignAll')}",{'startTime':startTime,'overTime':overTime,'ymd':ymd},function (data) {
+            $.post("<?php echo url('homepage/reSignAll'); ?>",{'startTime':startTime,'overTime':overTime,'ymd':ymd},function (data) {
 //                alert(data.code)
 //                alert(data.msg)
                 layer.msg(data.msg,{time:1500},function () {
@@ -248,7 +331,7 @@
             var hour = $(".selectorH").find("option:selected").text();
             var minute = $(".selectorM").find("option:selected").text();
             var date = $("#overtime_span").text();
-            $.post("{:url('homepage/reSignOk')}",{"overdate":date,"hour":hour,"minute":minute},function (data) {
+            $.post("<?php echo url('homepage/reSignOk'); ?>",{"overdate":date,"hour":hour,"minute":minute},function (data) {
                 layer.msg(data.msg,{time:1500},function () {
                     if(data.code==1){
                         getSignInfo();
@@ -264,7 +347,7 @@
     }
     //签到版刷新
     function getSignInfo() {
-        $.post("{:url('homepage/signInEdition')}",function (data) {
+        $.post("<?php echo url('homepage/signInEdition'); ?>",function (data) {
            $("#homeinfo_div").html('');
             for(var i = 0 ;i<data.list.length;i++){
 
@@ -298,4 +381,6 @@
         return new Date(parseInt(nS) * 1000).toLocaleString().substr(5,5).replace(/月/g, "-").replace(/日/g, " ");
     }
 </script>
-{/block}
+
+</body>
+</html>
