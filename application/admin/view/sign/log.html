@@ -17,31 +17,20 @@
     <!-- Panel Other -->
     <div class="ibox float-e-margins">
         <div class="ibox-title">
-            <h5>补签审批</h5>
+            <h5>日志管理</h5>
         </div>
         <div class="ibox-content">
-            <!--&lt;!&ndash;搜索框开始&ndash;&gt;-->
-            <!--<form id='commentForm' role="form" method="post" class="form-inline">-->
-                <!--<div class="content clearfix m-b">-->
-                    <!--<div class="form-group">-->
-                        <!--<input type="text" class="form-control" id="rolename" name="rolename">-->
-                    <!--</div>-->
-                    <!--<div class="form-group">-->
-                        <!--<button class="btn btn-primary" type="button" style="margin-top:5px" id="search"><strong>搜 索</strong>-->
-                        <!--</button>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</form>-->
-            <!--&lt;!&ndash;搜索框结束&ndash;&gt;-->
             <div class="hr-line-dashed"></div>
 
             <div class="example-wrap">
                 <div class="example">
                     <table id="table">
+                        <thead>
+                            <th>日志信息</th>
+                        </thead>
                     </table>
                 </div>
             </div>
-
             <!-- End Example Pagination -->
         </div>
     </div>
@@ -66,9 +55,8 @@
 <script type="text/javascript" src="{$Think.config.parse_str.__JS__}plugins/zTree/jquery.ztree.core-3.5.js"></script>
 <script type="text/javascript" src="{$Think.config.parse_str.__JS__}plugins/zTree/jquery.ztree.excheck-3.5.js"></script>
 <script type="text/javascript" src="{$Think.config.parse_str.__JS__}plugins/zTree/jquery.ztree.exedit-3.5.js"></script>
-<script>
+<script type="text/javascript">
     var table = $('#table');
-
     function initTable() {
         //先销毁表格
         table.bootstrapTable('destroy');
@@ -78,71 +66,57 @@
             showRefresh:"true",
             toolbar:"true",
             method: "post",  //使用get请求到服务器获取数据
-            url: "{:url('admin/sign/attendance_check')}", //获取数据的地址
+            url:"{:url('admin/sign/log_check')}", //获取数据的地址
             striped: true,  //表格显示条纹
             pagination: true, //启动分页
             pageSize: 10,  //每页显示的记录数
             pageNumber:1, //当前第几页
             pageList: [5, 10, 15, 20, 25],  //记录数可选列表
-
             onLoadSuccess: function(){  //加载成功时执行
-//                layer.msg("加载成功", {time : 1000});
-                $(".up").click(function () {
-                    var id =  $(this).parents().find('td').eq(0).html();
-                    var userid = $(this).parents().find('td').eq(2).html();
-                    var starTime = $(this).parents().find('td').eq(3).html();
-                    var overTime = $(this).parents().find('td').eq(4).html();
-                    $.post("{:url('admin/sign/check_sign')}",{"id":id,"userid":userid,"starTime":starTime,"overTime":overTime},function (data) {
-
-                        if(data.code==1){
-                            initTable();
-                            layer.msg(data.msg, {time : 1500});
-                        }
-
-                    })
+                layer.msg("加载成功", {time : 1000});
+                $.post("{:url('admin/sign/log_check')}",function (data) {
+////                    alert(data.list.length)
+//                    for (var i= 0;i<data.list.length;i++){
+////                        alert(data.list[i]["sign_state"])
+//                        var state = data.list[i]["sign_state"];
+//                        if(state == 0){
+////                            签到
+//                            $("#table").append(
+//                                "<tr><td>"+data.list[i]['name']+" </td>></tr>"
+//                             );
+//                        }else if(state == 1){
+////                            签退
+//                            $("#table").append(
+//                                    "<tr><td>"+data.list[i]['name']+" </td>></tr>"
+//                            );
+//                        }else if(state == 2){
+////                            补签通过
+//                            $("#table").append(
+//                                    "<tr><td>"+data.list[i]['name'] +"</td>></tr>"
+//                            );
+//                        }else if(state==3){
+////                            申请补签
+//                            $("#table").append(
+//                                    "<tr><td>"+data.list[i]['name'] +"</td>></tr>"
+//                            );
+//                        }else if(state==4){
+////                              拒绝补签
+//                            $("#table").append(
+//                                    "<tr><td>"+data.list[i]['name'] +"</td>></tr>"
+//                            );
+//                        }
+//                    }
                 })
-                $(".reject").click(function () {
-                    var id =  $(this).parents().find('td').eq(0).html();
-                    $.post("{:url('admin/sign/reject_sign')}",{"id":id},function (data) {
-                        if(data.code==1){
-                            initTable();
-                            layer.msg(data.msg, {time : 1500});
-                        }
-                    })
-                })
+
             },
             onLoadError: function(){  //加载失败时执行
                 layer.msg("加载数据失败");
-            },columns: [{
-                field: 'id',
-                title: '用户id'
-            },{
-                field: 'name',
-                title: '用户名称'
-            }, {
-                field: 'user_id',
-                title: '学号'
-            }, {
-                field: 'star',
-                title: '补签开始时间'
-            }, {
-                field: 'over',
-                title: '补签结束时间'
-            }, {
-                field: 'now',
-                title: '申请补签时间'
-            }, {
-                field: 'style',
-                title: '操作'
-            }],
+            }
         });
     }
-
     $(function () {
         initTable();
     })
-
-
 </script>
 </body>
 </html>

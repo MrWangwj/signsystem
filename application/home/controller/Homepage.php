@@ -179,13 +179,13 @@ class Homepage extends Base
                 return json(['code' =>-1,'msg'=>"补签时间和以往有冲突~"]);
             }
         }
-        $data = [
-            'user_id' => $userid,
-            'start_time' => $star,
-            'over_time' => $over,
-            'state' => 2,
-        ];
-        db('sign')->insert($data);
+//        $data = [
+//            'user_id' => $userid,F
+//            'start_time' => $star,
+//            'over_time' => $over,
+//            'state' => 3,
+//        ];
+//        db('sign')->insert($data);
 
         $nowtime = strtotime(date('Y-m-d H:i:s'));
         $datainfo = ([
@@ -193,10 +193,10 @@ class Homepage extends Base
             'star' => $star,
             'over' => $over,
             'now' => $nowtime,
-            'sign_state'=> 2
+            'sign_state'=> 3
         ]);
         db('sign_info')->insert($datainfo);
-        return json(['code' =>1,'msg'=>"补签成功"]);
+        return json(['code' =>1,'msg'=>"申请补签成功"]);
     }
    // 签到版
     public function signInEdition(){
