@@ -231,38 +231,7 @@ class Schedule extends Model{
 					->select();
 		return $schedule;
 	}
-	// public function getCount(){
-	// 	$week = count($this->getNowWeek());
-	// 	$status = 1;
-	// 	input('get.week') && $week = input('get.week');
-	// 	input('get.status') && $status = input('get.status');
-	// 	$fun = 'getHaveClass';
-	// 	if($status == 2) $fun = 'getNoClass';
-	// 	for ($i=0; $i < 5; $i++) { 
-	// 		for ($j=0; $j < 7; $j++) {
-	// 			// 循环用户课程，添加无课 
-	// 			$tables[$i][$j] = $this->$fun($j+1,$i+1,$week); 
-	// 		}
-	// 	}
-	// 	return $tables;
-	// }
 
-	// public function getHaveClass($week, $section, $weekNum){
-	// 	$data = db('schedule', [], false)
-	// 			->alias('a')
-	// 			->field('b.name,c.id,c.weeks_number')
-	// 			->join('user AS b', 'a.user_id = b.user_id')
-	// 			->join('curriculum AS c', 'a.curriculum_id = c.id')
-	// 			->where(['week' => $week, 'section' => $section])
-	// 			->select();
-	// 	$names = '';
-	// 	foreach ($data as $key => $value) {
-	// 		if($this->whetherCourse($value, $weekNum) == 2){
-	// 			$names[$key] = $value;	
-	// 		}
-	// 	}
-	// 	return $names;
-	// }
 
 
 	public function getCount(){
@@ -270,22 +239,46 @@ class Schedule extends Model{
 		$status = 1;
 		input('post.week') && $week = input('post.week');
 		input('post.status') && $status = input('post.status');
-		$where = input('post.term/a');
+		$where = [];
+		input('post.term/a') && $where = input('post.term/a');
 		$fun = 'getHaveClass';
 		if($status == 2) $fun = 'getNoClass';
-		$data = $this->$fun($week); 
-		// return $data;
-		return $where;
+		$data = $this->$fun($week, $where); 
+		return [$data[0], $where,$data[1]];
 	}
 
-	public function getHaveClass($weekNum, $where=""){
+	public function getHaveClass($weekNum, $where=[]){
+		$term = "";
+		$i = 0;
+		foreach ($where as $key => $value) {
+			if($i != 0) $term .= " OR ";
+			$i++;
+			$term .="(";
+			foreach ($value as $key2 => $value2) {
+				$as = "";
+				$mark = "=";
+				if($value2[0] == 'user_id' || $value2[0] == 'position'){
+					$as = "b.";
+					if($value2[1] != 1 && $value2[0] == 'position'){
+						$mark = "!=";
+						$where[$key][$key2][1] = 1;		
+					}
+				}else if($value2[0] == 'group_id'){
+					$as = "d.";
+				}
+				$where[$key][$key2][0] = $as.$where[$key][$key2][0];
+				$term .=$where[$key][$key2][0].$mark.$where[$key][$key2][1];
+				if($key2 < count($value)-1) $term.=" AND ";
+			}
+			$term .= ")";
+		}
 		$data = db('schedule', [], false)
 				->alias('a')
-				->field('b.name,c.id,c.weeks_number,c.week,c.section')
+				->field('b.name,c.id,c.weeks_number,c.week,c.section,d.group_id')
 				->join('user AS b', 'a.user_id = b.user_id')
 				->join('user_group AS d', 'a.user_id = d.user_id')
 				->join('curriculum AS c', 'a.curriculum_id = c.id')
-				->where("")
+				->where($term)
 				->order('c.section,c.week')
 				->select();
 		$names = array();
@@ -312,16 +305,40 @@ class Schedule extends Model{
 				if(isset($names[$i][$j])) $tables[$i][$j]=$names[$i][$j]; 
 			}
 		}
-		return $tables;
+		return [$tables,$term];
 	}
 
-	public function getNoClass($weekNum,$where = ""){
-		$haveclass = $this->getHaveClass($weekNum);
+	public function getNoClass($weekNum,$where = []){
+		$haveclass = $this->getHaveClass($weekNum, [])[0];
+		$term = "";
+		$i = 0;
+		foreach ($where as $key => $value) {
+			if($i != 0) $term .= " OR ";
+			$i++;
+			$term .="(";
+			foreach ($value as $key2 => $value2) {
+				$as = "";
+				$mark = "=";
+				if($value2[0] == 'user_id' || $value2[0] == 'position'){
+					$as = "a.";
+					if($value2[1] != 1 && $value2[0] == 'position'){
+						$mark = "!=";
+						$where[$key][$key2][1] = 1;		
+					}
+				}else if($value2[0] == 'group_id'){
+					$as = "b.";
+				}
+				$where[$key][$key2][0] = $as.$where[$key][$key2][0];
+				$term .=$where[$key][$key2][0].$mark.$where[$key][$key2][1];
+				if($key2 < count($value)-1) $term.=" AND ";
+			}
+			$term .= ")";
+		}
 		$names = db('user', [], false)
 		->alias('a')
-		->field('name')
+		->field('a.name')
 		->join('user_group AS b', 'a.user_id = b.user_id')
-		->where($where)
+		->where($term)
 		->select();
 		$data = array();
 		for ($i=0; $i <5 ; $i++) { 
@@ -339,9 +356,13 @@ class Schedule extends Model{
 				}
 			}
 		}
-		return $data;
-		// return $haveclass;
-		// return $names;
+		return [$data,$term];
+	}
+
+	public function getWhere($where){
+		foreach ($where as $key => $value) {
+			
+		}
 	}
 }
 

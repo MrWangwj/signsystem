@@ -50,8 +50,6 @@ class Schedule extends Controller{
 
 	public function test($week=''){
 		$schedule = model('Schedule');
-		
-
 		return dump($schedule->getCount());
 	} 
 
@@ -145,9 +143,12 @@ class Schedule extends Controller{
 		$group = db('group',[], false)->select();
 		$user = db('user', [], false)->field('user_id,name')->order('name')->select();
 		$data = $schedule->getCount();
-		$this->assign('data',$data);
+		$this->assign('data',$data[0]);
 		$this->assign('group',$group);
 		$this->assign('user',$user);
+		$this->assign('term',$data[1]);$this->assign('termtext',$data[2]);
+		$this->assign('termlength',count($data[1]));
+		$this->assign('empty',"<div class='term-label2 foucus'></div>");
 		return $this->fetch();
 	}
 

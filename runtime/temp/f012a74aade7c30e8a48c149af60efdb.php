@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:77:"/var/www/html/SignSystem2/public/../application/home/view/schedule/count.html";i:1476279667;s:74:"/var/www/html/SignSystem2/public/../application/home/view/public/base.html";i:1475926995;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:77:"/var/www/html/SignSystem2/public/../application/home/view/schedule/count.html";i:1476332703;s:74:"/var/www/html/SignSystem2/public/../application/home/view/public/base.html";i:1475926995;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -119,7 +119,8 @@
 		<div class="main">
 			
 <div>
-	<form action="<?php echo url('Schedule/test'); ?>" method="post" id="test">
+	<?php echo $termtext; ?>
+	<form action="<?php echo url('Schedule/count'); ?>" method="post" id="test">
 		<div class="setup clearfix">
 			<span>当前周：</span>
 			<select class="form-control" name="week" id="weeks">
@@ -158,12 +159,22 @@
 		<div class="term">
 			<div class="term-result clearfix">
 				<label for="">筛选条件：</label>
-				<div class="term-label">
-					<input type="hidden" name="term[][][]" id="term">
-					<div class="term-label2 foucus">
-						
-					</div>
+					<div class="term-label">
+					<?php if(is_array($term) || $term instanceof \think\Collection): $i = 0; $__LIST__ = $term;if( count($__LIST__)==0 ) : echo "$empty" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+						<div class='term-label2 <?php if($i ==$_POST['foucus']): ?>foucus<?php endif; ?>'>
+							<?php if(is_array($vo) || $vo instanceof \think\Collection): $j = 0; $__LIST__ = $vo;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo2): $mod = ($j % 2 );++$j;?>
+								<label>
+									<input type='hidden' name='term[<?php echo $i-1; ?>][<?php echo $j-1; ?>][0]' value='<?php echo $vo2[0]; ?>'>
+									<input type='hidden' name='term[<?php echo $i-1; ?>][<?php echo $j-1; ?>][1]' value='<?php echo $vo2[1]; ?>'>
+									<input type='hidden' name='term[<?php echo $i-1; ?>][<?php echo $j-1; ?>][2]' value='<?php echo $vo2[2]; ?>'>
+									<?php echo $vo2[2]; ?>
+									<span class='term-close'>X</span>
+								</label>						
+							<?php endforeach; endif; else: echo "" ;endif; ?>
+						</div>
+					<?php endforeach; endif; else: echo "$empty" ;endif; ?>
 				</div>
+				<input type="hidden" name="foucus" value="<?php echo (isset($_POST['foucus']) && ($_POST['foucus'] !== '')?$_POST['foucus']:1); ?>" id="term-foucus">
 				<div class="term-but">
 					<span  class="btn btn-primary" id="addterm">+添加新的条件</span>
 				</div>
@@ -219,7 +230,7 @@
 	</div>
 </div>
 <script>
-	
+
 	$('#seestatus').find("option[value=<?php echo (isset($_POST['status']) && ($_POST['status'] !== '')?$_POST['status']:1); ?>]").attr("selected",true);
 	$('#weeks').find("option[value=<?php echo (isset($_POST['week']) && ($_POST['week'] !== '')?$_POST['week']:0); ?>]").attr("selected",true);
 	$('#weeks').on('change', function(event) {
@@ -236,6 +247,7 @@
 				}
 			});
 			$(this).addClass('foucus');
+			$('#term-foucus').val($(this).index()+1);
 		}
 	});
 
@@ -246,47 +258,56 @@
 	 */
 	$('.term-label').on('click', '.term-close', function(event) {
 		$(this).parent().remove();
+		$('#test').submit();
 	});
 
 	$('#addterm').on('click', function(event) {
-		$('.term-label').append("<div class='term-label2'></div>");
+		$('.term-label2').each(function(index, el) {
+			if($(this).hasClass('foucus')){
+				$(this).removeClass('foucus');
+			}
+		});
+		$('.term-label').append("<div class='term-label2 foucus'></div>");
+		$('#term-foucus').val($('.foucus').index()+1);
 	});
 
 	$('#term-group').on('change', function(event) {
+
 		var text = $(this).find('option:selected').text();
 		var val = $(this).val()
 		if(val != 0){
-			var htmltext = "<label data-where='group_id' data-val='"+val+"'>"+text+"<span class='term-close'>X</span></label>"
-			$('.foucus').append(htmltext);
+			$('.foucus').append(getLabel(text, val, "group_id"));
+			$('#test').submit();
 		}
-		$('#term').val(getTerm());
-		$('#test').submit();
-
 	});
 	$('#term-post').on('change', function(event) {
 		var text = $(this).find('option:selected').text();
 		var val = $(this).val()
 		if(val != 0){
-			var htmltext = "<label data-where='position' data-val='"+val+"'>"+text+"<span class='term-close'>X</span></label>"
-			$('.foucus').append(htmltext);
+			$('.foucus').append(getLabel(text, val, "position"));
+			$('#test').submit();
 		}
-		$('#term').val(getTerm());
-		$('#test').submit();
 	});
 	$('#term-personnel').on('change', function(event) {
 		var text = $(this).find('option:selected').text();
 		var val = $(this).val()
 		if(val != 0){
-			var htmltext = "<label data-where='user_id' data-val='"+val+"'>"+text+"<span class='term-close'>X</span></label>"
-			$('.foucus').append(htmltext);
+			$('.foucus').append(getLabel(text, val, "user_id"));
+			$('#test').submit();
 		}
-		$('#term').val(getTerm());
-		$('#test').submit();
 	});
 
+    function getLabel(text, val, clum){
 
-	function getTerm(){
-		var where = new Array('1','2');
+   		var labindex = $('.foucus').find('label:last-child').index();
+		var foucusindex = $('.foucus').index();
+		
+		var datatext = "<input type='hidden' name='term["+foucusindex+"]["+(labindex+1)+"][0]' value='"+clum+"'><input type='hidden' name='term["+foucusindex+"]["+(labindex+1)+"][1]' value='"+val+"'><input type='hidden' name='term["+foucusindex+"]["+(labindex+1)+"][2]' value='"+text+"'>";
+		var htmltext = "<label>"+datatext+text+"<span class='term-close'>X</span></label>";
+		return htmltext;
+    }
+    function getTerm(){
+		
 		// var where = "";
  	// 	$('.term-label2').each(function(index, el) {
  	// 		var labels = $(this).find('label');

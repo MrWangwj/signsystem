@@ -4,7 +4,8 @@
 {/block}
 {block name="main"}
 <div>
-	<form action="{:url('Schedule/test')}" method="post" id="test">
+	{$termtext}
+	<form action="{:url('Schedule/count')}" method="post" id="test">
 		<div class="setup clearfix">
 			<span>当前周：</span>
 			<select class="form-control" name="week" id="weeks">
@@ -43,12 +44,22 @@
 		<div class="term">
 			<div class="term-result clearfix">
 				<label for="">筛选条件：</label>
-				<div class="term-label">
-					<input type="hidden"  id="term">
-					<div class="term-label2 foucus">
-						
-					</div>
+					<div class="term-label">
+					{volist name="term" id="vo" key="i" empty="$empty"}
+						<div class='term-label2 {if condition="$i ==$Think.post.foucus"}foucus{/if}'>
+							{volist name="vo" id="vo2" key="j"}
+								<label>
+									<input type='hidden' name='term[{$i-1}][{$j-1}][0]' value='{$vo2[0]}'>
+									<input type='hidden' name='term[{$i-1}][{$j-1}][1]' value='{$vo2[1]}'>
+									<input type='hidden' name='term[{$i-1}][{$j-1}][2]' value='{$vo2[2]}'>
+									{$vo2[2]}
+									<span class='term-close'>X</span>
+								</label>						
+							{/volist}
+						</div>
+					{/volist}
 				</div>
+				<input type="hidden" name="foucus" value="{$Think.post.foucus|default=1}" id="term-foucus">
 				<div class="term-but">
 					<span  class="btn btn-primary" id="addterm">+添加新的条件</span>
 				</div>
@@ -104,7 +115,7 @@
 	</div>
 </div>
 <script>
-	
+
 	$('#seestatus').find("option[value={$Think.post.status|default=1}]").attr("selected",true);
 	$('#weeks').find("option[value={$Think.post.week|default=0}]").attr("selected",true);
 	$('#weeks').on('change', function(event) {
@@ -121,6 +132,7 @@
 				}
 			});
 			$(this).addClass('foucus');
+			$('#term-foucus').val($(this).index()+1);
 		}
 	});
 
@@ -131,47 +143,56 @@
 	 */
 	$('.term-label').on('click', '.term-close', function(event) {
 		$(this).parent().remove();
+		$('#test').submit();
 	});
 
 	$('#addterm').on('click', function(event) {
-		$('.term-label').append("<div class='term-label2'></div>");
+		$('.term-label2').each(function(index, el) {
+			if($(this).hasClass('foucus')){
+				$(this).removeClass('foucus');
+			}
+		});
+		$('.term-label').append("<div class='term-label2 foucus'></div>");
+		$('#term-foucus').val($('.foucus').index()+1);
 	});
 
 	$('#term-group').on('change', function(event) {
+
 		var text = $(this).find('option:selected').text();
 		var val = $(this).val()
 		if(val != 0){
-			var htmltext = "<label data-where='group_id' data-val='"+val+"'>"+text+"<span class='term-close'>X</span></label>"
-			$('.foucus').append(htmltext);
+			$('.foucus').append(getLabel(text, val, "group_id"));
+			$('#test').submit();
 		}
-		$('#term').val(getTerm());
-		$('#test').submit();
-
 	});
 	$('#term-post').on('change', function(event) {
 		var text = $(this).find('option:selected').text();
 		var val = $(this).val()
 		if(val != 0){
-			var htmltext = "<label data-where='position' data-val='"+val+"'>"+text+"<span class='term-close'>X</span></label>"
-			$('.foucus').append(htmltext);
+			$('.foucus').append(getLabel(text, val, "position"));
+			$('#test').submit();
 		}
-		$('#term').val(getTerm());
-		$('#test').submit();
 	});
 	$('#term-personnel').on('change', function(event) {
 		var text = $(this).find('option:selected').text();
 		var val = $(this).val()
 		if(val != 0){
-			var htmltext = "<label data-where='user_id' data-val='"+val+"'>"+text+"<span class='term-close'>X</span></label>"
-			$('.foucus').append(htmltext);
+			$('.foucus').append(getLabel(text, val, "user_id"));
+			$('#test').submit();
 		}
-		$('#term').val(getTerm());
-		$('#test').submit();
 	});
 
+    function getLabel(text, val, clum){
 
-	function getTerm(){
-		var where = new Array('1','2');
+   		var labindex = $('.foucus').find('label:last-child').index();
+		var foucusindex = $('.foucus').index();
+		
+		var datatext = "<input type='hidden' name='term["+foucusindex+"]["+(labindex+1)+"][0]' value='"+clum+"'><input type='hidden' name='term["+foucusindex+"]["+(labindex+1)+"][1]' value='"+val+"'><input type='hidden' name='term["+foucusindex+"]["+(labindex+1)+"][2]' value='"+text+"'>";
+		var htmltext = "<label>"+datatext+text+"<span class='term-close'>X</span></label>";
+		return htmltext;
+    }
+    function getTerm(){
+		
 		// var where = "";
  	// 	$('.term-label2').each(function(index, el) {
  	// 		var labels = $(this).find('label');
