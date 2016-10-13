@@ -95,7 +95,7 @@ body{
 	top: -10px;
 	text-align: center;
 	border-radius: 10px;
-	color: black;
+	color: white;
 }
 
 .notice-text{
@@ -229,9 +229,7 @@ body{
 	width: 1024px;
 	margin: 0 auto;
 }
-.test{
-	
-}
+
 .footer{
 	color: white;
 	height: 60px;
