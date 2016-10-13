@@ -7,10 +7,10 @@
 	height: 50px;
 	line-height: 50px;
 }
-.setup>form>span{
+.setup>span{
 	float: left;
 }
-.setup>form>select{
+.setup>select{
 	float: left;
 	width: 100px;
 	margin-top: 10px;
@@ -30,8 +30,7 @@
 	margin-top: 10px;
 }
 .term-result{
-	border:1px solid red;
-
+	
 }
 .term-result>label{
 	width: 80px;
@@ -67,4 +66,47 @@
 #term-personnel{
 	float: left;
 	width: 90px;
+}
+
+.term-label2{
+	width: 95%;
+	border:1px solid black;
+	border-radius: 5px;
+	margin: 0 auto;
+	height: 40px;
+	margin-bottom: 5px;
+}
+.foucus{
+	border-color: #ccc;
+    border-color: rgba(82,168,236,.8);
+    outline: 0;
+    outline: thin dotted \9;
+    -webkit-box-shadow: 0 0 8px rgba(82,168,236,.6);
+    box-shadow: 0 0 8px rgba(82,168,236,.6);
+}
+.term-label2 label{
+	background-color: #62D422;
+	height: 30px;
+	margin-top:5px;
+	position: relative;float: left;
+	line-height: 30px;
+	border-radius: 10px;
+	padding-left: 5px;
+	padding-right: 5px;
+	color: white;
+	margin-right: 10px;
+}
+.term-label2 label span{
+	position: absolute;
+	width: 15px;
+	height: 15px;
+	color: white;
+	background-color: red;
+    right: -5px;
+    top: -2px;
+    line-height: 15px;
+    text-align: center;
+    border-color: 1px solid white;
+    border-radius: 7px;
+    cursor: pointer;
 }
