@@ -13,8 +13,9 @@
     text-align: center;
 }
 .my_btn{
-    width: 100px;
+    width: 120px;
     margin: 20px;
+    /*background: #1ab394;*/
 }
 .box{
     width: 50%;
@@ -27,7 +28,7 @@
     line-height: 40px;
 }
 #homeinfo_div{
-    height: 250px;
+    height: 300px;
     border: 1px solid;
     overflow-y: auto;
     /*overflow: hidden;*/
