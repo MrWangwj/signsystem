@@ -6,7 +6,7 @@ class Group extends Controller
 {
 	public function group()
 	{	 
-		$info = Db::table('group') -> select();	
+		$info = Db::table('groups') -> select();	
 		$data = Db::table('user') -> join('user_group','user_group.user_id=user.user_id','LEFT') -> select();
 		$this -> assign('data',$data);
 		$this -> assign('info',$info);
@@ -15,7 +15,7 @@ class Group extends Controller
 	public function upgroup()
 	{
 		if (!empty($_POST)) {
-			$result = Db::table('group') -> where('group_id',$_POST['id']) -> update(['group_name'=>$_POST['group_name']]);
+			$result = Db::table('groups') -> where('group_id',$_POST['id']) -> update(['group_name'=>$_POST['group_name']]);
   			$res1 = Db::table('user_group') -> where('group_id',$_POST['id']) -> find();
   			if($res1){
   				$res2 = Db::table('user_group') -> where('group_id',$_POST['id']) -> update(['group_id' => 1]);
@@ -35,7 +35,7 @@ class Group extends Controller
 		if(!empty($_POST)){
 			Db::startTrans();
 			try{
-			 	$rlt_1 = Db::table('group')->where("group_id in(".$_POST['invalue'].")")->delete();
+			 	$rlt_1 = Db::table('groups')->where("group_id in(".$_POST['invalue'].")")->delete();
 			 	if($rlt_1 === false) {
 			 		Db::rollback();
 			 		return '删除失败';
@@ -57,7 +57,7 @@ class Group extends Controller
 	{
 		if(!empty($_POST)){
 			$data = [ 'group_name' => $_POST['group']];
-			$result = Db::table('group')->insert($data);
+			$result = Db::table('groups')->insert($data);
 			if ($result) {
 				return '添加成功';
 			}else{

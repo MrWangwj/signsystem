@@ -33,7 +33,7 @@ class User extends Base
 			$data = Db::name('user') -> paginate(15);
 			$merit = Db::table('user_group') -> select();
 		}
-		$info = Db::name('group')->select();
+		$info = Db::name('groups')->select();
 
 		$tempData = $data->all();
 

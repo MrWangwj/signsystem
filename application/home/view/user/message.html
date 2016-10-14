@@ -55,11 +55,7 @@
 							<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 组&nbsp别 </label>
 							
 							<div class="col-sm-9">
-								<select name="field" id="group_id" class="col-xs-10 col-sm-5">
-                        		{volist name="info" id="vo"}
-									<option value="{$vo.group_id}">{$vo.group_name}</option>
-                        		{/volist}	
-                    			</select>									
+								<input type="text" id="form-field-2" class="col-xs-10 col-sm-5" value="{$data.group_name}" readonly="readonly" required>					
 							</div>
 						</div>
 
