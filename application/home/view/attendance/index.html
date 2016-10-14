@@ -1,5 +1,5 @@
-{extend name="index/base"}
-{block name="css"}
+{extend name="public/base"}
+{block name="link"}
 <link rel="stylesheet" type="text/css" href="{$Think.config.parse_str.__CSS__}attendance.css">
 <script type="text/javascript" href="{$Think.config.parse_str_.__JS__}Chart-1.0.1-beta.4.js"></script>
 <script>
@@ -50,7 +50,7 @@
     }
 </script>
 {/block}
-{block name="content"}
+{block name="main"}
 <div id="top_box">
     <div id="topleft_box">
         <canvas id="myChart" width="400" height="400"></canvas>
