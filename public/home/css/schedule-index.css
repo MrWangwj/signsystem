@@ -7,10 +7,10 @@
 	margin: 0 auto;
 }
 .schedule{
-	border:2px solid #1BBF1F;
+	border:2px solid #1ab394;
 }
 .schedule td{
-	background: #1BBF1F;
+	background: #1ab394;
 	color: white;
 	height: 80px;
 	cursor: pointer;
