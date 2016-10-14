@@ -6,8 +6,8 @@
 }
 #hometop_div{
     width: 100%;
-    height: 300px;
-    border: 1px solid;
+    /*height: 700px;*/
+    /*border: 1px solid;*/
 }
 .homebox{
     text-align: center;
@@ -17,8 +17,8 @@
     margin: 20px;
 }
 .box{
-    width: 35%;
-    margin-left: 32%;
+    width: 50%;
+    margin-left: 25%;
 }
 #boxtitle{
     height: 40px;
@@ -27,7 +27,7 @@
     line-height: 40px;
 }
 #homeinfo_div{
-    height: 150px;
+    height: 250px;
     border: 1px solid;
     overflow-y: auto;
     /*overflow: hidden;*/
