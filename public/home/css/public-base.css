@@ -18,10 +18,14 @@ li{
 }
 body{
 	background-color: #F6F6F6;
+	height: 100%;
 }
 .backgd{
 	background-color: #F6F6F6;
 	min-width: 1024px;
+	position: relative;
+    height: 100%;
+    min-height: 500px;
 } 
 .title{
 	color: white;
@@ -193,16 +197,17 @@ body{
 .picture:hover>div:first-child span{
 	display: none;
 }
-.menu{
+.dropdown>ul{
 	display: none;
     position: absolute;
     width: 150px;
     height: 150px;
     background-color: white;
-    top: 80px;
+    top: 69px;
+    left: -15px;
 }
 
-.menu ul li{
+.dropdown>ul li{
 	height: 40px;
 	line-height: 40px;
 	border-bottom: 1px solid  #F9F9F9;
@@ -240,6 +245,7 @@ body{
 	width: 100%;
 	line-height: 60px;
 	background-color: #62D422;
-	position: fixed;
+	position: absolute;
 	bottom: 0;
+	min-width: 1024px;
 }
