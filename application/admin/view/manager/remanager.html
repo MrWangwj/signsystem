@@ -216,11 +216,16 @@
 		<!-- inline scripts related to this page -->
 		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/jquery-ui-1.10.3.full.min.js"></script>
 		<script type="text/javascript">
+		$(function(){
+    		$("input[name='user_sex'][value='{$data.sex}']").attr('checked',true);
+  		});
 		 function alter(){
+		 	var user_sex = $("input[name='user_sex']:checked").val();
 		 	var number = {
 				id : $("#user").val(),
 				name : $("#form-field-1").val(),
-				group_id: $("#group_id").val()
+				group_id: $("#group_id").val(),
+				User_sex:user_sex
 			}
 			$.ajax({
 				type: 'POST', 
