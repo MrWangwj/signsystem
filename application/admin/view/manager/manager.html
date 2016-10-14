@@ -176,10 +176,13 @@
 <script src="{$Think.config.parse_str.__PUBLIC__}assets/js/jquery-ui-1.10.3.full.min.js"></script>
 	<script type="text/javascript">
 		function adduser(){
+			alert("sdf");
+			var user_sex = $("input[name='user_sex']:checked").val();
 			var number = {
 				Username:$("#form-field-1").val(),
 				group_id:$("#group_id").val(),
-				User_id:$("#form-field-2").val()
+				User_id:$("#form-field-2").val(),
+				User_sex:user_sex
 			}
 				$.ajax({
 					type: 'POST', 

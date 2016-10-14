@@ -111,8 +111,12 @@
 														<td>
 														{$vo.group_name}
 														</td>
-														<td class="hidden-480">男</td>
-	
+														<td class="hidden-480">{if condition="$vo.sex eq '0'"}
+														男
+														{else/}
+														女
+														{/if}
+														</td>
 														<td class="hidden-480">
 															<!-- <span class="label label-sm label-warning">Expiring</span> -->
 															18738519352
