@@ -5,9 +5,7 @@ use think\Db;
 class User extends Base
 {
 	public function message(){
-		$data = Db::table('user')->where('user_id',session('userid'))->find();
-		$info = Db::table('group')->select();
-		$this -> assign('info',$info);
+		$data = Db::table('user')-> join('user_group','user_group.user_id = user.user_id','LEFT')-> join('groups','groups.group_id = user_group.group_id','LEFT')-> where('user.user_id',session('userid'))->find();		
 		$this -> assign('data',$data);
 		return $this->fetch();
 	}

@@ -7,14 +7,14 @@ class Manager extends Controller
 {
 	public function manager()
 	{	
-		$data = Db::table('group') ->select();
+		$data = Db::table('groups') ->select();
 		$this -> assign('data',$data);
 		return $this->fetch();
 	}
 	public function remanager($user_id)
 	{
 		$data = Db::table('user') ->where('user_id',$user_id)->find();
-		$info = Db::table('group') ->select();
+		$info = Db::table('groups') ->select();
 		$this -> assign('info',$info);
 		$this -> assign('data',$data);
 		return $this->fetch();
