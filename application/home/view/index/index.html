@@ -1,82 +1,92 @@
-{extend name="index/base"}
-{block name="css"}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>三月软件小组签到系统</title>
     <link rel="stylesheet" type="text/css" href="{$Think.config.parse_str.__CSS__}index.css">
-{/block}
-{block name="content"}
-<div style="width: 100%;height: 400px;">
-    <div id="login_div">
-        <form method="post" action="index.html">
-            <div id="input_div">
-                <span id="input_span">请输入学号：</span>
-                <input type="email" class="form-control" id="userID" placeholder="Enter ID">
-                <span id="info_span">提示信息</span>
-                <button type="button" class="btn btn-default" id="up_btn">确定签到</button>
-                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal" id="into_btn">申请加入</button>
+    <link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}css/bootstrap.min.css">
+    <script src="{$Think.config.parse_str.__PUBLIC__}js/jquery-3.0.0.min.js"></script>
+    <script src="{$Think.config.parse_str.__PUBLIC__}js/bootstrap.min.js"></script>
+    <script src="{$Think.config.parse_str.__PUBLIC__}js/layer/layer.js"></script>
+</head>
+<body>
+    <div class="background">
+        <div style="width: 100%;height: 400px;">
+            <div class="title">
+                <span>三月软件小组签到系统</span>
             </div>
-        </form>
-    </div>
-</div>
-
-<!--&lt;!&ndash; Button trigger modal &ndash;&gt;-->
-<!--<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">-->
-    <!--Launch demo modal-->
-<!--</button>-->
-
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="myModalLabel">申请加入签到</h4>
-            </div>
-            <div class="modal-body" id="body1">
-                <form class="form-horizontal" role="form">
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">学号：</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputID" placeholder="Enter ID">
-                        </div>
+            <div id="login_div">
+                <form method="post" action="index.html">
+                    <div>
+                        <span>用户登陆</span>
                     </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">姓名：</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputName" placeholder="Enter Name">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">备注：</label>
-                        <div class="col-sm-10">
-                            <textarea  class="form-control" placeholder="Enter Note" id="inputArea"></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <span id="info_span2">提示信息</span>
-                    </div>
-
-                </form>
-            </div>
-
-
-            <div class="modal-body" id="body2">
-                <form class="form-horizontal" role="form">
-                    <div class="form-group">
-                        <span class="label label-success" style="margin-left: 50px">Success</span>
-                        <span style="color: red">申请成功，请等待管理员审核~~</span>
+                    <div id="input_div">
+                        <span id="input_span">请输入学号：</span>
+                        <input type="email" class="form-control" id="userID" placeholder="Enter ID">
+                        <span id="info_span">提示信息</span>
+                        <button type="button" class="btn btn-success" id="up_btn">登陆</button>
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" id="into_btn">申请加入</button>
                     </div>
                 </form>
             </div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary" id="input_btn">提交</button>
+            <div class="footer">
+                <span>版权所有：三月软件小组</span>
             </div>
         </div>
     </div>
-</div>
 
-{/block}
-{block name="js"}
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">申请加入签到</h4>
+                </div>
+                <div class="modal-body" id="body1">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">学号：</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="inputID" placeholder="Enter ID">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">姓名：</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="inputName" placeholder="Enter Name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">备注：</label>
+                            <div class="col-sm-10">
+                                <textarea  class="form-control" placeholder="Enter Note" id="inputArea"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <span id="info_span2">提示信息</span>
+                        </div>  
+
+                    </form>
+                </div>  
+                <div class="modal-body" id="body2">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <span class="label label-success" style="margin-left: 50px">Success</span>
+                            <span style="color: red">申请成功，请等待管理员审核~~</span>
+                        </div>
+                    </form>
+                </div>  
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="input_btn">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
 <script>
     //签到登录
     $("#up_btn").click(function () {
@@ -122,6 +132,4 @@
             }
         })
     })
-
 </script>
-{/block}

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:77:"/var/www/html/SignSystem2/public/../application/home/view/homepage/index.html";i:1475914777;s:73:"/var/www/html/SignSystem2/public/../application/home/view/index/base.html";i:1475914777;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:77:"/var/www/html/SignSystem2/public/../application/home/view/homepage/index.html";i:1476347676;s:73:"/var/www/html/SignSystem2/public/../application/home/view/index/base.html";i:1475914777;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -345,7 +345,7 @@
     function Appendzero (obj) {
                if (obj < 10) return "0" + obj; else return obj;
     }
-    
+    //签到版刷新
     function getSignInfo() {
         $.post("<?php echo url('homepage/signInEdition'); ?>",function (data) {
            $("#homeinfo_div").html('');
@@ -364,7 +364,13 @@
                     var overtime = data.list[i]['over'];
                     var ds = new Date(parseInt(startime)*1000);
                     var dov = new Date(parseInt(overtime)*1000);
-                    $("#homeinfo_div").append("<p>"+data.list[i]['name']+"同学补签了"+Appendzero(ds.getMonth()+1)+"月"+Appendzero(ds.getDate())+"日"+ds.getHours()+":"+Appendzero(ds.getMinutes())+"——"+Appendzero(dov.getHours())+":"+Appendzero(dov.getMinutes())+"的记录</p>");
+                    $("#homeinfo_div").append("<p>"+data.list[i]['name']+"同学申请补签"+Appendzero(ds.getMonth()+1)+"月"+Appendzero(ds.getDate())+"日"+ds.getHours()+":"+Appendzero(ds.getMinutes())+"——"+Appendzero(dov.getHours())+":"+Appendzero(dov.getMinutes())+"的记录通过</p>");
+                } else if(data.list[i]['sign_state']==4){
+                    var startime = data.list[i]['star'];
+                    var overtime = data.list[i]['over'];
+                    var ds = new Date(parseInt(startime)*1000);
+                    var dov = new Date(parseInt(overtime)*1000);
+                    $("#homeinfo_div").append("<p>管理员拒绝了"+data.list[i]['name']+"同学补签"+Appendzero(ds.getMonth()+1)+"月"+Appendzero(ds.getDate())+"日"+ds.getHours()+":"+Appendzero(ds.getMinutes())+"——"+Appendzero(dov.getHours())+":"+Appendzero(dov.getMinutes())+"的记录</p>");
                 }
             }
 

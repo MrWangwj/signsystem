@@ -1,10 +1,39 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+html, body, .background{
+    height: 100%;
+    width: 100%;
+} 
+.title{
+     font-size: 30px;
+}
+.title, .footer{
+    height: 150px;
+    text-align: center;
+    line-height: 150px;
+    color: #1F5B06;
+}
+.background{
+    background-image: url(../image/loginbackgd.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
 #login_div{
-    margin: 100px auto 0;
-    width: 600px;
+    color: #7BCA5B;
+    margin: 0 auto 0;
+    width: 500px;
     height: 250px;
-    border: 1px solid #d8e2d3;
-    background-color: #f1f8fd;
-    /*background: blue;*/
+    background-color: white;
+    border: 3px solid #52A731;
+    /*background-color: #f1f8fd;*/*/
+}
+#login_div>form>div:first-child{
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 22px;
 }
 #input_span{
     display: block;
@@ -12,7 +41,7 @@
     font-size: 15px;
 }
 #input_div{
-    margin: 5% auto 5%;
+    margin: 0 auto;
     width: 400px;
 }
 #info_span{
@@ -25,7 +54,7 @@
 }
 #up_btn{
     /*margin-top: 30px;*/
-    margin-left: 60px;
+    margin-left: 100px;
 }
 #into_btn{
     /*margin-top: 30px;*/
