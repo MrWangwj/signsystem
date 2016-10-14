@@ -7,6 +7,7 @@ return [
         '__CSS__'     =>  '/SignSystem2/public/home/css/',
         '__JS__'     =>  '/SignSystem2/public/home/js/',
         '__IMAGE__'     =>  '/SignSystem2/public/home/image/',
+        '__MODULE__'=>'/SignSystem2/public/index.php/home',
     ],
     'SCHOOLTIME' => '2016-09-06',
 ];

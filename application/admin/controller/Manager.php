@@ -77,7 +77,7 @@ class Manager extends Controller
 	}
 	public function addnotice(){
 		if(!empty($_POST)){
-			$result = Db::table('notice') -> insert(['notice'=>$_POST['notice'],'admin_id'=>123456]);
+			$result = Db::table('notice') -> insert(['notice'=>$_POST['notice'],'admin_id'=>123456,'notice_title'=>$_POST['notice_title']]);
 			if($result){
 				return '添加成功';
 			}else{
