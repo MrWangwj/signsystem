@@ -17,31 +17,9 @@ class Base extends Controller
 {
     public function _initialize()
     {
-//        if(empty(session('username'))){
-//
-//            $this->redirect(url('login/index'));
-//        }
-
-//        //检测权限
-//        $control = request()->controller();
-//        $action = request()->action();
-//
-//        //跳过登录系列的检测以及主页权限
-//        if(!in_array($control, ['login', 'index'])){
-//
-//            if(!in_array($control . '/' . $action, session('action'))){
-//                $this->error('没有权限');
-//            }
-//        }
-//
-//        //获取权限菜单
-//        $node = new Node();
-//
-//        $this->assign([
-//            'username' => session('username'),
-//            'menu' => $node->getMenu(session('rule')),
-//            'rolename' => session('sign')
-//        ]);
+        if(empty(session('adminid'))){
+            $this->redirect(url('login/index'));
+        }
 
     }
 }
