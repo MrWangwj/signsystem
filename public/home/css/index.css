@@ -1,4 +1,5 @@
 *{
+    font-family: "微软雅黑","宋体";
     padding: 0;
     margin: 0;
 }
@@ -6,14 +7,18 @@ html, body, .background{
     height: 100%;
     width: 100%;
 } 
-.title{
+.title span{
      font-size: 30px;
+    color: #1ab394;
+    text-shadow: 0px 1px 0px #e5e5ee;
+    font-weight: 900;
+    letter-spacing: 3px;
 }
 .title, .footer{
     height: 150px;
     text-align: center;
     line-height: 150px;
-    color: #1F5B06;
+    color: #737373;
 }
 .background{
     background-image: url(../image/loginbackgd.png);
@@ -21,13 +26,13 @@ html, body, .background{
     background-size: 100% 100%;
 }
 #login_div{
-    color: #7BCA5B;
+    color: #1ab394;
     margin: 0 auto 0;
     width: 500px;
     height: 250px;
-    background-color: white;
-    border: 3px solid #52A731;
-    /*background-color: #f1f8fd;*/*/
+    background-color: rgba(255,255,255,.5);
+    border: 3px solid #f1f8fd;
+    /*background-color: #f1f8fd;*/
 }
 #login_div>form>div:first-child{
     height: 50px;
@@ -54,7 +59,7 @@ html, body, .background{
 }
 #up_btn{
     /*margin-top: 30px;*/
-    margin-left: 100px;
+    margin-left: 80px;
 }
 #into_btn{
     /*margin-top: 30px;*/
