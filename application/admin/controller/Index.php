@@ -22,7 +22,6 @@ class Index extends Base
     {
         $menulist = db('menu')
             ->select();
-        
         $this->assign('menulist',$menulist);
         return $this->fetch('/index');
     }

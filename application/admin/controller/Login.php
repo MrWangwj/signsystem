@@ -13,7 +13,7 @@ namespace app\admin\controller;
 use app\admin\model\UserType;
 use think\Controller;
 use org\Verify;
-
+//session_start();
 class Login extends Controller
 {
     //登录页面
@@ -47,13 +47,14 @@ class Login extends Controller
         if($password != $hasUser['password']){
             return json(['code' => -2, 'data' => '', 'msg' => '密码错误']);
         }
+        session('adminid', $username);
         return json(['code' => 1, 'data' => url('index/index'), 'msg' => '登录成功']);
     }
 
     //退出操作
     public function loginOut()
     {
-        session('username', null);
+        session('adminid', null);
         $this->redirect(url('index'));
     }
 }
