@@ -4,9 +4,11 @@ return [
     'parse_str'=>[
         '__PUBLIC__'=>'/',
         '__ROOT__' => '/',
-        '__CSS__'     =>  '/home/css/',
-        '__JS__'     =>  '/home/js/',
-        '__IMAGE__'     =>  '/home/image/',
+
+        '__CSS__'     =>  '/SignSystem2/public/home/css/',
+        '__JS__'     =>  '/SignSystem2/public/home/js/',
+        '__IMAGE__'     =>  '/SignSystem2/public/home/image/',
+        '__MODULE__'=>'/SignSystem2/public/index.php/home',
     ],
     'SCHOOLTIME' => '2016-09-06',
 ];

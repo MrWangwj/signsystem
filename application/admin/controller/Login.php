@@ -34,8 +34,7 @@ class Login extends Controller
             return json(['code' => -5, 'data' => '', 'msg' => $result]);
         }
 
-        $verify = new Verify();
-        if (!$verify->check($code)) {
+        if (!captcha_check($code)) {
             return json(['code' => -4, 'data' => '', 'msg' => '验证码错误']);
         }
 
@@ -49,19 +48,6 @@ class Login extends Controller
             return json(['code' => -2, 'data' => '', 'msg' => '密码错误']);
         }
         return json(['code' => 1, 'data' => url('index/index'), 'msg' => '登录成功']);
-    }
-
-    //验证码
-    public function checkVerify()
-    {
-        $verify = new Verify();
-        $verify->imageH = 32;
-        $verify->imageW = 100;
-        $verify->length = 4;
-        $verify->useNoise = false;
-        $verify->fontSize = 14;
-        $verify->reset = true;
-        return $verify->entry();
     }
 
     //退出操作

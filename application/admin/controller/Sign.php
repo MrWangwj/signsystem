@@ -69,11 +69,22 @@ class Sign extends Base
             $list[$i]['over'] =date('Y-m-d H:i:s',$timeB);
             $list[$i]['now'] =date('Y-m-d H:i:s',$timeC);
         }
-//        $list2[][''] = null;
-//        for($i=0;$i<count($list);$i++){
-//
-//        }
-        echo json_encode($list);
+        $list2 = null;
+        for($i=0;$i<count($list);$i++){
+            $state = $list[$i]['sign_state'];
+            if($state==0){
+                $list2[$i]['info'] = $list[$i]['name']."同学    在".$list[$i]['star']."    签到";
+            }else if ($state==1){
+                $list2[$i]['info'] = $list[$i]['name']."同学    在".$list[$i]['over']."    签退";
+            }else if ($state==2){
+                $list2[$i]['info'] = $list[$i]['name']."同学    申请的".$list[$i]['star']."到".$list[$i]['over']."    补签级记录通过";
+            }else if ($state==3){
+                $list2[$i]['info'] = $list[$i]['name']."同学    提交了".$list[$i]['star']."到".$list[$i]['over']."    补签记录";
+            }else if ($state==4){
+                $list2[$i]['info'] = "管理员拒绝了    ".$list[$i]['name']."同学    申请".$list[$i]['star']."到".$list[$i]['over']."    补签记录";
+            }
+        }
+        echo json_encode($list2);
     }
     //同意补签时段申请
     public function check_sign(){

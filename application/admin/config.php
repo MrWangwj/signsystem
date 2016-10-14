@@ -21,14 +21,5 @@ return [
         '__MODULE__'=>'/SignSystem2/public/index.php/admin',
     ],
 
-    //管理员状态
-    'user_status' => [
-        '1' => '正常',
-        '2' => '禁止登录'
-    ],
-    //角色状态
-    'role_status' => [
-        '1' => '启用',
-        '2' => '禁用'
-    ]
+
 ];
