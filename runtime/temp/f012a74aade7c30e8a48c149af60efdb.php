@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:77:"/var/www/html/SignSystem2/public/../application/home/view/schedule/count.html";i:1476332703;s:74:"/var/www/html/SignSystem2/public/../application/home/view/public/base.html";i:1476446449;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:77:"/var/www/html/SignSystem2/public/../application/home/view/schedule/count.html";i:1476332703;s:74:"/var/www/html/SignSystem2/public/../application/home/view/public/base.html";i:1476448897;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,8 +28,10 @@
 							<div class="dropdown">
    								<img src="<?php echo \think\Config::get('parse_str.__IMAGE__'); ?>picture1.jpg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
   								<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-    								<a href=""><li>个人信息</li></a>
-									<a href=""><li>查看课表</li></a>
+    								<a href="<?php echo url('User/message'); ?>"><li>个人信息</li></a>
+    								<a href=""><li>考勤信息</li></a>
+									<a href="<?php echo url('Schedule/index'); ?>"><li>查看课表</li></a>
+									<a href="<?php echo url('Schedule/count'); ?>"><li>课表统计</li></a>
 									<a href=""><li>退出</li></a>
   								</ul>
 							</div>	

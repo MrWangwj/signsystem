@@ -25,8 +25,10 @@
 							<div class="dropdown">
    								<img src="{$Think.config.parse_str.__IMAGE__}picture1.jpg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
   								<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-    								<a href=""><li>个人信息</li></a>
-									<a href=""><li>查看课表</li></a>
+    								<a href="{:url('User/message')}"><li>个人信息</li></a>
+    								<a href=""><li>考勤信息</li></a>
+									<a href="{:url('Schedule/index')}"><li>查看课表</li></a>
+									<a href="{:url('Schedule/count')}"><li>课表统计</li></a>
 									<a href=""><li>退出</li></a>
   								</ul>
 							</div>	
