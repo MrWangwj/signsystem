@@ -4,7 +4,6 @@ return [
     'parse_str'=>[
         '__PUBLIC__'=>'/',
         '__ROOT__' => '/',
-
         '__CSS__'     =>  '/SignSystem2/public/home/css/',
         '__JS__'     =>  '/SignSystem2/public/home/js/',
         '__IMAGE__'     =>  '/SignSystem2/public/home/image/',
