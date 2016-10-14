@@ -6,7 +6,7 @@ class User extends Base
 {
 	public function message(){
 		$data = Db::table('user')->where('user_id',session('userid'))->find();
-		$info = Db::table('group')->select();
+		$info = Db::table('groups')->select();
 		$this -> assign('info',$info);
 		$this -> assign('data',$data);
 		return $this->fetch();
