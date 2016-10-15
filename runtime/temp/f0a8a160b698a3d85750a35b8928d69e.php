@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:75:"/var/www/html/SignSystem2/public/../application/home/view/user/message.html";i:1476455304;s:74:"/var/www/html/SignSystem2/public/../application/home/view/public/base.html";i:1476448897;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:75:"/var/www/html/SignSystem2/public/../application/home/view/user/message.html";i:1476455993;s:74:"/var/www/html/SignSystem2/public/../application/home/view/public/base.html";i:1476448897;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -103,11 +103,7 @@
 							<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 组&nbsp别 </label>
 							
 							<div class="col-sm-9">
-								<select name="field" id="group_id" class="col-xs-10 col-sm-5">
-                        		<?php if(is_array($info) || $info instanceof \think\Collection): $i = 0; $__LIST__ = $info;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
-									<option value="<?php echo $vo['group_id']; ?>"><?php echo $vo['group_name']; ?></option>
-                        		<?php endforeach; endif; else: echo "" ;endif; ?>	
-                    			</select>									
+								<input type="text" id="form-field-2" class="col-xs-10 col-sm-5" value="<?php echo $data['group_name']; ?>" readonly="readonly" required>					
 							</div>
 						</div>
 

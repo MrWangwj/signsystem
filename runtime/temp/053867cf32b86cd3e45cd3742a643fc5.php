@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:69:"/var/www/html/SignSystem2/public/../application/admin/view/index.html";i:1476495644;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,10 +14,10 @@
 <![endif]-->
 
 <link rel="shortcut icon" href="favicon.ico">
-<link href="{$Think.config.parse_str.__CSS__}bootstrap.min.css?v=3.3.6" rel="stylesheet">
-<link href="{$Think.config.parse_str.__CSS__}font-awesome.min.css?v=4.4.0" rel="stylesheet">
-<link href="{$Think.config.parse_str.__CSS__}animate.min.css" rel="stylesheet">
-<link href="{$Think.config.parse_str.__CSS__}style.min.css?v=4.1.0" rel="stylesheet">
+<link href="<?php echo \think\Config::get('parse_str.__CSS__'); ?>bootstrap.min.css?v=3.3.6" rel="stylesheet">
+<link href="<?php echo \think\Config::get('parse_str.__CSS__'); ?>font-awesome.min.css?v=4.4.0" rel="stylesheet">
+<link href="<?php echo \think\Config::get('parse_str.__CSS__'); ?>animate.min.css" rel="stylesheet">
+<link href="<?php echo \think\Config::get('parse_str.__CSS__'); ?>style.min.css?v=4.1.0" rel="stylesheet">
 </head>
 
 <body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
@@ -29,7 +30,7 @@
             <ul class="nav" id="side-menu">
                 <li class="nav-header">
                     <div class="dropdown profile-element">
-                        <span><img alt="image" class="img-circle" src="{$Think.config.parse_str.__IMAGE__}profile_small.jpg"/></span>
+                        <span><img alt="image" class="img-circle" src="<?php echo \think\Config::get('parse_str.__IMAGE__'); ?>profile_small.jpg"/></span>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="clear">
                                 <span class="block m-t-xs"><strong class="font-bold"></strong></span>
@@ -38,7 +39,7 @@
                         </a>
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
                             <li>
-                                <a href="{:url('admin/login/index')}">安全退出</a>
+                                <a href="<?php echo url('admin/login/index'); ?>">安全退出</a>
                             </li>
                         </ul>
                     </div>
@@ -46,7 +47,7 @@
                     </div>
                 </li>
                 <!--<li class="menu">-->
-                    <!--<a href="{:url('admin/index/index')}">-->
+                    <!--<a href="<?php echo url('admin/index/index'); ?>">-->
                         <!--<i class=""></i>-->
                         <!--<span class="nav-label">后台首页</span>-->
                         <!--<span class="fa arrow"></span>-->
@@ -61,17 +62,17 @@
                     </a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a class="J_menuItem" href="{:url('admin/sign/log')}">签到日志管理</a>
+                            <a class="J_menuItem" href="<?php echo url('admin/sign/log'); ?>">签到日志管理</a>
                         </li>
                     </ul>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a class="J_menuItem" href="{:url('admin/sign/index')}">补签审批</a>
+                            <a class="J_menuItem" href="<?php echo url('admin/sign/index'); ?>">补签审批</a>
                         </li>
                     </ul>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a class="J_menuItem" href="{:url('admin/sign/online')}">在线情况</a>
+                            <a class="J_menuItem" href="<?php echo url('admin/sign/online'); ?>">在线情况</a>
                         </li>
                     </ul>
                 </li>
@@ -84,12 +85,12 @@
                     </a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a class="J_menuItem" href="{:url('admin/user/index')}">11111111</a>
+                            <a class="J_menuItem" href="<?php echo url('admin/user/index'); ?>">11111111</a>
                         </li>
                     </ul>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a class="J_menuItem" href="{:url('admin/user/index')}">22222222222</a>
+                            <a class="J_menuItem" href="<?php echo url('admin/user/index'); ?>">22222222222</a>
                         </li>
                     </ul>
                 </li>
@@ -102,22 +103,22 @@
                     </a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a class="J_menuItem" href="{:url('admin/user/useradd')}">审批信息</a>
+                            <a class="J_menuItem" href="<?php echo url('admin/user/useradd'); ?>">审批信息</a>
                         </li>
                     </ul>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a class="J_menuItem" href="{:url('admin/user/member')}">当前组别</a>
+                            <a class="J_menuItem" href="<?php echo url('admin/user/member'); ?>">当前组别</a>
                         </li>
                     </ul>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a class="J_menuItem" href="{:url('admin/Group/group')}">人员分组</a>
+                            <a class="J_menuItem" href="<?php echo url('admin/Group/group'); ?>">人员分组</a>
                         </li>
                     </ul>
                      <ul class="nav nav-second-level">
                         <li>
-                            <a class="J_menuItem" href="{:url('admin/Manager/notice')}">发布公告</a>
+                            <a class="J_menuItem" href="<?php echo url('admin/Manager/notice'); ?>">发布公告</a>
                         </li>
                     </ul>
                 </li>
@@ -172,12 +173,12 @@
                     </li>
                 </ul>
             </div>
-            <a href="{:url('admin/login/loginOut')}" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i>
+            <a href="<?php echo url('admin/login/loginOut'); ?>" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i>
                 退出</a>
         </div>
         <div class="row J_mainContent" id="content-main">
             <iframe class="J_iframe" name="iframe0" width="100%" height="100%"
-                    src="{:url('Index/indexPage')}" frameborder="0"
+                    src="<?php echo url('Index/indexPage'); ?>" frameborder="0"
                     data-id="index_v1.html" seamless></iframe>
         </div>
         <div class="footer">
@@ -274,15 +275,15 @@
     <!--右侧边栏结束-->
     <!--mini聊天窗口开始-->
 </div>
-<script src="{$Think.config.parse_str.__JS__}jquery.min.js"></script>
-<script src="{$Think.config.parse_str.__JS__}bootstrap.min.js"></script>
-<script src="{$Think.config.parse_str.__JS__}plugins/metisMenu/jquery.metisMenu.js"></script>
-<script src="{$Think.config.parse_str.__JS__}plugins/slimscroll/jquery.slimscroll.min.js"></script>
-<script src="{$Think.config.parse_str.__JS__}plugins/layer/layer.min.js"></script>
-<script src="{$Think.config.parse_str.__JS__}hplus.min.js"></script>
+<script src="<?php echo \think\Config::get('parse_str.__JS__'); ?>jquery.min.js"></script>
+<script src="<?php echo \think\Config::get('parse_str.__JS__'); ?>bootstrap.min.js"></script>
+<script src="<?php echo \think\Config::get('parse_str.__JS__'); ?>plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="<?php echo \think\Config::get('parse_str.__JS__'); ?>plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="<?php echo \think\Config::get('parse_str.__JS__'); ?>plugins/layer/layer.min.js"></script>
+<script src="<?php echo \think\Config::get('parse_str.__JS__'); ?>hplus.min.js"></script>
 <!--<script type="text/javascript" src="__JS__/contabs.min.js"></script>-->
-<script src="{$Think.config.parse_str.__JS__}contabs.js"></script>
-<script src="{$Think.config.parse_str.__JS__}plugins/pace/pace.min.js"></script>
+<script src="<?php echo \think\Config::get('parse_str.__JS__'); ?>contabs.js"></script>
+<script src="<?php echo \think\Config::get('parse_str.__JS__'); ?>plugins/pace/pace.min.js"></script>
 </body>
 
 </html>
