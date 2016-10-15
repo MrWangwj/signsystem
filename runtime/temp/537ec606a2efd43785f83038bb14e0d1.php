@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:75:"/var/www/html/SignSystem2/public/../application/admin/view/sign/online.html";i:1476496101;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:75:"/var/www/html/SignSystem2/public/../application/admin/view/sign/online.html";i:1476496519;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +12,8 @@
     <link href="<?php echo \think\Config::get('parse_str.__CSS__'); ?>animate.min.css" rel="stylesheet">
     <link href="<?php echo \think\Config::get('parse_str.__CSS__'); ?>style.min.css?v=4.1.0" rel="stylesheet">
     <link href="<?php echo \think\Config::get('parse_str.__CSS__'); ?>plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <link href="<?php echo \think\Config::get('parse_str.__CSS__'); ?>plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <link href="<?php echo \think\Config::get('parse_str.__CSS__'); ?>sign-online.css" rel="stylesheet">
 </head>
 <body class="gray-bg">
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -20,7 +22,9 @@
             <h5>在线情况</h5>
         </div>
         <div class="ibox-content">
-
+            <div>
+                
+            </div>
         </div>
     </div>
 </div>
