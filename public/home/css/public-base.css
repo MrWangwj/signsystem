@@ -25,6 +25,10 @@ body{
 	min-width: 1024px;
 	position: relative;
     min-height: 100%;
+<<<<<<< HEAD
+    /*min-height: 500px;*/
+=======
+>>>>>>> 7bd3b0ba74fc7b150921a31f93b52d344c279d01
 } 
 .title{
 	color: white;
