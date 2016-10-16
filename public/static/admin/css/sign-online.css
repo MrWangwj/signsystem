@@ -1,3 +1,9 @@
 .title form label:last-child{
 	float: right;
 }
+.sign-table{
+	margin-top: 20px;
+}
+.sign-table table th{
+	text-align: center;
+}

@@ -49,12 +49,8 @@ class Schedule extends Base{
 	} 
 
 	public function test($week=''){
-		$schedule = model('Schedule');
-		$data = db('user_group',[], false)
-		->alias('a')
-		->join('group2 AS c', 'a.group_id = c.group_id')
-		->select();
-		return dump($data);
+		
+		return date("w",strtotime('2016-10-10'));
 	} 
 
 	/**

@@ -36,10 +36,7 @@ class Sign extends Base
     {
         return $this->fetch();
     }
-    public function online()
-    {
-        return $this->fetch();
-    }
+
 
     public function attendance_check(){
         $list = db('sign_info')
@@ -120,5 +117,12 @@ class Sign extends Base
                 'sign_state'=>4,
             ]);
         return json(['code'=>1,'msg'=>"拒绝此补签记录"]);
+    }
+
+    //查看在线情况
+    public function online(){
+        $count = model('count');
+        $this->assign('count',dump($count->getOnline()));
+        return $this->fetch();
     }
 }

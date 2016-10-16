@@ -250,6 +250,7 @@ class Schedule extends Model{
 	public function getHaveClass($weekNum, $where=[]){
 		$term = "";
 		$i = 0;
+		$j = 0;
 		foreach ($where as $key => $value) {
 			if($i != 0) $term .= " OR ";
 			$i++;
@@ -268,8 +269,10 @@ class Schedule extends Model{
 				}
 				$where[$key][$key2][0] = $as.$where[$key][$key2][0];
 				$term .=$where[$key][$key2][0].$mark.$where[$key][$key2][1];
-				if($key2 < count($value)-1) $term.=" AND ";
+				if($j < count($value)-1) $term.=" AND ";
+				$j++;
 			}
+			$j=0;
 			$term .= ")";
 		}
 		$data = db('schedule', [], false)
@@ -312,6 +315,7 @@ class Schedule extends Model{
 		$haveclass = $this->getHaveClass($weekNum, [])[0];
 		$term = "";
 		$i = 0;
+		$j = 0;
 		foreach ($where as $key => $value) {
 			if($i != 0) $term .= " OR ";
 			$i++;
@@ -330,8 +334,10 @@ class Schedule extends Model{
 				}
 				$where[$key][$key2][0] = $as.$where[$key][$key2][0];
 				$term .=$where[$key][$key2][0].$mark.$where[$key][$key2][1];
-				if($key2 < count($value)-1) $term.=" AND ";
+				if($j < count($value)-1) $term.=" AND ";
+				$j++;
 			}
+			$j=0;
 			$term .= ")";
 		}
 		$names = db('user', [], false)
