@@ -7,12 +7,12 @@ use think\Request;
 /**
 课表
 */
-class Schedule extends Controller{
-	protected $user = 20151515135;
-
+class Schedule extends Base{
+	
 	public function index(){
 		$schedule = model('Schedule');
-		$data = $schedule->getCurriculum($schedule->getSchedules($this->user),count($schedule->getNowWeek()));
+		
+		$data = $schedule->getCurriculum($schedule->getSchedules(session('userid')),count($schedule->getNowWeek()));
 		$this->assign('data',$data[0]);
 		$this->assign('week',$data[1]);
 		return $this->fetch();
@@ -20,7 +20,7 @@ class Schedule extends Controller{
 
 	public function add(){
 		// $schedule = model('Schedule');
-		// $data = $schedule->getSchedules($this->user);
+		// $data = $schedule->getSchedules(session('userid'));
 		// $w = "";
 		// for ($i=0; $i < count($data,0); $i++) { 
 		// for ($j=0; $j <= 20; $j++) { 
@@ -39,7 +39,7 @@ class Schedule extends Controller{
 
 	public function schedule(){
 		$schedule = model('Schedule');
-		$id = $schedule->getId($this->user, input('get.week'), input('get.section'));
+		$id = $schedule->getId(session('userid'), input('get.week'), input('get.section'));
 		if($id){
 			$curriculum = $schedule->getSchedule($id);
 		}else{
@@ -50,7 +50,11 @@ class Schedule extends Controller{
 
 	public function test($week=''){
 		$schedule = model('Schedule');
-		return dump($schedule->getCount());
+		$data = db('user_group',[], false)
+		->alias('a')
+		->join('group2 AS c', 'a.group_id = c.group_id')
+		->select();
+		return dump($data);
 	} 
 
 	/**
@@ -62,12 +66,12 @@ class Schedule extends Controller{
 		$validate  = $schedule->judge(); //验证对象
 		if($validate->check(input('post.'))){ //判断信息 是否正确
 			$data = input('post.');
-			$id = $schedule->getId($this->user, $data['week'], $data['section']);
+			$id = $schedule->getId(session('userid'), $data['week'], $data['section']);
 			$newId = $result = $schedule->judgeRepeat($data);
 			if($result == false){      //判断信息是否重复
 				$newId = db('curriculum', [], false)->insertGetId($data);
 			}
-			if($schedule->upSchedule($this->user, $id, $newId)){ //判断信息是否更新成功
+			if($schedule->upSchedule(session('userid'), $id, $newId)){ //判断信息是否更新成功
 				return ['code' => 2, 'msg' => '保存成功'];
 			}
 			return ['code' => 1, 'msg' => '修改失败!']; 
@@ -78,9 +82,9 @@ class Schedule extends Controller{
 
 	public function nothing(){
 		$schedule = model('Schedule');
-		$id = $schedule->getId($this->user,input('post.week'),input('post.section'));
+		$id = $schedule->getId(session('userid'),input('post.week'),input('post.section'));
 		$result = db('schedule', [], false)
-				->where(['user_id' => $this->user, 'curriculum_id' => $id])
+				->where(['user_id' => session('userid'), 'curriculum_id' => $id])
 				->delete();
 		if($result != false){
 			return ['code' => 1, 'msg' => '删除成功！'];
@@ -99,10 +103,10 @@ class Schedule extends Controller{
 	public function inputSch(){
 		$schedule = model('Schedule');
 		$user = input('get.user_id');
-		if($user != $this->user){
+		if($user != session('userid')){
 			$scheduleId = $schedule->getScheduleId($user);
 			if($scheduleId){
-				$result = $schedule->cpSchedule($this->user, $scheduleId);
+				$result = $schedule->cpSchedule(session('userid'), $scheduleId);
 				return ['code' => 2, 'msg' => '成功导入'.$result.'条'];
 				// return dump($result);
 			}
@@ -125,7 +129,7 @@ class Schedule extends Controller{
 		$schedule = model('Schedule');
 		$user = db('user', [], false)->where(['user_id' => $otheruser])->find();
 		if($user){
-			if($user['user_id'] != $this->user){
+			if($user['user_id'] != session('userid')){
 				$data = $schedule->getCurriculum($schedule->getSchedules($otheruser),count($schedule->getNowWeek()));
 				$this->assign('data',$data[0]);
 				$this->assign('week',$data[1]);
@@ -140,7 +144,7 @@ class Schedule extends Controller{
 
 	public function count(){
 		$schedule = model('Schedule');
-		$group = db('group',[], false)->select();
+		$group = db('groups',[], false)->select();
 		$user = db('user', [], false)->field('user_id,name')->order('name')->select();
 		$data = $schedule->getCount();
 		$this->assign('data',$data[0]);

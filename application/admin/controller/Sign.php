@@ -36,6 +36,11 @@ class Sign extends Base
     {
         return $this->fetch();
     }
+    public function online()
+    {
+        return $this->fetch();
+    }
+
     public function attendance_check(){
         $list = db('sign_info')
             ->join('user','user.user_id = sign_info.user_id')
