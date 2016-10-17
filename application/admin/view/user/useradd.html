@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>角色列表</title>
+    <title>审批列表</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<!-- basic styles -->
 		<link href="{$Think.config.parse_str.__PUBLIC__}assets/css/bootstrap.min.css" rel="stylesheet" />
@@ -21,6 +21,7 @@
 		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/ace-rtl.min.css" />
 		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/ace-skins.min.css" />
 		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/ace.min.css" />
+		<link href="{$Think.config.parse_str.__CSS__}style.min.css?v=4.1.0" rel="stylesheet">
 		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/ace-rtl.min.css" />
 		<!--[if lte IE 8]>
 		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
@@ -149,7 +150,7 @@
 
 								</div>				
 								<div class="cf" style="folat:right;width:100px;">
-                               		 <input id="submit" class="btn btn-outline btn-primary" type="button" value="同意">                              		 
+                               		 <input id="submit" class="btn btn-outline " type="button" value="同意">                              		 
                             	</div>
 								
                             	<div class="hr hr-18 dotted hr-double"></div>
@@ -204,6 +205,11 @@
 		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/jquery.dataTables.min.js"></script>
 		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/jquery.dataTables.bootstrap.js"></script>
 <script type="text/javascript">
+	$(function(){
+		if({$info}==0){
+			$("#submit").css('display','none');
+		}
+	});
 	$('.check').on('click',function(){
 		var user_id = $(this).attr("value");
 		$.ajax({

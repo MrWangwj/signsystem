@@ -21,7 +21,7 @@
 {block name="main"}
 	<div style="margin-top:10px;">
 		<div style="margin: 0;padding: 8px 20px 24px;">
-			<div class="row" style="border:4px solid green;width:100%;margin: auto;">
+			<div class="row" style="border:4px solid #1AB394;width:100%;margin: auto;">
 			<div style="margin-left:45%;"><h3>个人信息</h3></div>
 				<div class="col-xs-12">
 					
@@ -31,7 +31,7 @@
 							<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 头&nbsp像</label>
 
 							<div class="col-sm-9">
-								<img src="" style="border:2px solid green;width:100px;height:100px;">
+								<img src="" style="border:2px solid #1AB394;width:100px;height:100px;">
 							</div>
 						</div>
 						<div class="form-group">
@@ -56,6 +56,16 @@
 							
 							<div class="col-sm-9">
 								<input type="text" id="form-field-2" class="col-xs-10 col-sm-5" value="{$data.group_name}" readonly="readonly" required>					
+							</div>
+						</div>
+
+						<div class="space-4"></div>
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 职&nbsp务 </label>
+							
+							<div class="col-sm-9">
+								<input type="text" id="form-field-2" class="col-xs-10 col-sm-5" value="{$data.position_name}" readonly="readonly" required>					
 							</div>
 						</div>
 
@@ -90,16 +100,16 @@
 
 						<div class="clearfix form-actions" >
 							<div class="col-md-offset-3 col-md-9">
-								<button  style="width:87px;height:45px;color:#fff; background-color: green;" type="submit">
+								<button  style="width:87px;height:45px;color:#fff; background-color: #1AB394;border:none;border-radius: 8px;" type="submit">
 									<i class="icon-ok bigger-110" ></i>
 									提交
 								</button>
 
 								&nbsp; &nbsp; &nbsp;
-								<a href="/SignSystem2/public/index.php/home/schedule/count">
-								<button class="btn" type="button">
+								<a href="">
+								<button class="btn" type="button"style="border-radius: 8px;">
 									<i class="icon-undo bigger-110" ></i>
-									退出
+									返回
 								</button>
 								</a>			
 							</div>
@@ -140,7 +150,6 @@
 			var user_sex = $("input[name='user_sex']:checked").val();
 			var number = {
 				Username:$("#form-field-1").val(),
-				group_id:$("#group_id").val(),
 				User_sex:user_sex
 			}
 				$.ajax({

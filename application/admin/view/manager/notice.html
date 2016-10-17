@@ -7,7 +7,7 @@
 		<!-- basic styles -->
 		<link href="{$Think.config.parse_str.__PUBLIC__}assets/css/bootstrap.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/font-awesome.min.css" />
-		<link href="{$Think.config.parse_str.__CSS__}style.min.css?v=4.1.0" rel="stylesheet">
+		
 		<!--[if IE 7]>
 		  <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
 		<![endif]-->
@@ -19,6 +19,7 @@
 		<!-- ace styles -->
 
 		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/ace.min.css" />
+		<link href="{$Think.config.parse_str.__CSS__}style.min.css?v=4.1.0" rel="stylesheet">
 		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/ace-rtl.min.css" />
 		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/ace-skins.min.css" />
 		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/jquery-ui-1.10.3.full.min.css" />
@@ -45,7 +46,7 @@
     
 </head>
 <body class="gray-bg">
-	<div>
+	<div class="wrapper wrapper-content animated fadeInRight">
 		<div class="page-content">
 			<div class="page-header">
 				<h1>
@@ -134,7 +135,7 @@
 								</table>
 					</div><!-- /.table-responsive -->
 					<div class="cf" style="margin-bottom:40px;">
-                   		 <input id="submit" class="btn btn-outline btn-primary" type="button" value="删除"> 	 
+                   		 <input id="submit" class="btn " type="button" value="删除"> 	 
                 	</div>
 					<form class="form-horizontal" role="form" method="post" action="javascript:alter();">
 						<div class="form-group">
@@ -153,14 +154,14 @@
 						</div>		
 						<div class="clearfix form-actions">
 							<div class="col-md-offset-3 col-md-9" style="margin-left:4%;">
-								<button class="btn btn-info" type="submit" id="user" value="">
+								<button class="btn " type="submit" id="user" value="">
 									<i class="icon-ok bigger-110"></i>
-									Submit
+									提交
 								</button>
-								<a  href="/houtai/public/index.php/admin/user/member">
+								<a  href="/SignSystem2/public/index.php/admin/user/member">
 								<button class="btn "  type="button">
 									<i class="icon-undo bigger-110"></i> 
-									Reset		
+									放弃		
 								</button>
 								</a>
 							</div>

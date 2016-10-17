@@ -8,6 +8,8 @@ class Manager extends Controller
 	public function manager()
 	{	
 		$data = Db::table('groups') ->select();
+		$merit = Db::table('positions') ->select();
+		$this -> assign('merit',$merit);
 		$this -> assign('data',$data);
 		return $this->fetch();
 	}
@@ -15,12 +17,14 @@ class Manager extends Controller
 	{
 		$data = Db::table('user') ->where('user_id',$user_id)->find();
 		$info = Db::table('groups') ->select();
+		$merit = Db::table('positions') ->select();
+		$this -> assign('merit',$merit);
 		$this -> assign('info',$info);
 		$this -> assign('data',$data);
 		return $this->fetch();
 	}
 	public function notice(){
-		$data = Db::table('user') ->join('admin','admin.user_id=user.user_id','LEFT')->join('notice','notice.admin_id=admin.admin_id')->select();
+		$data = Db::table('user') -> join('admin','admin.user_id=user.user_id','LEFT')-> join('notice','notice.admin_id=admin.admin_id')->select();
 		$this -> assign('data',$data);
 		return $this ->fetch();
 	}
@@ -31,9 +35,9 @@ class Manager extends Controller
 	}
 	public function User(){
 		if(!empty($_POST)){
-			 Db::startTrans();
-			 try{
-				$rlt_1 = Db::table('user')->insert([ 'name' => $_POST['Username'],'user_id'=>$_POST['User_id'],'sex'=>$_POST['User_sex']]);
+			 Db::startTrans();    
+			try{		
+				$rlt_1 = Db::table('user')->insert([ 'name' => $_POST['Username'],'user_id'=>$_POST['User_id'],'sex'=>$_POST['User_sex'],'position'=>$_POST['position']]);
 				if($rlt_1 === false){
 					Db::rollback();
 					return '添加失败';
@@ -56,7 +60,7 @@ class Manager extends Controller
 		if (!empty($_POST)) {
 			Db::startTrans();
 			try{
-				$rlt_1 = Db::table('user') -> where('user_id',$_POST['id']) -> update(['name'=>$_POST['name'],'sex'=>$_POST['User_sex']]);
+				$rlt_1 = Db::table('user') -> where('user_id',$_POST['id']) -> update(['name'=>$_POST['name'],'sex'=>$_POST['User_sex'],"position"=>$_POST['position']]);
 				if ($rlt_1 === false) {
 					Db::rollback();
 					return '修改失败';
