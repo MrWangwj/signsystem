@@ -122,7 +122,9 @@ class Sign extends Base
     //查看在线情况
     public function online(){
         $count = model('count');
-        $this->assign('count',dump($count->getOnline()));
+        $group = db('groups',[], false)->select();
+        $this->assign('group', $group);
+        $this->assign($count->getOnline());
         return $this->fetch();
     }
 }

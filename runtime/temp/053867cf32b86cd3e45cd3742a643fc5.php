@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:69:"/var/www/html/SignSystem2/public/../application/admin/view/index.html";i:1476495644;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:69:"/var/www/html/SignSystem2/public/../application/admin/view/index.html";i:1476633016;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -85,12 +85,7 @@
                     </a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a class="J_menuItem" href="<?php echo url('admin/user/index'); ?>">11111111</a>
-                        </li>
-                    </ul>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a class="J_menuItem" href="<?php echo url('admin/user/index'); ?>">22222222222</a>
+                            <a class="J_menuItem" href="<?php echo url('Schedule/clear'); ?>">清除冗余课程 </a>
                         </li>
                     </ul>
                 </li>

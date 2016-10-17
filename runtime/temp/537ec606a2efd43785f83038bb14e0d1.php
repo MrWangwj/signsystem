@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:75:"/var/www/html/SignSystem2/public/../application/admin/view/sign/online.html";i:1476528217;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:75:"/var/www/html/SignSystem2/public/../application/admin/view/sign/online.html";i:1476632039;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,14 +19,14 @@
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="ibox float-e-margins">
         <div class="ibox-title">
-            <h5>在线情况<?php echo $count; ?></h5>
+            <h5>在线情况</h5>
         </div>
         <div class="ibox-content">
             <div class="main">
                 <div class='title'>
                     <form class="form-inline" action="<?php echo url('Sign/online'); ?>" method="get" id="date-form">
                         <label>时间：</label>
-                        <input type="date" class="form-control" name="date" id="date">
+                        <input type="date" class="form-control" name="date" id="date" value="<?php echo date('Y-m-d',$date); ?>">
                         <select class="form-control" id="hour" name="hour">
                            
                         </select>
@@ -39,7 +39,7 @@
                             
                         </select>
                         <label>秒</label>
-                        <label>当前在线人数：8 缺勤人数：4</label>
+                        <label>当前在线人数：<?php echo $signcount; ?> 缺勤人数：<?php echo $lackcount; ?></label>
                     </form>
                 </div>
                 <div class="sign-table">
@@ -49,21 +49,21 @@
                             <th>在线</th>
                             <th>缺勤</th>
                         </tr>
-                        <tr>
-                            <td>开发一组</td>
-                            <td>1</td>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td>开发一组</td>
-                            <td>1</td>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td>开发一组</td>
-                            <td>1</td>
-                            <td>1</td>
-                        </tr>
+                        <?php if(is_array($group) || $group instanceof \think\Collection): $i = 0; $__LIST__ = $group;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+                            <tr>
+                                <td><?php echo $vo['group_name']; ?></td>
+                                <td>
+                                    <?php if(is_array($sign) || $sign instanceof \think\Collection): $i = 0; $__LIST__ = $sign;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo2): $mod = ($i % 2 );++$i;if($vo2['group_id'] == $vo['group_id']): ?>
+                                            <?php echo $vo2['name']; ?>,
+                                        <?php endif; endforeach; endif; else: echo "" ;endif; ?>
+                                </td>
+                                <td>
+                                    <?php if(is_array($lackuser) || $lackuser instanceof \think\Collection): $i = 0; $__LIST__ = $lackuser;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo3): $mod = ($i % 2 );++$i;if($vo3['group_id'] == $vo['group_id']): ?>
+                                            <?php echo $vo3['name']; ?>,
+                                        <?php endif; endforeach; endif; else: echo "" ;endif; ?>
+                                </td>
+                            </tr>                           
+                        <?php endforeach; endif; else: echo "" ;endif; ?>
                     </table>
                 </div>
             </div>
@@ -91,6 +91,7 @@
 <script type="text/javascript" src="<?php echo \think\Config::get('parse_str.__JS__'); ?>plugins/zTree/jquery.ztree.excheck-3.5.js"></script>
 <script type="text/javascript" src="<?php echo \think\Config::get('parse_str.__JS__'); ?>plugins/zTree/jquery.ztree.exedit-3.5.js"></script>
 <script>
+
     $('#hour').on('change', function(event) {
         $('#date-form').submit();
     });
@@ -103,15 +104,18 @@
     $('#date').on('change', function(event) {
         $('#date-form').submit();
     });
-    $('#hour').html(getdateoption(0, 23));
-    $('#minute').html(getdateoption(0, 59));
-    $('#second').html(getdateoption(0, 59));
-    $('#date').val('2018-01-01');
 
-    function getdateoption(start, end){
+    $('#hour').html(getdateoption(0, 23, "<?php echo date('H',$date); ?>"));
+    $('#minute').html(getdateoption(0, 59,"<?php echo date('i',$date); ?>"));
+    $('#second').html(getdateoption(0, 59,"<?php echo date('s',$date); ?>"));
+    function getdateoption(start, end, now){
         var text = "";
         for (var i = start; i <= end; i++) {
-            text += "<option value='"+i+"'>"+i+"</option>";
+            var selected = '';
+            if(now == i){
+                selected = 'selected';
+            }
+            text += "<option value='"+i+"' "+selected+">"+i+"</option>";
         }
         return text;
     }

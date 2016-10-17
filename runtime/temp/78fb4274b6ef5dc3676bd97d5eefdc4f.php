@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:77:"/var/www/html/SignSystem2/public/../application/home/view/schedule/index.html";i:1476087363;s:74:"/var/www/html/SignSystem2/public/../application/home/view/public/base.html";i:1476523010;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:77:"/var/www/html/SignSystem2/public/../application/home/view/schedule/index.html";i:1476087363;s:74:"/var/www/html/SignSystem2/public/../application/home/view/public/base.html";i:1476617158;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,6 +33,7 @@
     								<a href=""><li>考勤信息</li></a>
 									<a href="<?php echo url('Schedule/index'); ?>"><li>查看课表</li></a>
 									<a href="<?php echo url('Schedule/count'); ?>"><li>课表统计</li></a>
+									<a href="<?php echo url('Homepage/index'); ?>"><li>返回首页</li></a>
 									<a href=""><li>退出</li></a>
   								</ul>
 							</div>	
