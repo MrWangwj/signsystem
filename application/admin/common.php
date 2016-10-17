@@ -129,5 +129,13 @@ function analysisSql($file)
     return $sqls;
 }
 
+/**
+ * 获得星期几方法
+ * @param  [type] $date [description]
+ * @return [type]       [description]
+ */
+function get(){
+    
+}
 
 

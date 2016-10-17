@@ -92,4 +92,9 @@ class Attendance extends Base
             return $time;
         }
     }
+    
+//    返回某人本周和上周在线时长
+    function getSbTime(){
+        
+    }
 }

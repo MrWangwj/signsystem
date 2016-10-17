@@ -7,7 +7,7 @@ use think\Request;
 /**
 课表
 */
-class Schedule extends Controller{
+class Schedule extends Base{
 	
 	public function index(){
 		$schedule = model('Schedule');
@@ -49,12 +49,8 @@ class Schedule extends Controller{
 	} 
 
 	public function test($week=''){
-		$schedule = model('Schedule');
-		$data = db('user_group',[], false)
-		->alias('a')
-		->join('group2 AS c', 'a.group_id = c.group_id')
-		->select();
-		return dump($data);
+		
+		return date("w",strtotime('2016-10-10'));
 	} 
 
 	/**
@@ -144,7 +140,7 @@ class Schedule extends Controller{
 
 	public function count(){
 		$schedule = model('Schedule');
-		$group = db('group',[], false)->select();
+		$group = db('groups',[], false)->select();
 		$user = db('user', [], false)->field('user_id,name')->order('name')->select();
 		$data = $schedule->getCount();
 		$this->assign('data',$data[0]);

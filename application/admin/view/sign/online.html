@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在线情况</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="{$Think.config.parse_str.__CSS__}bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="{$Think.config.parse_str.__CSS__}font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="{$Think.config.parse_str.__CSS__}plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+    <link href="{$Think.config.parse_str.__CSS__}animate.min.css" rel="stylesheet">
+    <link href="{$Think.config.parse_str.__CSS__}style.min.css?v=4.1.0" rel="stylesheet">
+    <link href="{$Think.config.parse_str.__CSS__}plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <link href="{$Think.config.parse_str.__CSS__}plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <link href="{$Think.config.parse_str.__CSS__}sign-online.css" rel="stylesheet">
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>在线情况</h5>
+        </div>
+        <div class="ibox-content">
+            <div class="main">
+                <div class='title'>
+                    <form class="form-inline" action="{:url('Sign/online')}" method="get" id="date-form">
+                        <label>时间：</label>
+                        <input type="date" class="form-control" name="date" id="date" value="{$date|date='Y-m-d',###}">
+                        <select class="form-control" id="hour" name="hour">
+                           
+                        </select>
+                        <label>时</label>
+                        <select class="form-control" id="minute" name="minute">
+                
+                        </select>
+                        <label>分</label>
+                        <select class="form-control" id="second" name="second">
+                            
+                        </select>
+                        <label>秒</label>
+                        <label>当前在线人数：{$signcount} 缺勤人数：{$lackcount}</label>
+                    </form>
+                </div>
+                <div class="sign-table">
+                    <table class="table table-bordered table-condensed">
+                        <tr>
+                            <th>组别</th>
+                            <th>在线</th>
+                            <th>缺勤</th>
+                        </tr>
+                        {volist name="group" id="vo"}
+                            <tr>
+                                <td>{$vo.group_name}</td>
+                                <td>
+                                    {volist name="sign" id="vo2"}
+                                        {eq name="$vo2.group_id" value="$vo.group_id"}
+                                            {$vo2.name},
+                                        {/eq}
+                                    {/volist}
+                                </td>
+                                <td>
+                                    {volist name="lackuser" id="vo3"}
+                                        {eq name="$vo3.group_id" value="$vo.group_id"}
+                                            {$vo3.name},
+                                        {/eq}
+                                    {/volist}
+                                </td>
+                            </tr>                           
+                        {/volist}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+<script type="text/javascript">
+    zNodes = '';
+</script>
+<script src="{$Think.config.parse_str.__JS__}jquery.min.js?v=2.1.4"></script>
+<script src="{$Think.config.parse_str.__JS__}bootstrap.min.js?v=3.3.6"></script>
+<script src="{$Think.config.parse_str.__JS__}content.min.js?v=1.0.0"></script>
+<script src="{$Think.config.parse_str.__JS__}plugins/bootstrap-table/bootstrap-table.min.js"></script>
+<script src="{$Think.config.parse_str.__JS__}plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+<script src="{$Think.config.parse_str.__JS__}plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="{$Think.config.parse_str.__JS__}plugins/suggest/bootstrap-suggest.min.js"></script>
+<script src="{$Think.config.parse_str.__JS__}plugins/layer/laydate/laydate.js"></script>
+<script src="{$Think.config.parse_str.__JS__}plugins/sweetalert/sweetalert.min.js"></script>
+<script src="{$Think.config.parse_str.__JS__}plugins/layer/layer.min.js"></script>
+<link rel="stylesheet" href="{$Think.config.parse_str.__JS__}plugins/zTree/zTreeStyle.css" type="text/css">
+<script type="text/javascript" src="{$Think.config.parse_str.__JS__}plugins/zTree/jquery.ztree.core-3.5.js"></script>
+<script type="text/javascript" src="{$Think.config.parse_str.__JS__}plugins/zTree/jquery.ztree.excheck-3.5.js"></script>
+<script type="text/javascript" src="{$Think.config.parse_str.__JS__}plugins/zTree/jquery.ztree.exedit-3.5.js"></script>
+<script>
+
+    $('#hour').on('change', function(event) {
+        $('#date-form').submit();
+    });
+    $('#minute').on('change', function(event) {
+        $('#date-form').submit();
+    });
+    $('#second').on('change', function(event) {
+        $('#date-form').submit();
+    });
+    $('#date').on('change', function(event) {
+        $('#date-form').submit();
+    });
+
+    $('#hour').html(getdateoption(0, 23, "{$date|date='H',###}"));
+    $('#minute').html(getdateoption(0, 59,"{$date|date='i',###}"));
+    $('#second').html(getdateoption(0, 59,"{$date|date='s',###}"));
+    function getdateoption(start, end, now){
+        var text = "";
+        for (var i = start; i <= end; i++) {
+            var selected = '';
+            if(now == i){
+                selected = 'selected';
+            }
+            text += "<option value='"+i+"' "+selected+">"+i+"</option>";
+        }
+        return text;
+    }
+
+
+</script>
+</body>
+</html>
