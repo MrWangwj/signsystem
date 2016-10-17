@@ -7,7 +7,7 @@
 		<!-- basic styles -->
 		<link href="{$Think.config.parse_str.__PUBLIC__}assets/css/bootstrap.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/font-awesome.min.css" />
-		<link href="{$Think.config.parse_str.__CSS__}style.min.css?v=4.1.0" rel="stylesheet">
+		
 		<!--[if IE 7]>
 		  <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
 		<![endif]-->
@@ -17,8 +17,9 @@
 		<!-- fonts -->
 
 		<!-- ace styles -->
-
+		
 		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/ace.min.css" />
+		<link href="{$Think.config.parse_str.__CSS__}style.min.css?v=4.1.0" rel="stylesheet">
 		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/ace-rtl.min.css" />
 		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/ace-skins.min.css" />
 		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/jquery-ui-1.10.3.full.min.css" />
@@ -42,7 +43,7 @@
     
 </head>
 <body class="gray-bg">
-	<div>
+	<div class="wrapper wrapper-content animated fadeInRight">
 					<div class="page-content">
 						<div class="row">
 							<div class="col-xs-12">
@@ -70,12 +71,27 @@
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 组&nbsp别 </label>
 										
 										<div class="col-sm-9">
-											<select name="field" id="group_id" style="width:240px;">
+											<select name="field" id="group_id" style="width:170px;">
 											{volist name="data" id="vo"}
 												<option value="{$vo.group_id}">{$vo.group_name}</option>
                                     		{/volist}	
                                 			</select>								
 												<span class="middle">选择匹配的小组名</span>
+										</div>
+									</div>
+
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 职&nbsp务 </label>
+										
+										<div class="col-sm-9">
+											<select name="field" id="position" style="width:170px;">
+											{volist name="merit" id="v"}
+												<option value="{$v.position}">{$v.position_name}</option>
+                                    		{/volist}
+                                			</select>								
+												<span class="middle">选择匹配的职务</span>
 										</div>
 									</div>
 
@@ -104,22 +120,22 @@
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-6">电&nbsp话</label>
 
 										<div class="col-sm-9" >
-											<input data-rel="tooltip" type="text" id="form-field-6" style="width:250px;" placeholder="Tel-phone" title="" data-placement="bottom" data-original-title="Hello Tooltip!">
+											<input data-rel="tooltip" type="text" id="form-field-6"  placeholder="Tel-phone" title="" data-placement="bottom" data-original-title="Hello Tooltip!">
 										</div>
 									</div>
 
-									<div class="clearfix form-actions">
-										<div class="col-md-offset-3 col-md-9">
-											<button class="btn btn-info" type="submit">
+									<div class="clearfix form-actions" >
+										<div class="col-md-offset-3 col-md-9" >
+											<button class="btn " type="submit" style="margin-left:50px;">
 												<i class="icon-ok bigger-110"></i>
-												Submit
+												提交
 											</button>
 
 											&nbsp; &nbsp; &nbsp;
 											<a href="/SignSystem2/public/index.php/admin/user/member">
 											<button class="btn" type="button">
 												<i class="icon-undo bigger-110"></i>
-												Reset
+												后退
 											</button>
 											</a>			
 										</div>
@@ -130,6 +146,7 @@
 						</div><!-- /.row -->
 					</div><!-- /.page-content -->
 				</div><!-- /.main-content -->			
+}
 <!-- basic scripts -->
 
 		<!--[if !IE]> -->
@@ -176,11 +193,11 @@
 <script src="{$Think.config.parse_str.__PUBLIC__}assets/js/jquery-ui-1.10.3.full.min.js"></script>
 	<script type="text/javascript">
 		function adduser(){
-			alert("sdf");
 			var user_sex = $("input[name='user_sex']:checked").val();
 			var number = {
 				Username:$("#form-field-1").val(),
 				group_id:$("#group_id").val(),
+				position:$("#position").val(),
 				User_id:$("#form-field-2").val(),
 				User_sex:user_sex
 			}

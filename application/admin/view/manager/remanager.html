@@ -7,7 +7,7 @@
 		<!-- basic styles -->
 		<link href="{$Think.config.parse_str.__PUBLIC__}assets/css/bootstrap.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/font-awesome.min.css" />
-		<link href="{$Think.config.parse_str.__CSS__}style.min.css?v=4.1.0" rel="stylesheet">
+		
 		<!--[if IE 7]>
 		  <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
 		<![endif]-->
@@ -19,6 +19,7 @@
 		<!-- ace styles -->
 
 		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/ace.min.css" />
+		<link href="{$Think.config.parse_str.__CSS__}style.min.css?v=4.1.0" rel="stylesheet">
 		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/ace-rtl.min.css" />
 		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/ace-skins.min.css" />
 		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/jquery-ui-1.10.3.full.min.css" />
@@ -42,7 +43,7 @@
     
 </head>
 <body class="gray-bg">
-	<div>
+	<div class="wrapper wrapper-content animated fadeInRight">
 					<div class="page-content">
 						<div class="row">
 							<div class="col-xs-12">
@@ -74,19 +75,18 @@
 
 									<div class="space-4"></div>
 
-									<!-- <div class="form-group">
-										<label class="col-sm-3 control-label no-padding-right" for="form-input-readonly"> Readonly field </label>
-
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 职&nbsp务 </label>
+										
 										<div class="col-sm-9">
-											<input readonly="" type="text" class="col-xs-10 col-sm-5" id="form-input-readonly" value="This text field is readonly!">
-											<span class="help-inline col-xs-12 col-sm-7">
-												<label class="middle">
-													<input class="ace" type="checkbox" id="id-disable-check">
-													<span class="lbl"> Disable it!</span>
-												</label>
-											</span>
+											<select name="field" id="position" style="width:170px;">
+											{volist name="merit" id="v"}
+												<option value="{$v.position}">{$v.position_name}</option>
+                                    		{/volist}
+                                			</select>								
+												<span class="middle">选择匹配的职务</span>
 										</div>
-									</div> -->
+									</div>
 
 									<div class="space-4"></div>
 
@@ -150,16 +150,16 @@
 
 									<div class="clearfix form-actions">
 										<div class="col-md-offset-3 col-md-9">
-											<button class="btn btn-info" type="submit" id="user" value="{$data.user_id}">
+											<button class="btn " type="submit" id="user" style="margin-left:50px;" value="{$data.user_id}">
 												<i class="icon-ok bigger-110"></i>
-												Submit
+												提交
 											</button>
 
 											&nbsp; &nbsp; &nbsp;
 											<a  href="/SignSystem2/public/index.php/admin/user/member">
 											<button class="btn "  type="button">
 												<i class="icon-undo bigger-110"></i> 
-												Reset		
+												后退		
 											</button>
 											</a>
 										</div>
@@ -225,6 +225,7 @@
 				id : $("#user").val(),
 				name : $("#form-field-1").val(),
 				group_id: $("#group_id").val(),
+				position: $("#position").val(),
 				User_sex:user_sex
 			}
 			$.ajax({
