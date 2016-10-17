@@ -14,7 +14,7 @@ return [
     //模板参数替换
     'parse_str'=>[
         '__PUBLIC__' => '/SignSystem2/public/',
-        '__ROOT__' => '/',
+        '__ROOT__' => '/SignSystem2/public/',
         '__CSS__' => '/SignSystem2/public/static/admin/css/',
         '__JS__' => '/SignSystem2/public/static/admin/js/',
         '__IMAGE__' => '/SignSystem2/public/static/admin/images/',

@@ -30,7 +30,7 @@
 									<a href="{:url('Schedule/index')}"><li>查看课表</li></a>
 									<a href="{:url('Schedule/count')}"><li>课表统计</li></a>
 									<a href="{:url('Homepage/index')}"><li>返回首页</li></a>
-									<a href=""><li>退出</li></a>
+									<a href="{:url('Index/exit')}"><li>退出</li></a>
   								</ul>
 							</div>	
 						</li>
@@ -38,7 +38,7 @@
 							<div>
 								<p>
 									欢迎
-									<a href="">李雪冰</a>
+									<a href="{:url('User/message')}">{$user.name}</a>
 									登陆
 								</p>
 							</div>

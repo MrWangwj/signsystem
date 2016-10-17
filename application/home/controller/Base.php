@@ -12,9 +12,14 @@ use think\Controller;
 
 class Base extends Controller
 {
+
     public function _initialize(){
         if(empty(session('userid'))){
+        	
             $this->redirect(url('index/index'));
+        }else{
+        	$user = db('user', [], false)->where(['user_id' => session('userid')])->find();
+        	$this->assign('user',$user);
         }
     }
 }
