@@ -11,7 +11,7 @@ class Index extends Controller
     {
         return $this->fetch();
     }
-    //签到检测
+    //登陆检测
     public function docheck(){
         $userid = $_POST['userid'];
         $result = $this->validate(compact( 'userid'), 'UseridValidate');
@@ -64,6 +64,12 @@ class Index extends Controller
         $data = ['id' => $userid, 'name' => $username, 'note' => $note];
         db('check')->insert($data);
         return json(['code' => 1]);
+    }
+
+
+    public function exit(){
+        session('userid',null);
+        $this->redirect(url('index/index'));
     }
 
     public function test(){

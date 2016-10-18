@@ -18,14 +18,14 @@
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="ibox float-e-margins">
         <div class="ibox-title">
-            <h5>在线情况{$count}</h5>
+            <h5>在线情况</h5>
         </div>
         <div class="ibox-content">
             <div class="main">
                 <div class='title'>
                     <form class="form-inline" action="{:url('Sign/online')}" method="get" id="date-form">
                         <label>时间：</label>
-                        <input type="date" class="form-control" name="date" id="date">
+                        <input type="date" class="form-control" name="date" id="date" value="{$date|date='Y-m-d',###}">
                         <select class="form-control" id="hour" name="hour">
                            
                         </select>
@@ -38,7 +38,7 @@
                             
                         </select>
                         <label>秒</label>
-                        <label>当前在线人数：8 缺勤人数：4</label>
+                        <label>当前在线人数：{$signcount} 缺勤人数：{$lackcount}</label>
                     </form>
                 </div>
                 <div class="sign-table">
@@ -48,21 +48,25 @@
                             <th>在线</th>
                             <th>缺勤</th>
                         </tr>
-                        <tr>
-                            <td>开发一组</td>
-                            <td>1</td>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td>开发一组</td>
-                            <td>1</td>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td>开发一组</td>
-                            <td>1</td>
-                            <td>1</td>
-                        </tr>
+                        {volist name="group" id="vo"}
+                            <tr>
+                                <td>{$vo.group_name}</td>
+                                <td>
+                                    {volist name="sign" id="vo2"}
+                                        {eq name="$vo2.group_id" value="$vo.group_id"}
+                                            {$vo2.name},
+                                        {/eq}
+                                    {/volist}
+                                </td>
+                                <td>
+                                    {volist name="lackuser" id="vo3"}
+                                        {eq name="$vo3.group_id" value="$vo.group_id"}
+                                            {$vo3.name},
+                                        {/eq}
+                                    {/volist}
+                                </td>
+                            </tr>                           
+                        {/volist}
                     </table>
                 </div>
             </div>
@@ -90,6 +94,7 @@
 <script type="text/javascript" src="{$Think.config.parse_str.__JS__}plugins/zTree/jquery.ztree.excheck-3.5.js"></script>
 <script type="text/javascript" src="{$Think.config.parse_str.__JS__}plugins/zTree/jquery.ztree.exedit-3.5.js"></script>
 <script>
+
     $('#hour').on('change', function(event) {
         $('#date-form').submit();
     });
@@ -102,15 +107,18 @@
     $('#date').on('change', function(event) {
         $('#date-form').submit();
     });
-    $('#hour').html(getdateoption(0, 23));
-    $('#minute').html(getdateoption(0, 59));
-    $('#second').html(getdateoption(0, 59));
-    $('#date').val('2018-01-01');
 
-    function getdateoption(start, end){
+    $('#hour').html(getdateoption(0, 23, "{$date|date='H',###}"));
+    $('#minute').html(getdateoption(0, 59,"{$date|date='i',###}"));
+    $('#second').html(getdateoption(0, 59,"{$date|date='s',###}"));
+    function getdateoption(start, end, now){
         var text = "";
         for (var i = start; i <= end; i++) {
-            text += "<option value='"+i+"'>"+i+"</option>";
+            var selected = '';
+            if(now == i){
+                selected = 'selected';
+            }
+            text += "<option value='"+i+"' "+selected+">"+i+"</option>";
         }
         return text;
     }

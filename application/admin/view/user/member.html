@@ -7,7 +7,8 @@
 		<!-- basic styles -->
 		<link href="{$Think.config.parse_str.__PUBLIC__}assets/css/bootstrap.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/font-awesome.min.css" />
-		<link href="{$Think.config.parse_str.__CSS__}style.min.css?v=4.1.0" rel="stylesheet">
+		<!-- <link href="{$Think.config.parse_str.__CSS__}bootstrap.min.css?v=3.3.6" rel="stylesheet"> -->
+		
 		<!--[if IE 7]>
 		  <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
 		<![endif]-->
@@ -20,7 +21,9 @@
 
 		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/ace-rtl.min.css" />
 		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/ace-skins.min.css" />
+		
 		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/ace.min.css" />
+		<link href="{$Think.config.parse_str.__CSS__}style.min.css?v=4.1.0" rel="stylesheet">
 		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/ace-rtl.min.css" />
 		<!--[if lte IE 8]>
 		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
@@ -57,7 +60,7 @@
 								<div class="row" style="float:left; width:40%;margin:0 0 10px 0;">
 						
 
-									 	<a class="btn btn-outline btn-primary" href="/SignSystem2/public/index.php/admin/Manager/manager">新增</a>
+									 	<a class="btn btn-outline "  href="/SignSystem2/public/index.php/admin/Manager/manager">新增</a>
 									 	<label class="inline" style="margin-left:25px;">用户搜索:</label>
 									 	<select name="field" class="control" id="group1">
                                     		{volist name="info" id="vo"}
@@ -66,7 +69,7 @@
                                 		</select>
                                 		<label class="inline">或者输入名字:</label>
                                 		<input type="text" id="field" name="keyword" class="control" value="" class="form-control">
-                                		<button type="submit"  class="btn btn-purple btn-sm" onclick="search();"/>
+                                		<button type="submit"  class="btn  btn-sm" onclick="search();"/>
                                 		<i class="icon-search icon-on-right bigger-110"></i>
 											Search
 										</button>
@@ -84,11 +87,10 @@
 																
 															</label>
 														</th>
-														<th>用户名</th>
-														<th>组  别</th>
+														<th class="hidden-480">用户名</th>
+														<th class="hidden-480">组  别</th>
+														<th class="hidden-480">职  务</th>
 														<th class="hidden-480">性  别</th>
-
-														
 														<th class="hidden-480">电话</th>
 
 														<th></th>
@@ -108,10 +110,10 @@
 														<td>
 															<a href="#">{$vo.name}</a>
 														</td>
-														<td>
-														{$vo.group_name}
-														</td>
-														<td class="hidden-480">{if condition="$vo.sex eq '0'"}
+														<td>{$vo.group_name}</td>
+														<td>{$vo.position_name}</td>
+														<td class="hidden-480">
+														{if condition="$vo.sex eq '0'"}
 														男
 														{else/}
 														女
@@ -172,7 +174,7 @@
 								<div style="float:right;margin-top:-25px;"><ul>{$data->render()}</ul></div>	
 								</div>				
 								<div class="cf" style="folat:right;width:100px;">
-                               		 <input id="submit" class="btn btn-outline btn-primary" type="button" value="删除">                              		 
+                               		 <input id="submit" class="btn btn-outline " type="button" value="删除">                              		 
                             	</div>
 								
                             	<div class="hr hr-18 dotted hr-double"></div>
