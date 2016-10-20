@@ -83,7 +83,7 @@
 			<span>人员：</span>
 			<select class="form-control" id="term-personnel">
 				<option value="">全部</option>
-  				{volist name="user" id="vo"}
+  				{volist name="users" id="vo"}
 					<option value="{$vo.user_id}">{$vo.name}</option>
 				{/volist}
 			</select>
