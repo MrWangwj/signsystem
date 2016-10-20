@@ -73,11 +73,26 @@ class Index extends Controller
     }
 
     public function test(){
-        $startime = db('sign')
-            ->field("start_time")
-            ->where('user_id','20151515111')
-            ->where('state','1')
-            ->select();
-        echo dump($startime[0]['start_time']);
+        $nowday = strtotime(date('Y-m-d',time()));
+        $sum = $this->getDayTime($nowday);
+        echo dump($sum);
+//        $number_wk=date("w",time())-1;
+//        if($number_wk==-1){
+//            $number_wk=6;
+//        }
+//        $number_wOk = 7-$number_wk;
+//        $number_last = $number_wk+7;
+//        $weekStart = strtotime(date('Y-m-d',strtotime("-$number_wk day")));//本周一日期时间戳
+//        $weekOver = strtotime(date('Y-m-d',strtotime("+$number_wOk day")));//下周一日期时间戳
+//        $weekLast = strtotime(date('Y-m-d',strtotime("-$number_last day")));//上周一日期时间戳
+//        //某人本周在线时长
+//        $list = db('sign')
+//            -> join('user','user.user_id = sign.user_id')
+//            -> where('state','<>',0)
+//            ->where("sign.user_id",'20151515135')
+//            ->where("start_time","between","$weekLast,$weekStart")
+//            ->select();
+//        echo dump($list);
     }
+
 }

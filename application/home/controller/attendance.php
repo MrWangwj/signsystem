@@ -34,10 +34,14 @@ class Attendance extends Base
     public function getWeekSum(){
         $userid = session('userid');
         $sumtime  = 0;
-        $number_wk=date("w",time())+1;
-        $number_wOk = 7-date("w",time());
+        $number_wk=date("w",time())-1;
+        if($number_wk==-1){
+            $number_wk=6;
+        }
+        $number_wOk = 7-$number_wk;
+
         $weekStart = strtotime(date('Y-m-d',strtotime("-$number_wk day")));//周一日期时间戳
-        $weekOver = strtotime(date('Y-m-d',strtotime("+$number_wOk day")));//周日日期时间戳
+        $weekOver = strtotime(date('Y-m-d',strtotime("+$number_wOk day")));//下周一日期时间戳
 
         $list = db('sign')
             -> join('user','user.user_id = sign.user_id')
@@ -95,6 +99,48 @@ class Attendance extends Base
     
 //    返回某人本周和上周在线时长
     function getSbTime(){
-        
+        $number_wk=date("w",time())-1;
+        if($number_wk==-1){
+            $number_wk=6;
+        }
+        $nowWeek = null;
+        $lastWeek = null;
+//        $number_wOk = 7-$number_wk;
+        $number_last = $number_wk+7;
+        $weekStart = strtotime(date('Y-m-d',strtotime("-$number_wk day")));//本周一日期时间戳
+        $weekLast = strtotime(date('Y-m-d',strtotime("-$number_last day")));//上周一日期时间戳
+        for($i=0;$i<7;$i++){
+            $weekStart = $weekStart + $i*86400;
+            $nowWeek[$i] =  $this->getDayTime($weekStart);
+        }
+        for($i=0;$i<7;$i++){
+            $weekLast = $weekLast + $i*86400;
+            $lastWeek[$i] =  $this->getDayTime($weekLast);
+        }
+//        return $lastWeek;
+        return json(['now'=>$nowWeek, 'last' => $lastWeek]);
+    }
+
+    //获取某人某天在线时长(分钟)
+    public function getDayTime($nowday){
+        $userid = session('userid');
+        $sumtime = 0;
+        //某人某天记录
+        $dayover = 1476633600+86400;
+        $list = db('sign')
+            -> join('user','user.user_id = sign.user_id')
+            -> where('state','<>',0)
+            ->where("sign.user_id",$userid)
+            ->where("start_time","between","$nowday,$dayover")
+            ->select();
+        if(empty($list)){
+            return 0;
+        }else{
+            foreach ($list as $v){
+                $time = $v['over_time'] - $v['start_time'];
+                $sumtime = $sumtime+$time;
+            }
+            return round($sumtime/60);
+        }
     }
 }
