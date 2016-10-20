@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:69:"/var/www/html/SignSystem2/public/../application/admin/view/login.html";i:1476884922;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,11 +6,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <title>三月签到系统后台登录</title>
-    <link href="{$Think.config.parse_str.__CSS__}bootstrap.min.css" rel="stylesheet">
-    <link href="{$Think.config.parse_str.__CSS__}font-awesome.min.css?v=4.4.0" rel="stylesheet">
-    <link href="{$Think.config.parse_str.__CSS__}animate.min.css" rel="stylesheet">
-    <link href="{$Think.config.parse_str.__CSS__}style.min.css" rel="stylesheet">
-    <link href="{$Think.config.parse_str.__CSS__}login.min.css" rel="stylesheet">
+    <link href="<?php echo \think\Config::get('parse_str.__CSS__'); ?>bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo \think\Config::get('parse_str.__CSS__'); ?>font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="<?php echo \think\Config::get('parse_str.__CSS__'); ?>animate.min.css" rel="stylesheet">
+    <link href="<?php echo \think\Config::get('parse_str.__CSS__'); ?>style.min.css" rel="stylesheet">
+    <link href="<?php echo \think\Config::get('parse_str.__CSS__'); ?>login.min.css" rel="stylesheet">
     <!--[if lt IE 9]>
     <meta http-equiv="refresh" content="0;ie.html" />
     <![endif]-->
@@ -40,7 +41,7 @@
                 <input type="password" class="form-control pword m-b" placeholder="密码" id="password" />
                 <div style="margin-bottom:70px">
                     <input type="text" class="form-control" placeholder="验证码" style="color:black;width:120px;float:left;margin:0px 0px;" name="code" id="code"/>
-                    <img src="{:captcha_src()}" alt="captcha" onclick="this.src='{:captcha_src()}?d='+Math.random();" style="float:right;cursor: pointer"/>
+                    <img src="<?php echo captcha_src(); ?>" alt="captcha" onclick="this.src='<?php echo captcha_src(); ?>?d='+Math.random();" style="float:right;cursor: pointer"/>
                     
                 </div>
                 <input class="btn btn-success btn-block" id="login_btn" value="登录"/>
@@ -53,8 +54,8 @@
         </div>
     </div>
 </div>
-<script src="{$Think.config.parse_str.__JS__}jquery.min.js?v=2.1.4"></script>
-<script src="{$Think.config.parse_str.__JS__}bootstrap.min.js?v=3.3.6"></script>
+<script src="<?php echo \think\Config::get('parse_str.__JS__'); ?>jquery.min.js?v=2.1.4"></script>
+<script src="<?php echo \think\Config::get('parse_str.__JS__'); ?>bootstrap.min.js?v=3.3.6"></script>
 <script type="text/javascript">
     document.onkeydown=function(event){
         var e = event || window.event || arguments.callee.caller.arguments[0];
@@ -76,8 +77,8 @@
             var code = $('#code').val();
 //            alert(username);
 //            alert(password);
-            // alert("{:url('login/doLogin')}");
-            $.post("{:url('login/doLogin')}",{'username':username, 'password':password, 'code':code},function(data){
+            // alert("<?php echo url('login/doLogin'); ?>");
+            $.post("<?php echo url('login/doLogin'); ?>",{'username':username, 'password':password, 'code':code},function(data){
                 lock = false;
                 $('#login_btn').val('登录').removeClass('btn-danger').addClass('btn-success');
                 if(data.code!=1){

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:77:"/var/www/html/SignSystem2/public/../application/home/view/schedule/count.html";i:1476332703;s:74:"/var/www/html/SignSystem2/public/../application/home/view/public/base.html";i:1476617158;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:77:"/var/www/html/SignSystem2/public/../application/home/view/schedule/count.html";i:1476866143;s:74:"/var/www/html/SignSystem2/public/../application/home/view/public/base.html";i:1476866176;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,7 +33,7 @@
 									<a href="<?php echo url('Schedule/index'); ?>"><li>查看课表</li></a>
 									<a href="<?php echo url('Schedule/count'); ?>"><li>课表统计</li></a>
 									<a href="<?php echo url('Homepage/index'); ?>"><li>返回首页</li></a>
-									<a href=""><li>退出</li></a>
+									<a href="<?php echo url('Index/exit'); ?>"><li>退出</li></a>
   								</ul>
 							</div>	
 						</li>
@@ -41,7 +41,7 @@
 							<div>
 								<p>
 									欢迎
-									<a href="">李雪冰</a>
+									<a href="<?php echo url('User/message'); ?>"><?php echo $user['name']; ?></a>
 									登陆
 								</p>
 							</div>
@@ -132,7 +132,7 @@
 			<span>人员：</span>
 			<select class="form-control" id="term-personnel">
 				<option value="">全部</option>
-  				<?php if(is_array($user) || $user instanceof \think\Collection): $i = 0; $__LIST__ = $user;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+  				<?php if(is_array($users) || $users instanceof \think\Collection): $i = 0; $__LIST__ = $users;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
 					<option value="<?php echo $vo['user_id']; ?>"><?php echo $vo['name']; ?></option>
 				<?php endforeach; endif; else: echo "" ;endif; ?>
 			</select>
