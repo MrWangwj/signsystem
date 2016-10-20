@@ -76,7 +76,7 @@
             var code = $('#code').val();
 //            alert(username);
 //            alert(password);
-            alert("{:url('login/doLogin')}");
+            // alert("{:url('login/doLogin')}");
             $.post("{:url('login/doLogin')}",{'username':username, 'password':password, 'code':code},function(data){
                 lock = false;
                 $('#login_btn').val('登录').removeClass('btn-danger').addClass('btn-success');
