@@ -42,7 +42,7 @@
 	width: 94%;
 	height: 200px;
 	overflow: overlay;
-	display: none;
+	/*display: none;*/
 }
 .hint div div{
 	float: left;

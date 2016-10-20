@@ -145,7 +145,7 @@ class Schedule extends Base{
 		$data = $schedule->getCount();
 		$this->assign('data',$data[0]);
 		$this->assign('group',$group);
-		$this->assign('user',$user);
+		$this->assign('users',$user);
 		$this->assign('term',$data[1]);$this->assign('termtext',$data[2]);
 		$this->assign('termlength',count($data[1]));
 		$this->assign('empty',"<div class='term-label2 foucus'></div>");

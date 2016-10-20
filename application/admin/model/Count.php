@@ -62,7 +62,6 @@ class Count extends Model{
 		foreach (config('classtime') as $key => $value) {
 			$starttime = strtotime($date." ".$value['start']);
 			$endtime = strtotime($date." ".$value['end']);
-		
 			if($nowtime >= $starttime && $nowtime <= $endtime){
 				$section = $key+1;
 				break;

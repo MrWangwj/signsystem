@@ -127,4 +127,8 @@ class Sign extends Base
         $this->assign($count->getOnline());
         return $this->fetch();
     }
+
+    public function count(){
+        return $this->fetch();
+    }
 }
