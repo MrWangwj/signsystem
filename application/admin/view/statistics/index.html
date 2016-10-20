@@ -18,25 +18,17 @@
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="ibox float-e-margins">
         <div class="ibox-title">
-            <h5>本周考勤统计</h5>
+            <h5>考勤排行榜</h5>
         </div>
         <div class="ibox-content">
-            <table class="table table-striped">
+            <table class="table table-striped" id="table">
                <tr>
+                   <th>排名</th>
                    <th>组别</th>
                    <th>成员</th>
-                   <th>在线时长</th>
+                   <th>学号</th>
+                   <th>在线时长(分钟)</th>
                </tr>
-                <tr>
-                    <td>组别</td>
-                    <td>成员</td>
-                    <td>在线时长</td>
-                </tr>
-                <tr>
-                    <td>组别</td>
-                    <td>成员</td>
-                    <td>在线时长</td>
-                </tr>
             </table>
         </div>
     </div>
@@ -61,6 +53,40 @@
 <script type="text/javascript" src="{$Think.config.parse_str.__JS__}plugins/zTree/jquery.ztree.core-3.5.js"></script>
 <script type="text/javascript" src="{$Think.config.parse_str.__JS__}plugins/zTree/jquery.ztree.excheck-3.5.js"></script>
 <script type="text/javascript" src="{$Think.config.parse_str.__JS__}plugins/zTree/jquery.ztree.exedit-3.5.js"></script>
+<script>
 
+    $(function () {
+        $.post("{:url('admin/statistics/getAllTime')}",function (data) {
+            var table = $("#table");
+            for(var i =0;i<data.length;i++) {
+                table.append(
+                        "<tr> " +
+                        "<td>" + (i+1) +"</td> " +
+                        "<td>" + data[i]['group_name'] + "</td> " +
+                        "<td>" + data[i]['name'] + "</td>" +
+                        "<td>" + data[i]['user_id'] + "</td>" +
+                        "<td>" + Math.round(data[i]['times']/60) + "</td>" +
+                        "</tr>")
+            }
+
+            $.post("{:url('admin/statistics/getNo')}",function (data) {
+                var table = $("#table");
+                if(data.length==0) return;
+                for(var j =0;j<data.count;j++) {
+                    table.append(
+                            "<tr> " +
+                            "<td>" + "--" +"</td> " +
+                            "<td>" + data.list[j]['group_name'] + "</td> " +
+                            "<td>" + data.list[j]['name'] + "</td>" +
+                            "<td>" + data.list[j]['user_id'] + "</td>" +
+                            "<td>" + data.list[j]['time'] + "</td>" +
+                            "</tr>")
+                }
+            })
+        })
+
+    })
+
+</script>
 </body>
 </html>
