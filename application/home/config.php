@@ -10,5 +10,5 @@ return [
         '__IMAGE__'     =>  '/SignSystem2/public/home/image/',
         '__MODULE__'=>'/SignSystem2/public/index.php/home',
     ],
-    'SCHOOLTIME' => '2016-09-06',
+    
 ];
