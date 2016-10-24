@@ -129,6 +129,9 @@ class Sign extends Base
     }
 
     public function count(){
-        return $this->fetch();
+        $count  = model('count');
+
+        // return $this->fetch();
+        return dump($count->getCount());
     }
 }

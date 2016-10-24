@@ -137,5 +137,46 @@ function analysisSql($file)
 function get(){
     
 }
-
-
+/**
+ * 获得是周
+ * @return [type] [description]
+ */
+function getNowWeek(){ 
+    $startdate = strtotime(config('SCHOOLTIME'));
+    $enddate = strtotime(Date('Y-m-d',time()));
+    if($startdate<=$enddate){ 
+       $end_date=strtotime("next monday",$enddate); 
+       if(date("w",$startdate)==1){ 
+           $start_date=$startdate; 
+       }else{ 
+           $start_date=strtotime("last monday",$startdate); 
+       } 
+       //计算时间差多少周 
+       $countweek=($end_date-$start_date)/(7*24*3600); 
+       for($i=0;$i<$countweek;$i++){ 
+           $sd=date("Y-m-d",$start_date); 
+           $ed=strtotime("+ 6 days",$start_date); 
+           $eed=date("Y-m-d",$ed); 
+           $arr[]=array($sd,$eed); 
+           $start_date=strtotime("+ 1 day",$ed); 
+       } 
+       return $arr;     
+    } 
+}
+/**
+ * 获得是周一和周日
+ * @return [type] [description]
+ */
+function getWeekDate($week){ 
+    $startdate = strtotime(config('SCHOOLTIME'));
+    $date =strtotime("+".($week-1)." week", $startdate);
+    $nowweek = date('w',$date);
+    $mon  =  date("Y-m-d", strtotime("+".(1-$nowweek)." days", $date));
+    $tues =  date("Y-m-d", strtotime("+".(2-$nowweek)." days", $date));
+    $wed  =  date("Y-m-d", strtotime("+".(3-$nowweek)." days", $date));
+    $thur =  date("Y-m-d", strtotime("+".(4-$nowweek)." days", $date));
+    $fir  =  date("Y-m-d", strtotime("+".(5-$nowweek)." days", $date));
+    $sat  =  date("Y-m-d", strtotime("+".(6-$nowweek)." days", $date));
+    $sun  =  date("Y-m-d", strtotime("+".(7-$nowweek)." days", $date));
+    return [$mon, $tues, $wed, $thur, $fir, $sat, $sun];     
+}
