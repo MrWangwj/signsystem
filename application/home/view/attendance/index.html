@@ -4,27 +4,7 @@
 <!--<script  src="{$Think.config.parse_str.__JS__}Chart.js"></script>-->
 <script  src="{$Think.config.parse_str.__JS__}Chart-1.0.1-beta.4.js"></script>
 <script>
-    var nowWeek = new Array();
-    var lastWeek = new Array();
-    $.post("{:url('Attendance/getSbTime')}",function (data) {
-        alert(data.now)
-        nowWeek = data.now;
-        lastWeek = data.last;
-//            nowWeek[0]=1;
-//            nowWeek[1]=data.now[1];
-//            nowWeek[2]=data.now[2];
-//            nowWeek[3]=data.now[3];
-//            nowWeek[4]=data.now[4];
-//            nowWeek[5]=data.now[5];
-//            nowWeek[6]=data.now[6];
-//            lastWeek[0]=data.last[0];
-//            lastWeek[1]=data.last[1];
-//            lastWeek[2]=data.last[2];
-//            lastWeek[3]=data.last[3];
-//            lastWeek[4]=data.last[4];
-//            lastWeek[5]=data.last[5];
-//            lastWeek[6]=data.last[6];
-    });
+
     var data = {
         labels : ["星期一","星期二","星期三","星期四","星期五","星期六","星期日"],
         datasets : [
@@ -44,11 +24,19 @@
     };
 
     var chartBar = null;
-//    $(document).ready(function(){
-//        var ctx = document.getElementById("myChart").getContext("2d");
-//        chartBar = new Chart(ctx).Bar(data);
-//        initEvent(chartBar, clickCall);
-//    });
+    $(document).ready(function(){
+        $.post("{:url('Attendance/getSbTime')}",function (data) {
+            alert(data.now)
+//        nowWeek = data.now;
+//        lastWeek = data.last;
+            var ctx = document.getElementById("myChart").getContext("2d");
+            chartBar = new Chart(ctx).Bar(data);
+            initEvent(chartBar, clickCall);
+
+        });
+
+
+    });
     window.onload = function(){
         $.post("{:url('Attendance/getSbTime')}",function (data) {
             alert(data.now)

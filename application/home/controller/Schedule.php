@@ -11,8 +11,7 @@ class Schedule extends Base{
 	
 	public function index(){
 		$schedule = model('Schedule');
-		
-		$data = $schedule->getCurriculum($schedule->getSchedules(session('userid')),count($schedule->getNowWeek()));
+		$data = $schedule->getCurriculum($schedule->getSchedules(session('userid')),count(getNowWeek()));
 		$this->assign('data',$data[0]);
 		$this->assign('week',$data[1]);
 		return $this->fetch();
@@ -49,7 +48,11 @@ class Schedule extends Base{
 	} 
 
 	public function test($week=''){
-		
+		$date = [1];
+		$i = 1;
+		foreach ($date as $key => $value) {
+			$date = [1,2];
+		}
 		return date("w",strtotime('2016-10-10'));
 	} 
 
@@ -126,7 +129,7 @@ class Schedule extends Base{
 		$user = db('user', [], false)->where(['user_id' => $otheruser])->find();
 		if($user){
 			if($user['user_id'] != session('userid')){
-				$data = $schedule->getCurriculum($schedule->getSchedules($otheruser),count($schedule->getNowWeek()));
+				$data = $schedule->getCurriculum($schedule->getSchedules($otheruser),count(getNowWeek()));
 				$this->assign('data',$data[0]);
 				$this->assign('week',$data[1]);
 				$this->assign('otheruser',$user);

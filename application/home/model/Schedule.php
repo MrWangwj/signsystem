@@ -89,32 +89,7 @@ class Schedule extends Model{
 		return $whetherCourse;	
 	}
 
-	/**
-	 * 获得是周
-	 * @return [type] [description]
-	 */
-	public function getNowWeek(){ 
-		$startdate = strtotime('2016-9-6');
-		$enddate = strtotime(Date('Y-m-d',time()));
-		if($startdate<=$enddate){ 
-            $end_date=strtotime("next monday",$enddate); 
-            if(date("w",$startdate)==1){ 
-                $start_date=$startdate; 
-            }else{ 
-                $start_date=strtotime("last monday",$startdate); 
-            } 
-            //计算时间差多少周 
-            $countweek=($end_date-$start_date)/(7*24*3600); 
-            for($i=0;$i<$countweek;$i++){ 
-                $sd=date("Y-m-d",$start_date); 
-                $ed=strtotime("+ 6 days",$start_date); 
-                $eed=date("Y-m-d",$ed); 
-                $arr[]=array($sd,$eed); 
-                $start_date=strtotime("+ 1 day",$ed); 
-            } 
-            return $arr;     
-        } 
-	}
+
 	/**
 	 * 获得课程信息
 	 * @param  [type] $id [description]
@@ -235,7 +210,7 @@ class Schedule extends Model{
 
 
 	public function getCount(){
-		$week = count($this->getNowWeek());
+		$week = count(getNowWeek());
 		$status = 1;
 		input('post.week') && $week = input('post.week');
 		input('post.status') && $status = input('post.status');

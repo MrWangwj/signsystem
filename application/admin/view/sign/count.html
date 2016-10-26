@@ -23,80 +23,77 @@
         <div class="ibox-content">
             <div class="main">
                 <div class="title">
-                    <form class="form-inline" action="{:url('Sign/online')}" method="get" id="date-form">
+                    <form class="form-inline" action="{:url('Sign/count')}" method="get" id="date-form">
                         <label>组别：</label>
                         <select class="form-control" id="group" name="group">
-                           
+                            <option value="0">全部</option>
+                            {volist name="groups" id="vo"}
+                                <option value="{$vo.group_id}">{$vo.group_name}</option>
+                            {/volist}
                         </select>
                         <label>人员</label>
-                        <select class="form-control" id="personnel" name="personnel">
-                
+                        <select class="form-control" id="personnel" name="user">
+                            <option value="0">全部</option>
+                            {volist name="users" id="vo"}
+                                <option value="{$vo.user_id}">{$vo.name}</option>
+                            {/volist}
                         </select>
                         <label>周数</label>
-                        <select class="form-control" id="weeks" name="weeks">
-                            
+                        <select class="form-control" id="weeks" name="week">
+                            <option value='0'>本周</option>
+                            <option value='1'>第1周</option>
+                            <option value='2'>第2周</option>
+                            <option value='3'>第3周</option>
+                            <option value='4'>第4周</option>
+                            <option value='5'>第5周</option>
+                            <option value='6'>第6周</option>
+                            <option value='7'>第7周</option>
+                            <option value='8'>第8周</option>
+                            <option value='9'>第9周</option>
+                            <option value='10'>第10周</option>
+                            <option value='11'>第11周</option>
+                            <option value='12'>第12周</option>
+                            <option value='13'>第13周</option>
+                            <option value='14'>第14周</option>
+                            <option value='15'>第15周</option>
+                            <option value='16'>第16周</option>
+                            <option value='17'>第17周</option>
+                            <option value='18'>第18周</option>
+                            <option value='19'>第19周</option>
+                            <option value='20'>第20周</option>                           
                         </select> 
                     </form>
                     <div>
-                        <div>
-                            <h2>王巍瑾 在线300分钟 缺勤20分钟</h2>
-                        </div>
-                        <table class="table table-bordered table-condensed">
-                            <tr>
-                                <th>16</th>
-                                <th>17</th>
-                                <th>18</th>
-                                <th>19</th>
-                                <th>20</th>
-                                <th>21</th>
-                                <th>22</th>
-                            </tr>
-                            <tr>
-                                <td>3123</td>
-                                <td>2</td>
-                                <td>2</td>
-                                <td>2</td>
-                                <td>2</td>
-                                <td>2</td>
-                                <td>2</td>
-                            </tr>
-                                                        <tr>
-                                <td>3123</td>
-                                <td>2</td>
-                                <td>2</td>
-                                <td>2</td>
-                                <td>2</td>
-                                <td>2</td>
-                                <td>2</td>
-                            </tr>
-                                                        <tr>
-                                <td>3123</td>
-                                <td>2</td>
-                                <td>2</td>
-                                <td>2</td>
-                                <td>2</td>
-                                <td>2</td>
-                                <td>2</td>
-                            </tr>
-                                                        <tr>
-                                <td>3123</td>
-                                <td>2</td>
-                                <td>2</td>
-                                <td>2</td>
-                                <td>2</td>
-                                <td>2</td>
-                                <td>2</td>
-                            </tr>
-                                                        <tr>
-                                <td>3123</td>
-                                <td>2</td>
-                                <td>2</td>
-                                <td>2</td>
-                                <td>2</td>
-                                <td>2</td>
-                                <td>2</td>
-                            </tr>
-                        </table>
+                        {volist name="count" id="vo"}
+                            <div>
+                                <div>
+                                    <h2>王巍瑾 在线300分钟 缺勤20分钟</h2>
+                                </div>
+                                <table class="table table-bordered table-condensed">
+                                    <tr>
+                                        <th>16</th>
+                                        <th>17</th>
+                                        <th>18</th>
+                                        <th>19</th>
+                                        <th>20</th>
+                                        <th>21</th>
+                                        <th>22</th>
+                                    </tr>
+                                    <tr>
+                                        {volist name="vo" id="date"}
+                                            <td>
+                                                {volist name="date.online" id="time"}
+                                                    <p>{$time[0]|date='H:i:s',###} {$time[1]|date='H:i:s',###}</p>
+                                                {/volist}
+                                                {volist name="date.noSign" id="time"}
+                                                    <p style="color: red">{$time[0]|date='Y-m-d H:i:s',###} {$time[1]|date='Y-m-d H:i:s',###}</p>
+                                                {/volist}
+                                            </td>
+                                        {/volist}
+                                    </tr>
+                                </table>                           
+                            </div>
+                        {/volist}
                     </div>
                 </div>
                 <div>
@@ -128,8 +125,20 @@
 <script type="text/javascript" src="{$Think.config.parse_str.__JS__}plugins/zTree/jquery.ztree.exedit-3.5.js"></script>
 <script src="{$Think.config.parse_str.__PUBLIC__}js/bootstrap.min.js"></script>
 <script>
+    $('#group').find("option[value={$Think.get.group|default=0}]").attr("selected",true);
+    $('#personnel').find("option[value={$Think.get.user|default=0}]").attr("selected",true);
+    $('#weeks').find("option[value={$Think.get.week|default=0}]").attr("selected",true);
 
-    
+    $('#group').on('change', function(event) {
+        $('#date-form').submit();
+    });
+    $('#personnel').on('change', function(event) {
+        $('#date-form').submit();
+    });
+    $('#weeks').on('change', function(event) {
+        $('#date-form').submit();
+    });
+
 
 
 </script>

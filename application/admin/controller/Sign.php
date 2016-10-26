@@ -129,6 +129,19 @@ class Sign extends Base
     }
 
     public function count(){
+        $userWhere=[];
+        input('get.group') && $userWhere['b.group_id'] = ['eq', input('get.group')];
+        input('get.user') && $userWhere['a.user_id'] = ['eq', input('get.user')];
+
+        $count  = model('count');
+        $group = db('groups',[], false)->select();
+        $users = db('user', [], false)->alias('a')->join('user_group b', 'a.user_id = b.user_id')->where($userWhere)->select();
+        $this->assign('count', $count->getCount());
+        $this->assign('groups', $group);
+        $this->assign('users', $users);
         return $this->fetch();
+        // 
+        // return dump($count->getCount());
+        // return dump($count->test());
     }
 }
