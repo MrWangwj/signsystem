@@ -48,7 +48,11 @@ class Schedule extends Base{
 	} 
 
 	public function test($week=''){
-		
+		$date = [1];
+		$i = 1;
+		foreach ($date as $key => $value) {
+			$date = [1,2];
+		}
 		return date("w",strtotime('2016-10-10'));
 	} 
 

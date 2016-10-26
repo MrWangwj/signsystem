@@ -214,6 +214,7 @@ class Homepage extends Base
     //获取本周的年月日
     public function getWeek(){
         $number_wk=date("w",time());
+        $date = [];
         if($number_wk==1){
             $date=[
                 "1"=>date('Y-m-d'),
@@ -259,7 +260,7 @@ class Homepage extends Base
                 "6"=>date('Y-m-d'),
                 'size'=>6
             ];
-        }else if($number_wk==7){
+        }else if($number_wk==0){
             $date=[
                 "1"=>date('Y-m-d',strtotime("-6 day")),
                 "2"=>date('Y-m-d',strtotime("-5 day")),
