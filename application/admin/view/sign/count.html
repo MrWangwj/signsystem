@@ -71,13 +71,9 @@
                                 </div>
                                 <table class="table table-bordered table-condensed">
                                     <tr>
-                                        <th>16</th>
-                                        <th>17</th>
-                                        <th>18</th>
-                                        <th>19</th>
-                                        <th>20</th>
-                                        <th>21</th>
-                                        <th>22</th>
+                                        {volist name="date" id="datevo"}
+                                            <th></th>
+                                        {/volist}
                                     </tr>
                                     <tr>
                                         {volist name="vo" id="date"}
@@ -86,7 +82,7 @@
                                                     <p>{$time[0]|date='H:i:s',###} {$time[1]|date='H:i:s',###}</p>
                                                 {/volist}
                                                 {volist name="date.noSign" id="time"}
-                                                    <p style="color: red">{$time[0]|date='Y-m-d H:i:s',###} {$time[1]|date='Y-m-d H:i:s',###}</p>
+                                                    <p style="color: red">{$time[0]|date='H:i:s',###} {$time[1]|date='H:i:s',###}</p>
                                                 {/volist}
                                             </td>
                                         {/volist}

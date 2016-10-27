@@ -154,7 +154,7 @@ class Count extends Model{
 				$userNoClass[$value['user_id']][$i][6][1] = strtotime($weekMS[$i-1]." 22:30:00");
 			}
 		}
-		return $this->getSignTime($userNoClass, $this->getOnlineTime($week));
+		return [$this->getSignTime($userNoClass, $this->getOnlineTime($week)), $weekMS];
 		// return $userNoClass;
 		// return $this->getOnlineTime($week);
 	}
@@ -205,7 +205,10 @@ class Count extends Model{
 						$sign[$key][$key2]['noSign'][$count] =  $noSignalue;
 					}
 				}
-				
+				if(!isset($sign[$key][$key2]['noSign'])){
+					$sign[$key][$key2]['noSign'][0][0] = 0;
+					$sign[$key][$key2]['noSign'][0][1] = 0;	
+				}
 			}
 		}
 		return $sign;
@@ -232,32 +235,28 @@ class Count extends Model{
 	 * @return [type]         [description]
 	 */
 	public function getNoSign($Sign, $online){
-		$noSign = [];
-		foreach ($Sign as $key => $value) {
-			foreach ($online as $onlinekey => $onlinevalue) {
+		foreach ($online as $onlinekey => $onlinevalue) {
+			foreach ($Sign as $key => $value) {
 				if($this->isMixTime($value[0],$value[1],$onlinevalue[0],$onlinevalue[1])){
-					$count = count($noSign);
+					$count = count($Sign); 
 					if($onlinevalue[0] <= $value[0] && $onlinevalue[1] <= $value[1]){
-						$noSign[$count][0] = $onlinevalue[1];
-						$noSign[$count][1] = $value[1];   
+						$Sign[$key ][0] = $onlinevalue[1];
+						$Sign[$key][1] = $value[1];   
 					}else if($onlinevalue[0] >= $value[0] && $onlinevalue[1] >= $value[1]){
-						$noSign[$count][0] = $value[0];
-						$noSign[$count][1] = $onlinevalue[0]; 
+						$Sign[$key][0] = $value[0];
+						$Sign[$key][1] = $onlinevalue[0]; 
 					}else if($onlinevalue[0] >= $value[0] && $onlinevalue[1] <= $value[1]){
-						$noSign[$count][0] = $value[0];
-						$noSign[$count][1] = $onlinevalue[0];
-						$noSign[$count+1][0] = $onlinevalue[1];
-						$noSign[$count+1][1] = $value[1]; 
+						$Sign[$key][0] = $value[0];
+						$Sign[$key][1] = $onlinevalue[0];
+						$Sign[$count][0] = $onlinevalue[1];
+						$Sign[$count][1] = $value[1]; 
 					}else if($onlinevalue[0] <= $value[0] && $onlinevalue[1] >= $value[1]){
-						$noSign[$count][0] = 0;
-						$noSign[$count][1] = 0; 
+						unset($Sign[$key]);
 					}
-				}					
+				}									
 			}
-
 		}
-		if(empty($noSign)) $noSign = $Sign;
-		return $noSign;
+		return $Sign;
 	}
 	public function getOnlineTime($week){
 		//得到用户指定周的签到记录

@@ -136,7 +136,8 @@ class Sign extends Base
         $count  = model('count');
         $group = db('groups',[], false)->select();
         $users = db('user', [], false)->alias('a')->join('user_group b', 'a.user_id = b.user_id')->where($userWhere)->select();
-        $this->assign('count', $count->getCount());
+        $this->assign('count', $count->getCount()[0]);
+        $this->assign('date', $count->getCount()[1]);
         $this->assign('groups', $group);
         $this->assign('users', $users);
         return $this->fetch();
