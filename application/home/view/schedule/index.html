@@ -34,9 +34,9 @@
 				</select>				
 			</form>
 			<div>
-				<button type="button" class="btn btn-success"  data-toggle="modal" data-target=".bs-example-modal-sm">导入</button>
-				<button type="button" class="btn btn-success">导出</button>
-				<button type="button" class="btn btn-success" data-toggle="modal" data-target=".other">查看他人课表</button>
+				<button type="button" class="btn btn-danger"  data-toggle="modal" data-target=".bs-example-modal-sm">导入</button>
+				<button type="button" class="btn btn-danger">导出</button>
+				<button type="button" class="btn btn-danger" data-toggle="modal" data-target=".other">查看他人课表</button>
 			</div>
 		</div>
 		<div class="table-responsive curriculum">
@@ -196,6 +196,7 @@
 
 	</div>
 	<script>
+		$('.menu li:eq(2)').css('background','black');
 		var section = 0;
 		var week = 0;
 		$('#weeks').find("option[value={$week}]").attr("selected",true);

@@ -4,45 +4,138 @@
 }
 html, body, .background{
 	height: 100%;
-	width: 100%;
 }
 .background{
-	background-image: url(../image/loginbackgd.png);
-	background-repeat: no-repeat;
-	background-size: 100% 100%;
-	background-position: center;
+	
 }
-.main{
-	width: 500px;
-	margin: 0 auto;
-}
-.title{
-	font-size: 35px;
-	color: #1F5B06;
-	text-align: center;
-	height: 150px;
-	line-height: 150px;
+.bg-top{
+	background-color: #C23001;
+	position: relative;
+	min-height: 230px;
+	height: 55%;
 }
 .login{
-	width: 100%;
-	height: 300px;
-	border:3px solid #52A731;
-	background-color: white;
+	border-radius: 7px;
+	width: 500px;
+	height: 350px;
+	position: absolute;
+	background-color: #FFF;
+	z-index: 10;
+	border: 2px solid #C3C7CA;
+}
+.shadow{
+	position: absolute;
+	z-index: 1;
+	bottom: -15px;
+    left: -7px;
+}
+.login-shadow{
+	background-color: #FFF;
+	width: 500px;
+	height: 350px;
+	position: absolute;
+	bottom: -120px;
+	left: 50%;
+	margin-left: -250px;
+	
+	border-radius: 7px;
+}
+
+.title{
+	font-size: 30px;
+	text-align: center;
+	color: #7B4D40;
+	height: 100px;
+	line-height: 100px;
+	margin-top: 30px;
+	font-family: '微软雅黑';
+
+}
+.title label{
+	font-weight: normal;
+}
+#info_span{
+	color: red;
+	visibility: hidden;
+}
+#info_span2{
+    margin-left: 110px;
+    color:red;
+}
+.login-input{
+	width: 65%;
+	margin: 0 auto;
+	height: 80px;
+}
+.login-input>div>label{
+	width: 25%;
+	padding: 0;
+	line-height: 35px;
+	color: #843920;
+	float: left;
+	font-family: '微软雅黑';
+    font-size: 18px;
+    font-weight: normal;
+}
+.login-input>div>div{
+	width: 75%;
+	margin: 0;
+	float: left;
+	padding: 0;
+}
+.login-input>div>div>input{
+	border-color: #CA4A21;
+}
+.login-bottom{
+	width: 65%;
+	margin:0 auto;
+}
+.login-bottom button{
+	color: #F3E2DA;
+	background-color: #C23001;
+	font-family: '微软雅黑';
+}
+.login-but{
+	width: 75%;
+	/*margin:0 auto;*/
+	float: right;
+}
+.login-but button{
+	width: 110px;
+}
+.login-but button:first-child{
+	float: left;
+}
+.login-but button:last-child{
+	float: right;
+}
+
+.bg-bottom{
+	height: 45%;
+	min-width: 150px;
+}
+.bg-div{
+	height: 70%;
+	min-height: 130px;
 }
 .footer{
-	height: 150px;
-	line-height: 150px;
 	text-align: center;
-}
-.login>div{
-	height: 100px;
-}
-.login>div:first-child{
+	height: 30%;
+	min-height: 30px;
 	width: 100%;
-	line-height: 100px;
-	text-align: center;
+	color: #703421;
+
 }
-.login-input>div{
-	width: 300px;
-	margin: 0 auto;
+
+.marchsoft{
+	cursor: pointer;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button{
+    -webkit-appearance: none !important;
+    margin: 0; 
+}
+input[type="number"]{
+	-moz-appearance:textfield;
 }

@@ -12,8 +12,12 @@ use think\Controller;
 
 class Homepage extends Base
 {
-    public function index()
-    {
+    public function index(){
+        $notice = db('notice', [], false)
+            ->limit(3)
+            ->order('create_time desc')
+            ->select();
+        $this->assign('notice',$notice);
         return $this->fetch();
     }
     //签到
@@ -79,6 +83,9 @@ class Homepage extends Base
         return json(['code' =>1,'msg'=>"签退成功"]);
     }
 
+
+
+
     public function reSign(){
         $userid = session('userid');
         $count = db('sign')
@@ -87,7 +94,8 @@ class Homepage extends Base
             ->count();
         if($count == 0){
             $todyWeek = $this->getWeek();
-            return json(['code' => -2,
+            return json([
+                'code' => -2,
                 'msg'=>'请补签~',
                 'week'=>$todyWeek
             ]);
@@ -169,16 +177,14 @@ class Homepage extends Base
         if($over<=$star){
             return json(['code' =>-1,'msg'=>"结束时间大于等于开始时间~"]);
         }
-        $alltime = db('sign')
-            ->field('start_time,over_time')
+        $alltime = db('sign_info')
+            ->field('star,over')
             ->where('user_id',$userid)
-            ->where('state' != 0)
+            ->where('star|over', 'between',[$star, $over])
             ->select();
-        foreach ($alltime as $v){
-            if(($star>=$v['start_time'] and $star<=$v['over_time'])or($over>=$v['start_time'] and $over<=$v['over_time'])){
-                return json(['code' =>-1,'msg'=>"补签时间和以往有冲突~"]);
-            }
-        }
+            if(!$alltime)
+            return json(['code' =>-1,'msg'=>"补签时间段有冲突~"]);
+        
 //        $data = [
 //            'user_id' => $userid,F
 //            'start_time' => $star,
@@ -198,13 +204,24 @@ class Homepage extends Base
         db('sign_info')->insert($datainfo);
         return json(['code' =>1,'msg'=>"申请补签成功"]);
     }
+
+
+
+
+
+
+
+
+
+
+
    // 签到版
     public function signInEdition(){
         $todytime = strtotime(date('Y-m-d'));
         $list = db('sign_info')
             ->join('user','user.user_id = sign_info.user_id')
             ->where('now','>',$todytime)
-            ->order(['id'=>'asc'])
+            ->order(['id'=>'desc'])
             ->select();
 //        foreach ($list){
 //

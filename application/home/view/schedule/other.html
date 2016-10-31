@@ -36,7 +36,7 @@
 			</form>
 			<span>{$otheruser.name}的课表</span>
 			<div>
-				<a href="" class="btn btn-success" >他的信息</a>
+				<a href="" class="btn btn-danger"  style="background-color: #C23001;">他的信息</a>
 				
 				<button type="button" class="btn btn-success" id="input">导入他的课表</button>
 			</div>
@@ -125,6 +125,7 @@
 	</div>
 
 	<script>
+		$('.menu li:eq(2)').css('background','black');
 		var section = 0;
 		var week = 0;
 		$('#weeks').find("option[value={$week}]").attr("selected",true);

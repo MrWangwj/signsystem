@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>三月软件小组签到系统</title>
-    <link rel="stylesheet" type="text/css" href="{$Think.config.parse_str.__CSS__}index.css">
+    <link rel="stylesheet" type="text/css" href="{$Think.config.parse_str.__CSS__}index-index.css">
     <link rel="stylesheet" type="text/css" href="{$Think.config.parse_str.__CSS__}bootstrap.css">
     <!--<link rel="stylesheet" type="text/css" href="{$Think.config.parse_str.__CSS__}base.css">-->
     <script type="text/javascript" src="{$Think.config.parse_str.__JS__}jquery-3.0.0.min.js"></script>
@@ -12,6 +12,50 @@
 </head>
 <body>
     <div class="background">
+        <div class="bg-top">
+            <div class="login-shadow">
+                <div class="login">
+                    <div class="title">
+                        <label>三月软件小组签到系统</label>
+                    </div>
+                    <div class="login-input">
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label">用户名：</label>
+                            <div class="col-sm-10">
+                                <input type="number" class="form-control" id="userID" placeholder="请输入学号">
+                            </div>
+                        </div>
+                        <span id="info_span">提示信息</span>
+                    </div>
+                    <div class="login-bottom ">
+                        <div class="login-but clearfix">
+                             <button type="button" class="btn btn-danger" id="up_btn">确定登录</button>
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal" id="into_btn">加入我们</button>
+                        </div>
+                    </div>               
+                </div>
+                <img src="{$Think.config.parse_str.__IMAGE__}shadow.png" class="shadow">     
+            </div>
+                   
+        </div>
+        <div class="bg-bottom">
+            <div class="bg-div">
+                
+            </div>
+            <div class="footer">
+                <p>
+                    版权所有：<span class="marchsoft">三月软件工作室</span>
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+   <!--  <div class="background">
         <div style="width: 100%;height: 400px;">
             <div class="title">
                 <span>三月软件小组签到系统</span>
@@ -35,7 +79,7 @@
             </div>
         </div>
     </div>
-
+ -->
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -89,8 +133,19 @@
 </body>
 </html>
 <script>
+    $('.marchsoft').on('click',function(){
+        // window.location.href = "//www.marchsoft.cn";
+        window.open("//www.marchsoft.cn");    
+    });
+    $(document).keydown(function (event) {
+        if(event.keyCode==13) login();
+    });
     //签到登录
     $("#up_btn").click(function () {
+        login();
+    })
+
+    function login(){
         var userId = $("#userID").val();
         $.post("{:url('index/docheck')}",{'userid':userId},function (data) {
             if(data.code==-1){
@@ -104,8 +159,8 @@
                 });
 
             }
-        })
-    })
+        })       
+    }
     //申请加入
     $("#info_span2").hide();
     $("#body2").hide();
@@ -125,7 +180,6 @@
         $.post("{:url('index/doLogin')}",{'userid':userid, 'username':username, 'note':note},function (data) {
             if(data.code==-1){
                     $("#info_span2").show().html(data.msg);
-
             }else if(data.code==1){
                 $("#body1").hide();
                 $("#body2").show();

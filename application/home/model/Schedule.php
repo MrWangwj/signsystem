@@ -31,7 +31,8 @@ class Schedule extends Model{
 	 * @return [type]          [description]
 	 */
 	public function getSchedules($user_id){
-		$data = db('schedule')->field("b.*")
+		$data = db('schedule')
+					->field("b.*")
 					->alias("a")
 					->join("curriculum AS b "," a.curriculum_id=b.id")
 					->where('user_id',$user_id)

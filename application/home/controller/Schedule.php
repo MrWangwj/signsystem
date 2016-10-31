@@ -151,7 +151,7 @@ class Schedule extends Base{
 		$this->assign('users',$user);
 		$this->assign('term',$data[1]);$this->assign('termtext',$data[2]);
 		$this->assign('termlength',count($data[1]));
-		$this->assign('empty',"<div class='term-label2 foucus'></div>");
+		$this->assign('empty',"<li class='term-label2 foucus'></li>");
 		return $this->fetch();
 	}
 

@@ -1,13 +1,11 @@
-html{
-	height: 100%;
-}
 *{
 	padding: 0;
 	margin: 0;
+	font-family: "微软雅黑";
 }
 a{
 	color: black;
-	
+	text-decoration: none;
 }
 a:hover{
 	color: black;
@@ -16,238 +14,88 @@ a:hover{
 li{
 	list-style: none;
 }
-body{
-	background-color: #F6F6F6;
+html, body{
 	height: 100%;
-}
-.backgd{
-	background-color: #F6F6F6;
-	min-width: 1024px;
-	position: relative;
-    min-height: 100%;
-<<<<<<< HEAD
-    /*min-height: 500px;*/
-=======
->>>>>>> 7bd3b0ba74fc7b150921a31f93b52d344c279d01
 } 
+.backgd{
+	min-height: 100%;
+	position: relative;
+}
 .title{
-	color: white;
-	height: 80px;
 	width: 100%;
-	background-color:#1ab394; 
-	min-width: 1024px;
-}
-.title nav{
-	width: 1024px;
-	margin: 0 auto;
-}
-.title nav>div{
 	height: 80px;
+	background: #C23001;
+	min-width: 850px;
+}
+.title>nav{
+	width: 57%;
+	min-width: 850px;
+	/*border: 1px solid blue;*/
+	height: 80px;
+	margin: 0 auto;
 }
 .logo{
-	background-image: url(../image/Logo.png);
-	background-size: 100% 100%;
-	background-position: center;
+	width: 235px;
+	height: 80px;
+	background-image: url(../image/logo.png);
 	background-repeat: no-repeat;
-	width: 50px;
-	height: 50px;
-	float: left;
-	margin-top: 15px;
-	margin-right: 15px;
+	background-position: center;
+	float: left; 
+	margin: 0;
 }
-.title-left{
-	width: 500px;
+.right-menu{
+	float: right;
+	height: 80px;
+}
+
+.menu{
+	height: 80px;
 	float: left;
+}
+.menu li{
+	float: left;
+	height: 80px;
 	line-height: 80px;
+	padding-right: 29px;
+	padding-left: 29px;
+	color: #FFF;
+	font-family: "微软雅黑";
+	font-size: 20px;
+	border-left: 1px solid #C23001;
+	border-right: 1px solid #C23001;
 }
-.title-left span{
+.menu li:hover{
+	background-color: #010000;
+	border-left: 1px solid #FFF;
+	border-right: 1px solid #FFF;
+}
+.exit{
 	float: left;
-	font-size: 24px;
-}
-
-.title-right{
-	float: right;
-}
-.title-right ul{
-	
-}
-
-.title-right>ul>li{
-	float: left;
+	color: #FFF;
 	height: 80px;
-	list-style: none;
-	border-left: 1px solid white; 
+	line-height: 90px;
+	font-size: 15px;
+	width: 45px;
+	text-align: right;
 }
-.notice{
-	position: relative;
-	cursor: pointer;
+.exit a{
+	color: #FFF;
 }
-.notice:hover .notice-text{
-	display: block;
-}
-.notice>label{
-	background-image: url(../image/letter.png);
-	background-size: 95% 95%;
-	background-position: center;
-	background-repeat: no-repeat;
-	width: 40px;
-	height: 28px;
-	margin: 26px 10px 26px 10px;
-	position: relative;
-	cursor: pointer;
-}
-.notice label label{
-	width: 20px;
-	height: 20px;
-	background-color: red;
-	position: absolute;
-	right: -10px;
-	top: -10px;
-	text-align: center;
-	border-radius: 10px;
-	color: white;
-}
-
-.notice-text{
-	width: 350px;
-	background-color: white;
-	position: absolute;
-	top: 80px;
-    right: 0;
-    color: black;
-    border:1px solid #F9F9F9;
-    display: none;
-}
-.notice-text>div:last-child{
-	border-top: 1px solid #F9F9F9;
-	text-align: center;
-	height: 30px;
-	line-height: 30px;
-}
-.notice-option{
-	height: 244px;
-	overflow-y: overlay;
-}
-.notice-option>div{
+.footer{
+	background-color: #C23001;
 	width: 100%;
-	height: 80px;
-    border-bottom: 1px solid #F9F9F9;
-}
-.notice-option>div>div{
-	width: 90%;
-	margin: 0 auto;
-	padding-top: 10px;
-}
-.notice-option>div>div img{
-	width: 60px;
-	height: 60px;
-	float: left;
-}
-.notice-option>div>div>div{
-	float: right;
-	margin-left: 5px;
-	width: 240px;
-}
-.notice-option>div>div>div>div:first-child{
-	height: 30px;
-	line-height: 30px;
-}
-.notice-option>div>div>div>div:first-child span:first-child{
-	font-size: 16px;
-}
-.notice-option>div>div>div>div:first-child span:last-child{
-	float: right;
-}
-.notice-content>div{
-	height: 20px;
-	width: 220px;
-	overflow: hidden;
-	float: left;
-}
-.notice-content span{
-	
-}
-.picture{
-	width: 90px;
-	height: 80px;
-	position: relative;
-}
-.picture>div:first-child{
-	width: 60px;
-	height: 60px;
-	margin: 0 auto;
-	position: relative;
-	margin-top:10px;
-	cursor: pointer; 
-}
-.picture>div:first-child img{
-	width: 30px;
-	height: 30px;
-	margin: 0 auto;
-	display: block;
-	margin-top: 25px; 
-}
-.picture>div:first-child span{
-	width: 10px;
-	height: 10px;
+	text-align: center;
 	position: absolute;
-	bottom: 2px;
-	right: 0;
-	background-image: url(../image/1.png);
-	background-repeat: no-repeat;
-	background-size: 100% 100%;
-}
-.picture:hover>div:first-child span{
-	display: none;
-}
-.dropdown>ul{
-	display: none;
-    position: absolute;
-    width: 150px;
-    background-color: white;
-    top: 52px;
-    left: -15px;
-}
-
-.dropdown>ul li{
-	height: 40px;
-	line-height: 40px;
-	border-bottom: 1px solid  #F9F9F9;
-	font-size: 18px;
-	color: black;
-	padding-left: 10px;
-}
-.picture:hover .menu{
-	display: block;
-}
-.user{
-	position: relative;
-	width: 110px;
-	height: 80px;
-}
-.user div{
-	position: absolute;
-	height: 30px;
 	bottom: 0;
-}
-.user a{
-	color: yellow;
-	text-decoration: none;
+	height: 60px;
+	min-width: 1024px;
+	line-height: 60px;
+	color: #FFF;
 }
 .main{
-	padding-bottom: 60px;
-	width: 1024px;
+	width: 57%;
+	min-width: 850px;
 	margin: 0 auto;
-}
-
-.footer{
-	color: white;
-	height: 60px;
-	text-align: center;
-	width: 100%;
-	line-height: 60px;
-	background-color: #1ab394;
-	position: absolute;
-	bottom: 0;
-	min-width: 1024px;
+	margin-top: 20px;
+	padding-bottom: 80px;
 }

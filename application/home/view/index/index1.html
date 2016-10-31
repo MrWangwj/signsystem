@@ -1,15 +1,14 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:74:"/var/www/html/SignSystem2/public/../application/home/view/index/index.html";i:1476956309;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>三月软件小组签到系统</title>
-    <link rel="stylesheet" type="text/css" href="<?php echo \think\Config::get('parse_str.__CSS__'); ?>index.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo \think\Config::get('parse_str.__CSS__'); ?>bootstrap.css">
-    <!--<link rel="stylesheet" type="text/css" href="<?php echo \think\Config::get('parse_str.__CSS__'); ?>base.css">-->
-    <script type="text/javascript" src="<?php echo \think\Config::get('parse_str.__JS__'); ?>jquery-3.0.0.min.js"></script>
-    <script type="text/javascript" src="<?php echo \think\Config::get('parse_str.__JS__'); ?>bootstrap.min.js"></script>
-    <script type="text/javascript" src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>js/layer/layer.js"></script>
+    <link rel="stylesheet" type="text/css" href="{$Think.config.parse_str.__CSS__}index.css">
+    <link rel="stylesheet" type="text/css" href="{$Think.config.parse_str.__CSS__}bootstrap.css">
+    <!--<link rel="stylesheet" type="text/css" href="{$Think.config.parse_str.__CSS__}base.css">-->
+    <script type="text/javascript" src="{$Think.config.parse_str.__JS__}jquery-3.0.0.min.js"></script>
+    <script type="text/javascript" src="{$Think.config.parse_str.__JS__}bootstrap.min.js"></script>
+    <script type="text/javascript" src="{$Think.config.parse_str.__PUBLIC__}js/layer/layer.js"></script>
 </head>
 <body>
     <div class="background">
@@ -93,7 +92,7 @@
     //签到登录
     $("#up_btn").click(function () {
         var userId = $("#userID").val();
-        $.post("<?php echo url('index/docheck'); ?>",{'userid':userId},function (data) {
+        $.post("{:url('index/docheck')}",{'userid':userId},function (data) {
             if(data.code==-1){
                 $("#info_span").css("visibility","visible").html(data.msg);
             }else if(data.code==1){
@@ -101,7 +100,7 @@
                     time:1000
                 }, function(){
                     $("#info_span").css("visibility","hidden");
-                    window.location.href="<?php echo url('homepage/index'); ?>";
+                    window.location.href="{:url('homepage/index')}";
                 });
 
             }
@@ -123,7 +122,7 @@
         var userid  =  $("#inputID").val();
         var username = $("#inputName").val();
         var note = $("#inputArea").val();
-        $.post("<?php echo url('index/doLogin'); ?>",{'userid':userid, 'username':username, 'note':note},function (data) {
+        $.post("{:url('index/doLogin')}",{'userid':userid, 'username':username, 'note':note},function (data) {
             if(data.code==-1){
                     $("#info_span2").show().html(data.msg);
 

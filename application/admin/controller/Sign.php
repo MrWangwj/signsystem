@@ -131,7 +131,7 @@ class Sign extends Base
     public function count(){
         $userWhere=[];
         input('get.group') && $userWhere['b.group_id'] = ['eq', input('get.group')];
-        input('get.user') && $userWhere['a.user_id'] = ['eq', input('get.user')];
+        input('get.group') && input('get.user') && $userWhere['a.user_id'] = ['eq', input('get.user')];
 
         $count  = model('count');
         $group = db('groups',[], false)->select();

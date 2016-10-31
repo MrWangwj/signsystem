@@ -1,0 +1,180 @@
+.main{
+	height: 80%;
+	
+}
+.content{
+}
+.content-left{
+	float: left;
+	border:4px solid #C33204;
+	width: 48%;
+	height: 70%;
+}
+.content-left>div{
+	height: : 50px;
+	text-align: center;
+	line-height: 50px;
+	font-size: 25px;
+	color: #CC5C3F;
+	font-weight: normal;
+	border-bottom: 3px solid #C23102;
+}
+.content-left>ul{
+	overflow-y: scroll;
+	min-height: 400px;
+}
+.content-left>div label{
+	font-weight: normal;
+}
+.content-left>ul li{
+	min-height: 45px;
+	border-bottom: 3px solid #C23102;
+	vertical-align: bottom;
+	font-size: 17px;
+	padding-left: 10px;
+	padding-top: 10px;
+}
+.content-right{
+	float: right;
+	width: 48%;
+}
+.info{
+	width: 100%;
+	height: 158px;
+	border:4px solid #C33204;
+}
+.info ul{
+	margin: 0;
+	width: 40%;
+	float: left;
+}
+.info button{
+	width: 100%;
+	height: 50px;
+	border-radius: 0;
+	background-color: #C23102;
+	font-size: 20px;
+}
+
+.personal{
+	width: 60%;
+	float: left;
+	height: 100%;
+	font-size: 18px;
+}
+.personal>div{
+	width: 80%;
+	margin: 0 auto;
+}
+.personal>div:first-child{
+	position: relative;
+	height: 40%;
+}
+
+.name img{
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	bottom: 0;
+	
+}
+.name span{
+	float: right;
+	position: absolute;
+    bottom: 0;
+    right: 0;
+}
+.post{
+	line-height: 65px;
+	height: 45%;
+}
+.post span:first-child{
+	float: left;
+}
+.post span:last-child{
+	float: right;
+}
+.edit{
+	position: relative;
+	height: 15%;
+}
+.edit a{
+	width: 50%;
+	height: 100%;
+	text-align: center;
+	background-color: #BD2F02;
+	font-size: 15px;
+	color: #FFF;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	cursor: pointer;
+}
+
+.notice{
+	margin-top: 20px;
+	width: 100%;
+	border:4px solid #C33204;
+
+}
+.notice-title{
+	height: 50px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 25px;
+    color: #CC5C3F;
+    font-weight: normal;
+    border-bottom: 3px solid #C23102;
+}
+.notice-title label{
+	font-weight: normal;
+}
+.notice ul li{
+	border-bottom: 2px solid #D49077;
+}
+.notice ul{
+	overflow-y: scroll;
+	min-height: 230px;
+}
+.notice ul li>div{
+	width: 90%;
+	margin: 0 auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.notice-text div:first-child{
+	float: left;
+	width: 25%;
+}
+.notice-text div:first-child img{
+	width: 80px;
+	height: 80px;
+
+}
+.notice-text>div:last-child{
+	float: right;
+	width: 75%;
+}
+.notice-time{
+	width: 100%;
+	font-size: 18px;
+}
+.notice-time, .notice-text>div>p{
+	font-size: 18px;
+}
+.notice-text>div:last-child>div{
+	font-size: 17px;
+}
+#myinfo .form-group label{
+	width: 30%;
+	margin: 0;
+	padding:0;
+	padding-top: 7px;
+}
+#myinfo .form-group .col-sm-10{
+	width: 70%;
+}
+#myinfo form{
+	width: 200px;
+	margin: 0 auto;
+}

@@ -63,25 +63,26 @@
                             <option value='20'>第20周</option>                           
                         </select> 
                     </form>
+                    
                     <div>
                         {volist name="count" id="vo"}
                             <div>
                                 <div>
-                                    <h2>王巍瑾 在线300分钟 缺勤20分钟</h2>
+                                    <h2>{$vo.user.name} 在线{$vo.user.signtime}分钟 缺勤{$vo.user.nosigntime}分钟</h2>
                                 </div>
                                 <table class="table table-bordered table-condensed">
                                     <tr>
                                         {volist name="date" id="datevo"}
-                                            <th></th>
+                                            <th>{$datevo}</th>
                                         {/volist}
                                     </tr>
                                     <tr>
-                                        {volist name="vo" id="date"}
+                                        {volist name="vo.data" id="dates"}
                                             <td>
-                                                {volist name="date.online" id="time"}
+                                                {volist name="dates.online" id="time"}
                                                     <p>{$time[0]|date='H:i:s',###} {$time[1]|date='H:i:s',###}</p>
                                                 {/volist}
-                                                {volist name="date.noSign" id="time"}
+                                                {volist name="dates.noSign" id="time"}
                                                     <p style="color: red">{$time[0]|date='H:i:s',###} {$time[1]|date='H:i:s',###}</p>
                                                 {/volist}
                                             </td>

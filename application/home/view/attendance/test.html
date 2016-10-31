@@ -17,6 +17,7 @@
 {/block}
 {block name="js"}
 <script>
+    $('.menu li:eq(3)').css('background','black');
     $(function () {
         $.post("{:url('home/attendance/getThisTime')}",function (data) {
             var table = $("#table");

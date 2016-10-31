@@ -80,31 +80,11 @@ class Count extends Model{
 	 * 1.首先用户需要在线的时长
 	 * 2.用户实际在线时长
 	 * 3.用户缺勤时长
-	 * 4.[
-	 * 		0 => [
-	 * 			'user_id' => 123,
-	 * 			...
-	 * 		]
-	 * 		1 => [
-	 * 			'19日' => [
-	 * 				1 => [
-	 * 					在线和缺勤时段
-	 * 				],
-	 * 				2 => [
-	 * 					
-	 * 				],
-	 * 				3 => [
-	 * 					
-	 * 				],
-	 * 			]
-	 * 		]
-	 *   ]
 	 * @return 
 	 */
 	public function getCount(){
 		$week = count(getNowWeek());
 		$where = [];
-		// $where['c.user_id'] = ['eq', 20151515105];
 		input('get.group') && $where['c.group_id'] = ['eq', input('get.group')];
 		input('get.user') && $where['c.user_id'] = ['eq', input('get.user')];
 		input('get.week') && $week = input('get.week');
@@ -184,9 +164,19 @@ class Count extends Model{
 	 * @return [type]           [description]
 	 */
 	public function getSignTime($userNoClass, $online){
+		$where = [];
+		input('get.group') && $where['group_id'] = ['eq', input('get.group')];
+		input('get.user') && $where['user_id'] = ['eq', input('get.user')];
+		$result = db('user', [], false)->where($where)->select();
+		$users = [];
+		foreach ($result as $key => $value) {
+			$users[$value['user_id']] = $value;
+		}
+
 		$sign = array();
 		//$key 用户 ,$key2 星期， 
 		foreach ($userNoClass as $key => $value) {
+			$signTime = 0; $noSignTime = 0;
 			foreach ($value as $key2 => $value2) {
 				foreach ($value2 as $sectionkey => $sectionvalue) {
 					$noSign = [$sectionvalue]; // 默认整节课缺勤
@@ -194,22 +184,29 @@ class Count extends Model{
 						// foreach ($online[$key][$key2] as $onlinekey => $onlinevalue) {
 						$noSign = $this->getNoSign($noSign,$online[$key][$key2]);
 						// }
-						$sign[$key][$key2]['online'] = $online[$key][$key2];
+						$sign[$key]['data'][$key2]['online'] = $online[$key][$key2];
+						foreach ($online[$key][$key2] as $k => $v) {
+							$signTime += ($v[1] - $v[0]);
+						}
 					}else{
-						$sign[$key][$key2]['online'][0][0] = 0;
-						$sign[$key][$key2]['online'][0][1] = 0;	
+						$sign[$key]['data'][$key2]['online'][0][0] = 0;
+						$sign[$key]['data'][$key2]['online'][0][1] = 0;	
 					}	
 
 					foreach ($noSign as $noSignkey => $noSignalue) {
-						!isset($sign[$key][$key2]['noSign'])?$count=0:$count = count($sign[$key][$key2]['noSign']);
-						$sign[$key][$key2]['noSign'][$count] =  $noSignalue;
+						!isset($sign[$key]['data'][$key2]['noSign'])?$count=0:$count = count($sign[$key]['data'][$key2]['noSign']);
+						$sign[$key]['data'][$key2]['noSign'][$count] =  $noSignalue;
+						$noSignTime += $noSignalue[1] - $noSignalue[0];
 					}
 				}
-				if(!isset($sign[$key][$key2]['noSign'])){
-					$sign[$key][$key2]['noSign'][0][0] = 0;
-					$sign[$key][$key2]['noSign'][0][1] = 0;	
+				if(!isset($sign[$key]['data'][$key2]['noSign'])){
+					$sign[$key]['data'][$key2]['noSign'][0][0] = 0;
+					$sign[$key]['data'][$key2]['noSign'][0][1] = 0;	
 				}
 			}
+			$sign[$key]['user'] = $users[$key];
+			$sign[$key]['user']['signtime'] = $signTime/60;
+			$sign[$key]['user']['nosigntime'] = $noSignTime/60;
 		}
 		return $sign;
 	}
@@ -225,7 +222,6 @@ class Count extends Model{
 			$time[$key][0] = date('Y-m-d H:i:s',$value[0]);
 			$time[$key][1] = date('Y-m-d H:i:s',$value[1]);
 		}
-	
 		return $time ;
 	}
 	/**
@@ -240,7 +236,7 @@ class Count extends Model{
 				if($this->isMixTime($value[0],$value[1],$onlinevalue[0],$onlinevalue[1])){
 					$count = count($Sign); 
 					if($onlinevalue[0] <= $value[0] && $onlinevalue[1] <= $value[1]){
-						$Sign[$key ][0] = $onlinevalue[1];
+						$Sign[$key][0] = $onlinevalue[1];
 						$Sign[$key][1] = $value[1];   
 					}else if($onlinevalue[0] >= $value[0] && $onlinevalue[1] >= $value[1]){
 						$Sign[$key][0] = $value[0];

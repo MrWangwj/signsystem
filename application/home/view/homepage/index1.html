@@ -1,9 +1,9 @@
 {extend name="public/base"}
 {block name="link"}
-<link rel="stylesheet" type="text/css" href="{$Think.config.parse_str.__CSS__}homepage-index.css">
+<link rel="stylesheet" type="text/css" href="{$Think.config.parse_str.__CSS__}homepage.css">
 {/block}
 {block name="main"}
-<!--     <div id="hometop_div">
+    <div id="hometop_div">
         <div class="homebox">
             <button type="button" class="btn btn-info my_btn" id="sign_btn">签到</button>
             <button type="button" class="btn btn-info my_btn" id="signoff_btn">签退</button>
@@ -15,66 +15,10 @@
 
             </div>
         </div>
-    </div> -->
-
-    <div class="content clearfix">
-        <div class="content-left">
-            <div>
-                <label>每日签到板</label>
-            </div>
-            <ul id="homeinfo_div">
-                
-            </ul>
-        </div>
-        <div class="content-right">
-            <div class="info clearfix">
-                <ul>
-                    <li><button type="button" class="btn btn-danger my_btn" id="sign_btn">签到</button></li>
-                    <li><button type="button" class="btn btn-danger my_btn" id="signoff_btn">签退</button></li>
-                    <li><button type="button" class="btn btn-danger my_btn" id="reSign_btn">补签</button></li>
-                </ul>
-                <div class="personal">
-                    <div class="name">
-                        <img src="">
-                        <span>姓名：{$user.name}</span>
-                    </div>
-                    <div class="post">
-                        <span>{$user.group_name}</span>
-                        <span>{$user.position_name}</span>
-                    </div>
-                    <div class="edit">
-                        <a href="" data-toggle="modal" data-target="#myinfo">查看个人信息</label></a>
-                    </div>
-                </div>
-            </div>
-            <div class="notice">
-                <div class="notice-title">
-                    <label>每日公告</label>
-                </div>
-                <ul>
-                    {volist name="notice" id="vo"}
-                        <li>
-                            <div>
-                                <div class="notice-time">
-                                    {$vo.create_time|date='Y-m-d',###}
-                                </div>
-                                <div class="notice-text clearfix">
-                                    <div class="">
-                                        <img src="">
-                                    </div>
-                                    <div>
-                                        <p>{$vo.notice_title}</p>
-                                        <div>{$vo.notice}</div>   
-                                    </div>
-                                </div>                            
-                            </div>
-                        </li>      
-                    {/volist}
-
-                </ul>
-            </div>
-        </div>
     </div>
+<!--<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">-->
+    <!--Launch demo modal-->
+<!--</button>-->
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -207,78 +151,9 @@
         </div>
     </div>
 </div>
-        <div class="modal fade" id="myinfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                        <h4 class="modal-title" id="myModalLabel">个人信息</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form class="form-horizontal" role="form">
-                          <div class="form-group">
-                            <label class="col-sm-2 control-label">学号：</label>
-                            <div class="col-sm-10">
-                              <p class="form-control-static">{$user.user_id}</p>
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label class="col-sm-2 control-label">用户：</label>
-                            <div class="col-sm-10">
-                              <p class="form-control-static">{$user.name}</p>
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label class="col-sm-2 control-label">组别：</label>
-                            <div class="col-sm-10">
-                              <p class="form-control-static">{$user.group_name}</p>
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label class="col-sm-2 control-label">职务：</label>
-                            <div class="col-sm-10">
-                              <p class="form-control-static">{$user.position_name}</p>
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label class="col-sm-2 control-label">性别：</label>
-                            <div class="col-sm-10">
-                              <p class="form-control-static">{$user.sex}</p>
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label class="col-sm-2 control-label">班级：</label>
-                            <div class="col-sm-10">
-                              <p class="form-control-static">{$user.class}</p>
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label class="col-sm-2 control-label">电话：</label>
-                            <div class="col-sm-10">
-                              <p class="form-control-static">{$user.phone}</p>
-                            </div>
-                          </div>
-                        </form>                        
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
 {/block}
 {block name="js"}
 <script>
-    $('.menu li:eq(0)').css('background','black');
-    $('.content-left>ul').css('height',($(window).height()-260)+"px"); 
-    $('.notice>ul').css('height',($(window).height()-430)+"px"); 
-    window.onresize = function(){    
-        var ul1 = $(window).height()-260;
-        var ul2 = $(window).height()-430;
-        $('.content-left>ul').css('height',ul1+"px"); 
-        $('.notice>ul').css('height',ul2+"px"); 
-
-    }
     var temp = 0;
     var overtime=0;
     var resign2_div = $("#resign2_div");
@@ -312,9 +187,9 @@
     })
     $("#reSign_btn").click(function () {
         $.post("{:url('homepage/reSign')}",function (data) {
-            if(data.code==-1){ 
+            if(data.code==-1){
                 layer.msg(data.msg,{time:1000});
-            }else if(data.code==-2){  //用户超时未签退
+            }else if(data.code==-2){
                 layer.msg(data.msg,{time:1000},function () {
                     resign2_div.show();
                     resign1_div.hide();
@@ -327,6 +202,7 @@
                     }
                     //默认选中当前年月日
                     $("#redign_YMD").val(str);
+
                     $('#myModal').modal('show');
                     //补签整个时段
                     temp =1;
@@ -373,7 +249,7 @@
                 layer.msg(data.msg,{time:1500},function () {
                     if(data.code==1){
                         getSignInfo();
-                        $('#myModal').modal('toggle');
+                        $('#myModal').modal('toggle')
                     }
                 })
             })
@@ -384,42 +260,35 @@
                if (obj < 10) return "0" + obj; else return obj;
     }
     //签到版刷新
-    $("#homeinfo_div").append("<li>"+"来到小组</li>");
     function getSignInfo() {
         $.post("{:url('homepage/signInEdition')}",function (data) {
-            $("#homeinfo_div").html('');
-           // $("#homeinfo_div").append("<li>"+"来到小组</li>");
+           $("#homeinfo_div").html('');
             for(var i = 0 ;i<data.list.length;i++){
+
                 if(data.list[i]['sign_state']==0){
                     var time = data.list[i]['star'];
                     var d = new Date(parseInt(time) * 1000);
-                    $("#homeinfo_div").append("<li>"+data.list[i]['name']+"同学"+Appendzero(d.getHours())+":"+Appendzero(d.getMinutes())+"来到小组</li>");
+                    $("#homeinfo_div").append("<p>"+data.list[i]['name']+"同学"+Appendzero(d.getHours())+":"+Appendzero(d.getMinutes())+"来到小组</p>");
                 }else if(data.list[i]['sign_state']==1){
                     var time = data.list[i]['over'];
                     var d = new Date(parseInt(time) * 1000);
-                    $("#homeinfo_div").append("<li>"+data.list[i]['name']+"同学"+Appendzero(d.getHours())+":"+Appendzero(d.getMinutes())+"离开小组</li>");
+                    $("#homeinfo_div").append("<p>"+data.list[i]['name']+"同学"+Appendzero(d.getHours())+":"+Appendzero(d.getMinutes())+"离开小组</p>");
                 }else if(data.list[i]['sign_state']==2){
                     var startime = data.list[i]['star'];
                     var overtime = data.list[i]['over'];
                     var ds = new Date(parseInt(startime)*1000);
                     var dov = new Date(parseInt(overtime)*1000);
-                    $("#homeinfo_div").append("<li >"+data.list[i]['name']+"同学申请补签"+Appendzero(ds.getMonth()+1)+"月"+Appendzero(ds.getDate())+"日"+ds.getHours()+":"+Appendzero(ds.getMinutes())+"~"+Appendzero(dov.getHours())+":"+Appendzero(dov.getMinutes())+"的记录通过</li>");
-                } else if(data.list[i]['sign_state']==3){
-                    var startime = data.list[i]['star'];
-                    var overtime = data.list[i]['over'];
-                    var ds = new Date(parseInt(startime)*1000);
-                    var dov = new Date(parseInt(overtime)*1000);
-                    $("#homeinfo_div").append("<li>"+data.list[i]['name']+"同学申请补签"+Appendzero(ds.getMonth()+1)+"月"+Appendzero(ds.getDate())+"日"+ds.getHours()+":"+Appendzero(ds.getMinutes())+"~"+Appendzero(dov.getHours())+":"+Appendzero(dov.getMinutes())+"的记录</li>");
+                    $("#homeinfo_div").append("<p>"+data.list[i]['name']+"同学申请补签"+Appendzero(ds.getMonth()+1)+"月"+Appendzero(ds.getDate())+"日"+ds.getHours()+":"+Appendzero(ds.getMinutes())+"——"+Appendzero(dov.getHours())+":"+Appendzero(dov.getMinutes())+"的记录通过</p>");
                 } else if(data.list[i]['sign_state']==4){
                     var startime = data.list[i]['star'];
                     var overtime = data.list[i]['over'];
                     var ds = new Date(parseInt(startime)*1000);
                     var dov = new Date(parseInt(overtime)*1000);
-                    $("#homeinfo_div").append("<li>管理员拒绝了"+data.list[i]['name']+"同学补签"+Appendzero(ds.getMonth()+1)+"月"+Appendzero(ds.getDate())+"日"+ds.getHours()+":"+Appendzero(ds.getMinutes())+"——"+Appendzero(dov.getHours())+":"+Appendzero(dov.getMinutes())+"的记录</li>");
+                    $("#homeinfo_div").append("<p>管理员拒绝了"+data.list[i]['name']+"同学补签"+Appendzero(ds.getMonth()+1)+"月"+Appendzero(ds.getDate())+"日"+ds.getHours()+":"+Appendzero(ds.getMinutes())+"——"+Appendzero(dov.getHours())+":"+Appendzero(dov.getMinutes())+"的记录</p>");
                 }
             }
 
-            // $("#homeinfo_div").scrollTop($("#homeinfo_div")[0].scrollHeight);
+            $("#homeinfo_div").scrollTop($("#homeinfo_div")[0].scrollHeight);
         })
     }
     function getLocalTime(nS) {
