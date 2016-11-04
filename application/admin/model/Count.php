@@ -126,12 +126,22 @@ class Count extends Model{
 			for ($i=1; $i <=7 ; $i++) { 
 				for ($j=1; $j <=5 ; $j++) { 
 					if(!isset($userhaveclass[$value['user_id']][$i][$j])){
-						$userNoClass[$value['user_id']][$i][$j][0] = strtotime($weekMS[$i-1]." ".config('classtime')[$j-1]['start']);	
-						$userNoClass[$value['user_id']][$i][$j][1] = strtotime($weekMS[$i-1]." ".config('classtime')[$j-1]['end']);
+						$starttime = strtotime($weekMS[$i-1]." ".config('classtime')[$j-1]['start']);	
+						$endtime = strtotime($weekMS[$i-1]." ".config('classtime')[$j-1]['end']);	
+						if($starttime < time() && $endtime<time()){
+							$userNoClass[$value['user_id']][$i][$j][0] = strtotime($weekMS[$i-1]." ".config('classtime')[$j-1]['start']);	
+							$userNoClass[$value['user_id']][$i][$j][1] = strtotime($weekMS[$i-1]." ".config('classtime')[$j-1]['end']);	
+						}
 					}
 				}
-				$userNoClass[$value['user_id']][$i][6][0] = strtotime('+10 minute', strtotime($weekMS[$i-1]." ".config('classtime')[4]['end']));
-				$userNoClass[$value['user_id']][$i][6][1] = strtotime($weekMS[$i-1]." 22:30:00");
+				if(strtotime('+10 minute', strtotime($weekMS[$i-1]." ".config('classtime')[4]['end'])) < time() && strtotime($weekMS[$i-1]." 22:30:00")<time()){
+					$userNoClass[$value['user_id']][$i][6][0] = strtotime('+10 minute', strtotime($weekMS[$i-1]." ".config('classtime')[4]['end']));
+					$userNoClass[$value['user_id']][$i][6][1] = strtotime($weekMS[$i-1]." 22:30:00");
+				}else{
+					$userNoClass[$value['user_id']][$i][6][0] = 0;
+					$userNoClass[$value['user_id']][$i][6][1] = 0;
+				}
+
 			}
 		}
 		return [$this->getSignTime($userNoClass, $this->getOnlineTime($week)), $weekMS];
@@ -165,9 +175,13 @@ class Count extends Model{
 	 */
 	public function getSignTime($userNoClass, $online){
 		$where = [];
-		input('get.group') && $where['group_id'] = ['eq', input('get.group')];
-		input('get.user') && $where['user_id'] = ['eq', input('get.user')];
-		$result = db('user', [], false)->where($where)->select();
+		input('get.group') && $where['b.group_id'] = ['eq', input('get.group')];
+		input('get.user') && $where['a.user_id'] = ['eq', input('get.user')];
+		$result = db('user', [], false)
+			->alias('a')
+			->join('user_group b','a.user_id = b.user_id')
+			->where($where)
+			->select();
 		$users = [];
 		foreach ($result as $key => $value) {
 			$users[$value['user_id']] = $value;
@@ -205,8 +219,8 @@ class Count extends Model{
 				}
 			}
 			$sign[$key]['user'] = $users[$key];
-			$sign[$key]['user']['signtime'] = $signTime/60;
-			$sign[$key]['user']['nosigntime'] = $noSignTime/60;
+			$sign[$key]['user']['signtime'] = $signTime;
+			$sign[$key]['user']['nosigntime'] = $noSignTime;
 		}
 		return $sign;
 	}

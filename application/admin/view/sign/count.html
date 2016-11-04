@@ -13,6 +13,11 @@
     <link href="{$Think.config.parse_str.__CSS__}plugins/sweetalert/sweetalert.css" rel="stylesheet">
     <link href="{$Think.config.parse_str.__CSS__}plugins/sweetalert/sweetalert.css" rel="stylesheet">
     <link href="{$Think.config.parse_str.__CSS__}sign-count.css" rel="stylesheet">
+    <style type="text/css">
+        .extend{
+            display: block !important;
+        }
+    </style>
 </head>
 <body class="gray-bg">
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -68,7 +73,7 @@
                         {volist name="count" id="vo"}
                             <div>
                                 <div>
-                                    <h2>{$vo.user.name} 在线{$vo.user.signtime}分钟 缺勤{$vo.user.nosigntime}分钟</h2>
+                                    <h2>{$vo.user.name} 在线<span class="havesigns">{$vo.user.signtime|second2time}</span> 缺勤<span class="nosigns">{$vo.user.nosigntime|second2time}</span></h2>
                                 </div>
                                 <table class="table table-bordered table-condensed">
                                     <tr>
@@ -76,15 +81,21 @@
                                             <th>{$datevo}</th>
                                         {/volist}
                                     </tr>
-                                    <tr>
+                                    <tr class="data2">
                                         {volist name="vo.data" id="dates"}
-                                            <td>
-                                                {volist name="dates.online" id="time"}
-                                                    <p>{$time[0]|date='H:i:s',###} {$time[1]|date='H:i:s',###}</p>
-                                                {/volist}
-                                                {volist name="dates.noSign" id="time"}
-                                                    <p style="color: red">{$time[0]|date='H:i:s',###} {$time[1]|date='H:i:s',###}</p>
-                                                {/volist}
+                                            <td style="">
+                                                <p>在线:<span class="havesigndate">0</span>分钟</p>
+                                                <p style="color: red">缺勤:<span class="nosigndate">0</span>分钟</p>
+                                                <p style="cursor: pointer;" class="detailed">查看详细信息</p>                                            
+                                                <div style="display: none;border-top: 1px solid black;">
+                                                    {volist name="dates.online" id="time"}
+                                                        <p class="havesigntime" data-start="{$time[0]}" data-end="{$time[1]}">{if condition="$time[0] == 0"}0{else}{$time[0]|date='H:i:s',###}~{$time[1]|date='H:i:s',###}{/if} </p>
+                                                    {/volist}                        
+                                                    {volist name="dates.noSign" id="time"}
+                                                        <p class="nosigntime" style="color: red" data-start="{$time[0]}" data-end="{$time[1]}">
+                                                        {if condition="$time[0] == 0"}0{else}{$time[0]|date='H:i:s',###} ~{$time[1]|date='H:i:s',###}{/if}</p>
+                                                    {/volist}
+                                                </div>
                                             </td>
                                         {/volist}
                                     </tr>
@@ -136,7 +147,31 @@
         $('#date-form').submit();
     });
 
+    $('.detailed').on('click', function(){
+        var $tr = $(this).parent();
+        if ($tr.find('div').hasClass('extend')) {
+            $tr.find('div').removeClass('extend');
+        }else{
+            $tr.find('div').addClass('extend');
+        }
+        
+    });
 
+    $('.havesigndate').each(function(index, el) {
+        $(this).text(gettime($(this).parent().parent().find('.havesigntime')));
+    });
+    $('.nosigndate').each(function(index, el) {
+        $(this).text(gettime($(this).parent().parent().find('.nosigntime')));
+    });
+
+    function gettime($signp){
+        var $times = 0;
+        console.log($signp);
+        $signp.each(function(index, el) {
+            $times += ($(this).data('end')-$(this).data('start'));
+        });
+        return Math.floor($times/60);
+    }
 
 </script>
 </body>

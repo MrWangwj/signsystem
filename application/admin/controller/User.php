@@ -24,11 +24,14 @@ class User extends Base
 		$group_id = input('group_id');
 		$name = input('name');
 		if(!empty($name)){
-				$data = Db::table('user') ->where('name',$name) -> paginate(2);
+				$data = Db::table('user')->join('positions','positions.position = user.position','LEFT' ) ->where('name',$name) -> paginate(2);
 				$merit = Db::table('user_group') -> select();
 		}else if(!empty($group_id)){
 				$merit = Db::table('user_group') ->where('group_id',$group_id) -> select();
-				$data = Db::table('user') -> join('user_group','user_group.user_id=user.user_id','LEFT') -> where('user_group.group_id',$group_id)->paginate(10);
+				$data = Db::table('user') -> join('user_group','user_group.user_id=user.user_id','LEFT')
+				->join('positions','positions.position = user.position','LEFT' )
+				-> where('user_group.group_id',$group_id)
+				->paginate(10);
 		}else{
 			$data = Db::name('user')-> join('positions','positions.position = user.position','LEFT') -> paginate(15);
 			$merit = Db::table('user_group') -> select();

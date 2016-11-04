@@ -22,6 +22,11 @@ class Homepage extends Base
     }
     //签到
     public function sign(){
+        $prohibittime1 = strtotime(date('Y-m-d',time())." 07:00:00");
+        $prohibittime2 = strtotime(date('Y-m-d',time())." 23:00:00");
+        if(time()<$prohibittime1 || time()>=$prohibittime2){
+            return json(['code' => -1,'msg'=>'考勤时间为07:00:00~23:00:00']);
+        }
         $userid = session('userid');
         $count = db('sign')
             ->where('user_id',$userid)
@@ -35,6 +40,7 @@ class Homepage extends Base
             'user_id'  =>  $userid,
             'start_time' =>$nowtime ,
         ]);
+
         db('sign')->insert($data);
         $datainfo = ([
             'user_id'  =>  $userid,
@@ -42,6 +48,7 @@ class Homepage extends Base
             'now'=> strtotime(date('Y-m-d H:i:s',time())),
             'sign_state'=> 0
         ]);
+
         db('sign_info')->insert($datainfo);
         return json(['code' => 1,'msg'=>"签到成功"]);
     }
@@ -64,7 +71,7 @@ class Homepage extends Base
             ->select();
         $time =strtotime(date('Y-m-d H:i:s')) - $startime[0]["start_time"];
         if($time>=28800){
-            return json(['code' =>-1,'msg'=>"超时，请补签"]);
+            return json(['code' =>-2,'msg'=>"超过8小时时,请补签"]);
         }
         //签退成功
         $nowtime =strtotime(date('Y-m-d H:i:s'));

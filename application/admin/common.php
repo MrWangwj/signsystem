@@ -180,3 +180,20 @@ function getWeekDate($week){
     $sun  =  date("Y-m-d", strtotime("+".(7-$nowweek)." days", $date));
     return [$mon, $tues, $wed, $thur, $fir, $sat, $sun];     
 }
+
+/**
+ * 将具体的秒数转换为几天几小时几分钟
+ * @param number $seconds  秒数
+ * @return string
+ */
+function second2time($seconds=0){
+    $seconds = (int)$seconds;
+    if( $seconds >= 86400/24 ){    // 如果超过一个小时
+        $time = explode(':', gmstrftime('%H:%M', $seconds));
+        $format_time = $time[0].'小时'.$time[1].'分钟';
+    }else{
+        $time = gmstrftime('%M', $seconds);
+        $format_time = $time.'分钟';
+    }
+    return $format_time;
+}

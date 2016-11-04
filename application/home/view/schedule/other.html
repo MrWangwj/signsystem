@@ -34,10 +34,9 @@
 
 				</select>				
 			</form>
-			<span>{$otheruser.name}的课表</span>
+			<span style="margin-left: 10px;">{$otheruser.name}的课表</span>
 			<div>
-				<a href="" class="btn btn-danger"  style="background-color: #C23001;">他的信息</a>
-				
+				<a href="" data-toggle="modal" data-target="#myinfo" class="btn btn-danger" style="background-color: #C23001;">他的信息</a>
 				<button type="button" class="btn btn-success" id="input">导入他的课表</button>
 			</div>
 		</div>
@@ -123,6 +122,63 @@
   			</div>
 		</div>
 	</div>
+
+        <div class="modal fade" id="myinfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">个人信息</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" role="form">
+                          <div class="form-group">
+                            <label class="col-sm-2 control-label">学号：</label>
+                            <div class="col-sm-10">
+                              <p class="form-control-static">{$otheruser.user_id}</p>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-sm-2 control-label">用户：</label>
+                            <div class="col-sm-10">
+                              <p class="form-control-static">{$otheruser.name}</p>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-sm-2 control-label">组别：</label>
+                            <div class="col-sm-10">
+                              <p class="form-control-static">{$otheruser.group_name}</p>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-sm-2 control-label">职务：</label>
+                            <div class="col-sm-10">
+                              <p class="form-control-static">{$otheruser.position_name}</p>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-sm-2 control-label">性别：</label>
+                            <div class="col-sm-10">
+                              <p class="form-control-static"> </p>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-sm-2 control-label">班级：</label>
+                            <div class="col-sm-10">
+                              <p class="form-control-static">{$otheruser.class}</p>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-sm-2 control-label">电话：</label>
+                            <div class="col-sm-10">
+                              <p class="form-control-static">{$otheruser.phone}</p>
+                            </div>
+                          </div>
+                        </form>                        
+                    </div>
+                </div>
+            </div>
+        </div>
 
 	<script>
 		$('.menu li:eq(2)').css('background','black');

@@ -72,6 +72,7 @@ class Schedule extends Base{
 			}
 			if($schedule->upSchedule(session('userid'), $id, $newId)){ //判断信息是否更新成功
 				return ['code' => 2, 'msg' => '保存成功'];
+				//return ['q2' => $data];
 			}
 			return ['code' => 1, 'msg' => '修改失败!']; 
 		}
@@ -109,7 +110,7 @@ class Schedule extends Base{
 				return ['code' => 2, 'msg' => '成功导入'.$result.'条'];
 				// return dump($result);
 			}
-			return ['code' => 1, 'msg' => '用户存在或该用户没有录入课表！'];
+			return ['code' => 1, 'msg' => '用户不存在或该用户没有录入课表！'];
 		}
 		return ['code' => 0, 'msg' => '无法导入自己的课表'];
 	}
@@ -126,7 +127,14 @@ class Schedule extends Base{
 
 	public function other($otheruser){
 		$schedule = model('Schedule');
-		$user = db('user', [], false)->where(['user_id' => $otheruser])->find();
+		$user = db('user', [], false)
+        	->field("a.*,c.group_name,d.position_name")
+			->alias("a")
+        	->join('user_group b','a.user_id = b.user_id')
+        	->join('groups c','b.group_id = c.group_id')
+        	->join('positions d','a.position = d.position')
+        	->where(['a.user_id' => $otheruser])
+        	->find();
 		if($user){
 			if($user['user_id'] != session('userid')){
 				$data = $schedule->getCurriculum($schedule->getSchedules($otheruser),count(getNowWeek()));
@@ -149,7 +157,8 @@ class Schedule extends Base{
 		$this->assign('data',$data[0]);
 		$this->assign('group',$group);
 		$this->assign('users',$user);
-		$this->assign('term',$data[1]);$this->assign('termtext',$data[2]);
+		$this->assign('term',$data[1]);
+		$this->assign('termtext',$data[2]);
 		$this->assign('termlength',count($data[1]));
 		$this->assign('empty',"<li class='term-label2 foucus'></li>");
 		return $this->fetch();

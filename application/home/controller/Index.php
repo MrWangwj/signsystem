@@ -60,7 +60,7 @@ class Index extends Controller
             ->field("id,name")
             ->select();
         foreach($check as $check){
-            if($userid== $check["id"]&&$username==$check["name"]){
+            if($userid== $check["id"]){
                     return json(['code' => -1, 'msg' => "（注意：管理员正在审核，请稍后）"]);
             }
         }
@@ -70,7 +70,7 @@ class Index extends Controller
     }
 
 
-    public function exit(){
+    public function exitlogin(){
         session('userid',null);
         $this->redirect(url('index/index'));
     }

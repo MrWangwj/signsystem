@@ -61,7 +61,7 @@
 									<div class="space-4"></div>
 
 									<div class="form-group">
-										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 组&nbsp别 </label>
+										<label class="col-sm-3 control-label no-padding-right" for="class"> 组&nbsp别 </label>
 
 										<div class="col-sm-9">
 											<select name="field" id="group_id" style="width:240px;">
@@ -76,7 +76,7 @@
 									<div class="space-4"></div>
 
 									<div class="form-group">
-										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 职&nbsp务 </label>
+										<label class="col-sm-3 control-label no-padding-right" for="class"> 职&nbsp务 </label>
 										
 										<div class="col-sm-9">
 											<select name="field" id="position" style="width:170px;">
@@ -104,7 +104,7 @@
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 班&nbsp级 </label>
 
 										<div class="col-sm-9">
-											<input type="text" id="form-field-2" placeholder="" class="col-xs-10 col-sm-5">
+											<input type="text" id="class" placeholder="" class="col-xs-10 col-sm-5" value="{$data.class}">
 										</div>
 									</div>
 
@@ -144,7 +144,7 @@
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-6">电&nbsp话</label>
 
 										<div class="col-sm-9" >
-											<input data-rel="tooltip" type="text" id="form-field-6" style="width:250px;" placeholder="Tel-phone" title="" data-placement="bottom" data-original-title="Hello Tooltip!">
+											<input data-rel="tooltip" type="text" id="phone" style="width:250px;" placeholder="Tel-phone" title="" data-placement="bottom" data-original-title="Hello Tooltip!" value="{$data.phone}">
 										</div>
 									</div>
 
@@ -226,7 +226,9 @@
 				name : $("#form-field-1").val(),
 				group_id: $("#group_id").val(),
 				position: $("#position").val(),
-				User_sex:user_sex
+				User_sex:user_sex,
+				class:$('#class').val(),
+				phone:$('#phone').val(),
 			}
 			$.ajax({
 				type: 'POST', 

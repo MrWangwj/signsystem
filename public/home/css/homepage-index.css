@@ -83,6 +83,11 @@
 	position: absolute;
     bottom: 0;
     right: 0;
+    max-width: 135px;
+    height: 25px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 .post{
 	line-height: 65px;

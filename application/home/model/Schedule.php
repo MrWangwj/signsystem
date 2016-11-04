@@ -118,15 +118,34 @@ class Schedule extends Model{
 	public function judgeRepeat($data){
 		$curriculums = db('curriculum',[],false)->select();
 		foreach ($curriculums as $key => $value) {
+			$status = false;
 			foreach ($value as $key2 => $value2) {
-				if($key2 != 'id') $curriculum2[$key2] = $value2;
+				if($key2 != 'id') {
+					if($value2 != $data[$key2]){
+						$status = false;
+						break;
+					}
+					$status = true;
+				}
 			}
-			$curriculum = array_intersect($curriculum2, $data);
-			if(count($curriculum) == count($data)){
-				return $value['id'];
-			}
+			if($status) return $value['id'];
 		}
 		return false;
+
+
+
+
+		// $curriculums = db('curriculum',[],false)->select();
+		// foreach ($curriculums as $key => $value) {
+		// 	foreach ($value as $key2 => $value2) {
+		// 		if($key2 != 'id') $curriculum2[$key2] = $value2;
+		// 	}
+		// 	$curriculum = array_intersect($curriculum2, $data);
+		// 	if(count($curriculum) == count($data)){
+		// 		return $value['id'];
+		// 	}
+		// }
+		// return false;
 	}    
 
 	/**
@@ -237,8 +256,8 @@ class Schedule extends Model{
 				if($value2[0] == 'user_id' || $value2[0] == 'position'){
 					$as = "b.";
 					if($value2[1] != 1 && $value2[0] == 'position'){
-						$mark = "!=";
-						$where[$key][$key2][1] = 1;		
+						$mark = "=";
+						// $where[$key][$key2][1] = 1;		
 					}
 				}else if($value2[0] == 'group_id'){
 					$as = "d.";
@@ -302,8 +321,8 @@ class Schedule extends Model{
 				if($value2[0] == 'user_id' || $value2[0] == 'position'){
 					$as = "a.";
 					if($value2[1] != 1 && $value2[0] == 'position'){
-						$mark = "!=";
-						$where[$key][$key2][1] = 1;		
+						$mark = "=";
+						// $where[$key][$key2][1] = 1;		
 					}
 				}else if($value2[0] == 'group_id'){
 					$as = "b.";

@@ -87,6 +87,7 @@
 																
 															</label>
 														</th>
+														<th class="hidden-480">学号</th>
 														<th class="hidden-480">用户名</th>
 														<th class="hidden-480">组  别</th>
 														<th class="hidden-480">职  务</th>
@@ -106,7 +107,7 @@
 																<span class="lbl"></span>
 															</label>
 														</td>
-														
+														<td>{$vo.user_id}</td>
 														<td>
 															<a href="#">{$vo.name}</a>
 														</td>
@@ -121,7 +122,7 @@
 														</td>
 														<td class="hidden-480">
 															<!-- <span class="label label-sm label-warning">Expiring</span> -->
-															18738519352
+															{$vo.phone}
 														</td>
 														
 														<td>

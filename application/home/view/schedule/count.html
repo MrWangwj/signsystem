@@ -53,17 +53,17 @@
 			<li>
 				<label>职务筛选:</label>
 				<div id="term-post">
-					<span date-id='0'>全部</span>
-					<span date-id='1'>成员</span>
-					<span date-id='2'>组长</span>
-					<span date-id='3'>事物负责人</span>
+					<span data-id='0'>全部</span>
+					<span data-id='1'>成员</span>
+					<span data-id='2'>组长</span>
+					<span data-id='3'>事物负责人</span>
 				</div>
 			</li>
 			<li>
 				<label>选择人员:</label>
 				<div>
 					<select class="form-control" id="term-personnel">
-						<option value="">全部</option>
+						<option value="0">全部</option>
 		  				{volist name="users" id="vo"}
 							<option value="{$vo.user_id}">{$vo.name}</option>
 						{/volist}
@@ -243,32 +243,34 @@
 	});
 
 	$('#addterm').on('click', function(event) {
-		$('.term-label2').each(function(index, el) {
-			if($(this).hasClass('foucus')){
-				$(this).removeClass('foucus');
-			}
-		});
-		$('.term-label>ul').append("<li class='term-label2 foucus'></li>");
-		$('#term-foucus').val($('.foucus').index()+1);
+		var a =$('.term-label2:last-child').find("label");
+		if(a.length != 0 ){
+			$('.term-label2').each(function(index, el) {
+				if($(this).hasClass('foucus')){
+					$(this).removeClass('foucus');
+				}
+			});
+			$('.term-label>ul').append("<li class='term-label2 foucus'></li>");
+			$('#term-foucus').val($('.foucus').index()+1);			
+		}
+
 	});
 
 	$('#term-group').on('click', 'span', function(event) {
 		var text = $(this).text();
 		var val = $(this).data('id');
-		if(val != 0){
-			clearTerm("group_id");
+		clearTerm("group_id");
+		if(val != 0)
 			$('.foucus').append(getLabel(text, val, "group_id"));
-			$('#test').submit();
-		}
+		$('#test').submit();
 	});
 	$('#term-post').on('click', 'span', function(event) {
 		var text = $(this).text();
 		var val = $(this).data('id');
-		if(val != 0){
-			clearTerm("position");
+		clearTerm("position");		
+		if(val != 0)
 			$('.foucus').append(getLabel(text, val, "position"));
-			$('#test').submit();
-		}
+		$('#test').submit();
 	});
 
 

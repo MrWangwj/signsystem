@@ -96,7 +96,7 @@
 	border-left: 5px solid #C23001;
 	border-bottom: 1px solid #FFF;
 	padding-left: 10px;
-	overflow-x: hidden;
+	/*overflow-x: hidden;*/
 }
 
 .term-but{

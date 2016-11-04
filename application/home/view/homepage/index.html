@@ -43,7 +43,7 @@
                         <span>{$user.position_name}</span>
                     </div>
                     <div class="edit">
-                        <a href="" data-toggle="modal" data-target="#myinfo">查看个人信息</label></a>
+                        <a href="" data-toggle="modal" data-target="#myinfo">查看个人信息</a>
                     </div>
                 </div>
             </div>
@@ -243,7 +243,7 @@
                           <div class="form-group">
                             <label class="col-sm-2 control-label">性别：</label>
                             <div class="col-sm-10">
-                              <p class="form-control-static">{$user.sex}</p>
+                              <p class="form-control-static">{if condition="$user.sex ==0"}男{else}女{/if}</p>
                             </div>
                           </div>
                           <div class="form-group">
@@ -311,10 +311,13 @@
         })
     })
     $("#reSign_btn").click(function () {
+        alert(1111);
         $.post("{:url('homepage/reSign')}",function (data) {
+
             if(data.code==-1){ 
                 layer.msg(data.msg,{time:1000});
             }else if(data.code==-2){  //用户超时未签退
+                alert(1111);
                 layer.msg(data.msg,{time:1000},function () {
                     resign2_div.show();
                     resign1_div.hide();
@@ -346,6 +349,7 @@
     })
     $("#reSignok_btn").click(function () {
         //补签整个时段
+        alert(1111);
         if(temp ==1 ){
             var ymd = $("#redign_YMD").find("option:selected").text();
             var starM = $("#starM_select").find("option:selected").text()*60;
