@@ -74,7 +74,13 @@ class Homepage extends Base
             return json(['code' =>-2,'msg'=>"超过8小时时,请补签"]);
         }
         //签退成功
+        $prohibittime = strtotime(date('Y-m-d',time())." 23:00:00");
+        $msg = "签退成功";
         $nowtime =strtotime(date('Y-m-d H:i:s'));
+        if($prohibittime <=time()){
+            $msg = "考勤时间为07:00:00~23:00:00,默认以23:00:00签退";
+            $nowtime = $prohibittime;
+        }
         db('sign')
             ->where('user_id',$userid)
             ->where("state",0)
@@ -87,7 +93,7 @@ class Homepage extends Base
             'sign_state'=> 1
         ]);
         db('sign_info')->insert($datainfo);
-        return json(['code' =>1,'msg'=>"签退成功"]);
+        return json(['code' =>1,'msg'=>$msg]);
     }
 
 

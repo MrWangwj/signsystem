@@ -1,8 +1,42 @@
-{extend name="public/base"}
-{block name="link"}
-<link rel="stylesheet" type="text/css" href="{$Think.config.parse_str.__CSS__}homepage-index.css">
-{/block}
-{block name="main"}
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:77:"/var/www/html/SignSystem2/public/../application/home/view/homepage/index.html";i:1478262454;s:74:"/var/www/html/SignSystem2/public/../application/home/view/public/base.html";i:1478260979;}*/ ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>三月软件小组签到系统</title>
+	<link rel="stylesheet" href="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>css/bootstrap.min.css">
+	<link rel="stylesheet" href="<?php echo \think\Config::get('parse_str.__CSS__'); ?>public-base.css">
+	<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>js/jquery-3.0.0.min.js"></script>
+	<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>js/bootstrap.min.js"></script>
+	<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>js/layer/layer.js"></script>
+	<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>js/public-base.js"></script>	
+	
+<link rel="stylesheet" type="text/css" href="<?php echo \think\Config::get('parse_str.__CSS__'); ?>homepage-index.css">
+
+</head>
+<body>
+	<div class="backgd">
+		<div class="title">
+			<nav>
+				<label class="logo"> 
+					
+				</label>
+				<div class="right-menu">
+					<ul class="menu">
+						<a href="<?php echo url('Homepage/index'); ?>"><li>首页</li></a>
+						<a href="<?php echo url('Schedule/count'); ?>"><li>课表统计</li></a>
+						<a href="<?php echo url('Schedule/index'); ?>"><li>查看课表</li></a>
+						<a href="<?php echo url('attendance/test'); ?>"><li>本周考勤统计</li></a>
+						
+					</ul>
+					<div class="exit">
+						<a href="<?php echo url('Index/exitlogin'); ?>">退出</a>	
+					</div>					
+				</div>
+			</nav>
+		</div>
+		<div class="main">
+			
 <!--     <div id="hometop_div">
         <div class="homebox">
             <button type="button" class="btn btn-info my_btn" id="sign_btn">签到</button>
@@ -36,11 +70,11 @@
                 <div class="personal">
                     <div class="name">
                         <img src="">
-                        <span>姓名：{$user.name}</span>
+                        <span>姓名：<?php echo $user['name']; ?></span>
                     </div>
                     <div class="post">
-                        <span>{$user.group_name}</span>
-                        <span>{$user.position_name}</span>
+                        <span><?php echo $user['group_name']; ?></span>
+                        <span><?php echo $user['position_name']; ?></span>
                     </div>
                     <div class="edit">
                         <a href="" data-toggle="modal" data-target="#myinfo">查看个人信息</a>
@@ -52,24 +86,24 @@
                     <label>每日公告</label>
                 </div>
                 <ul>
-                    {volist name="notice" id="vo"}
+                    <?php if(is_array($notice) || $notice instanceof \think\Collection): $i = 0; $__LIST__ = $notice;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
                         <li>
                             <div>
                                 <div class="notice-time">
-                                    {$vo.create_time|date='Y-m-d',###}
+                                    <?php echo date('Y-m-d',$vo['create_time']); ?>
                                 </div>
                                 <div class="notice-text clearfix">
                                     <div class="">
                                         <img src="">
                                     </div>
                                     <div>
-                                        <p>{$vo.notice_title}</p>
-                                        <div>{$vo.notice}</div>   
+                                        <p><?php echo $vo['notice_title']; ?></p>
+                                        <div><?php echo $vo['notice']; ?></div>   
                                     </div>
                                 </div>                            
                             </div>
                         </li>      
-                    {/volist}
+                    <?php endforeach; endif; else: echo "" ;endif; ?>
 
                 </ul>
             </div>
@@ -219,43 +253,43 @@
                           <div class="form-group">
                             <label class="col-sm-2 control-label">学号：</label>
                             <div class="col-sm-10">
-                              <p class="form-control-static">{$user.user_id}</p>
+                              <p class="form-control-static"><?php echo $user['user_id']; ?></p>
                             </div>
                           </div>
                           <div class="form-group">
                             <label class="col-sm-2 control-label">用户：</label>
                             <div class="col-sm-10">
-                              <p class="form-control-static">{$user.name}</p>
+                              <p class="form-control-static"><?php echo $user['name']; ?></p>
                             </div>
                           </div>
                           <div class="form-group">
                             <label class="col-sm-2 control-label">组别：</label>
                             <div class="col-sm-10">
-                              <p class="form-control-static">{$user.group_name}</p>
+                              <p class="form-control-static"><?php echo $user['group_name']; ?></p>
                             </div>
                           </div>
                           <div class="form-group">
                             <label class="col-sm-2 control-label">职务：</label>
                             <div class="col-sm-10">
-                              <p class="form-control-static">{$user.position_name}</p>
+                              <p class="form-control-static"><?php echo $user['position_name']; ?></p>
                             </div>
                           </div>
                           <div class="form-group">
                             <label class="col-sm-2 control-label">性别：</label>
                             <div class="col-sm-10">
-                              <p class="form-control-static">{if condition="$user.sex ==0"}男{else}女{/if}</p>
+                              <p class="form-control-static"><?php if($user['sex'] ==0): ?>男<?php else: ?>女<?php endif; ?></p>
                             </div>
                           </div>
                           <div class="form-group">
                             <label class="col-sm-2 control-label">班级：</label>
                             <div class="col-sm-10">
-                              <p class="form-control-static">{$user.class}</p>
+                              <p class="form-control-static"><?php echo $user['class']; ?></p>
                             </div>
                           </div>
                           <div class="form-group">
                             <label class="col-sm-2 control-label">电话：</label>
                             <div class="col-sm-10">
-                              <p class="form-control-static">{$user.phone}</p>
+                              <p class="form-control-static"><?php echo $user['phone']; ?></p>
                             </div>
                           </div>
                         </form>                        
@@ -266,8 +300,13 @@
 
 
 
-{/block}
-{block name="js"}
+
+		</div>
+		<div class="footer">
+			<span>三月软件@版权所有</span>
+		</div>
+	</div>
+	
 <script>
     $('.menu li:eq(0)').css('background','black');
     $('.content-left>ul').css('height',($(window).height()-260)+"px"); 
@@ -292,7 +331,7 @@
 //        alert(1)
     });
     $("#sign_btn").click(function () {
-        $.post("{:url('homepage/sign')}",function (data) {
+        $.post("<?php echo url('homepage/sign'); ?>",function (data) {
                 layer.msg(data.msg,{time:1000},function () {
                     if(data.code==1){
                         getSignInfo();
@@ -302,7 +341,7 @@
     })
 
     $("#signoff_btn").click(function () {
-        $.post("{:url('homepage/signoff')}",function (data) {
+        $.post("<?php echo url('homepage/signoff'); ?>",function (data) {
                 layer.msg(data.msg,{time:1000},function () {
                     if(data.code==1){
                         getSignInfo();
@@ -311,7 +350,7 @@
         })
     })
     $("#reSign_btn").click(function () {
-        $.post("{:url('homepage/reSign')}",function (data) {
+        $.post("<?php echo url('homepage/reSign'); ?>",function (data) {
             if(data.code==-1){ 
                 layer.msg(data.msg,{time:1000});
             }else if(data.code==-2){  //用户超时未签退
@@ -347,6 +386,7 @@
     })
     $("#reSignok_btn").click(function () {
         //补签整个时段
+        alert(1111);
         if(temp ==1 ){
             var ymd = $("#redign_YMD").find("option:selected").text();
             var starM = $("#starM_select").find("option:selected").text()*60;
@@ -355,7 +395,7 @@
             var overH = $("#overH_select").find("option:selected").text()*60*60;
             var startTime =starM+starH;
             var overTime =overM+overH;
-            $.post("{:url('homepage/reSignAll')}",{'startTime':startTime,'overTime':overTime,'ymd':ymd},function (data) {
+            $.post("<?php echo url('homepage/reSignAll'); ?>",{'startTime':startTime,'overTime':overTime,'ymd':ymd},function (data) {
 //                alert(data.code)
 //                alert(data.msg)
                 layer.msg(data.msg,{time:1500},function () {
@@ -370,7 +410,7 @@
             var hour = $(".selectorH").find("option:selected").text();
             var minute = $(".selectorM").find("option:selected").text();
             var date = $("#overtime_span").text();
-            $.post("{:url('homepage/reSignOk')}",{"overdate":date,"hour":hour,"minute":minute},function (data) {
+            $.post("<?php echo url('homepage/reSignOk'); ?>",{"overdate":date,"hour":hour,"minute":minute},function (data) {
                 layer.msg(data.msg,{time:1500},function () {
                     if(data.code==1){
                         getSignInfo();
@@ -387,7 +427,7 @@
     //签到版刷新
     $("#homeinfo_div").append("<li>"+"来到小组</li>");
     function getSignInfo() {
-        $.post("{:url('homepage/signInEdition')}",function (data) {
+        $.post("<?php echo url('homepage/signInEdition'); ?>",function (data) {
             $("#homeinfo_div").html('');
            // $("#homeinfo_div").append("<li>"+"来到小组</li>");
             for(var i = 0 ;i<data.list.length;i++){
@@ -427,4 +467,6 @@
         return new Date(parseInt(nS) * 1000).toLocaleString().substr(5,5).replace(/月/g, "-").replace(/日/g, " ");
     }
 </script>
-{/block}
+
+</body>
+</html>
