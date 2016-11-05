@@ -178,7 +178,6 @@
 		</script>
 		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/bootstrap.min.js"></script>
 		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/typeahead-bs2.min.js"></script>
-
 		<!-- page specific plugin scripts -->
 
 		<!--[if lte IE 8]>
@@ -224,11 +223,12 @@
 		          	async: false,  
 					cache: false, 
 		          	success: function (returndata) {
-		          		alert(returndata);
-		          		window.location.href = '/SignSystem2/public/index.php/admin/User/member';
+		          		layer.msg(returndata,{time:1000},function(){
+		          			window.location.href = '/SignSystem2/public/index.php/admin/User/member';
+		          		});
 		          	},
 		          	error:function(){
-		          		alert("数据加载失败"); 
+		          		layer.msg("数据加载失败"); 
 		          	},
 				});
 			}

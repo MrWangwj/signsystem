@@ -246,11 +246,12 @@
 		      	async: false,  
 				cache: false, 
 		      	success: function (returndata) {
-		      		alert(returndata);
-		      		window.location.href = '/SignSystem2/public/index.php/admin/User/member';
+		      		layer.msg(returndata,{time:1000},function(){
+		      			window.location.href = '/SignSystem2/public/index.php/admin/User/member';
+		      		});
 		      	},
 		      	error:function(){
-		      		alert("数据加载失败"); 
+		      		layer.msg("数据加载失败"); 
 		      	},
 			});
 		 };

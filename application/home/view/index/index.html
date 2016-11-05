@@ -196,7 +196,6 @@
         var phone = $("#phone").val();
         var user_sex = $("input[name ='user_sex']:checked").val();
         var myReg = /^[\u4e00-\u9fa5]+$/;
-        alert($("#inputName").val().length);
         if(!(myReg.test($("#inputName").val()) && ($("#inputName").val().length<=4))){
 
                 layer.msg('请使用真实姓名');

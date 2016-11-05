@@ -225,6 +225,7 @@
 
 		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/ace-elements.min.js"></script>
 		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/ace.min.js"></script>
+		<script src="{$Think.config.parse_str.__PUBLIC__}js/layer/layer.js"></script>
 
 		<!-- inline scripts related to this page -->
 		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/jquery.dataTables.min.js"></script>
@@ -244,45 +245,57 @@
         var datavalue = {
           invalue:str,
         }
-        alert(str);
-       if(confirm("确定删除吗？")){  
-	        $.ajax({
-	        	type:'POST',
-	        	url: '{$Think.config.parse_str.__MODULE__}/User/deletes', 
-	          	data:  datavalue, 
-	          	async: false,  
-				cache: false, 
-	          	success: function (returndata) {
-	          		alert(returndata);
-	          		window.location.reload();
-	          	},
-	          	error:function(){
-	          		alert("数据加载失败"); 
-	          	},
-	        });
-    	}
+
+       layer.msg('你确定删除？', {
+		  time: 0 //不自动关闭
+		  ,btn: ['确定', '算了']
+		  ,yes: function(index){
+		    layer.close(index);
+		        $.ajax({
+		        	type:'POST',
+		        	url: '{$Think.config.parse_str.__MODULE__}/User/deletes', 
+		          	data:  datavalue, 
+		          	async: false,  
+					cache: false, 
+		          	success: function (returndata) {
+		          		layer.msg(returndata,{time:1000},function(){
+		                  	window.location.reload();
+		                  });
+		          	},
+		          	error:function(){
+		          		layer.msg("数据加载失败"); 
+		          	},
+		        });
+    		}
+    	});
 	});
 	function update($id){
 		window.location.href ='{$Think.config.parse_str.__MODULE__}/Manager/remanager/user_id='+$id;
 	}
 	$('.group_id').on('click',function(){
 		var id = $(this).attr("value");
-		if(confirm("确定删除吗？")){  
-			$.ajax({
-				type: 'POST', 
-	         	url: '{$Think.config.parse_str.__MODULE__}/User/delete', 
-	          	data:  'id='+id,  
-	          	async: false,  
-				cache: false, 
-	          	success: function (returndata) {
-	          		alert(returndata);
-	          		window.location.reload();
-	          	},
-	          	error:function(){
-	          		alert("数据加载失败"); 
-	          	},
-			});
-		}
+		layer.msg('你确定删除？', {
+		  time: 0 //不自动关闭
+		  ,btn: ['确定', '算了']
+		  ,yes: function(index){
+		    layer.close(index);
+				$.ajax({
+					type: 'POST', 
+		         	url: '{$Think.config.parse_str.__MODULE__}/User/delete', 
+		          	data:  'id='+id,  
+		          	async: false,  
+					cache: false, 
+		          	success: function (returndata) {
+		          		layer.msg(returndata,{time:1000},function(){
+			                  	window.location.reload();
+			                  });
+		          	},
+		          	error:function(){
+		          		layer.msg("数据加载失败"); 
+		          	},
+				});
+			}
+		});
 	});
 	//查询
 	function search(){

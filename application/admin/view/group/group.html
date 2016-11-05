@@ -227,6 +227,7 @@
 
 		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/ace-elements.min.js"></script>
 		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/ace.min.js"></script>
+		<script src="{$Think.config.parse_str.__PUBLIC__}js/layer/layer.js"></script>
 
 		<!-- inline scripts related to this page -->
 		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/jquery.dataTables.min.js"></script>
@@ -241,20 +242,28 @@ function addgroup(){
           	async: false,  
 			cache: false, 
           	success: function (returndata) {
-          		alert(returndata);
-          		window.location.reload();
+          		 layer.msg(returndata,{time:1000},function(){
+                  	window.location.reload();
+                  });
           	},
           	error:function(){
-          		alert("数据加载失败"); 
+          		layer.msg("数据加载失败"); 
           	},
 		});
 	}
+
+
+
 $('.updgroup').on('click',function(){
-	var group_name = prompt("组名:", ""); //将输入的内容赋给变量 name ，
-	if(group_name){
-		var group_id = $(this).attr("value");
+	var group_id = $(this).attr("value");
+	var operate_watch;
+    layer.prompt({
+        title:'输入修改后组名:',
+        formtype:0,
+        },function(res){
+            operate_watch=res;
 		var number = {
-			group_name:group_name,
+			group_name:operate_watch,
 			id:group_id
 		}
 		$.ajax({
@@ -264,33 +273,43 @@ $('.updgroup').on('click',function(){
           	async: false,  
 			cache: false, 
           	success: function (returndata) {
-          		alert(returndata);
-          		window.location.reload();
+          		 layer.msg(returndata,{time:1000},function(){
+                  	window.location.reload();
+                  });
           	},
           	error:function(){
-          		alert("数据加载失败"); 
+          		layer.msg("数据加载失败"); 
           	},
          });
-	}	
+	});	
 });
+
+
+
 $('.deluser').on('click',function(){
 	var group_id = $(this).attr("value");
-	if(confirm("确定删除吗？")){       
-      	$.ajax({
-          type: 'POST', 
-          url: '{$Think.config.parse_str.__MODULE__}/Group/delgroup', 
-          data:  'group_id='+group_id,  
-          async: false,  
-          cache: false, 
-            success: function (returndata) {
-                  alert(returndata);
-                  window.location.reload();
-                },
-            erro: function(){
-              alert("数据加载失败"); 
-            },
-      	});
-    }
+	layer.msg('你确定删除？', {
+		  time: 0 //不自动关闭
+		  ,btn: ['确定', '算了']
+		  ,yes: function(index){
+		    layer.close(index);
+		   		$.ajax({
+		          type: 'POST', 
+		          url: '{$Think.config.parse_str.__MODULE__}/Group/delgroup', 
+		          data:  'group_id='+group_id,  
+		          async: false,  
+		          cache: false, 
+		            success: function (returndata) {
+		                  layer.msg(returndata,{time:1000},function(){
+		                  	window.location.reload();
+		                  });
+		                },
+		            erro: function(){
+		              layer.msg("数据加载失败"); 
+		            },
+		      	});
+		  	}	
+	});
 });
 $('.changeuser').on('click',function(){
 	group_id = $(this).attr("value");
@@ -301,7 +320,6 @@ $('.changeuser').on('click',function(){
           async: false,  
           cache: false, 
             success: function (returndata) {
-            	console.log(returndata);
                   var json = JSON.parse(returndata);
                   	var html='';
                   	for (var i = 0; i < json.length; i++) {
@@ -313,7 +331,7 @@ $('.changeuser').on('click',function(){
 					});
                 },
             erro: function(){
-              alert("数据加载失败"); 
+              layer.msg("数据加载失败"); 
             },
       	});
 });
@@ -336,11 +354,12 @@ function change(){
           async: false,  
           cache: false, 
             success: function (returndata) {
-                  alert(returndata);
-                  window.location.reload();
+                  layer.msg(returndata,{time:1000},function(){
+                  	window.location.reload();
+                  });
                 },
             erro: function(){
-              alert("数据加载失败"); 
+              layer.msg("数据加载失败"); 
             },
       	});
 }
@@ -359,26 +378,33 @@ $('#submit').on('click',function(){
         var datavalue = {
           invalue:str,
         }
-        alert(str);
-	if(confirm("确定删除吗？")){  
-     
-      	$.ajax({
-          type: 'POST', 
-          url: '{$Think.config.parse_str.__MODULE__}/Group/deletegroup', 
-          data:  datavalue,  
-          async: false,  
-          cache: false, 
-            success: function (returndata) {
-                  alert(returndata);
-                  window.location.reload();
-                },
-            erro: function(){
-              alert("数据加载失败"); 
-            },
-      	});
-    }
+		layer.msg('你确定删除？', {
+		  time: 0 //不自动关闭
+		  ,btn: ['确定', '算了']
+		  ,yes: function(index){
+		    layer.close(index);
+		   		$.ajax({
+		          type: 'POST', 
+		          url: '{$Think.config.parse_str.__MODULE__}/Group/deletegroup', 
+		          data:  datavalue,  
+		          async: false,  
+		          cache: false, 
+		            success: function (returndata) {
+		                   layer.msg(returndata,{time:1000},function(){
+		                  	window.location.reload();
+		                  });
+		                },
+		            erro: function(){
+		              layer.msg("数据加载失败"); 
+		            },
+		      });
+		  }
+	});
 });
 
 </script>
 </body>
 </html>
+
+
+ 
