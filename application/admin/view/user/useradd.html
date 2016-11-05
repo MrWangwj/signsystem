@@ -67,6 +67,9 @@
 														</th>
 														<th>学  号</th>
 														<th>用户名</th>
+														<th>性  别</th>
+														<th>班  级</th>
+														<th>电  话</th>
 													<!-- 	<th>组  别</th> -->
 <!-- 														<th class="hidden-480">性  别</th>
 
@@ -91,6 +94,15 @@
 														<td>
 															{$vo.name}
 														</td>
+														<td class="hidden-480">
+														{if condition="$vo.sex eq '0'"}
+														男
+														{else/}
+														女
+														{/if}
+														</td>
+														<td>{$vo.note}</td>
+														<td>{$vo.phone}</td>
 <!-- 														<td>
 															开发一组
 														</td>

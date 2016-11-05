@@ -75,7 +75,7 @@ class User extends Base
 			 Db::startTrans();
 			 try{
 			 	$data = Db::table('check') -> where('id',$_POST['id']) ->find();
-			 	$rlt_1 = Db::table('user') -> insert(['name' => $data['name'],'user_id'=>$data['id']]);
+			 	$rlt_1 = Db::table('user') -> insert(['name' => $data['name'],'user_id'=>$data['id'],'class'=>$data['note'],'phone'=>$data['phone'],'sex'=>$data['sex']]);
 			 	if($rlt_1 === false){
 			 		Db::rollback();
 			 		return '添加失败';
