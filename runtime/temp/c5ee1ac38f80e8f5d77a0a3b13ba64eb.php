@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:74:"/var/www/html/SignSystem2/public/../application/home/view/index/index.html";i:1478260979;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:74:"/var/www/html/SignSystem2/public/../application/home/view/index/index.html";i:1478325775;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -104,9 +104,24 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">备注：</label>
+                           <label class="col-sm-2 control-label">性别：</label>
+                            <div class="col-sm-9" style="margin-top:3px;">
+                                <input name="user_sex" type="radio" id="sex-1"  value="0">
+                                <label for="sex-1">男</label>
+                                <input name="user_sex" type="radio" id="sex-2"  value="1">
+                                <label for="sex-2">女</label></br>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">班级：</label>
                             <div class="col-sm-10">
-                                <textarea  class="form-control" placeholder="Enter Note" id="inputArea"></textarea>
+                                <input type="text" class="form-control" id="inputArea" placeholder="Enter class">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">电话：</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="phone" placeholder="Enter phone">
                             </div>
                         </div>
                         <div class="form-group">
@@ -173,12 +188,15 @@
         $("#inputID").val("");
         $("#inputName").val("");
         $("#inputArea").val("");
+        $("#phone").val();
     })
     $("#input_btn").click(function () {
         var userid  =  $("#inputID").val();
         var username = $("#inputName").val();
         var note = $("#inputArea").val();
-        $.post("<?php echo url('index/doLogin'); ?>",{'userid':userid, 'username':username, 'note':note},function (data) {
+        var phone = $("#phone").val();
+        var user_sex = $("input[name ='user_sex']:checked").val();
+        $.post("<?php echo url('index/doLogin'); ?>",{'userid':userid, 'username':username, 'note':note,'phone':phone ,'user_sex':user_sex},function (data) {
             if(data.code==-1){
                     $("#info_span2").show().html(data.msg);
             }else if(data.code==1){

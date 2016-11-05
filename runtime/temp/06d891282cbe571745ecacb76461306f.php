@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:77:"/var/www/html/SignSystem2/public/../application/home/view/homepage/index.html";i:1478262896;s:74:"/var/www/html/SignSystem2/public/../application/home/view/public/base.html";i:1478260979;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:77:"/var/www/html/SignSystem2/public/../application/home/view/homepage/index.html";i:1478329951;s:74:"/var/www/html/SignSystem2/public/../application/home/view/public/base.html";i:1478260979;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -69,7 +69,7 @@
                 </ul>
                 <div class="personal">
                     <div class="name">
-                        <img src="">
+                       <!--  <img src=""> -->
                         <span>姓名：<?php echo $user['name']; ?></span>
                     </div>
                     <div class="post">
@@ -93,9 +93,9 @@
                                     <?php echo date('Y-m-d',$vo['create_time']); ?>
                                 </div>
                                 <div class="notice-text clearfix">
-                                    <div class="">
+                           <!--          <div class="">
                                         <img src="">
-                                    </div>
+                                    </div> -->
                                     <div>
                                         <p><?php echo $vo['notice_title']; ?></p>
                                         <div><?php echo $vo['notice']; ?></div>   
@@ -104,7 +104,6 @@
                             </div>
                         </li>      
                     <?php endforeach; endif; else: echo "" ;endif; ?>
-
                 </ul>
             </div>
         </div>
@@ -142,20 +141,20 @@
                             <option>22</option>
                         </select>
                           时
-                            <select class="selectorM">
-                                <option>00</option>
-                                <option>05</option>
-                                <option>10</option>
-                                <option>15</option>
-                                <option>20</option>
-                                <option>25</option>
-                                <option>30</option>
-                                <option>35</option>
-                                <option>40</option>
-                                <option>45</option>
-                                <option>50</option>
-                                <option>55</option>
-                            </select>
+                        <select class="selectorM">
+                            <option>00</option>
+                            <option>05</option>
+                            <option>10</option>
+                            <option>15</option>
+                            <option>20</option>
+                            <option>25</option>
+                            <option>30</option>
+                            <option>35</option>
+                            <option>40</option>
+                            <option>45</option>
+                            <option>50</option>
+                            <option>55</option>
+                        </select>
                         分
                     </span>
                     </p>
