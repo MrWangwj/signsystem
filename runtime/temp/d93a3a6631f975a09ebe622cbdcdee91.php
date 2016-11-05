@@ -1,14 +1,15 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:80:"D:\MyDrivers\htdocs\SignSystem2\public/../application/home\view\index\index.html";i:1478319063;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>三月软件小组签到系统</title>
-    <link rel="stylesheet" type="text/css" href="{$Think.config.parse_str.__CSS__}index-index.css">
-    <link rel="stylesheet" type="text/css" href="{$Think.config.parse_str.__CSS__}bootstrap.css">
-    <!--<link rel="stylesheet" type="text/css" href="{$Think.config.parse_str.__CSS__}base.css">-->
-    <script type="text/javascript" src="{$Think.config.parse_str.__JS__}jquery-3.0.0.min.js"></script>
-    <script type="text/javascript" src="{$Think.config.parse_str.__JS__}bootstrap.min.js"></script>
-    <script type="text/javascript" src="{$Think.config.parse_str.__PUBLIC__}js/layer/layer.js"></script>
+    <link rel="stylesheet" type="text/css" href="<?php echo \think\Config::get('parse_str.__CSS__'); ?>index-index.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo \think\Config::get('parse_str.__CSS__'); ?>bootstrap.css">
+    <!--<link rel="stylesheet" type="text/css" href="<?php echo \think\Config::get('parse_str.__CSS__'); ?>base.css">-->
+    <script type="text/javascript" src="<?php echo \think\Config::get('parse_str.__JS__'); ?>jquery-3.0.0.min.js"></script>
+    <script type="text/javascript" src="<?php echo \think\Config::get('parse_str.__JS__'); ?>bootstrap.min.js"></script>
+    <script type="text/javascript" src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>js/layer/layer.js"></script>
 </head>
 <body>
     <div class="background">
@@ -34,7 +35,7 @@
                         </div>
                     </div>               
                 </div>
-                <img src="{$Think.config.parse_str.__IMAGE__}shadow.png" class="shadow">     
+                <img src="<?php echo \think\Config::get('parse_str.__IMAGE__'); ?>shadow.png" class="shadow">     
             </div>
                    
         </div>
@@ -162,7 +163,7 @@
 
     function login(){
         var userId = $("#userID").val();
-        $.post("{:url('index/docheck')}",{'userid':userId},function (data) {
+        $.post("<?php echo url('index/docheck'); ?>",{'userid':userId},function (data) {
             if(data.code==-1){
                 $("#info_span").css("visibility","visible").html(data.msg);
             }else if(data.code==1){
@@ -170,7 +171,7 @@
                     time:1000
                 }, function(){
                     $("#info_span").css("visibility","hidden");
-                    window.location.href="{:url('homepage/index')}";
+                    window.location.href="<?php echo url('homepage/index'); ?>";
                 });
 
             }
@@ -195,7 +196,7 @@
         var note = $("#inputArea").val();
         var phone = $("#phone").val();
         var user_sex = $("input[name ='user_sex']:checked").val();
-        $.post("{:url('index/doLogin')}",{'userid':userid, 'username':username, 'note':note,'phone':phone ,'user_sex':user_sex},function (data) {
+        $.post("<?php echo url('index/doLogin'); ?>",{'userid':userid, 'username':username, 'note':note,'phone':phone ,'user_sex':user_sex},function (data) {
             if(data.code==-1){
                     $("#info_span2").show().html(data.msg);
             }else if(data.code==1){

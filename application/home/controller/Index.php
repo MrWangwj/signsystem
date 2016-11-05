@@ -39,7 +39,9 @@ class Index extends Controller
         $userid = $_POST['userid'];
         $username = $_POST['username'];
         $note = $_POST["note"];
-        $result = $this->validate(compact('username', 'userid', "note"), 'HomeValidate');
+        $phone = $_POST['phone'];
+        $user_sex = $_POST['user_sex'];
+        $result = $this->validate(compact('username', 'userid', "note","phone","sex"), 'HomeValidate');
         if(true !== $result){
             return json(['code' => -1, 'msg' => $result]);
         }
@@ -64,7 +66,7 @@ class Index extends Controller
                     return json(['code' => -1, 'msg' => "（注意：管理员正在审核，请稍后）"]);
             }
         }
-        $data = ['id' => $userid, 'name' => $username, 'note' => $note];
+        $data = ['id' => $userid, 'name' => $username, 'note' => $note,'phone'=>$phone,'sex'=>$user_sex];
         db('check')->insert($data);
         return json(['code' => 1]);
     }
