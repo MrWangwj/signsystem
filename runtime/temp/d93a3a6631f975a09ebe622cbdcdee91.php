@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:80:"D:\MyDrivers\htdocs\SignSystem2\public/../application/home\view\index\index.html";i:1478319063;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:80:"D:\MyDrivers\htdocs\SignSystem2\public/../application/home\view\index\index.html";i:1478327440;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -196,6 +196,19 @@
         var note = $("#inputArea").val();
         var phone = $("#phone").val();
         var user_sex = $("input[name ='user_sex']:checked").val();
+        var myReg = /^[\u4e00-\u9fa5]+$/;
+        if(!(myReg.test($("#inputName").val())) && !($("#inputName").val().length<=4)){
+                layer.msg('请使用真实姓名');
+                    return;
+                }
+        if(!($('#inputID').val().length==11 || $('#inputID').val().length==10)) {
+                layer.msg('请输入正确的学号');    
+                    return;
+                }
+        if (!($('#phone').val().length==11)) {
+                layer.msg('请输入正确的手机号');
+                    return;
+                }    
         $.post("<?php echo url('index/doLogin'); ?>",{'userid':userid, 'username':username, 'note':note,'phone':phone ,'user_sex':user_sex},function (data) {
             if(data.code==-1){
                     $("#info_span2").show().html(data.msg);
