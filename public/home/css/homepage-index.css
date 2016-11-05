@@ -79,11 +79,20 @@
 	
 }
 .name span{
-	float: right;
+/*	float: right;
 	position: absolute;
     bottom: 0;
     right: 0;
     max-width: 135px;
+    height: 25px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;*/
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    max-width: 100%;
     height: 25px;
     overflow: hidden;
     white-space: nowrap;
@@ -158,7 +167,10 @@
 }
 .notice-text>div:last-child{
 	float: right;
-	width: 75%;
+
+	/*width: 75%;*/
+
+	width: 95%
 }
 .notice-time{
 	width: 100%;
