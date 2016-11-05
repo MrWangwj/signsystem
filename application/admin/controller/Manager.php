@@ -91,7 +91,7 @@ class Manager extends Controller
 	}
 	public function updatenotice(){
 		if(!empty($_POST)){
-			$result = Db::table('notice')->where('notice_id',$_POST['id'])->update(['notice'=>$_POST['notice']]);
+			$result = Db::table('notice')->where('notice_id',$_POST['id'])->update(['notice'=>$_POST['notice'],'notice_title'=>$_POST['notice_title']]);
 			if($result){
 				return '修改成功';
 			}else{
