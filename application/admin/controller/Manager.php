@@ -24,7 +24,7 @@ class Manager extends Controller
 		return $this->fetch();
 	}
 	public function notice(){
-		$data = Db::table('user') -> join('admin','admin.user_id=user.user_id','LEFT')-> join('notice','notice.admin_id=admin.admin_id')->select();
+		$data = Db::table('user') -> join('admin','admin.user_id=user.user_id')-> join('notice','notice.admin_id=admin.admin_id')->select();
 		$this -> assign('data',$data);
 		return $this ->fetch();
 	}
@@ -81,7 +81,7 @@ class Manager extends Controller
 	}
 	public function addnotice(){
 		if(!empty($_POST)){
-			$result = Db::table('notice') -> insert(['notice'=>$_POST['notice'],'admin_id'=>123456,'notice_title'=>$_POST['notice_title'],'create_time'=> time()]);
+			$result = Db::table('notice') -> insert(['notice'=>$_POST['notice'],'admin_id'=>session('adminid'),'notice_title'=>$_POST['notice_title'],'create_time'=> time()]);
 			if($result){
 				return '添加成功';
 			}else{

@@ -200,7 +200,7 @@ class Count extends Model{
 						// }
 						$sign[$key]['data'][$key2]['online'] = $online[$key][$key2];
 						foreach ($online[$key][$key2] as $k => $v) {
-							$signTime += ($v[1] - $v[0]);
+							$signTime += ($v[1]-$v[0]);
 						}
 					}else{
 						$sign[$key]['data'][$key2]['online'][0][0] = 0;
