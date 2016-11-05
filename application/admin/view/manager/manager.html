@@ -205,7 +205,7 @@
 				
 			}
 			 var myReg = /^[\u4e00-\u9fa5]+$/;
-			if(!(myReg.test($("#form-field-1").val())) && !($("#form-field-1").val().length<=4)){
+			if(!(myReg.test($("#form-field-1").val()) && ($("#form-field-1").val().length<=4))){
 				layer.msg('请使用真实姓名');
                   	return;
                 }
