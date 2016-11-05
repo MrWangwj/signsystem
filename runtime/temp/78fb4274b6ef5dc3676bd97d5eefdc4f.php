@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:77:"/var/www/html/SignSystem2/public/../application/home/view/schedule/index.html";i:1478263346;s:74:"/var/www/html/SignSystem2/public/../application/home/view/public/base.html";i:1478260979;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:77:"/var/www/html/SignSystem2/public/../application/home/view/schedule/index.html";i:1478318730;s:74:"/var/www/html/SignSystem2/public/../application/home/view/public/base.html";i:1478260979;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -213,7 +213,17 @@
       								<input type="number" class="form-control" id="account2" placeholder="填写学号">
     							</div>
   							</div>
+         					<div class="form-group">
+    							<label for="" class="col-sm-2 control-label" style="width: 20%;">姓名</label>
+    							<div class="col-sm-10 test" style="width: 80%;position: relative;">
+      								<input type="text" class="form-control" id="name2" placeholder="通过输入姓名来搜索选择">
+      								<div id="hint2">
+      									
+      								</div>
+    							</div>
+  							</div>
         				</form>
+
       				</div>
       				<div class="modal-footer">
         				<button type="button" class="btn btn-success" id="seeother">查看</button>
@@ -345,6 +355,8 @@
 		$('#name').on('click', function(event) {
 			event.stopPropagation();
 		});
+
+
 		$('#myModal').on('click', function(event) {
 			$('.hint').hide();
 		});	
@@ -368,7 +380,9 @@
 					$('.week').html(getWeeks(data.weeks_number));
 				}
 			);
+			event.stopPropagation();
 		});
+
 		$('#weeks').on('change', function(event) {
 			var id=$("#weeks").find("option:selected").val();
 			if(id == 0){
@@ -395,6 +409,45 @@
 	   			}
 			);
 		});	
+
+
+
+		$('#name2').on('keyup focus', function(event) {
+			$('#hint2').show();
+			var name = $(this).val();
+			$.get("<?php echo url('Schedule:getUser'); ?>", {
+				name: name,
+			}, function(data) {
+				$('#hint2').html(getHint2(data));
+			});
+		});
+		//待解决问题，提示版隐藏问题
+		// $('#hint2').on('click', function(event) {
+		// 	$('#name2').focus();
+		// 	event.stopPropagation();
+		// });
+		
+		$('#name2').on('click', function(event) {
+			event.stopPropagation();
+		});
+
+
+		$('.other').on('click', function(event) {
+			$('#hint2').hide();
+		});	
+		
+
+		$('#hint2').on('click', 'ul', function(event) {
+			var $id =  $(this).find('li:eq(0)').text();
+			var $name = $(this).find('li span:eq(0)').text();
+			$('#account2').val($id);
+			$('#name2').val($name);
+			$('#name2').blur();
+			$('#hint2').hide();
+			
+		});
+
+
 		$('#seeother').on('click', function(event) {
 			var account = $('#account2').val();
 			$.get(

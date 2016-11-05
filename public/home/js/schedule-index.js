@@ -89,6 +89,20 @@
 			html += '</div>';
 		}
 		return html;																	
-	}		
+	}	
+
+	function getHint2(data){
+		var html  = '';
+		for (var i = 0; i < data.length; i++) {
+			html += '<ul>';
+			html += '<li>'+data[i].user_id+'</li>';
+			html += '<li>';
+			html += '<span>'+data[i].name+'</span>';
+			html += '<span>'+data[i].group_name+'</span>';
+			html += '</li>';
+			html += '</ul>';
+		}
+		return html;
+	}	
 
 	

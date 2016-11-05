@@ -1,10 +1,44 @@
-{extend name="public/base" /}
-{block name="link"}
-	<link rel="stylesheet" href="{$Think.config.parse_str.__CSS__}schedule-count.css">
-{/block}
-{block name="main"}
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:77:"/var/www/html/SignSystem2/public/../application/home/view/schedule/count.html";i:1478325677;s:74:"/var/www/html/SignSystem2/public/../application/home/view/public/base.html";i:1478260979;}*/ ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>三月软件小组签到系统</title>
+	<link rel="stylesheet" href="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>css/bootstrap.min.css">
+	<link rel="stylesheet" href="<?php echo \think\Config::get('parse_str.__CSS__'); ?>public-base.css">
+	<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>js/jquery-3.0.0.min.js"></script>
+	<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>js/bootstrap.min.js"></script>
+	<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>js/layer/layer.js"></script>
+	<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>js/public-base.js"></script>	
+	
+	<link rel="stylesheet" href="<?php echo \think\Config::get('parse_str.__CSS__'); ?>schedule-count.css">
+
+</head>
+<body>
+	<div class="backgd">
+		<div class="title">
+			<nav>
+				<label class="logo"> 
+					
+				</label>
+				<div class="right-menu">
+					<ul class="menu">
+						<a href="<?php echo url('Homepage/index'); ?>"><li>首页</li></a>
+						<a href="<?php echo url('Schedule/count'); ?>"><li>课表统计</li></a>
+						<a href="<?php echo url('Schedule/index'); ?>"><li>查看课表</li></a>
+						<a href="<?php echo url('attendance/test'); ?>"><li>本周考勤统计</li></a>
+						
+					</ul>
+					<div class="exit">
+						<a href="<?php echo url('Index/exitlogin'); ?>">退出</a>	
+					</div>					
+				</div>
+			</nav>
+		</div>
+		<div class="main">
+			
 <div>
-	<form action="{:url('Schedule/count')}" method="post" id="test">
+	<form action="<?php echo url('Schedule/count'); ?>" method="post" id="test">
 		<div class="setup clearfix">
 			<span>当前周：</span>
 			<select class="form-control" name="week" id="weeks">
@@ -45,9 +79,9 @@
 				<label>选择组别:</label>
 				<div id="term-group">
 					<span data-id="0">全部</span>
-					{volist name="group" id="vo"}
-						<span data-id="{$vo.group_id}">{$vo.group_name}</span>
-					{/volist}
+					<?php if(is_array($group) || $group instanceof \think\Collection): $i = 0; $__LIST__ = $group;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+						<span data-id="<?php echo $vo['group_id']; ?>"><?php echo $vo['group_name']; ?></span>
+					<?php endforeach; endif; else: echo "" ;endif; ?>
 				</div>
 			</li>
 			<li>
@@ -75,22 +109,22 @@
 				<label for="">筛选条件：</label>
 				<div class="term-label">
 					<ul>
-						{volist name="term" id="vo" key="i" empty="$empty"}
-							<li class='term-label2 {if condition="$i ==$Think.post.foucus"}foucus{/if}'>
-								{volist name="vo" id="vo2" key="j"}
+						<?php if(is_array($term) || $term instanceof \think\Collection): $i = 0; $__LIST__ = $term;if( count($__LIST__)==0 ) : echo "$empty" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+							<li class='term-label2 <?php if($i ==$_POST['foucus']): ?>foucus<?php endif; ?>'>
+								<?php if(is_array($vo) || $vo instanceof \think\Collection): $j = 0; $__LIST__ = $vo;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo2): $mod = ($j % 2 );++$j;?>
 									<label>
-										<input type='hidden' name='term[{$i-1}][{$j-1}][0]' value='{$vo2[0]}'>
-										<input type='hidden' name='term[{$i-1}][{$j-1}][1]' value='{$vo2[1]}'>
-										<input type='hidden' name='term[{$i-1}][{$j-1}][2]' value='{$vo2[2]}'>
-										{$vo2[2]}
+										<input type='hidden' name='term[<?php echo $i-1; ?>][<?php echo $j-1; ?>][0]' value='<?php echo $vo2[0]; ?>'>
+										<input type='hidden' name='term[<?php echo $i-1; ?>][<?php echo $j-1; ?>][1]' value='<?php echo $vo2[1]; ?>'>
+										<input type='hidden' name='term[<?php echo $i-1; ?>][<?php echo $j-1; ?>][2]' value='<?php echo $vo2[2]; ?>'>
+										<?php echo $vo2[2]; ?>
 										<span class='term-close'>X</span>
 									</label>						
-								{/volist}
+								<?php endforeach; endif; else: echo "" ;endif; ?>
 							</li>
-						{/volist}						
+						<?php endforeach; endif; else: echo "$empty" ;endif; ?>						
 					</ul>
 				</div>
-				<input type="hidden" name="foucus" value="{$Think.post.foucus|default=1}" id="term-foucus">
+				<input type="hidden" name="foucus" value="<?php echo (isset($_POST['foucus']) && ($_POST['foucus'] !== '')?$_POST['foucus']:1); ?>" id="term-foucus">
 				<div class="term-but">
 					<span id="addterm">+</span>
 				</div>
@@ -110,25 +144,25 @@
 					<th>星期六</th>
 					<th>星期日</th>
 				</tr>
-				{volist name="data" id="vo"}
+				<?php if(is_array($data) || $data instanceof \think\Collection): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
 					<tr>
-						{volist name="vo" id="vo2"}
+						<?php if(is_array($vo) || $vo instanceof \think\Collection): $i = 0; $__LIST__ = $vo;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo2): $mod = ($i % 2 );++$i;?>
 							<td >
-								{volist name="vo2" id="vo3"}	
-									{$vo3.name},
-								{/volist}							
+								<?php if(is_array($vo2) || $vo2 instanceof \think\Collection): $i = 0; $__LIST__ = $vo2;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo3): $mod = ($i % 2 );++$i;?>	
+									<?php echo $vo3['name']; ?>,
+								<?php endforeach; endif; else: echo "" ;endif; ?>							
 							</td>
-						{/volist}						
+						<?php endforeach; endif; else: echo "" ;endif; ?>						
 					</tr>
-				{/volist}
+				<?php endforeach; endif; else: echo "" ;endif; ?>
  			</table>
 	</div>
 </div>
 <script>
 	$('.menu li:eq(1)').css('background','black');
 
-	$('#seestatus').find("option[value={$Think.post.status|default=1}]").attr("selected",true);
-	$('#weeks').find("option[value={$Think.post.week|default=0}]").attr("selected",true);
+	$('#seestatus').find("option[value=<?php echo (isset($_POST['status']) && ($_POST['status'] !== '')?$_POST['status']:1); ?>]").attr("selected",true);
+	$('#weeks').find("option[value=<?php echo (isset($_POST['week']) && ($_POST['week'] !== '')?$_POST['week']:0); ?>]").attr("selected",true);
 	$('#weeks').on('change', function(event) {
 		$('#test').submit();
 	});
@@ -234,7 +268,7 @@
 			}
 		});
 
-		$.get("{:url('schedule/getTermUser')}",term,function (data) {
+		$.get("<?php echo url('schedule/getTermUser'); ?>",term,function (data) {
 			var html = "<option value='0'>全部</option>";
 			if(data.length ==1 ) html = "";
 			for (var i = 0; i < data.length; i++) {
@@ -245,4 +279,12 @@
   		
 	}
 </script>
-{/block}
+
+		</div>
+		<div class="footer">
+			<span>三月软件@版权所有</span>
+		</div>
+	</div>
+	
+</body>
+</html>

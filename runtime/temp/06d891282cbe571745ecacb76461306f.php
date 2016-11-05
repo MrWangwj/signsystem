@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:77:"/var/www/html/SignSystem2/public/../application/home/view/homepage/index.html";i:1478262454;s:74:"/var/www/html/SignSystem2/public/../application/home/view/public/base.html";i:1478260979;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:77:"/var/www/html/SignSystem2/public/../application/home/view/homepage/index.html";i:1478262896;s:74:"/var/www/html/SignSystem2/public/../application/home/view/public/base.html";i:1478260979;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -386,7 +386,6 @@
     })
     $("#reSignok_btn").click(function () {
         //补签整个时段
-        alert(1111);
         if(temp ==1 ){
             var ymd = $("#redign_YMD").find("option:selected").text();
             var starM = $("#starM_select").find("option:selected").text()*60;

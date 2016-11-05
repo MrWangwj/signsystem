@@ -149,6 +149,12 @@ class Schedule extends Base{
 		
 	}
 
+	public function getUser(){
+		$user = model('user');
+		$users = $user->getNameUser(input('get.name'));
+		return $users;
+	}
+
 	public function count(){
 		$schedule = model('Schedule');
 		$group = db('groups',[], false)->select();
@@ -170,6 +176,20 @@ class Schedule extends Base{
 		$data = $schedule->getCount();
 		return $data;
 	}	
+
+	public function getTermUser(){
+		$where = [];
+		input('get.user_id') && $where['a.user_id'] = input('get.user_id');
+		input('get.position') && $where['a.position'] = input('get.position');
+		input('get.group_id') && $where['b.group_id'] = input('get.group_id');
+       	$user = db('user', [], false)
+       	->field("a.name,a.user_id")
+		->alias("a")
+       	->join('user_group b','a.user_id = b.user_id')
+       	->where($where)
+       	->select();
+       	return $user;
+	}
 }
 
 ?>
