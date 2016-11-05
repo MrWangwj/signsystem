@@ -60,7 +60,7 @@ class Manager extends Controller
 		if (!empty($_POST)) {
 			Db::startTrans();
 			try{
-				$rlt_1 = Db::table('user') -> where('user_id',$_POST['id']) -> update(['name'=>$_POST['name'],'sex'=>$_POST['User_sex'],"position"=>$_POST['position'],'class' => $_POST['class'], 'phone' => $_POST['phone']]);
+				$rlt_1 = Db::table('user') -> where('user_id',$_POST['id']) -> update(['name'=>$_POST['name'],'sex'=>$_POST['User_sex'],"position"=>$_POST['position'],'class' => $_POST['Class'], 'phone' => $_POST['phone']]);
 				if ($rlt_1 === false) {
 					Db::rollback();
 					return '修改失败';

@@ -188,7 +188,7 @@
 
 		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/ace-elements.min.js"></script>
 		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/ace.min.js"></script>
-
+		<script src="{$Think.config.parse_str.__PUBLIC__}js/layer/layer.js"></script>
 		<!-- inline scripts related to this page -->
 <script src="{$Think.config.parse_str.__PUBLIC__}assets/js/jquery-ui-1.10.3.full.min.js"></script>
 	<script type="text/javascript">
@@ -199,10 +199,24 @@
 				group_id:$("#group_id").val(),
 				position:$("#position").val(),
 				User_id:$("#form-field-2").val(),
-				User_sex:user_sex,
 				class:$('#class').val(),
-				phone:$('#phone').val(),
+				phone:$('#phone').val(), 
+				User_sex:user_sex,
+				
 			}
+			 var myReg = /^[\u4e00-\u9fa5]+$/;
+			if(!(myReg.test($("#form-field-1").val()) && ($("#form-field-1").val().length<=4))){
+				layer.msg('请使用真实姓名');
+                  	return;
+                }
+            if(!($('#form-field-2').val().length==11 || $('#form-field-2').val().length==10)) {
+                layer.msg('请输入正确的学号');    
+                    return;
+                }
+            if (!($('#phone').val().length==11)) {
+            	layer.msg('请输入正确的手机号');
+                	return;
+                }    
 				$.ajax({
 					type: 'POST', 
 		         	url: '{$Think.config.parse_str.__MODULE__}/Manager/User', 
