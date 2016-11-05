@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:81:"D:\MyDrivers\htdocs\SignSystem2\public/../application/admin\view\user\member.html";i:1478350031;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,9 +6,9 @@
     <title>角色列表</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<!-- basic styles -->
-		<link href="{$Think.config.parse_str.__PUBLIC__}assets/css/bootstrap.min.css" rel="stylesheet" />
-		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/font-awesome.min.css" />
-		<!-- <link href="{$Think.config.parse_str.__CSS__}bootstrap.min.css?v=3.3.6" rel="stylesheet"> -->
+		<link href="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/css/font-awesome.min.css" />
+		<!-- <link href="<?php echo \think\Config::get('parse_str.__CSS__'); ?>bootstrap.min.css?v=3.3.6" rel="stylesheet"> -->
 		
 		<!--[if IE 7]>
 		  <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
@@ -19,12 +20,12 @@
 
 		<!-- ace styles -->
 
-		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/ace-rtl.min.css" />
-		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/ace-skins.min.css" />
+		<link rel="stylesheet" href="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/css/ace-skins.min.css" />
 		
-		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/ace.min.css" />
-		<link href="{$Think.config.parse_str.__CSS__}style.min.css?v=4.1.0" rel="stylesheet">
-		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/css/ace.min.css" />
+		<link href="<?php echo \think\Config::get('parse_str.__CSS__'); ?>style.min.css?v=4.1.0" rel="stylesheet">
+		<link rel="stylesheet" href="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/css/ace-rtl.min.css" />
 		<!--[if lte IE 8]>
 		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
 		<![endif]-->
@@ -33,7 +34,7 @@
 
 		<!-- ace settings handler -->
 
-		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/ace-extra.min.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/ace-extra.min.js"></script>
 
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 
@@ -63,9 +64,9 @@
 									 	<a class="btn btn-outline "  href="/SignSystem2/public/index.php/admin/Manager/manager">新增</a>
 									 	<label class="inline" style="margin-left:25px;">用户搜索:</label>
 									 	<select name="field" class="control" id="group1">
-                                    		{volist name="info" id="vo"}
-												<option  value="{$vo.group_id}">{$vo.group_name}</option>
-                                    		{/volist}	
+                                    		<?php if(is_array($info) || $info instanceof \think\Collection): $i = 0; $__LIST__ = $info;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+												<option  value="<?php echo $vo['group_id']; ?>"><?php echo $vo['group_name']; ?></option>
+                                    		<?php endforeach; endif; else: echo "" ;endif; ?>	
                                 		</select>
                                 		<label class="inline">或者输入名字:</label>
                                 		<input type="text" id="field" name="keyword" class="control" value="" class="form-control">
@@ -99,40 +100,40 @@
 												</thead>
 
 												<tbody>
-													{volist name="data" id="vo"}
+													<?php if(is_array($data) || $data instanceof \think\Collection): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
 													<tr>	
 														<td class="center">
 															<label>
-																<input type="checkbox" name="chkid" class="ace" value="{$vo.user_id}" />
+																<input type="checkbox" name="chkid" class="ace" value="<?php echo $vo['user_id']; ?>" />
 																<span class="lbl"></span>
 															</label>
 														</td>
-														<td>{$vo.user_id}</td>
+														<td><?php echo $vo['user_id']; ?></td>
 														<td>
-															<a href="#">{$vo.name}</a>
+															<a href="#"><?php echo $vo['name']; ?></a>
 														</td>
-														<td>{$vo.group_name}</td>
-														<td>{$vo.position_name}</td>
+														<td><?php echo $vo['group_name']; ?></td>
+														<td><?php echo $vo['position_name']; ?></td>
 														<td class="hidden-480">
-														{if condition="$vo.sex eq '0'"}
+														<?php if($vo['sex'] == '0'): ?>
 														男
-														{else/}
+														<?php else: ?>
 														女
-														{/if}
+														<?php endif; ?>
 														</td>
 														<td class="hidden-480">
 															<!-- <span class="label label-sm label-warning">Expiring</span> -->
-															{$vo.phone}
+															<?php echo $vo['phone']; ?>
 														</td>
 														
 														<td>
 															<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
 															
 																<button class="btn btn-xs btn-info" type="submit" onclick="update();">
-																	<a href="{$Think.config.parse_str.__MODULE__}/Manager/remanager/{$vo.user_id}"><i class="icon-edit bigger-120"></i></a>
+																	<a href="<?php echo \think\Config::get('parse_str.__MODULE__'); ?>/Manager/remanager/<?php echo $vo['user_id']; ?>"><i class="icon-edit bigger-120"></i></a>
 																</button>
 															
-																<button class="btn btn-xs btn-danger group_id" value="{$vo.user_id}">
+																<button class="btn btn-xs btn-danger group_id" value="<?php echo $vo['user_id']; ?>">
 																	<i class="icon-trash bigger-120"></i>
 																</button>
 															</div>
@@ -145,7 +146,7 @@
 
 																	<ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
 																		<li>
-																			<a href="{$Think.config.parse_str.__MODULE__}/Manager/remanager/{$vo.user_id}" class="tooltip-success" data-rel="tooltip" title="Edit" onclick="update();">
+																			<a href="<?php echo \think\Config::get('parse_str.__MODULE__'); ?>/Manager/remanager/<?php echo $vo['user_id']; ?>" class="tooltip-success" data-rel="tooltip" title="Edit" onclick="update();">
 																				<span class="green">
 																					<i class="icon-edit bigger-120"></i>
 																				</span>
@@ -153,7 +154,7 @@
 																		</li>
 
 																		<li>
-																			<a href="#" class="tooltip-error group_id" value="{$vo.user_id}" data-rel="tooltip" title="Delete">
+																			<a href="#" class="tooltip-error group_id" value="<?php echo $vo['user_id']; ?>" data-rel="tooltip" title="Delete">
 																				<span class="red">
 																					<i class="icon-trash bigger-120"></i>
 																				</span>
@@ -164,7 +165,7 @@
 															</div>
 														</td>
 													</tr>
-													{/volist}
+													<?php endforeach; endif; else: echo "" ;endif; ?>
 													
 												</tbody>
 											</table>
@@ -172,7 +173,7 @@
 									</div><!-- /span -->
 								</div><!-- /row -->
 								<div style="float:right;">	
-								<div style="float:right;margin-top:-25px;"><ul>{$data->render()}</ul></div>	
+								<div style="float:right;margin-top:-25px;"><ul><?php echo $data->render(); ?></ul></div>	
 								</div>				
 								<div class="cf" style="folat:right;width:100px;">
                                		 <input id="submit" class="btn btn-outline " type="button" value="删除">                              		 
@@ -188,7 +189,7 @@
 
 		<!--[if !IE]> -->
 
-		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/jquery.min.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/jquery.min.js"></script>
 
 		<!-- <![endif]-->
 
@@ -199,7 +200,7 @@
 		<!--[if !IE]> -->
 
 		<script type="text/javascript">
-			window.jQuery || document.write("<script src='{$Think.config.parse_str.__PUBLIC__}assets/jsassets/js/jquery-2.0.3.min.js'>"+"<"+"script>");
+			window.jQuery || document.write("<script src='<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/jsassets/js/jquery-2.0.3.min.js'>"+"<"+"script>");
 		</script>
 
 		<!-- <![endif]-->
@@ -211,10 +212,10 @@
 <![endif]-->
 
 		<script type="text/javascript">
-			if("ontouchend" in document) document.write("<script src='{$Think.config.parse_str.__PUBLIC__}assets/js/jquery.mobile.custom.min.js'>"+"<"+"script>");
+			if("ontouchend" in document) document.write("<script src='<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/jquery.mobile.custom.min.js'>"+"<"+"script>");
 		</script>
-		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/bootstrap.min.js"></script>
-		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/typeahead-bs2.min.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/bootstrap.min.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/typeahead-bs2.min.js"></script>
 
 		<!-- page specific plugin scripts -->
 
@@ -223,13 +224,13 @@
 		<![endif]-->
 		<!-- ace scripts -->
 
-		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/ace-elements.min.js"></script>
-		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/ace.min.js"></script>
-		<script src="{$Think.config.parse_str.__PUBLIC__}js/layer/layer.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/ace-elements.min.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/ace.min.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>js/layer/layer.js"></script>
 
 		<!-- inline scripts related to this page -->
-		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/jquery.dataTables.min.js"></script>
-		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/jquery.dataTables.bootstrap.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/jquery.dataTables.min.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/jquery.dataTables.bootstrap.js"></script>
 <script type="text/javascript">
 	
 	$("#submit").on('click',function(){
@@ -253,7 +254,7 @@
 		    layer.close(index);
 		        $.ajax({
 		        	type:'POST',
-		        	url: '{$Think.config.parse_str.__MODULE__}/User/deletes', 
+		        	url: '<?php echo \think\Config::get('parse_str.__MODULE__'); ?>/User/deletes', 
 		          	data:  datavalue, 
 		          	async: false,  
 					cache: false, 
@@ -270,7 +271,7 @@
     	});
 	});
 	function update($id){
-		window.location.href ='{$Think.config.parse_str.__MODULE__}/Manager/remanager/user_id='+$id;
+		window.location.href ='<?php echo \think\Config::get('parse_str.__MODULE__'); ?>/Manager/remanager/user_id='+$id;
 	}
 	$('.group_id').on('click',function(){
 		var id = $(this).attr("value");
@@ -281,7 +282,7 @@
 		    layer.close(index);
 				$.ajax({
 					type: 'POST', 
-		         	url: '{$Think.config.parse_str.__MODULE__}/User/delete', 
+		         	url: '<?php echo \think\Config::get('parse_str.__MODULE__'); ?>/User/delete', 
 		          	data:  'id='+id,  
 		          	async: false,  
 					cache: false, 
@@ -302,7 +303,7 @@
 		var	group_id = $("#group1").val();
 		var name = $('#field').val();
 	   if(!($.trim(name)=='')||group_id!=''){
-	  	window.location.href='{$Think.config.parse_str.__MODULE__}/User/member?group_id='+group_id+'&name='+name;
+	  	window.location.href='<?php echo \think\Config::get('parse_str.__MODULE__'); ?>/User/member?group_id='+group_id+'&name='+name;
 		}
 	}
 </script> 

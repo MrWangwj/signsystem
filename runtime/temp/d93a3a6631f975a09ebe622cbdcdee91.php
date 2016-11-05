@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:80:"D:\MyDrivers\htdocs\SignSystem2\public/../application/home\view\index\index.html";i:1478327966;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:80:"D:\MyDrivers\htdocs\SignSystem2\public/../application/home\view\index\index.html";i:1478351031;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -197,7 +197,6 @@
         var phone = $("#phone").val();
         var user_sex = $("input[name ='user_sex']:checked").val();
         var myReg = /^[\u4e00-\u9fa5]+$/;
-        alert($("#inputName").val().length);
         if(!(myReg.test($("#inputName").val()) && ($("#inputName").val().length<=4))){
 
                 layer.msg('请使用真实姓名');

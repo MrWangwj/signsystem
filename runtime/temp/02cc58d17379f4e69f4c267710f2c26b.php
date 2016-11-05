@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:82:"D:\MyDrivers\htdocs\SignSystem2\public/../application/admin\view\user\useradd.html";i:1478350868;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,9 +6,9 @@
     <title>审批列表</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<!-- basic styles -->
-		<link href="{$Think.config.parse_str.__PUBLIC__}assets/css/bootstrap.min.css" rel="stylesheet" />
-		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/font-awesome.min.css" />
-		<link href="{$Think.config.parse_str.__CSS__}style.min.css?v=4.1.0" rel="stylesheet">
+		<link href="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/css/font-awesome.min.css" />
+		<link href="<?php echo \think\Config::get('parse_str.__CSS__'); ?>style.min.css?v=4.1.0" rel="stylesheet">
 		<!--[if IE 7]>
 		  <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
 		<![endif]-->
@@ -18,11 +19,11 @@
 
 		<!-- ace styles -->
 
-		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/ace-rtl.min.css" />
-		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/ace-skins.min.css" />
-		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/ace.min.css" />
-		<link href="{$Think.config.parse_str.__CSS__}style.min.css?v=4.1.0" rel="stylesheet">
-		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/css/ace-skins.min.css" />
+		<link rel="stylesheet" href="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/css/ace.min.css" />
+		<link href="<?php echo \think\Config::get('parse_str.__CSS__'); ?>style.min.css?v=4.1.0" rel="stylesheet">
+		<link rel="stylesheet" href="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/css/ace-rtl.min.css" />
 		<!--[if lte IE 8]>
 		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
 		<![endif]-->
@@ -31,7 +32,7 @@
 
 		<!-- ace settings handler -->
 
-		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/ace-extra.min.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/ace-extra.min.js"></script>
 
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 
@@ -80,29 +81,29 @@
 												</thead>
 
 												<tbody>
-												{volist name="data" id="vo"}
+												<?php if(is_array($data) || $data instanceof \think\Collection): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
 													<tr>	
 														<td class="center">
 															<label>
-																<input type="checkbox" name="chkid" class="ace" value="{$vo.id}" />
+																<input type="checkbox" name="chkid" class="ace" value="<?php echo $vo['id']; ?>" />
 																<span class="lbl"></span>
 															</label>
 														</td>
 														<td>
-															{$vo.id}
+															<?php echo $vo['id']; ?>
 														</td>
 														<td>
-															{$vo.name}
+															<?php echo $vo['name']; ?>
 														</td>
 														<td class="hidden-480">
-														{if condition="$vo.sex eq '0'"}
+														<?php if($vo['sex'] == '0'): ?>
 														男
-														{else/}
+														<?php else: ?>
 														女
-														{/if}
+														<?php endif; ?>
 														</td>
-														<td>{$vo.note}</td>
-														<td>{$vo.phone}</td>
+														<td><?php echo $vo['note']; ?></td>
+														<td><?php echo $vo['phone']; ?></td>
 <!-- 														<td>
 															开发一组
 														</td>
@@ -115,17 +116,17 @@
 														<td>
 															<div class="visible-md visible-lg hidden-sm  btn-group">
 															
-																<button class="btn btn-xs btn-info  check" type="submit" value="{$vo.id}">
+																<button class="btn btn-xs btn-info  check" type="submit" value="<?php echo $vo['id']; ?>">
 																	同意
 																</button>
 															
-																<button class="btn btn-xs btn-danger refuse" value="{$vo.id}">
+																<button class="btn btn-xs btn-danger refuse" value="<?php echo $vo['id']; ?>">
 																	拒绝
 																</button>
 															</div>
 														</td>
 													</tr>
-												{/volist}
+												<?php endforeach; endif; else: echo "" ;endif; ?>
 												</tbody>
 											</table>
 										</div><!-- /.table-responsive -->
@@ -149,7 +150,7 @@
 
 		<!--[if !IE]> -->
 
-		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/jquery.min.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/jquery.min.js"></script>
 
 		<!-- <![endif]-->
 
@@ -160,7 +161,7 @@
 		<!--[if !IE]> -->
 
 		<script type="text/javascript">
-			window.jQuery || document.write("<script src='{$Think.config.parse_str.__PUBLIC__}assets/jsassets/js/jquery-2.0.3.min.js'>"+"<"+"script>");
+			window.jQuery || document.write("<script src='<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/jsassets/js/jquery-2.0.3.min.js'>"+"<"+"script>");
 		</script>
 
 		<!-- <![endif]-->
@@ -172,10 +173,10 @@
 <![endif]-->
 
 		<script type="text/javascript">
-			if("ontouchend" in document) document.write("<script src='{$Think.config.parse_str.__PUBLIC__}assets/js/jquery.mobile.custom.min.js'>"+"<"+"script>");
+			if("ontouchend" in document) document.write("<script src='<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/jquery.mobile.custom.min.js'>"+"<"+"script>");
 		</script>
-		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/bootstrap.min.js"></script>
-		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/typeahead-bs2.min.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/bootstrap.min.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/typeahead-bs2.min.js"></script>
 
 		<!-- page specific plugin scripts -->
 
@@ -184,15 +185,15 @@
 		<![endif]-->
 		<!-- ace scripts -->
 
-		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/ace-elements.min.js"></script>
-		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/ace.min.js"></script>
-		<script src="{$Think.config.parse_str.__PUBLIC__}js/layer/layer.js"></script>	
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/ace-elements.min.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/ace.min.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>js/layer/layer.js"></script>	
 		<!-- inline scripts related to this page -->
-		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/jquery.dataTables.min.js"></script>
-		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/jquery.dataTables.bootstrap.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/jquery.dataTables.min.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/jquery.dataTables.bootstrap.js"></script>
 <script type="text/javascript">
 	$(function(){
-		if({$info}==0){
+		if(<?php echo $info; ?>==0){
 			$("#agree").css('display','none');
 		}
 	});
@@ -200,7 +201,7 @@
 		var user_id = $(this).attr("value");
 		$.ajax({
 				type: 'POST', 
-	         	url: '{$Think.config.parse_str.__MODULE__}/User/aduser', 
+	         	url: '<?php echo \think\Config::get('parse_str.__MODULE__'); ?>/User/aduser', 
 	          	data:  'id='+user_id,  
 	          	async: false,  
 				cache: false, 
@@ -218,7 +219,7 @@
 		var user_id = $(this).attr("value");
 		$.ajax({
 				type: 'POST', 
-	         	url: '{$Think.config.parse_str.__MODULE__}/User/refuse_user', 
+	         	url: '<?php echo \think\Config::get('parse_str.__MODULE__'); ?>/User/refuse_user', 
 	          	data:  'id='+user_id,  
 	          	async: false,  
 				cache: false, 
@@ -247,7 +248,7 @@
         }
         $.ajax({
 	        	type:'POST',
-	        	url: '{$Think.config.parse_str.__MODULE__}/User/adusers', 
+	        	url: '<?php echo \think\Config::get('parse_str.__MODULE__'); ?>/User/adusers', 
 	          	data:  datavalue, 
 	          	async: false,  
 				cache: false, 

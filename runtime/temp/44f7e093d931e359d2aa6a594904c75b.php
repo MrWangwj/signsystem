@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:81:"D:\MyDrivers\htdocs\SignSystem2\public/../application/admin\view\group\group.html";i:1478349655;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,8 +6,8 @@
     <title>角色列表</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<!-- basic styles -->
-		<link href="{$Think.config.parse_str.__PUBLIC__}assets/css/bootstrap.min.css" rel="stylesheet" />
-		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/font-awesome.min.css" />
+		<link href="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/css/font-awesome.min.css" />
 		
 		<!--[if IE 7]>
 		  <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
@@ -17,10 +18,10 @@
 		<!-- fonts -->
 
 		<!-- ace styles -->
-		<link href="{$Think.config.parse_str.__CSS__}style.min.css?v=4.1.0" rel="stylesheet">
-		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/ace.min.css" />		
-		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/ace-rtl.min.css" />
-		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/ace-skins.min.css" />
+		<link href="<?php echo \think\Config::get('parse_str.__CSS__'); ?>style.min.css?v=4.1.0" rel="stylesheet">
+		<link rel="stylesheet" href="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/css/ace.min.css" />		
+		<link rel="stylesheet" href="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/css/ace-skins.min.css" />
 
 
 		<!--[if lte IE 8]>
@@ -31,7 +32,7 @@
 
 		<!-- ace settings handler -->
 
-		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/ace-extra.min.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/ace-extra.min.js"></script>
 
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 
@@ -78,34 +79,34 @@
 												</thead>
 
 												<tbody>
-												{foreach name="info" id="vo"}
+												<?php if(is_array($info) || $info instanceof \think\Collection): if( count($info)==0 ) : echo "" ;else: foreach($info as $key=>$vo): ?>
 												 
 													<tr>
 														<td class="center" style="width:50px;">
 															<label>
-																<input type="checkbox" name="chkid" class="ace" value="{$vo.group_id}" />
+																<input type="checkbox" name="chkid" class="ace" value="<?php echo $vo['group_id']; ?>" />
 																<span class="lbl"></span>
 															</label>
 														</td>
 
 														<td style="width:200px;">
-															<a   href="#">{$vo.group_name}</a>
+															<a   href="#"><?php echo $vo['group_name']; ?></a>
 														</td>
 														
 														<td >
-														{volist name="data" id="vi"}{if $vo.group_id eq $vi.group_id}{$vi.name}&nbsp{/if}{/volist}	
+														<?php if(is_array($data) || $data instanceof \think\Collection): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vi): $mod = ($i % 2 );++$i;if($vo['group_id'] == $vi['group_id']): ?><?php echo $vi['name']; ?>&nbsp<?php endif; endforeach; endif; else: echo "" ;endif; ?>	
 														</td>
 														
 														<td style="width:150px;margin:auto;">
 															<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
-																<button class="btn btn-xs btn-info updgroup" type="submit"  value="{$vo.group_id}">
+																<button class="btn btn-xs btn-info updgroup" type="submit"  value="<?php echo $vo['group_id']; ?>">
 																	<i class="icon-edit bigger-120"></i>
 																</button>
 
-																<button class="btn btn-xs btn-danger deluser" type="submit"  value="{$vo.group_id}">
+																<button class="btn btn-xs btn-danger deluser" type="submit"  value="<?php echo $vo['group_id']; ?>">
 																	<i class="icon-trash bigger-120"></i>
 																</button>
-																<button class="btn btn-xs btn-info  changeuser" data-toggle="modal" data-target="#myModal" value="{$vo.group_id}">
+																<button class="btn btn-xs btn-info  changeuser" data-toggle="modal" data-target="#myModal" value="<?php echo $vo['group_id']; ?>">
 																	<i class="icon-zoom-in bigger-130"></i>
 																</button>
 															</div>
@@ -118,7 +119,7 @@
 
 																	<ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
 																		<li>
-																			<a href="#" class="tooltip-success updgroup" data-rel="tooltip" title="Edit" value="{$vo.group_id}">
+																			<a href="#" class="tooltip-success updgroup" data-rel="tooltip" title="Edit" value="<?php echo $vo['group_id']; ?>">
 																				<span class="green">
 																					<i class="icon-edit bigger-120"></i>
 																				</span>
@@ -126,7 +127,7 @@
 																		</li>
 
 																		<li>
-																			<a href="#" class="tooltip-error delgroup" data-rel="tooltip" title="Delete" value="{$vo.group_id}">
+																			<a href="#" class="tooltip-error delgroup" data-rel="tooltip" title="Delete" value="<?php echo $vo['group_id']; ?>">
 																				<span class="red">
 																					<i class="icon-trash bigger-120"></i>
 																				</span>
@@ -134,7 +135,7 @@
 																		</li>
 
 																		<li>
-																			<a href="#" class="tooltip-error " data-rel="tooltip" title="Delete" value="{$vo.group_id}">
+																			<a href="#" class="tooltip-error " data-rel="tooltip" title="Delete" value="<?php echo $vo['group_id']; ?>">
 																				<span class="red">
 																					<i class="icon-zoom-in bigger-130"></i>
 																				</span>
@@ -146,7 +147,7 @@
 														</td>
 														
 													</tr>												
-													{/foreach}										
+													<?php endforeach; endif; else: echo "" ;endif; ?>										
 												</tbody>
 											</table>
 										</div><!-- /.table-responsive -->
@@ -190,7 +191,7 @@
 				
 		<!--[if !IE]> -->
 
-		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/jquery.min.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/jquery.min.js"></script>
 
 		<!-- <![endif]-->
 
@@ -201,7 +202,7 @@
 		<!--[if !IE]> -->
 
 		<script type="text/javascript">
-			window.jQuery || document.write("<script src='{$Think.config.parse_str.__PUBLIC__}assets/jsassets/js/jquery-2.0.3.min.js'>"+"<"+"script>");
+			window.jQuery || document.write("<script src='<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/jsassets/js/jquery-2.0.3.min.js'>"+"<"+"script>");
 		</script>
 
 		<!-- <![endif]-->
@@ -213,10 +214,10 @@
 <![endif]-->
 
 		<script type="text/javascript">
-			if("ontouchend" in document) document.write("<script src='{$Think.config.parse_str.__PUBLIC__}assets/js/jquery.mobile.custom.min.js'>"+"<"+"script>");
+			if("ontouchend" in document) document.write("<script src='<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/jquery.mobile.custom.min.js'>"+"<"+"script>");
 		</script>
-		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/bootstrap.min.js"></script>
-		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/typeahead-bs2.min.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/bootstrap.min.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/typeahead-bs2.min.js"></script>
 
 		<!-- page specific plugin scripts -->
 
@@ -225,19 +226,19 @@
 		<![endif]-->
 		<!-- ace scripts -->
 
-		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/ace-elements.min.js"></script>
-		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/ace.min.js"></script>
-		<script src="{$Think.config.parse_str.__PUBLIC__}js/layer/layer.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/ace-elements.min.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/ace.min.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>js/layer/layer.js"></script>
 
 		<!-- inline scripts related to this page -->
-		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/jquery.dataTables.min.js"></script>
-		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/jquery.dataTables.bootstrap.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/jquery.dataTables.min.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/jquery.dataTables.bootstrap.js"></script>
 <script type="text/javascript">
 function addgroup(){
 		var group = $("#group").val();
 		$.ajax({
 			type: 'POST', 
-         	url: '{$Think.config.parse_str.__MODULE__}/Group/groupadd', 
+         	url: '<?php echo \think\Config::get('parse_str.__MODULE__'); ?>/Group/groupadd', 
           	data:  'group='+group,  
           	async: false,  
 			cache: false, 
@@ -268,7 +269,7 @@ $('.updgroup').on('click',function(){
 		}
 		$.ajax({
 			type: 'POST', 
-         	url: '{$Think.config.parse_str.__MODULE__}/Group/upgroup', 
+         	url: '<?php echo \think\Config::get('parse_str.__MODULE__'); ?>/Group/upgroup', 
           	data:  number,  
           	async: false,  
 			cache: false, 
@@ -295,7 +296,7 @@ $('.deluser').on('click',function(){
 		    layer.close(index);
 		   		$.ajax({
 		          type: 'POST', 
-		          url: '{$Think.config.parse_str.__MODULE__}/Group/delgroup', 
+		          url: '<?php echo \think\Config::get('parse_str.__MODULE__'); ?>/Group/delgroup', 
 		          data:  'group_id='+group_id,  
 		          async: false,  
 		          cache: false, 
@@ -315,7 +316,7 @@ $('.changeuser').on('click',function(){
 	group_id = $(this).attr("value");
 	$.ajax({
           type: 'POST', 
-          url: '{$Think.config.parse_str.__MODULE__}/Group/change', 
+          url: '<?php echo \think\Config::get('parse_str.__MODULE__'); ?>/Group/change', 
           data:  'group_id='+group_id,  
           async: false,  
           cache: false, 
@@ -349,7 +350,7 @@ function change(){
 	console.log(data);
 	$.ajax({
           type: 'POST', 
-          url: '{$Think.config.parse_str.__MODULE__}/Group/changeuser', 
+          url: '<?php echo \think\Config::get('parse_str.__MODULE__'); ?>/Group/changeuser', 
           data:  data,  
           async: false,  
           cache: false, 
@@ -385,7 +386,7 @@ $('#submit').on('click',function(){
 		    layer.close(index);
 		   		$.ajax({
 		          type: 'POST', 
-		          url: '{$Think.config.parse_str.__MODULE__}/Group/deletegroup', 
+		          url: '<?php echo \think\Config::get('parse_str.__MODULE__'); ?>/Group/deletegroup', 
 		          data:  datavalue,  
 		          async: false,  
 		          cache: false, 

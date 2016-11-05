@@ -77,7 +77,7 @@ class User extends Base
 			 	$data = Db::table('check') -> where('id',$_POST['id']) ->find();
 			 	$rlt_1 = Db::table('user') -> insert(['name' => $data['name'],'user_id'=>$data['id'],'class'=>$data['note'],'phone'=>$data['phone'],'sex'=>$data['sex']]);
 			 	if($rlt_1 === false){
-			 		Db::rollback();
+			 		Db::rollback(); 
 			 		return '添加失败';
 			 	}
 			 	$rlt_2 = Db::table('user_group') -> insert(['user_id'=>$data['id'],'group_id'=>1]);
@@ -93,7 +93,41 @@ class User extends Base
 			 	Db::commit();    
 			 	return '添加成功';
 			 }catch (\Exception $e) {
-			 	dump("dsaf00");
+			    // 回滚事务
+			    Db::rollback();
+			      return '添加失败';
+			}
+		}
+	}
+	public function adusers(){
+		if(!empty($_POST)){
+			  Db::startTrans();
+			  try{
+			 	$data = Db::table('check') -> where("id in(".$_POST['invalue'].")") ->select();
+			 	foreach ($data as $key => $value) {
+			 		$datas[$key] =['name' => $value['name'],'user_id'=>$value['id'],'class'=>$value['note'],'phone'=>$value['phone'],'sex'=>$value['sex']];
+			 	}
+			 	$rlt_1 = Db::table('user') -> insertAll($datas);
+			 	if($rlt_1 === false){
+			 		Db::rollback(); 
+			 		return '添加失败';
+			 	}
+			 	foreach ($data as $key => $value) {
+			 		$datas[$key] = ['user_id'=>$value['id'],'group_id'=>1];
+			 	}
+			 	$rlt_2 = Db::table('user_group') -> insertAll($datas);
+			 	if($rlt_2 === false){
+			 		Db::rollback();
+			 		return '添加失败';
+			 	}
+			 	$rlt_3 = Db::table('check') -> where("id in(".$_POST['invalue'].")") ->delete();
+			 	if($rlt_3 === false){
+			 		Db::rollback();
+			 		return '添加失败';
+			 	}
+			 	Db::commit();    
+			 	return '添加成功';
+			 	}catch (\Exception $e) {
 			    // 回滚事务
 			    Db::rollback();
 			      return '添加失败';
