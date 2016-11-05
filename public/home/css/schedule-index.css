@@ -81,3 +81,21 @@
 .text-week>div>button:hover{
 	background-color: #c9302c;
 }
+#hint2{
+	width: 87%;
+	background-color: #FFF;
+	position: absolute;
+	display: none;
+}
+#hint2 ul{
+	border-bottom: 1px solid #C23001;
+	padding: 10px;
+	cursor: pointer;
+}
+
+#hint2 li{
+	
+}
+#hint2 li span:last-child{
+	float: right;
+}

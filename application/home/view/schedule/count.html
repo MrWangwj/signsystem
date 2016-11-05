@@ -63,10 +63,8 @@
 				<label>选择人员:</label>
 				<div>
 					<select class="form-control" id="term-personnel">
-						<option value="0">全部</option>
-		  				{volist name="users" id="vo"}
-							<option value="{$vo.user_id}">{$vo.name}</option>
-						{/volist}
+						<!-- <option value="0">全部</option> -->
+		  				
 					</select>
 				</div>
 			</li>
@@ -125,86 +123,6 @@
 				{/volist}
  			</table>
 	</div>
-
-	<!-- <form action="{:url('Schedule/count')}" method="post" id="test">
-
-
-		<div class="term-input clearfix">
-			<span>组别：</span>
-			<select name="1" id="term-group" class="form-control">
-				<option value="0">全部</option>
-				{volist name="group" id="vo"}
-					<option value="{$vo.group_id}">{$vo.group_name}</option>
-				{/volist}
-			</select>
-			<span>职务：</span>
-			<select class="form-control" id="term-post">
-  				<option value="0">全部</option>
-  				<option value="2">事务负责人</option>
-  				<option value="1">成员</option>
-			</select>
-			<span>人员：</span>
-			<select class="form-control" id="term-personnel">
-				<option value="">全部</option>
-  				{volist name="users" id="vo"}
-					<option value="{$vo.user_id}">{$vo.name}</option>
-				{/volist}
-			</select>
-		</div>
-
-
-
-		<div class="term">
-			<div class="term-result clearfix">
-				<label for="">筛选条件：</label>
-					<div class="term-label">
-					{volist name="term" id="vo" key="i" empty="$empty"}
-						<div class='term-label2 {if condition="$i ==$Think.post.foucus"}foucus{/if}'>
-							{volist name="vo" id="vo2" key="j"}
-								<label>
-									<input type='hidden' name='term[{$i-1}][{$j-1}][0]' value='{$vo2[0]}'>
-									<input type='hidden' name='term[{$i-1}][{$j-1}][1]' value='{$vo2[1]}'>
-									<input type='hidden' name='term[{$i-1}][{$j-1}][2]' value='{$vo2[2]}'>
-									{$vo2[2]}
-									<span class='term-close'>X</span>
-								</label>						
-							{/volist}
-						</div>
-					{/volist}
-				</div>
-				<input type="hidden" name="foucus" value="{$Think.post.foucus|default=1}" id="term-foucus">
-				<div class="term-but">
-					<span  class="btn btn-primary" id="addterm">+添加新的条件</span>
-				</div>
-			</div>
-		</div>
-	</form>
-
-	
-	<div class="table-responsive personnel">
- 			<table class="table table-bordered">
-				<tr>
-					<th>星期一</th>
-					<th>星期二</th>
-					<th>星期三</th>
-					<th>星期四</th>
-					<th>星期五</th>
-					<th>星期六</th>
-					<th>星期日</th>
-				</tr>
-				{volist name="data" id="vo"}
-					<tr>
-						{volist name="vo" id="vo2"}
-							<td >
-								{volist name="vo2" id="vo3"}	
-									{$vo3.name},
-								{/volist}							
-							</td>
-						{/volist}						
-					</tr>
-				{/volist}
- 			</table>
-	</div> -->
 </div>
 <script>
 	$('.menu li:eq(1)').css('background','black');
@@ -229,6 +147,7 @@
 			});
 			$(this).addClass('foucus');
 			$('#term-foucus').val($(this).index()+1);
+			getUser();	
 		}
 	});
 
@@ -251,7 +170,8 @@
 				}
 			});
 			$('.term-label>ul').append("<li class='term-label2 foucus'></li>");
-			$('#term-foucus').val($('.foucus').index()+1);			
+			$('#term-foucus').val($('.foucus').index()+1);	
+			getUser();		
 		}
 
 	});
@@ -262,6 +182,7 @@
 		clearTerm("group_id");
 		if(val != 0)
 			$('.foucus').append(getLabel(text, val, "group_id"));
+			
 		$('#test').submit();
 	});
 	$('#term-post').on('click', 'span', function(event) {
@@ -298,6 +219,30 @@
 				$(this).remove();
 			}
 		});
+	}
+	getUser();
+	function getUser(){
+		var term = {};
+		$('.foucus>label').each(function(index, el) {
+			var val = $(this).find('input:eq(1)').val();
+			if($(this).find('input:eq(0)').val() == 'position'){
+				term.position = val; 
+			}else if($(this).find('input:eq(0)').val() == 'group_id'){
+				term.group_id = val;
+			}else if($(this).find('input:eq(0)').val() == 'user_id'){
+				term.user_id = val;
+			}
+		});
+
+		$.get("{:url('schedule/getTermUser')}",term,function (data) {
+			var html = "<option value='0'>全部</option>";
+			if(data.length ==1 ) html = "";
+			for (var i = 0; i < data.length; i++) {
+				html += "<option value='"+data[i].user_id+"'>"+data[i].name+"</option>";
+			}
+			$('#term-personnel').html(html);
+        });
+  		
 	}
 </script>
 {/block}
