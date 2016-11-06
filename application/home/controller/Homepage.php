@@ -195,8 +195,8 @@ class Homepage extends Base
             ->where('user_id',$userid)
             ->where('star|over', 'between',[$star, $over])
             ->select();
-            if(!$alltime)
-            return json(['code' =>-1,'msg'=>"补签时间段有冲突~"]);
+            if($alltime != false) 
+                return json(['code' =>-1,'msg'=>"补签时间段有冲突~"]);
         
 //        $data = [
 //            'user_id' => $userid,F

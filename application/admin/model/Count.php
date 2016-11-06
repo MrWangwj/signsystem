@@ -192,27 +192,28 @@ class Count extends Model{
 		foreach ($userNoClass as $key => $value) {
 			$signTime = 0; $noSignTime = 0;
 			foreach ($value as $key2 => $value2) {
+				if (isset($online[$key][$key2])) {
+					foreach ($online[$key][$key2] as $k => $v) {
+						$signTime += ($v[1]-$v[0]);
+					}	
+					$sign[$key]['data'][$key2]['online'] = $online[$key][$key2];				
+				}
+
 				foreach ($value2 as $sectionkey => $sectionvalue) {
 					$noSign = [$sectionvalue]; // 默认整节课缺勤
 					if(isset($online[$key][$key2])){
-						// foreach ($online[$key][$key2] as $onlinekey => $onlinevalue) {
 						$noSign = $this->getNoSign($noSign,$online[$key][$key2]);
-						// }
-						$sign[$key]['data'][$key2]['online'] = $online[$key][$key2];
-						foreach ($online[$key][$key2] as $k => $v) {
-							$signTime += ($v[1] - $v[0]);
-						}
 					}else{
 						$sign[$key]['data'][$key2]['online'][0][0] = 0;
 						$sign[$key]['data'][$key2]['online'][0][1] = 0;	
 					}	
-
 					foreach ($noSign as $noSignkey => $noSignalue) {
 						!isset($sign[$key]['data'][$key2]['noSign'])?$count=0:$count = count($sign[$key]['data'][$key2]['noSign']);
 						$sign[$key]['data'][$key2]['noSign'][$count] =  $noSignalue;
 						$noSignTime += $noSignalue[1] - $noSignalue[0];
 					}
 				}
+
 				if(!isset($sign[$key]['data'][$key2]['noSign'])){
 					$sign[$key]['data'][$key2]['noSign'][0][0] = 0;
 					$sign[$key]['data'][$key2]['noSign'][0][1] = 0;	

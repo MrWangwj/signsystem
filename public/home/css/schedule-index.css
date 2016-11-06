@@ -86,6 +86,8 @@
 	background-color: #FFF;
 	position: absolute;
 	display: none;
+	max-height: 200px;
+    overflow: auto;
 }
 #hint2 ul{
 	border-bottom: 1px solid #C23001;
