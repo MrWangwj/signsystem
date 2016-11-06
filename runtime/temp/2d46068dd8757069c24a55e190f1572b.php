@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:75:"D:\MyDrivers\htdocs\SignSystem2\public/../application/admin\view\index.html";i:1478317869;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:75:"D:\MyDrivers\htdocs\SignSystem2\public/../application/admin\view\index.html";i:1478405668;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,7 +30,7 @@
             <ul class="nav" id="side-menu">
                 <li class="nav-header">
                     <div class="dropdown profile-element">
-                        <span><img alt="image" class="img-circle" src="<?php echo \think\Config::get('parse_str.__IMAGE__'); ?>profile_small.jpg"/></span>
+                        <span style="color:#fff;font-size:20px;"><img alt="image" class="img-circle" src="<?php echo \think\Config::get('parse_str.__IMAGE__'); ?>profile_small.jpg"/><?php echo $admin['name']; ?></span>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="clear">
                                 <span class="block m-t-xs"><strong class="font-bold"></strong></span>
@@ -43,16 +43,14 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="logo-element">AD
-                    </div>
                 </li>
-                <!--<li class="menu">-->
-                    <!--<a href="<?php echo url('admin/index/index'); ?>">-->
-                        <!--<i class=""></i>-->
-                        <!--<span class="nav-label">后台首页</span>-->
-                        <!--<span class="fa arrow"></span>-->
-                    <!--</a>-->
-                <!--</li>-->
+               <!--  <li class="menu">
+                    <a href="<?php echo url('admin/index/index'); ?>">
+                        <i class=""></i>
+                        <span class="nav-label">后台首页</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                </li> -->
 
                 <li class="menu">
                     <a href="">
