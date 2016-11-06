@@ -7,17 +7,17 @@ use think\Validate;
 class Schedule extends Model{
 
     protected $rule =   [
-        'name'  => 'require|max:20',
-        'classroom'   => 'require|max:8',
+        'name'  => 'require|max:30',
+        'classroom'   => 'require|max:20',
         'teacher'   => 'require|max:10',
         'weeks_number' => 'require',    
     ];
 
     protected $msg  =   [
         'name.require' => '名称不能为空',
-        'name.max'     => '名称最多不能超过20个字符',
+        'name.max'     => '名称最多不能超过30个字符',
         'classroom.require' => '教室不能为空',
-        'classroom.max'     => '名称最多不能超过8个字符',
+        'classroom.max'     => '名称最多不能超过20个字符',
         'teacher.require' => '老师不能为空',
         'teacher.max'     => '名称最多不能超过10个字符',
         'weeks_number.require'   => '周数不能为空',

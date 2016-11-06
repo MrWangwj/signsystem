@@ -41,7 +41,7 @@
 	position: absolute;
 	z-index: 10;
 	width: 94%;
-	height: 200px;
+	max-height: 200px;
 	overflow: overlay;
 	/*display: none;*/
 }

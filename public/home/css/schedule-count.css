@@ -28,12 +28,12 @@
 	border: 1px solid #C23001;
 }
 .term-input{
-	height: 120px;
+	/*height: 120px;*/
     /*border: 1px solid blue;*/
     margin-top: 20px;
 }
 .term-input li{
-	height: 40px;
+	min-height: 40px;
     /*border: 1px solid red;*/
     line-height: 40px;
     border-bottom: 1px solid #9F9F9F;
@@ -135,6 +135,10 @@
 }
 .personnel td{
 	width:14.4%;
+	max-height: 100px;
+	overflow: hidden;
+    /*white-space: nowrap;*/
+    text-overflow: ellipsis;
 }
 .personnel{
 	margin-top: 20px;
