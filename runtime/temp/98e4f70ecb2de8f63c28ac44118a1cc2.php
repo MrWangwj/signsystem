@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:85:"D:\MyDrivers\htdocs\SignSystem2\public/../application/admin\view\manager\manager.html";i:1478411256;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,8 +6,8 @@
     <title>角色列表</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<!-- basic styles -->
-		<link href="{$Think.config.parse_str.__PUBLIC__}assets/css/bootstrap.min.css" rel="stylesheet" />
-		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/font-awesome.min.css" />
+		<link href="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/css/font-awesome.min.css" />
 		
 		<!--[if IE 7]>
 		  <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
@@ -18,11 +19,11 @@
 
 		<!-- ace styles -->
 		
-		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/ace.min.css" />
-		<link href="{$Think.config.parse_str.__CSS__}style.min.css?v=4.1.0" rel="stylesheet">
-		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/ace-rtl.min.css" />
-		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/ace-skins.min.css" />
-		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/jquery-ui-1.10.3.full.min.css" />
+		<link rel="stylesheet" href="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/css/ace.min.css" />
+		<link href="<?php echo \think\Config::get('parse_str.__CSS__'); ?>style.min.css?v=4.1.0" rel="stylesheet">
+		<link rel="stylesheet" href="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/css/ace-skins.min.css" />
+		<link rel="stylesheet" href="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/css/jquery-ui-1.10.3.full.min.css" />
 
 		<!--[if lte IE 8]>
 		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
@@ -32,7 +33,7 @@
 
 		<!-- ace settings handler -->
 
-		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/ace-extra.min.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/ace-extra.min.js"></script>
 
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 
@@ -72,9 +73,9 @@
 										
 										<div class="col-sm-9">
 											<select name="field" id="group_id" style="width:170px;">
-											{volist name="data" id="vo"}
-												<option value="{$vo.group_id}">{$vo.group_name}</option>
-                                    		{/volist}	
+											<?php if(is_array($data) || $data instanceof \think\Collection): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+												<option value="<?php echo $vo['group_id']; ?>"><?php echo $vo['group_name']; ?></option>
+                                    		<?php endforeach; endif; else: echo "" ;endif; ?>	
                                 			</select>								
 												<span class="middle">选择匹配的小组名</span>
 										</div>
@@ -87,9 +88,9 @@
 										
 										<div class="col-sm-9">
 											<select name="field" id="position" style="width:170px;">
-											{volist name="merit" id="v"}
-												<option value="{$v.position}">{$v.position_name}</option>
-                                    		{/volist}
+											<?php if(is_array($merit) || $merit instanceof \think\Collection): $i = 0; $__LIST__ = $merit;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): $mod = ($i % 2 );++$i;?>
+												<option value="<?php echo $v['position']; ?>"><?php echo $v['position_name']; ?></option>
+                                    		<?php endforeach; endif; else: echo "" ;endif; ?>
                                 			</select>								
 												<span class="middle">选择匹配的职务</span>
 										</div>
@@ -132,7 +133,7 @@
 											</button>
 
 											&nbsp; &nbsp; &nbsp;
-											<a href="{:url('user/member')}">
+											<a href="<?php echo url('user/member'); ?>">
 											<button class="btn" type="button">
 												<i class="icon-undo bigger-110"></i>
 												后退
@@ -151,7 +152,7 @@
 
 		<!--[if !IE]> -->
 
-		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/jquery.min.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/jquery.min.js"></script>
 
 		<!-- <![endif]-->
 
@@ -162,7 +163,7 @@
 		<!--[if !IE]> -->
 
 		<script type="text/javascript">
-			window.jQuery || document.write("<script src='{$Think.config.parse_str.__PUBLIC__}assets/jsassets/js/jquery-2.0.3.min.js'>"+"<"+"script>");
+			window.jQuery || document.write("<script src='<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/jsassets/js/jquery-2.0.3.min.js'>"+"<"+"script>");
 		</script>
 
 		<!-- <![endif]-->
@@ -174,10 +175,10 @@
 <![endif]-->
 
 		<script type="text/javascript">
-			if("ontouchend" in document) document.write("<script src='{$Think.config.parse_str.__PUBLIC__}assets/js/jquery.mobile.custom.min.js'>"+"<"+"script>");
+			if("ontouchend" in document) document.write("<script src='<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/jquery.mobile.custom.min.js'>"+"<"+"script>");
 		</script>
-		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/bootstrap.min.js"></script>
-		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/typeahead-bs2.min.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/bootstrap.min.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/typeahead-bs2.min.js"></script>
 		<!-- page specific plugin scripts -->
 
 		<!--[if lte IE 8]>
@@ -185,11 +186,11 @@
 		<![endif]-->
 		<!-- ace scripts -->
 
-		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/ace-elements.min.js"></script>
-		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/ace.min.js"></script>
-		<script src="{$Think.config.parse_str.__PUBLIC__}js/layer/layer.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/ace-elements.min.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/ace.min.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>js/layer/layer.js"></script>
 		<!-- inline scripts related to this page -->
-<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/jquery-ui-1.10.3.full.min.js"></script>
+<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/jquery-ui-1.10.3.full.min.js"></script>
 	<script type="text/javascript">
 		function adduser(){
 			var user_sex = $("input[name='user_sex']:checked").val();
@@ -218,13 +219,13 @@
                 }    
 				$.ajax({
 					type: 'POST', 
-		         	url: '{$Think.config.parse_str.__MODULE__}/Manager/User', 
+		         	url: '<?php echo \think\Config::get('parse_str.__MODULE__'); ?>/Manager/User', 
 		          	data: number,  
 		          	async: false,  
 					cache: false, 
 		          	success: function (returndata) {
 		          		layer.msg(returndata,{time:1000},function(){
-		          			window.location.href = "{:url('User/member')}";
+		          			window.location.href = "<?php echo url('User/member'); ?>";
 		          		});
 		          	},
 		          	error:function(){

@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:84:"D:\MyDrivers\htdocs\SignSystem2\public/../application/admin\view\manager\notice.html";i:1478410576;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,8 +6,8 @@
     <title>公告</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<!-- basic styles -->
-		<link href="{$Think.config.parse_str.__PUBLIC__}assets/css/bootstrap.min.css" rel="stylesheet" />
-		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/font-awesome.min.css" />
+		<link href="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/css/font-awesome.min.css" />
 		
 		<!--[if IE 7]>
 		  <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
@@ -18,14 +19,14 @@
 
 		<!-- ace styles -->
 
-		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/ace.min.css" />
-		<link href="{$Think.config.parse_str.__CSS__}style.min.css?v=4.1.0" rel="stylesheet">
-		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/ace-rtl.min.css" />
-		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/ace-skins.min.css" />
-		<link rel="stylesheet" href="{$Think.config.parse_str.__PUBLIC__}assets/css/jquery-ui-1.10.3.full.min.css" />
-		<script type="text/javascript" charset="utf-8" src="{$Think.config.parse_str.__PUBLIC__}editor/ueditor.config.js"></script>
-		<script type="text/javascript" charset="utf-8" src="{$Think.config.parse_str.__PUBLIC__}editor/ueditor.all.min.js"></script>
-		<script type="text/javascript" charset="gbk" src="{$Think.config.parse_str.__PUBLIC__}editor/lang/zh-cn/zh-cn.js"></script>
+		<link rel="stylesheet" href="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/css/ace.min.css" />
+		<link href="<?php echo \think\Config::get('parse_str.__CSS__'); ?>style.min.css?v=4.1.0" rel="stylesheet">
+		<link rel="stylesheet" href="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/css/ace-skins.min.css" />
+		<link rel="stylesheet" href="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/css/jquery-ui-1.10.3.full.min.css" />
+		<script type="text/javascript" charset="utf-8" src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>editor/ueditor.config.js"></script>
+		<script type="text/javascript" charset="utf-8" src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>editor/ueditor.all.min.js"></script>
+		<script type="text/javascript" charset="gbk" src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>editor/lang/zh-cn/zh-cn.js"></script>
 
 		<!--[if lte IE 8]>
 		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
@@ -35,7 +36,7 @@
 
 		<!-- ace settings handler -->
 
-		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/ace-extra.min.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/ace-extra.min.js"></script>
 
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 
@@ -60,7 +61,7 @@
 			<div class="row">
 				<div class="col-xs-12">
 					<!-- PAGE CONTENT BEGINS -->
-					<div class="table-responsive" style="overflow: initial;">
+					<div class="table-responsive">
 								<table id="sample-table-1" class="table table-striped table-bordered table-hover">
 									<thead>
 										<tr>
@@ -77,28 +78,28 @@
 									</thead>
 
 									<tbody>
-										{volist name="data" id="vo"}
+										<?php if(is_array($data) || $data instanceof \think\Collection): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
 										<tr>	
 											<td class="center" style="width:100px;">
 												<label>
-													<input type="checkbox" name="chkid" class="ace" value="{$vo.notice_id}" />
+													<input type="checkbox" name="chkid" class="ace" value="<?php echo $vo['notice_id']; ?>" />
 													<span class="lbl"></span>
 												</label>
 											</td>
 											
 											<td style="width:150px;">
-												<a href="#">{$vo.name}</a>
+												<a href="#"><?php echo $vo['name']; ?></a>
 											</td>
-											<td>{$vo.notice_title}</td>
-											<td style="width:150px;">{$vo.create_time|date='Y-m-d H:i:s',###}</td>														
+											<td><?php echo $vo['notice_title']; ?></td>
+											<td style="width:150px;"><?php echo date('Y-m-d H:i:s',$vo['create_time']); ?></td>														
 											<td style="width:150px;">
 												<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
 												
 													<button class="btn btn-xs btn-info" type="submit" onclick="update();">
-														<a href="{$Think.config.parse_str.__MODULE__}/Manager/renotice/{$vo.notice_id}"><i class="icon-edit bigger-120"></i></a>
+														<a href="<?php echo \think\Config::get('parse_str.__MODULE__'); ?>/Manager/renotice/<?php echo $vo['notice_id']; ?>"><i class="icon-edit bigger-120"></i></a>
 													</button>
 												
-													<button class="btn btn-xs btn-danger group_id" value="{$vo.notice_id}">
+													<button class="btn btn-xs btn-danger group_id" value="<?php echo $vo['notice_id']; ?>">
 														<i class="icon-trash bigger-120"></i>
 													</button>
 												</div>
@@ -111,7 +112,7 @@
 
 														<ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
 															<li>
-																<a href="{$Think.config.parse_str.__MODULE__}/Manager/renotice/{$vo.notice_id}" class="tooltip-success" data-rel="tooltip" title="Edit">
+																<a href="<?php echo \think\Config::get('parse_str.__MODULE__'); ?>/Manager/renotice/<?php echo $vo['notice_id']; ?>" class="tooltip-success" data-rel="tooltip" title="Edit">
 																	<span class="green">
 																		<i class="icon-edit bigger-120"></i>
 																	</span>
@@ -119,7 +120,7 @@
 															</li>
 
 															<li>
-																<a href="#" class="tooltip-error group_id" data-rel="tooltip" title="Delete" value={$vo.notice_id}>
+																<a href="#" class="tooltip-error group_id" data-rel="tooltip" title="Delete" value=<?php echo $vo['notice_id']; ?>>
 																	<span class="red">
 																		<i class="icon-trash bigger-120"></i>
 																	</span>
@@ -130,7 +131,7 @@
 												</div>
 											</td>
 										</tr>	
-										{/volist}
+										<?php endforeach; endif; else: echo "" ;endif; ?>
 									</tbody>
 								</table>
 					</div><!-- /.table-responsive -->
@@ -158,7 +159,7 @@
 									<i class="icon-ok bigger-110"></i>
 									提交
 								</button>
-								<a  href="{:url('user/member')}">
+								<a  href="<?php echo url('user/member'); ?>">
 								<button class="btn "  type="button">
 									<i class="icon-undo bigger-110"></i> 
 									放弃		
@@ -177,7 +178,7 @@
 
 		<!--[if !IE]> -->
 		
-		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/jquery.min.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/jquery.min.js"></script>
 
 		<!-- <![endif]-->
 
@@ -188,7 +189,7 @@
 		<!--[if !IE]> -->
 
 		<script type="text/javascript">
-			window.jQuery || document.write("<script src='{$Think.config.parse_str.__PUBLIC__}assets/jsassets/js/jquery-2.0.3.min.js'>"+"<"+"script>");
+			window.jQuery || document.write("<script src='<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/jsassets/js/jquery-2.0.3.min.js'>"+"<"+"script>");
 		</script>
 
 		<!-- <![endif]-->
@@ -200,10 +201,10 @@
 <![endif]-->
 
 		<script type="text/javascript">
-			if("ontouchend" in document) document.write("<script src='{$Think.config.parse_str.__PUBLIC__}assets/js/jquery.mobile.custom.min.js'>"+"<"+"script>");
+			if("ontouchend" in document) document.write("<script src='<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/jquery.mobile.custom.min.js'>"+"<"+"script>");
 		</script>
-		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/bootstrap.min.js"></script>
-		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/typeahead-bs2.min.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/bootstrap.min.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/typeahead-bs2.min.js"></script>
 
 		<!-- page specific plugin scripts -->
 
@@ -212,11 +213,11 @@
 		<![endif]-->
 		<!-- ace scripts -->
 
-		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/ace-elements.min.js"></script>
-		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/ace.min.js"></script>
-		<script src="{$Think.config.parse_str.__PUBLIC__}js/layer/layer.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/ace-elements.min.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/ace.min.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>js/layer/layer.js"></script>
 		<!-- inline scripts related to this page -->
-		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/jquery-ui-1.10.3.full.min.js"></script>
+		<script src="<?php echo \think\Config::get('parse_str.__PUBLIC__'); ?>assets/js/jquery-ui-1.10.3.full.min.js"></script>
 		<script type="text/javascript"> var ue = UE.getEditor('editor')</script>
 		<script type="text/javascript">
 		//发表公告
@@ -231,7 +232,7 @@
 		 	}
 			$.ajax({
 				type: 'POST', 
-		     	url: '{$Think.config.parse_str.__MODULE__}/Manager/addnotice', 
+		     	url: '<?php echo \think\Config::get('parse_str.__MODULE__'); ?>/Manager/addnotice', 
 		      	data: number,  
 		      	async: false,  
 				cache: false, 
@@ -265,7 +266,7 @@
 		    layer.close(index);
 		        $.ajax({
 		        	type:'POST',
-		        	url: '{$Think.config.parse_str.__MODULE__}/Manager/deletes_notice', 
+		        	url: '<?php echo \think\Config::get('parse_str.__MODULE__'); ?>/Manager/deletes_notice', 
 		          	data:  datavalue, 
 		          	async: false,  
 					cache: false, 
@@ -290,7 +291,7 @@
 		    layer.close(index);
 				$.ajax({
 					type: 'POST', 
-		         	url: '{$Think.config.parse_str.__MODULE__}/Manager/delete_notice', 
+		         	url: '<?php echo \think\Config::get('parse_str.__MODULE__'); ?>/Manager/delete_notice', 
 		          	data:  'id='+id,  
 		          	async: false,  
 					cache: false, 
@@ -307,7 +308,7 @@
 		});
 	});
 		function update($notice_id){
-			window.location.href='{$Think.config.parse_str.__MODULE__}/Manager/renotice/notice_id='+$notice_id;
+			window.location.href='<?php echo \think\Config::get('parse_str.__MODULE__'); ?>/Manager/renotice/notice_id='+$notice_id;
 		}
 	</script>
 </body>
