@@ -132,7 +132,7 @@
 											</button>
 
 											&nbsp; &nbsp; &nbsp;
-											<a href="/SignSystem2/public/index.php/admin/user/member">
+											<a href="{url:('user/member')}">
 											<button class="btn" type="button">
 												<i class="icon-undo bigger-110"></i>
 												后退
@@ -224,7 +224,7 @@
 					cache: false, 
 		          	success: function (returndata) {
 		          		layer.msg(returndata,{time:1000},function(){
-		          			window.location.href = '/SignSystem2/public/index.php/admin/User/member';
+		          			window.location.href = "{url:('User/member')}";
 		          		});
 		          	},
 		          	error:function(){

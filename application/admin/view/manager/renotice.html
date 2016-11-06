@@ -71,7 +71,7 @@
 									<i class="icon-ok bigger-110"></i>
 									提交
 								</button>
-								<a  href="/SignSystem2/public/index.php/admin/Manager/notice">
+								<a  href="{url:('Manager/notice')}">
 								<button class="btn "  type="button">
 									<i class="icon-undo bigger-110"></i> 
 									后退		
@@ -149,7 +149,7 @@
 					cache: false, 
 			      	success: function (returndata) {
 			      		layer.msg(returndata,{time:1000},function(){
-			      			window.location.href = '/SignSystem2/public/index.php/admin/Manager/notice';
+			      			window.location.href = "{url:('Manager/notice')}";
 			      		});
 			      	},
 			      	error:function(){

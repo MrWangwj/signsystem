@@ -111,7 +111,7 @@
 
 														<ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
 															<li>
-																<a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
+																<a href="{$Think.config.parse_str.__MODULE__}/Manager/renotice/{$vo.notice_id}" class="tooltip-success" data-rel="tooltip" title="Edit">
 																	<span class="green">
 																		<i class="icon-edit bigger-120"></i>
 																	</span>
@@ -119,7 +119,7 @@
 															</li>
 
 															<li>
-																<a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
+																<a href="#" class="tooltip-error group_id" data-rel="tooltip" title="Delete" value={$vo.notice_id}>
 																	<span class="red">
 																		<i class="icon-trash bigger-120"></i>
 																	</span>
@@ -158,7 +158,7 @@
 									<i class="icon-ok bigger-110"></i>
 									提交
 								</button>
-								<a  href="/SignSystem2/public/index.php/admin/user/member">
+								<a  href="{:url('user/member')}">
 								<button class="btn "  type="button">
 									<i class="icon-undo bigger-110"></i> 
 									放弃		
