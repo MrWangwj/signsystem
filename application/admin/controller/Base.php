@@ -19,6 +19,9 @@ class Base extends Controller
     {
         if(empty(session('adminid'))){
             $this->redirect(url('login/index'));
+        }else{
+        	$admin =  db('user')->field('name')-> join('admin','admin.user_id = user.user_id','LEFT') -> where('admin.admin_id',session('adminid')) ->find();
+        	$this->assign("admin", $admin);
         }
 
     }
