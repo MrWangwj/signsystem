@@ -210,6 +210,8 @@
 		var section = 0;
 		var week = 0;
 		$('#weeks').find("option[value={$week}]").attr("selected",true);
+
+
 		$('.main').on('click', '.course',function() {
 			section = $(this).parent().index();
 			week = $(this).index()+1;
@@ -220,10 +222,15 @@
 					section: section,
 				},
 				function(data){
+					$('#name').val("");
+					$('#classroom').val("");
+					$('#teacher').val("");
+					if(data.id != 1){
+						$('#name').val(data.name);
+						$('#classroom').val(data.classroom);
+						$('#teacher').val(data.teacher);
+					}
 					$('.hint').html('');
-					$('#name').val(data.name);
-					$('#classroom').val(data.classroom);
-					$('#teacher').val(data.teacher);
 					$('#week').html(getWeek(week));
 					$('#section').html(getSection(section));
 					$('.week').html(getWeeks(data.weeks_number));
