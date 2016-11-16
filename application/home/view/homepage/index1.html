@@ -1,7 +1,6 @@
 {extend name="public/base"}
 {block name="link"}
 <link rel="stylesheet" type="text/css" href="{$Think.config.parse_str.__CSS__}homepage-index.css">
-
 {/block}
 {block name="main"}
 <!--     <div id="hometop_div">
@@ -17,75 +16,7 @@
             </div>
         </div>
     </div> -->
-        <div class="clock">
-            <div class="time_block">
-                <div class="date"><span  id="date"></span></div>
-                <div class="time"><span id="time"></span></div>
-            </div>
-            <div class="clock_img">
-                <a class="sign_out"  id="signoff_btn">签退</a>
-                <a class="sign_in"  id="sign_btn">签到</a>
-                <a class="retroactive"  id="reSign_btn">补签</a>
-            </div>
-        </div>
-        <div class="container">
-            
-            <div class="fill_the_gray">
-                
-            </div>
-            
-            <div class="name">
-                <div class="auxiliary">
-                    <span>{$user.name}</span>
-                    <div class="name_line"></div>
-                </div>
-            </div>
-            
-            <div class="content">
-                <div class="notice">
-                    <!-- <span>公告</span> -->
-                    <img src="{$Think.config.parse_str.__IMAGE__}notice.png" alt="">
-                    <div class="notice_line"></div>
-                </div>
-                <div class="personal_information_title">
-                    <i>个人信息</i>
-                </div>
-                <div class="content_main">
-                    <div class="sign_in_case">
-                        <div class="sign_in_case_line"></div>
-                        <ul id="homeinfo_div">
-                  <!--           <li>
-                                <span>侯丹丹</span><span>11：37</span><span>签到</span>
-                            </li>
-                            <li>
-                                <span>侯丹丹</span><span>11：37</span><span>签到</span>
-                            </li>
-                            <li>
-                                <span>侯丹丹</span><span>11：37</span><span>签到</span>
-                            </li>
-                            <li>
-                                <span>侯丹丹</span><span>11：37</span><span>签到</span>
-                            </li> -->
-                        </ul>
-                    </div>
-                    <div class="personal_information_content">
-                        <ul>
-                            <li><span class="label">姓名:</span><span class="value">{$user.name}</span></li>
-                            <li><span class="label">学号:</span><span class="value">{$user.user_id}</span></li>
-                            <li><span class="label">性别:</span><span class="value">{if condition="$user.sex ==0"}男{else}女{/if}</span></li>
-                            <li><span class="label">职务:</span><span class="value">{$user.position_name}</span></li>
-                            <li><span class="label">组别:</span><span class="value">{$user.group_name}</span></li>
-                            <li><span class="label">电话:</span><span class="value">{$user.phone}</span></li>
-                        </ul>
-                        <div class="personal_information_content_line"></div>
-                    </div>
-                </div>
-            </div>
-            
-        </div>
 
-
-<!-- 
     <div class="content clearfix">
         <div class="content-left">
             <div>
@@ -104,7 +35,7 @@
                 </ul>
                 <div class="personal">
                     <div class="name">
-                      
+                       <!--  <img src=""> -->
                         <span>姓名：{$user.name}</span>
                     </div>
                     <div class="post">
@@ -128,7 +59,9 @@
                                     {$vo.create_time|date='Y-m-d',###}
                                 </div>
                                 <div class="notice-text clearfix">
-                           
+                           <!--          <div class="">
+                                        <img src="">
+                                    </div> -->
                                     <div>
                                         <p>{$vo.notice_title}</p>
                                         <div>{$vo.notice}</div>   
@@ -140,7 +73,7 @@
                 </ul>
             </div>
         </div>
-    </div> -->
+    </div>
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -273,7 +206,7 @@
         </div>
     </div>
 </div>
-       <!--  <div class="modal fade" id="myinfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal fade" id="myinfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -328,39 +261,14 @@
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div>
 
 
 
 {/block}
 {block name="js"}
 <script>
-    $(document).ready(function(){
-        
-        setInterval("a()",100);
-        
-    });
-    function a(){
-            var current_time = new Date();
-            // var year = date.getFullYear();
-            // var month = date.getMonth()+1;
-            // var day = date.getDate();
-            var current_date = current_time.toLocaleDateString();
-            var hour = current_time.getHours();
-            var minute = current_time.getMinutes();
-            var second = current_time.getSeconds();
-            // console.log("123");
-            // $("#date").innerText = "123";
-            date.innerText = current_date;
-            time.innerText = hour+':'+minute+':'+second;
-        }
-
-
-
-
-
-
-    $('.top>ul>li:eq(5)').addClass('nav_selected');
+    $('.menu li:eq(0)').css('background','black');
     $('.content-left>ul').css('height',($(window).height()-260)+"px"); 
     $('.notice>ul').css('height',($(window).height()-430)+"px"); 
     window.onresize = function(){    
@@ -423,6 +331,7 @@
                     temp =1;
                 });
             }else if(data.code==1){
+                alert(222);
                 layer.msg('请补签',{time:1000}, function(){
                     temp =2;
                     resign1_div.show();

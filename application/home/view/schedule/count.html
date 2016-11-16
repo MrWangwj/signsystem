@@ -115,7 +115,7 @@
 						{volist name="vo" id="vo2"}
 							<td >
 								{volist name="vo2" id="vo3"}	
-									{$vo3.name},
+									<span>{$vo3.name},</span>
 								{/volist}							
 							</td>
 						{/volist}						
@@ -125,8 +125,7 @@
 	</div>
 </div>
 <script>
-	$('.menu li:eq(1)').css('background','black');
-
+	$('.top>ul>li:eq(4)').addClass('nav_selected');
 	$('#seestatus').find("option[value={$Think.post.status|default=1}]").attr("selected",true);
 	$('#weeks').find("option[value={$Think.post.week|default=0}]").attr("selected",true);
 	$('#weeks').on('change', function(event) {

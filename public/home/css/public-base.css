@@ -1,101 +1,309 @@
-*{
-	padding: 0;
-	margin: 0;
-	font-family: "微软雅黑";
-}
-a{
-	color: black;
-	text-decoration: none;
-}
-a:hover{
-	color: black;
-	text-decoration: none;
-}
-li{
-	list-style: none;
-}
-html, body{
-	height: 100%;
-} 
-.backgd{
-	min-height: 100%;
-	position: relative;
-}
-.title{
-	width: 100%;
-	height: 80px;
-	background: #C23001;
-	min-width: 850px;
-}
-.title>nav{
-	width: 57%;
-	min-width: 850px;
-	/*border: 1px solid blue;*/
-	height: 80px;
-	margin: 0 auto;
-}
-.logo{
-	width: 235px;
-	height: 80px;
-	background-image: url(../image/logo.png);
-	background-repeat: no-repeat;
-	background-position: center;
-	float: left; 
-	margin: 0;
-}
-.right-menu{
-	float: right;
-	height: 80px;
-}
+		/*html{
+			height: 100%;
+		}*/
+		a:hover, a:focus {
+    		text-decoration: none;
+		}
+		*{
+			padding: 0;
+			margin: 0;
+			font-family: "微软雅黑";
+		}
+		html{
+			font-size: 16px; 
+		}
+		body, html{
+			height: 100%;
+			
+		}
+		.backgd{
+			min-height: 100%;
+		}
+		/*导航部分*/
+		header{
+			width: 100%;
+			height: 83px;
+			margin: 0 auto;
+			background-color: #DCDCDC;
+		}
+		nav{
+			width: 1200px;
+			margin: 0 auto;
+		}
+		ul {
+			margin: 0;
+			padding: 0;
+		}
 
-.menu{
-	height: 80px;
-	float: left;
-}
-.menu li{
-	float: left;
-	height: 80px;
-	line-height: 80px;
-	padding-right: 29px;
-	padding-left: 29px;
-	color: #FFF;
-	font-family: "微软雅黑";
-	font-size: 20px;
-	border-left: 1px solid #C23001;
-	border-right: 1px solid #C23001;
-}
-.menu li:hover{
-	background-color: #010000;
-	border-left: 1px solid #FFF;
-	border-right: 1px solid #FFF;
-}
-.exit{
-	float: left;
-	color: #FFF;
-	height: 80px;
-	line-height: 90px;
-	font-size: 15px;
-	width: 45px;
-	text-align: right;
-}
-.exit a{
-	color: #FFF;
-}
-.footer{
-	background-color: #C23001;
-	width: 100%;
-	text-align: center;
-	position: absolute;
-	bottom: 0;
-	height: 60px;
-	min-width: 850px;
-	line-height: 60px;
-	color: #FFF;
-}
-.main{
-	width: 57%;
-	min-width: 850px;
-	margin: 0 auto;
-	margin-top: 20px;
-	padding-bottom: 80px;
-}
+		li {
+			list-style: none;
+
+		}
+		a{
+			text-decoration: none;
+		}
+		a:visited{
+			color: black;
+		}
+		nav{
+			position: relative;
+		}
+		.top{
+			/*border: 1px solid red;*/
+		/*	background: url(logo.png) no-repeat;
+			background-color: red;
+			position: relative;
+			height: 120px;*/
+			background-color: #DDDDDD;
+			height: 100%;
+		}
+		.top ul{
+			/*text-align: right;*/
+		}
+		.top ul li{
+			/*display: inline-block;*/
+			float: right;
+			
+		}
+		.top ul li a{
+			line-height: 5rem;
+			font-size: 1.5rem;
+			padding: 0 1.5rem;
+			font-weight: bold;
+		}
+		.top ul li a:hover{
+			color: #26CCFF;
+		}
+		.nav_selected a{
+			color: #26CCFF;
+		}
+		.nav_options_top{
+			margin-top: -.5rem;
+		}
+		.nav_options_bottom{
+			margin-top: 1rem;
+		}
+		.management_font{
+			margin-top: 1.2rem;
+			margin-left: 2rem;
+			margin-right: -.6rem;
+		}
+		.top>ul>.management_font>a{
+			font-size: 1.1rem;
+		}
+		.top>ul>.exit_font>a{
+			font-size: 1.1rem;
+		}
+		.exit_font{
+			margin-left:-.9rem; 
+			margin-top:.8rem;
+		}
+		@media only screen and (max-width: 85.375em){
+			header{
+				width: 100%;
+				background: #DCDCDC;
+				height: 65px;
+			}
+			nav{
+				width: 900px;
+				margin: 0 auto;
+			}
+			.top ul li a{
+				line-height: 4rem;
+				font-size: 1rem;
+				padding: 0 1rem;
+				/*font-weight: bold;*/
+			}
+			.nav_options_top{
+				margin-top: -.5rem;
+			}
+			.nav_options_bottom{
+				margin-top: .6rem;
+			}
+			.management_font{
+				margin-top: .1rem;
+				margin-left: 1.3rem;
+				
+			}
+			.exit_font{
+				margin-left:-.5rem; 
+				margin-top:.1rem;
+			}
+			.top>ul>.management_font>a{
+				font-size: .9rem;
+			}
+			.top>ul>.exit_font>a{
+				font-size: .9rem;
+			}
+		}
+		@media only screen and (max-width: 30em){
+			.main{
+				height: 80%;
+			}
+		}
+		/*主体内容*/
+		.main{
+			width: 1200px;
+			/*height: 1000px;*/
+			/*border: 1px solid red;*/
+			margin: 0 auto;
+			
+			
+			background-size: contain;
+		
+			/*background-color: #DDDDDD;*/
+		}
+		/*显示日期时间样式*/
+		.clock{
+			/*border: 1px solid red;*/
+			width: 70%;
+			height: 50%;
+			margin: 0 auto;
+		}
+		.time_block{
+			width: 90%;
+			height: 43%;
+			/*border: 1px solid red;*/
+			margin: 0 auto;
+			color: #25CCFC;
+			position: relative;
+		}
+		.date{
+			/*border: 1px solid red;*/
+			width: 80%;
+			height: 80%;
+			margin: 0 auto;
+		}
+		.date span{
+			position: absolute;
+			top: 30%;
+			font-size: 6.5rem;
+			font-weight: 800;
+		}
+		.time{
+			width: 80%;
+			height: 20%;
+			/*border: 1px solid red;*/
+			margin: 0 auto;
+			text-align: right;
+			position: relative;
+		}
+		.time span{
+			position: absolute;
+			right: 0;
+			top: 30%;
+			font-size: 2.5rem;
+		}
+		.clock_img{
+			/*border: 1px solid red;*/
+			width: 90%;
+			height: 53%;
+			margin: 0 auto;
+			background: url(clock.png) no-repeat;
+			background-size: contain;
+			position: relative;
+		}
+		.clock_img a{
+			/*border: 1px solid red;*/
+			position: absolute;
+			color: white;
+			/*font-weight: bold;*/
+		}
+		.sign_out{
+			top: 17%;
+			left: 57.5%;
+			font-size: 1.4rem;
+		}
+		.sign_in{
+			top: 50%;
+			left: 73.5%;
+			font-size: 1.8rem;
+		}
+		.retroactive{
+			top: 77%;
+			left: 54%;
+			font-size: 1.4rem;
+		}
+		.logo{
+			/*border: 1px solid red;*/
+			
+			display: block;
+			position: absolute;
+			height: 100%;
+			overflow: hidden;
+		}
+		@media only screen and (max-width: 85.375em){
+			.main{
+				width: 900px;
+				/*height: 750px;*/
+				/*padding-top: 3%;*/
+				/*background: #DCDCDC;*/
+			}
+			.date span{
+				font-size: 4.9rem;
+			}
+			.time span{
+				
+				font-size: 2rem;
+			}
+			.sign_out{
+				font-size: 1rem;
+			}
+			.sign_in{
+				font-size: 1.3rem;
+			}
+			.retroactive{
+				font-size: 1rem;
+			}
+			.logo img{
+				width: 78.5%;
+			}
+		}
+
+		/*结尾部分*/
+		footer{
+			width: 1200px;
+			height: 83px;
+			position: absolute;
+			bottom: 0;
+			left: 50%;
+			margin-left: -600px;
+			/*border: 1px solid red;*/
+			text-align: center;
+			/*background-color: #DDDDDD;*/
+		}
+		footer span{
+			font-size: 2.2rem;
+			line-height: 5rem;
+			color: #686F77;
+		}
+		.main{
+			padding-bottom: 85px;	
+		}
+		.fill_the_gray{
+			/*background: #DCDCDC;*/
+			width: 100%;
+			height: 71%;
+			float: left;
+			position: absolute;
+			top: 28.8%;
+		}
+		@media only screen and (max-width: 85.375em){
+			footer{
+				width: 900px;
+				height: 65px;
+				margin-left: -450px;
+			}
+			footer span{
+				font-size: 1.5rem;
+				line-height: 4rem;
+			}
+			.main{
+				padding-bottom: 65px;	
+
+			}
+		}
+
+		.backgd{
+			position: relative;
+		}

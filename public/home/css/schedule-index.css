@@ -1,42 +1,154 @@
-.text{
-	width: 100%;
-	margin: 0 auto;
+.backgd{
+	background-image: url(../image/scheducount.png);
+	background-size: 100% 100%;
+
 }
-.curriculum{
+.major{
 	width: 100%;
-	margin: 0 auto;
+	color: #FFF;
 }
+.major-title{
+	text-align: center;
+	width: 100%;
+}
+.major-title span{
+	display: block;
+	width: 50px;
+	height: 0;
+	border:2px solid white;
+	border-radius: 2px;
+	margin: 0 auto;
+	margin-bottom: 10px;
+}
+.major-content{
+
+}
+.content-left{
+	width: 20%;
+	float: left;
+}
+.content-left p{
+	display: block;
+	width: 70px;
+	height: 0;
+	border:3px solid #28CAFB;
+	border-radius: 3px;
+	margin: 0 auto;
+	margin-bottom: 10px;
+}
+.content-left label{
+	display: block;
+	width: 50px;
+	height: 50px;
+	line-height: 45px;
+	text-align: center;
+	border:3px solid #28CAFB;
+	border-radius: 25px;
+	margin: 0 auto;
+	color: #28CAFB;
+	font-size: 10px;
+}
+.content-left ul li{
+	padding-left: 50px;
+	height: 30px;
+	line-height: 30px;
+	background-repeat: no-repeat;
+	background-position: left;
+	background-size: 35px 20px;
+}
+.content-left ul li:first-child{
+	background-image: url(../image/haveclass.png);
+}
+.content-left ul li:last-child{
+	background-image: url(../image/noclass.png);
+}
+.content-right{
+	width: 80%;
+	float: left;
+	background-color:#010204; 
+}
+.content-right>div:last-child button{
+	float: right;
+	border:2px solid #34BDC5;
+	background-color: #010204;
+	
+}
+.content-right>div:last-child button:last-child{
+	margin-right: 20px;
+}
+.content-right>div:last-child{
+	padding-right:3%;
+	margin-bottom: 3%; 
+	height: 20px;
+}
+
+.schedule-section{
+	width: 15%;
+	height: 100%;
+	float: left;
+}
+.schedule-section ul{
+	width: 90%;
+	text-align: center;
+	margin-top: 150px;
+}
+.schedule-section ul li{
+	height: 40px;
+	line-height: 40px;
+}
+.schedule-section ul li span{
+	color: #252628;
+	font-size: 20px;
+}
+.schedule-section ul li label{
+	font-size: 25px;
+}
+.schedule-section ul li img{
+	display: block;
+	margin-top: 5px;
+	width: 30px;
+	height: 30px;
+	margin: 0 auto;
+	cursor: pointer;
+}
+
 .schedule{
-	border:3px solid #C7471E;
+	margin-top: 20px;
+	width: 82%;
+	float: left;
 }
 .schedule td{
-	background: #C02F01;
 	color: white;
 	height: 80px;
 	cursor: pointer;
 	width: 14.4%;
 	border: 1px solid #CE6728;
+	position: relative;
 }
-.schedule th{
-	text-align: center;
+.schedule td img{
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	width: 30px;
+	height: 20px;
 }
-.color1{
-	background: #E5E5E5 !important ;
-	color: #B0AEB2 !important ;
+.schedule td div{
+	margin-bottom: 20px;
 }
-.color0{
-	background: white !important ;
+.week td {
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid #ddd;
 }
-.week td{
-	width: 35px;
-	height: 35px;
-	text-align: center;
-	cursor: pointer;
-	border: 1px solid #ddd;
+.haveClass {
+    background-color: #d9edf7;
 }
-.haveClass{
-	background-color: #d9edf7;
+.white{
+	color: black !important;
 }
+
 .hint{
 	position: absolute;
 	z-index: 10;
@@ -52,35 +164,7 @@
 .hint button{
 	float: right;
 }
-#weeks{
-	width: 120px;
-	text-align: center;
-	margin-top: 15px;
-	border: 2px solid #c23001;
-}
-#weeks option{
-	text-align: center;
-}
 
-#test{
-	float: left;
-}
-#test>span{
-	float: left;
-}
-.text-week{
-	height: 60px;
-	line-height: 60px;
-}
-.text-week>div{
-	float: right;
-}
-.text-week>div>button{
-	background-color: #C23001;
-}
-.text-week>div>button:hover{
-	background-color: #c9302c;
-}
 #hint2{
 	width: 87%;
 	background-color: #FFF;

@@ -1,4 +1,4 @@
-.main{
+/*.main{
 	height: 80%;
 	
 }
@@ -89,7 +89,7 @@
     white-space: nowrap;
     text-overflow: ellipsis;*/
 
-    position: absolute;
+    /*position: absolute;
     bottom: 0;
     left: 0;
     max-width: 100%;
@@ -170,7 +170,7 @@
 
 	/*width: 75%;*/
 
-	width: 95%
+/*	width: 95%
 }
 .notice-time{
 	width: 100%;
@@ -194,4 +194,301 @@
 #myinfo form{
 	width: 200px;
 	margin: 0 auto;
+}*/
+.backgd{
+	background-image: url(../image/background.jpg);
+	background-size: 100% 100%;
+
 }
+		header{
+				width: 1200px;
+		}
+		.logo{
+			overflow: visible;
+		}
+		/*主体内容*/
+		.main{
+			width: 1200px;
+			height: 1085px;
+			/*border: 1px solid red;*/
+			margin: 0 auto;
+			background: url(../image/indexbg.png)  no-repeat;
+			/*background-repeat: no-repeat;*/
+			background-size: contain;
+			/*background-attachment: fixed;*/
+			background-color: #DDDDDD;
+		}
+		/*显示日期时间样式*/
+		.clock{
+			/*border: 1px solid red;*/
+			width: 70%;
+			height: 50%;
+			margin: 0 auto;
+		}
+		.time_block{
+			width: 90%;
+			height: 43%;
+			/*border: 1px solid red;*/
+			margin: 0 auto;
+			color: #25CCFC;
+			position: relative;
+		}
+		.date{
+			/*border: 1px solid red;*/
+			width: 80%;
+			height: 80%;
+			margin: 0 auto;
+		}
+		.date span{
+			position: absolute;
+			top: 30%;
+			font-size: 6.5rem;
+			font-weight: 800;
+		}
+		.time{
+			width: 80%;
+			height: 20%;
+			/*border: 1px solid red;*/
+			margin: 0 auto;
+			text-align: right;
+			position: relative;
+		}
+		.time span{
+			position: absolute;
+			right: 0;
+			top: 30%;
+			font-size: 2.5rem;
+		}
+		.clock_img{
+			/*border: 1px solid red;*/
+			width: 90%;
+			height: 53%;
+			margin: 0 auto;
+			background: url(../image/clock.png) no-repeat;
+			background-size: contain;
+			position: relative;
+		}
+		.clock_img a{
+			/*border: 1px solid red;*/
+			position: absolute;
+			color: white;
+			cursor: pointer;
+			/*font-weight: bold;*/
+		}
+		.sign_out{
+			top: 17%;
+			left: 57.5%;
+			font-size: 1.4rem;
+		}
+		.sign_in{
+			top: 50%;
+			left: 73.5%;
+			font-size: 1.8rem;
+		}
+		.retroactive{
+			top: 77%;
+			left: 54%;
+			font-size: 1.4rem;
+		}
+		.logo{
+			/*border: 1px solid red;*/
+			
+			display: block;
+			position: absolute;
+
+		}
+
+		@media only screen and (max-width: 85.375em){
+			.main{
+				width: 900px;
+				height: 815px;
+			}
+			.date span{
+				font-size: 4.9rem;
+			}
+			.time span{
+				
+				font-size: 2rem;
+			}
+			.sign_out{
+				font-size: 1rem;
+			}
+			.sign_in{
+				font-size: 1.3rem;
+			}
+			.retroactive{
+				font-size: 1rem;
+			}
+			.logo img{
+				width: 78.5%;
+			}
+			header{
+				width: 900px;
+			}
+		}
+		/*公告+个人信息*/
+		.container{
+			width: 100%;
+			height: 50%;
+			border: 1px solid rgba(0,0,0,0);
+			margin: 0 auto;
+			position: relative;
+		}
+		.content{
+			width: 90%;
+			height: 70%;
+
+			/*border: 1px solid red;*/
+			border-top-height: 20px;
+			margin: 12% 5% 0;
+			position: relative;
+		}
+		.name{
+			width: 30%;
+			height: 30%;
+			/*border: 1px solid red;*/
+			position: absolute;
+			right: 7%;
+			text-align: center;
+		}
+		.name span{
+			font-size: 4rem;
+			line-height: 6rem;
+			
+		}
+		.name_line{
+			width: 100%;
+			background: black;
+			height: 3px;
+		}
+		.auxiliary{
+			position: relative;
+			top: 55%;
+		}
+		.notice{
+			width: 20%;
+			height: 25%;
+			/*border: 1px solid red;*/
+			position: relative;
+			left: 2%;
+		}
+		/*.notice span{
+			font-size: 3rem;
+			line-height: 6rem;
+		}*/
+		.notice_line{
+			width: 30%;
+			background: black;
+			height: 3px;
+
+		}
+		.personal_information_title{
+			width: 20%;
+			height: 15%;
+			/*border: 1px solid red;*/
+			position: absolute;
+			right: 0;
+			top: 10%;
+			text-align: right;
+		}
+		.personal_information_title i{
+			font-size: 2.2rem;
+			line-height: 4rem;
+		}
+		.content_main{
+			width: 100%;
+			height: 75%;
+			/*border: 1px solid red;*/
+			position: relative;
+		}
+		.sign_in_case{
+			width: 65%;
+			height: 90%;
+			
+			position: absolute;
+			bottom: 0;
+			border-left:3px solid black; 
+			border-bottom:3px solid black; 
+			border-right:3px solid black; 
+		}
+		.sign_in_case_line{
+			width: 30%;
+			height: 3px;
+			background: black;
+		}
+		.sign_in_case ul li{
+			/*border: 1px solid red;*/
+			margin-top: 1.6%;
+			padding-left: 2%;
+		}
+		.sign_in_case ul li span{
+			font-size: 1.2rem;
+		}
+		.personal_information_content{
+			width: 35.4%;
+			height: 90%;
+			
+			position: absolute;
+			right: 0;
+			bottom: 0;
+			border-top: 3px solid black;
+			border-right: 3px solid black;
+
+		}
+		.personal_information_content ul li{
+			/*border: 1px solid red;*/
+			margin-top: 3%;
+		}
+		.personal_information_content ul li span{
+			/*border: 1px solid red;*/
+			font-size: 1.2rem;
+		}
+		.label{
+			margin-left: 15%;
+			color: #333;
+			font-weight: bold;
+		}
+		.value{
+			margin-left: 10%;
+		}
+		.personal_information_content_line{
+			width: 30%;
+			height: 3px;
+			background: black;
+			position: absolute;
+			bottom: 0;
+			right: 0;
+		}
+		@media only screen and (max-width: 85.375em){
+			.name span{
+				font-size: 3rem;
+				line-height: 4rem;
+				color: #468777;
+			}
+			.notice img{
+				width: 66%;
+			}
+			.personal_information_title i{
+				font-size: 1.6rem;
+				line-height: 3rem;
+			}
+			.sign_in_case ul li span{
+				font-size: 1.1rem;
+			}
+			.personal_information_content ul li{
+				/*border: 1px solid red;*/
+				margin-top: 2.1%;
+			}
+			.personal_information_content ul li span{
+				/*border: 1px solid red;*/
+				font-size: 1rem;
+			}
+		}
+
+		#homeinfo_div{
+			overflow-y: scroll;
+    		height: 100%;
+		}
+		*{
+			font-family: "微软雅黑";
+		}

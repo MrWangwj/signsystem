@@ -1,0 +1,103 @@
+.text{
+	width: 100%;
+	margin: 0 auto;
+}
+.curriculum{
+	width: 100%;
+	margin: 0 auto;
+}
+.schedule{
+	border:3px solid #C7471E;
+}
+.schedule td{
+	background: #C02F01;
+	color: white;
+	height: 80px;
+	cursor: pointer;
+	width: 14.4%;
+	border: 1px solid #CE6728;
+}
+.schedule th{
+	text-align: center;
+}
+.color1{
+	background: #E5E5E5 !important ;
+	color: #B0AEB2 !important ;
+}
+.color0{
+	background: white !important ;
+}
+.week td{
+	width: 35px;
+	height: 35px;
+	text-align: center;
+	cursor: pointer;
+	border: 1px solid #ddd;
+}
+.haveClass{
+	background-color: #d9edf7;
+}
+.hint{
+	position: absolute;
+	z-index: 10;
+	width: 94%;
+	max-height: 200px;
+	overflow: overlay;
+	/*display: none;*/
+}
+.hint div div{
+	float: left;
+	font-size: 12px;
+}
+.hint button{
+	float: right;
+}
+#weeks{
+	width: 120px;
+	text-align: center;
+	margin-top: 15px;
+	border: 2px solid #c23001;
+}
+#weeks option{
+	text-align: center;
+}
+
+#test{
+	float: left;
+}
+#test>span{
+	float: left;
+}
+.text-week{
+	height: 60px;
+	line-height: 60px;
+}
+.text-week>div{
+	float: right;
+}
+.text-week>div>button{
+	background-color: #C23001;
+}
+.text-week>div>button:hover{
+	background-color: #c9302c;
+}
+#hint2{
+	width: 87%;
+	background-color: #FFF;
+	position: absolute;
+	display: none;
+	max-height: 200px;
+    overflow: auto;
+}
+#hint2 ul{
+	border-bottom: 1px solid #C23001;
+	padding: 10px;
+	cursor: pointer;
+}
+
+#hint2 li{
+	
+}
+#hint2 li span:last-child{
+	float: right;
+}

@@ -1,26 +1,45 @@
 {extend name="public/base"}
 {block name="link"}
-<link rel="stylesheet" type="text/css" href="{$Think.config.parse_str.__CSS__}attendance.css">
+<link rel="stylesheet" type="text/css" href="{$Think.config.parse_str.__CSS__}attendance-test.css">
 <!--<script  src="{$Think.config.parse_str.__JS__}Chart.js"></script>-->
 <script  src="{$Think.config.parse_str.__JS__}Chart-1.0.1-beta.4.js"></script>
 {/block}
 {block name="main"}
-<table class="table table-striped" id="table">
-    <tr>
-        <th>排名</th>
-        <th>组别</th>
-        <th>成员</th>
-        <th>学号</th>
-        <th>在线时长(分钟)</th>
-    </tr>
-</table>
+
+
+    <div class="bg-up"></div>
+    <div class="bg-middle">  
+        <div class="term">
+            <label>组别：</label>
+            <select class="form-control" name="group" id="group">
+                <option value="-1">全部</option>
+                {volist name="group" id="vo"}
+                    <option value='{$vo.group_id}'>{$vo.group_name}</option>
+                {/volist}
+            </select>
+        </div>
+        <table class="table " id="table">
+            <tbody>
+                
+            </tbody>
+        </table>
+    </div>
+    <div class="bg-down"></div>
+
 {/block}
 {block name="js"}
 <script>
-    $('.menu li:eq(3)').css('background','black');
-    $(function () {
-        $.post("{:url('home/attendance/getThisTime')}",function (data) {
-            var table = $("#table");
+    $('.top>ul>li:eq(2)').addClass('nav_selected');
+    
+    getSign();
+    $('#group').on('change',function(){
+        getSign();
+    });
+    function getSign(){
+        var group = $('#group').val();
+        $.post("{:url('home/attendance/getThisTime')}", { group:group, }, function (data) {
+            var table = $("#table>tbody");
+            table.html("<tr><th>排名</th><th>组别</th><th>成员</th><th>学号</th><th>在线时长(分钟)</th></tr>");
             for(var i =0;i<data.length;i++) {
                 table.append(
                         "<tr> " +
@@ -29,11 +48,10 @@
                         "<td>" + data[i]['name'] + "</td>" +
                         "<td>" + data[i]['user_id'] + "</td>" +
                         "<td>" + Math.round(data[i]['times']/60) + "</td>" +
-                        "</tr>")
+                        "</tr>");
             }
-
-            $.post("{:url('home/attendance/getNo')}",function (data) {
-                var table = $("#table");
+            $.post("{:url('home/attendance/getNo')}", { group:group, }, function (data) {
+                var table = $("#table>tbody");
                 if(data.length==0) return;
                 for(var j =0;j<data.count;j++) {
                     table.append(
@@ -46,9 +64,11 @@
                             "</tr>")
                 }
             })
-        })
+        })       
+    }
 
-    })
+
+    
 
 </script>
 {/block}

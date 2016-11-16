@@ -17,6 +17,9 @@ class Attendance extends Base
         return $this->fetch();
     }
     public function test(){
+        $group = db('groups', [], false)
+                ->select();
+        $this->assign('group',$group);
         return $this->fetch();
     }
     //获取某人最后在线的时间
@@ -151,6 +154,14 @@ class Attendance extends Base
 
 
     public function getThisTime(){
+        $where =[];
+        $groupid = input('post.group');
+        // $groupid = -1;
+        
+        if($groupid != -1){
+            $where['groups.group_id']= ['EQ', $groupid]; 
+        }
+
         $number_wk=date("w",time())-1;
         if($number_wk==-1){
             $number_wk=6;
@@ -159,16 +170,53 @@ class Attendance extends Base
         $weekStart = strtotime(date('Y-m-d',strtotime("-$number_wk day")));//周一日期时间戳
         $weekOver = strtotime(date('Y-m-d',strtotime("+$number_wOk day")));//下周一日期时间戳
 
-        $list = Db::query("SELECT user.`user_id`,user.`name`,sign.`start_time`,sign.`over_time`,groups.`group_name`,SUM(sign.`over_time`-sign.`start_time`)AS times FROM user LEFT JOIN sign ON(user.`user_id`=sign.`user_id`) LEFT JOIN user_group ON(user.`user_id`=user_group.`user_id`) LEFT JOIN groups ON(user_group.`group_id` = groups.`group_id`) 
- where sign.`start_time`>=$weekStart and sign.`over_time`<$weekOver
-GROUP BY user.`user_id` HAVING SUM(sign.`over_time`-sign.`start_time`) ORDER BY times DESC");
+        $where['sign.start_time'] = ['EGT', $weekStart];
+        $where['sign.over_time'] = ['LT', $weekOver];
+
+
+        // $list = Db::query(
+        //     "SELECT user.`user_id`,user.`name`,sign.`start_time`,sign.`over_time`,groups.`group_name`,SUM(sign.`over_time`-sign.`start_time`)AS times 
+        //     FROM user 
+        //     LEFT JOIN sign ON(user.`user_id`=sign.`user_id`) 
+        //     LEFT JOIN user_group ON(user.`user_id`=user_group.`user_id`) 
+        //     LEFT JOIN groups ON(user_group.`group_id` = groups.`group_id`) 
+        //     WHERE sign.`start_time`>=$weekStart and sign.`over_time`<$weekOver 
+        //     GROUP BY user.`user_id` HAVING SUM(sign.`over_time`-sign.`start_time`) 
+        //     ORDER BY times DESC");
+
+        $list = db('user', [], false)
+                ->field('user.user_id,user.name,sign.start_time,sign.over_time,groups.group_name,SUM(sign.over_time-sign.start_time)AS times')
+                ->join('sign', 'user.user_id=sign.user_id', 'LEFT')
+                ->join('user_group', 'user.user_id=user_group.user_id', 'LEFT')
+                ->join('groups', 'user_group.group_id = groups.group_id', 'LEFT')
+                ->where($where)
+                ->group('user.user_id')
+                ->having('SUM(sign.over_time-sign.start_time)')
+                ->order('times desc')
+                ->select();
         return $list;
     }
     public function getNo(){
+        $where =[];
+        $groupid = input('post.group');
+        // $groupid = -1;
+        
+        if($groupid != -1){
+            $where['groups.group_id']= ['EQ', $groupid];
+        }
+
         $j=0;
         $listNull = null;
-        $list = Db::query("SELECT user.`user_id`,user.`name`,sign.`start_time`,sign.`over_time`,groups.`group_name` FROM user LEFT JOIN sign ON(user.`user_id`=sign.`user_id`) LEFT JOIN user_group ON(user.`user_id`=user_group.`user_id`) LEFT JOIN groups ON(user_group.`group_id` = groups.`group_id`)  
-GROUP BY user.`user_id`   ORDER BY user.`user_id` ");
+        $list = db('user', [], false)
+                ->field('user.user_id,user.name,sign.start_time,sign.over_time,groups.group_name')
+                ->join('sign', 'user.user_id=sign.user_id', 'LEFT')
+                ->join('user_group', 'user.user_id=user_group.user_id', 'LEFT')
+                ->join('groups', 'user_group.group_id = groups.group_id', 'LEFT')
+                ->where($where)
+                ->group('user.user_id')
+                ->order('user.user_id')
+                ->select();
+
         for ($i=0;$i<count($list);$i++){
             if(empty($list[$i]['start_time'])){
                 $listNull[$j]['user_id']=$list[$i]['user_id'];

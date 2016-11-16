@@ -9,10 +9,13 @@ html, body, .background{
 	
 }
 .bg-top{
-	background-color: #C23001;
+	/*background-color: #C23001;*/
 	position: relative;
 	min-height: 230px;
 	height: 55%;
+	background-image: url(../image/index-bg.png);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
 }
 .login{
 	border-radius: 7px;
@@ -44,7 +47,8 @@ html, body, .background{
 .title{
 	font-size: 30px;
 	text-align: center;
-	color: #7B4D40;
+	/*color: #7B4D40;*/
+	color: #110D25;
 	height: 100px;
 	line-height: 100px;
 	margin-top: 30px;
@@ -71,7 +75,8 @@ html, body, .background{
 	width: 25%;
 	padding: 0;
 	line-height: 35px;
-	color: #843920;
+	/*color: #843920;*/
+	color: #282533;
 	float: left;
 	font-family: '微软雅黑';
     font-size: 18px;
@@ -84,7 +89,8 @@ html, body, .background{
 	padding: 0;
 }
 .login-input>div>div>input{
-	border-color: #CA4A21;
+	/*border-color: #CA4A21;*/
+	border-color: #2A2838;
 }
 .login-bottom{
 	width: 65%;
@@ -96,12 +102,18 @@ html, body, .background{
 	font-family: '微软雅黑';
 }
 .login-but{
-	width: 75%;
-	/*margin:0 auto;*/
-	float: right;
+	/*width: 75%;
+	float: right;*/
+	width: 80%;
+	margin:0 auto;
 }
 .login-but button{
 	width: 110px;
+	background-color: #0C082A;
+	border-color: #0C082A;
+}
+.login-but button:hover{
+	background-color: #251E52;
 }
 .login-but button:first-child{
 	float: left;
@@ -123,12 +135,13 @@ html, body, .background{
 	height: 30%;
 	min-height: 30px;
 	width: 100%;
-	color: #703421;
-
+	/*color: #703421;*/
+	color: #27243C;
 }
 
 .marchsoft{
 	cursor: pointer;
+
 }
 
 input::-webkit-outer-spin-button,

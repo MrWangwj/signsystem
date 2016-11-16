@@ -1,7 +1,13 @@
+.backgd{
+	background-image: url(../image/scheducount.png);
+	background-size: 100% 100%;
+
+}
 .setup{
 	width: 100%;
 	height: 50px;
 	line-height: 50px;
+	color: #28Cbfd;
 }
 .setup>span{
 	float: left;
@@ -10,7 +16,8 @@
 	float: left;
 	width: 100px;
 	margin-top: 10px;
-	border: 1px solid #C23001;
+	/*border: 1px solid #C23001;*/
+	border:1px solid #28cbfd;
 }
 .setup>div{
 	float: right;
@@ -25,7 +32,8 @@
 	float: left;
 	width: 200px;
 	margin-top: 10px;
-	border: 1px solid #C23001;
+	/*border: 1px solid #C23001;*/
+	border:1px solid #28cbfd;
 }
 .term-input{
 	/*height: 120px;*/
@@ -43,6 +51,7 @@
 }
 .term-input>li>label{
 	margin: 0;
+	color: #28cbfd;
 }
 .term-input>li>div{
 	width: 90%;
@@ -52,20 +61,24 @@
 	margin-left: 5px;
 	margin-right: 5px;
 	cursor: pointer;
+	color: #9f9e9e;
 }
 .term-input>li>div>span:hover{
-	color: #C23001;
+	/*color: #C23001;*/
+	color:  #28cbfd;
 }
 #term-personnel{
 	margin-top: 2px;
 	width: 120px;
-	border-color: #C23001;
+	/*border-color: #C23001;*/
+	border-color:  #28cbfd;
 }
 .term{
-	background-color: #C33000;
+	/*background-color: #C33000;*/
 	min-height: 100px;
 	width: 100%;
 	color: #FFF;
+	border: 3px solid #95928C;
 }
 .term label{
 	font-weight: inherit;
@@ -93,8 +106,8 @@
 	height: 40px;
 	width: 100%;
 	line-height: 40px;
-	border-left: 5px solid #C23001;
-	border-bottom: 1px solid #FFF;
+	border-left: 5px solid rgba(0,0,0,0);
+	border-bottom: 1px solid #C9C6C1;
 	padding-left: 10px;
 	/*overflow-x: hidden;*/
 }
@@ -131,15 +144,20 @@
     cursor: pointer;
 }
 .foucus{
-	border-left: 5px solid #FFF !important;
+	border-left: 5px solid #C9C6C1 !important;
 }
 .personnel td{
 	width:14.4%;
-	max-height: 100px;
+	height: 10px;
 	overflow: hidden;
     /*white-space: nowrap;*/
     text-overflow: ellipsis;
+    border:1px solid #28cbfd;
+}
+.personnel td, .personnel th{
+    border:1px solid #28cbfd !important; 
 }
 .personnel{
 	margin-top: 20px;
+	color: #FFF;
 }
