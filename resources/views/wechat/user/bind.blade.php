@@ -36,6 +36,7 @@
 @section('js')
     <script>
         $('#validateBut').click(function () {
+            $.showLoading();
             var id = $('#id').val();
             if(!check({id: id}, 1)) return;
             $(this).attr("disabled", true);
@@ -46,6 +47,7 @@
                     id: id
                 },
                 success: function (data) {
+                    $.hideLoading();
                     if(data.code === 0){
                         $('#validateBut').removeAttr("disabled");
                         $.toptip(data.msg);
@@ -60,6 +62,7 @@
 
 
         $("#showTooltips").click(function() {
+            $.showLoading();
             var id = $('#id').val(),
                 validate = $('#validate').val();
             if(!check({id: id, validate: validate}, 2)) return;
@@ -72,6 +75,7 @@
                     validate: validate
                 },
                 success: function (data) {
+                    $.hideLoading();
                     if(data.code === 0){
                         $.toptip(data.msg);
                     }else{

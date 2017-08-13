@@ -63,6 +63,8 @@ Route::group(['prefix' => 'wechat'], function(){
     //导入课表
     Route::post('/course/input', '\App\Wechat\Controllers\CourseController@setInput');
 
+    //导入课表验证码
+    Route::get('/course/input/validate/{t?}', '\App\Wechat\Controllers\CourseController@getValidate');
 
     /**
      * 消息界面
