@@ -35,15 +35,14 @@ class WechatPower
 
         //微信用户id
         $openid = session('wechat_user')['id'];
-
-        if(in_array($target_url, $this->except))
+        if(in_array($target_url, $this->except) || Cache::has($openid))
             return $next($request);
 
         //用户信息
         $user = User::user($openid);
 
         if($user){
-            if(!Cache::has($openid)) Cache::forever($openid, $user->id);  //设置缓存
+            Cache::forever($openid, $user->id);  //设置缓存
             return $next($request);
         }else{
             return redirect('/wechat/noPermissions');

@@ -30,4 +30,10 @@ class User extends Authenticatable
     public static function user($openid){
         return User::all()->where('openid', $openid)->first();
     }
+
+
+    //关联课表
+    public function courses(){
+        return $this->belongsToMany('\App\Course','user_courses', 'user_id','course_id');
+    }
 }

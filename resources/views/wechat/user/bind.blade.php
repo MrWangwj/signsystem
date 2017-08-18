@@ -19,7 +19,7 @@
                 <label class="weui-label">验证码</label>
             </div>
             <div class="weui-cell__bd">
-                <input class="weui-input" type="" placeholder="请输入验证码" maxlength="6" id="validate">
+                <input class="weui-input" type="number" pattern="[0-9]*" placeholder="请输入验证码" maxlength="6" id="validate">
             </div>
             <div class="weui-cell__ft">
                 <button class="weui-vcode-btn" id="validateBut">获取验证码</button>
@@ -79,7 +79,9 @@
                     if(data.code === 0){
                         $.toptip(data.msg);
                     }else{
-                        $.toast("操作成功");
+                        $.toast("操作成功", function () {
+                            window.location = '/wechat/bindSuccess/'+id;
+                        });
                     }
                 }
             });
@@ -98,7 +100,7 @@
             if(!data.validate.trim()){
                 $.toptip('请输入验证码');
                 return false;
-            }else if(!/^\w{6}$/.test(data.validate)){
+            }else if(!/^\d{6}$/.test(data.validate)){
                 $.toptip('请输入正确的验证码');
                 return false;
             }

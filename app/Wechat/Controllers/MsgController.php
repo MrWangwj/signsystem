@@ -20,4 +20,8 @@ class MsgController
     public function bindSuccess(User $user){
         return view('wechat.msg.bindSuccess', compact('user'));
     }
+
+    public function noCourseLogin(){
+        return view('wechat.msg.noCourseLogin');
+    }
 }

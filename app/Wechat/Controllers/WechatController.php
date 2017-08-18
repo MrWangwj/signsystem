@@ -81,7 +81,7 @@ class WechatController extends Controller
                     [
                         "type" => "view",
                         "name" => "我的课表",
-                        "url"  => url('/wechat/course/my'),
+                        "url"  => url('/wechat/course/show'),
                     ],
                     [
                         "type" => "view",

@@ -65,12 +65,19 @@ Route::group(['prefix' => 'wechat'], function(){
 
     //导入课表验证码
     Route::get('/course/input/validate/{t?}', '\App\Wechat\Controllers\CourseController@getValidate');
+    //显示要导入的信息
+
+    //导入
+    Route::post('/course/input/input', '\App\Wechat\Controllers\CourseController@inputShow');
+
+
 
     /**
      * 消息界面
      */
     Route::get('/noPermissions', '\App\Wechat\Controllers\MsgController@noPermissions');
     Route::get('/bindSuccess/{user}', '\App\Wechat\Controllers\MsgController@bindSuccess');
+    Route::get('/noCourseLogin', '\App\Wechat\Controllers\MsgController@noCourseLogin');
 
 
     /**
@@ -94,11 +101,14 @@ Route::group(['prefix' => 'wechat'], function(){
 
 
         //我的课表
-        Route::get('/course/my', '\App\Wechat\Controllers\CourseController@course');
+        Route::get('/course/show/{user?}', '\App\Wechat\Controllers\CourseController@course');
         //课表统计
         Route::get('/course/count', '\App\Wechat\Controllers\CourseController@count');
         //导入课表渲染
         Route::get('/course/input', '\App\Wechat\Controllers\CourseController@input');
+
+        //显示要导入的信息
+        Route::get('/course/input/show', '\App\Wechat\Controllers\CourseController@show');
 
     });
 });

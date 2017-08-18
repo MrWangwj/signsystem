@@ -16,7 +16,7 @@
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">密码</label></div>
             <div class="weui-cell__bd">
-                <input class="weui-input" type="password" placeholder="请输入密码" maxlength="11" id="password">
+                <input class="weui-input" type="password" placeholder="请输入密码"  id="password">
             </div>
         </div>
 
@@ -74,7 +74,9 @@
                     if(data.code == 0){
                         $.toptip(data.msg);
                     }else{
-                        $.toast(data.msg);
+                        $.toast(data.msg, function () {
+                            window.location = '/wechat/course/input/show';
+                        });
                     }
                 }
             )

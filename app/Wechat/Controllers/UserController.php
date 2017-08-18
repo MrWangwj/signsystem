@@ -19,7 +19,7 @@ class UserController extends Controller
 
     //个人信息
     public function info(User $user = null){
-        if(!Cache::has($user->openid)){
+        if(!$user->exists){
             $openid = session('wechat_user')['id'];
             $user = User::user($openid);
         }
@@ -39,7 +39,7 @@ class UserController extends Controller
     public function setBind(){
         $this->validate(request(), [
             'id' => 'required|numeric',
-            'validate' =>'required|size:6',
+            'validate' =>'required|numeric|between:100000,999999',
         ]);
 
         $wechatUser = session('wechat_user');  //获取微信用户
@@ -68,7 +68,7 @@ class UserController extends Controller
         if(!$user)
             return ['code' => 0, 'msg' => '用户不存在'];
 
-        $validate =  $text = str_random(6);
+        $validate =  $text = rand(100000, 999999);
         session(['bind_validate' => $validate]);
 
 
