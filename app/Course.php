@@ -68,6 +68,7 @@ class Course extends Model
 
         $crawler = new Crawler();
         $crawler->addHtmlContent($r->getBody()->getContents(), 'gb2312');
+
         $text = $crawler->filter('#divLogNote>font')->text();
         return $text;
     }

@@ -26,7 +26,7 @@ class CourseController extends Controller
             $user = User::user($openid);
         }
         $user->load('courses');
-        $startSchool = Seting::where('key', '=', 'start_school')->first();
+        $startSchool = Seting::startSchool()->first();
         return view('wechat.course.course', compact(['user','startSchool']));
     }
 

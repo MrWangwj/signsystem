@@ -207,6 +207,7 @@
 
         .selWeekDay{
             background-color: #BFF6F4 !important;
+            color: #3D98B3 !important;
         }
         .selWeekDay p{
             font-size: medium !important;
@@ -421,7 +422,7 @@
     $(document).ready(function () {
 
         var startSchool = '{{ $startSchool->value }}'; // 获取开学时间
-            startSchoolTime = new Date(startSchool).getTime();
+            startSchoolTime = startSchool*1000;
         //获取当前周
         nowWeek = getWeek(startSchoolTime,new Date().getTime());
         if(nowWeek > 20)  infoWeek(nowWeek); //判断当前周数是否大于20 ，添加多出的选项
@@ -657,11 +658,10 @@
             selWeek = parseInt($('.selWeek').find('span').text());
         }
 
-        console.log(selWeek);
-        var weekTime = new Date(startSchoolTime+((selWeek-1)*(7*24*60*60*1000))),
-            month = weekTime.getMonth()+1;
+        var weekTime = new Date();
+            weekTime.setTime(startSchoolTime+((selWeek-1)*(7*24*60*60*1000)));
+        var month = weekTime.getMonth()+1;
             $('#month').text(month);
-
         for(i = 0 ; i < 7; i++){
             if(i != 0) weekTime.setDate(weekTime.getDate()+1);
             var date = weekTime.getDate();
@@ -672,6 +672,7 @@
 </script>
 </body>
 </html>
+
 
 
 

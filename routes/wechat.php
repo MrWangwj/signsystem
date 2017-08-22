@@ -78,7 +78,7 @@ Route::group(['prefix' => 'wechat'], function(){
     Route::get('/noPermissions', '\App\Wechat\Controllers\MsgController@noPermissions');
     Route::get('/bindSuccess/{user}', '\App\Wechat\Controllers\MsgController@bindSuccess');
     Route::get('/noCourseLogin', '\App\Wechat\Controllers\MsgController@noCourseLogin');
-
+    Route::get('/noInterface', '\App\Wechat\Controllers\MsgController@noInterface');
 
     /**
      * 微信授权界面

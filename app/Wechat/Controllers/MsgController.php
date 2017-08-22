@@ -24,4 +24,8 @@ class MsgController
     public function noCourseLogin(){
         return view('wechat.msg.noCourseLogin');
     }
+
+    public function noInterface(){
+        return view('wechat.msg.noInterface');
+    }
 }

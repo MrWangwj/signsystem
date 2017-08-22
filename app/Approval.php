@@ -3,8 +3,7 @@
 namespace App;
 
 
-class Attendance extends Sign
+class Approval extends Sign
 {
     //
-
 }
