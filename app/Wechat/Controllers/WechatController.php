@@ -36,6 +36,7 @@ class WechatController extends Controller
                                 case 'SIGN_SIGN': {
                                     $r = $user->setSign();
                                     return $r['msg'];
+//                                    return '111';
                                     break;
                                 }
                                 case 'SIGN_CHECKOUT': {
@@ -50,7 +51,7 @@ class WechatController extends Controller
                     break;
                 }
                 default:
-                    return '待开发';
+                    return User::user($message->FromUserName)->name;
             }
 
 

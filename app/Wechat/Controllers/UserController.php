@@ -51,8 +51,6 @@ class UserController extends Controller
         if($user->id != $user->openid)
             return ['code' => 0, 'msg' => '该用户已绑定其他微信号'];
 
-
-
         $user->openid = $wechatUser['id'];  //赋值
         if(!$user->save())
             return ['code' => 0, 'msg' => '绑定失败，请重试'];

@@ -10,7 +10,10 @@ namespace App\Wechat\Controllers;
 
 
 use App\Approval;
+use App\Seting;
 use App\User;
+use Illuminate\Support\Facades\Auth;
+use Symfony\Component\VarDumper\Dumper\DataDumperInterface;
 
 class SignController extends Controller
 {
@@ -74,8 +77,64 @@ class SignController extends Controller
     }
 
     //考勤记录
-    public function signRecode(){
-        return view('wechat.sign.signRecode');
+    public function signRecode($week = null){
+        if(!$week) $week = Seting::getNowWeek();
+        $openid = session('wechat_user')['id'];
+        $user = User::user($openid);
+        $signs = $user->signs()->selfWeek($week)->effectiveSign()->get(['sign_start', 'sign_end']);
+
+        $weekSigns = $signs->groupBy(function ($item, $key){
+            $week = date('w', $item->sign_start);
+            return $week == 0 ? 6:$week-1;
+        })->toArray();
+        $nosigns = $user->getNoSign($signs, $week);
+
+
+        $restule = [];
+        for($i = 0; $i < 7; $i++)
+            $restule[$i] = collect();
+
+
+        for($i = 0; $i < 7; $i++){
+            if(isset($weekSigns[$i])){
+                foreach ($weekSigns[$i] as $sign){
+                    $tmp = [
+                        'start' => $sign['sign_start'],
+                        'end' => $sign['sign_end'],
+                        'type' => 1,
+                    ];
+                    $restule[$i]->push($tmp);
+                }
+            }
+
+            if(isset($nosigns[$i])){
+                foreach ($nosigns[$i] as $nosign){
+                    if($nosign['end_time'] <= time()) {
+                        $tmp = [
+                            'start' => $nosign['start_time'],
+                            'end' => $nosign['end_time'],
+                            'type' => 0,
+                        ];
+                        $restule[$i]->push($tmp);
+                    }
+                }
+            }
+        }
+
+
+        foreach ($restule as $key => $value){
+            $restule[$key] = $value->sortBy('start')->values();
+        }
+
+
+        for($i = 6; $i >= 0; $i--){
+            if($restule[$i]->isEmpty()){
+                unset($restule[$i]);
+            }else{
+                break;
+            }
+        }
+        return view('wechat.sign.signRecode', compact('restule'));
     }
 
     //补签记录渲染

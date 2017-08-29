@@ -97,7 +97,7 @@ class CourseController extends Controller
 
 
         //TODO: 上线时清除缓存
-//        Cache::forget($openid.'_course');
+        Cache::forget($openid.'_course');
         return ['code' => '1', 'msg' => '导入成功'];
     }
 }

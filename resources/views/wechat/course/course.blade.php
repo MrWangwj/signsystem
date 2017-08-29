@@ -627,7 +627,7 @@
     function getWeek(startSchoolTime, nowTime) {
         var week = 1;
         week = ((nowTime-startSchoolTime)/1000)/(60*60*24*7);
-        return Math.round(week);
+        return Math.ceil(week);
     }
 
     //当周数大于20时自动添加

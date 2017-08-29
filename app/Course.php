@@ -49,9 +49,9 @@ class Course extends Model
         $uri        = $data['uri'][$school]['login'];
         $postData   = $data['formdata'][$school]['login'];
 
-        $postData['dsdsdsdsdxcxdfgfg']   = $fromdata['password'];
+        $postData['dsdsdsdsdxcxdfgfg']      = $fromdata['password'];
         $postData['fgfggfdgtyuuyyuuckjg']   = $fromdata['validate'];
-        $postData['txt_asmcdefsddsd']  = $fromdata['user_id'];
+        $postData['txt_asmcdefsddsd']       = $fromdata['user_id'];
 
 
         $set = [
@@ -117,7 +117,6 @@ class Course extends Model
         Cache::forever($openid.'_course',$datas);
     }
 
-
     /**
      * 分割字符串
      * @param $courses
@@ -148,4 +147,5 @@ class Course extends Model
         }
         return $data;
     }
+
 }
