@@ -139,22 +139,27 @@ class SignController extends Controller
 
     //补签记录渲染
     public function patchrecode(){
-        return view('wechat.sign.patchRecode');
+        $openid = session('wechat_user')['id'];
+        $user = User::user($openid);
+        $approvals = $user->approvals()->selfWeek()->get();  //用户本周的补签记录
+//        dd($approvals);
+        return view('wechat.sign.patchRecode', compact('approvals'));
     }
 
     //取消补签
     public function cancelPatch(){
+        $openid = session('wechat_user')['id'];
+        $user = User::user($openid);
 
+        $approval = Approval::all()->find(request('id'));
+        if($user->can('update', $approval)){
+            $approval->type = 5;
+            $approval->save();
+            return ['code' => 1, 'msg' => '修改成功'];
+        }else{
+            return ['code' => 0, 'msg' => '非法操作'];
+        }
     }
 
-    //重新申请补签渲染
-    public function repatch() {
-        return view('wechat.sign.repatch');
-    }
-
-    //重新申请补签
-    public function setRepatch() {
-
-    }
 
 }

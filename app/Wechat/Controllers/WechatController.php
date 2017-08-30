@@ -36,7 +36,6 @@ class WechatController extends Controller
                                 case 'SIGN_SIGN': {
                                     $r = $user->setSign();
                                     return $r['msg'];
-//                                    return '111';
                                     break;
                                 }
                                 case 'SIGN_CHECKOUT': {
