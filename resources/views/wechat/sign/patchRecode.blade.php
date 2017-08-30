@@ -26,7 +26,7 @@
     <div class="weui-cells__title">只可以取消待审批</div>
     <div class="weui-cells">
 
-        @foreach($approvals as $approval)
+        @forelse($approvals as $approval)
             {{--2.待审批/3.同意/4.拒绝/5.取消--}}
             @if($approval->type == 2)
                 <a class="weui-cell weui-cell_access orange" href="javascript:;">
@@ -69,7 +69,11 @@
             @else
                 ...
             @endif
-        @endforeach
+        @empty
+            <p>本周没有补签记录</p>
+        @endforelse
+
+
     </div>
 
 @endsection
