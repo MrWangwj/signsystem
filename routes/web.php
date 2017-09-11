@@ -15,6 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+Route::get('/count', '\App\Wechat\Controllers\CourseController@test');
 
 include_once ('wechat.php');

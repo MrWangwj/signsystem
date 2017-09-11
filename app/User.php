@@ -53,6 +53,18 @@ class User extends Authenticatable
     }
 
 
+    //关联组别
+    public function grouping(){
+        return $this->belongsTo('\App\Grouping','grouping_id','id');
+    }
+
+    //关联职务
+    public function positions(){
+        return $this->belongsToMany('\App\Position','position_users','user_id','position_id');
+    }
+
+
+
     //返回用户当前签到的记录
     public function getSign(){
         return $this->attendances()->where('type', '=', 0);
@@ -62,6 +74,8 @@ class User extends Authenticatable
     public function getCheckout(){
         return $this->attendances()->where('type', '=', 1);
     }
+
+
 
 
 

@@ -126,8 +126,10 @@ class Course extends Model
         $data = [];
         $weeks = ['一' => 1, '二' => 2, '三' => 3, '四' => 4, '五' => 5, '六' => 6, '日' => 7 ];
         $status = ['' => 0, '单' => 1, '双' => 2];
+
+
         foreach ($courses as $course){
-            $pattern = '/\[(\d{1,2}-\d{1,2}|\d{1,2})(单|双|)周\]星期(一|二|三|四|五|六|日)\[(\d{1,2})-(\d{1,2})节\]\/(\S+)/';
+            $pattern = '/\[(\d{1,2}-\d{1,2}|\d{1,2})(单|双|)周\]星期(一|二|三|四|五|六|日)\[(\d{1,2})-(\d{1,2})节\]\/(\S*)/';
             foreach ($course['info'] as $info){
                 if(! preg_match($pattern, $info, $matches))
                     return false;
@@ -145,6 +147,7 @@ class Course extends Model
                 $data[] = $courseInfo;
             }
         }
+
         return $data;
     }
 
