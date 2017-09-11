@@ -179,6 +179,8 @@ return [
 
         //EasyWechat 微信开发
         Overtrue\LaravelWechat\ServiceProvider::class,
+        //Captcha
+        Mews\Captcha\CaptchaServiceProvider::class,
     ],
 
     /*
@@ -228,6 +230,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'EasyWeChat' => Overtrue\LaravelWechat\Facade::class,
+        'Captcha' => Mews\Captcha\Facades\Captcha::class
     ],
 
 ];

@@ -13,9 +13,9 @@
     </style>
     <body>
     <div id="app">
-       <app></app>
+       <login></login>
     </div>
     
     </body>
-    <script src = "{{mix('js/app.js')}}"></script>
+    <script src = "{{mix('js/login.js')}}"></script>
 </html>

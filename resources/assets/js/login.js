@@ -24,11 +24,8 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 Vue.use(VueAxios, axios)
 
-import router from './router/index.js'
 
-Vue.component('App', require('./components/App.vue'));
-
+Vue.component('login', require('./components/Login.vue'));
 const app = new Vue({
     el: '#app',
-    router
 });
