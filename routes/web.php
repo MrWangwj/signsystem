@@ -12,6 +12,7 @@
 */
 include_once ('wechat.php');
 
+<<<<<<< HEAD
 //登录验证
 Route::get('/',function(){
     return view('admin.index');
@@ -21,6 +22,13 @@ Route::get('/',function(){
 Route::get('/login', function () {
     return view('admin.login');
 })->middleware('checkLogout');
+=======
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/count', '\App\Wechat\Controllers\CourseController@test');
+>>>>>>> 2ea40ac03372867e33afbf1040dfe1118495e6be
 
 //后台登陆模块
 Route::group(['prefix' => 'sign'], function(){

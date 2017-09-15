@@ -9,6 +9,8 @@
 namespace App\Wechat\Controllers;
 
 use App\Course;
+use App\Grouping;
+use App\Position;
 use App\Seting;
 use App\User;
 use GuzzleHttp\Client;
@@ -79,8 +81,8 @@ class CourseController extends Controller
     public function inputShow(){
         //判断是否有课表导入
         $openid =session('wechat_user')['id'];
-        if(!Cache::has($openid.'_course'))
-            return redirect('/wechat/noCourseLogin');
+//        if(!Cache::has($openid.'_course'))
+//            return redirect('/wechat/noCourseLogin');
 
         //分割字符串成为课表数据
         $courses = Course::getFrmateCourse(Cache::get($openid.'_course'));
@@ -97,7 +99,46 @@ class CourseController extends Controller
 
 
         //TODO: 上线时清除缓存
-//        Cache::forget($openid.'_course');
+        Cache::forget($openid.'_course');
         return ['code' => '1', 'msg' => '导入成功'];
+    }
+
+    public function test(){
+
+//        data = {
+//            nowWeek:
+//            groups:{},
+//            positions:{},
+//            grades:{},
+//            students:{
+//                id:...,
+//                name:...,
+//                sex:...,
+//                group_id:...,
+//                position_id:...,
+//                courses:{
+//                    ...
+//                }
+//            }
+//        }
+        $nowWeek    = Seting::getNowWeek();  //获得当前周
+        $groups     = Grouping::all(['id', 'name'])->toArray();  //获得分组
+        $positions  = Position::all(['id', 'name'])->toArray(); //获得职务
+
+        $allStudents   = User::with('grouping', 'positions', 'courses')->get(['id', 'name', 'grouping_id','sex']);  //获得学生的信息
+
+
+        // 以id为键排列
+        $students = [];
+        $grades = [];
+        foreach ($allStudents->toArray() as $student){
+            //获取年级
+            $tmpGrade = intval(substr($student['id'], 2,2));
+            if(!in_array($tmpGrade,$grades)) $grades[] = $tmpGrade;
+
+            $students[$student['id']] = $student;
+        }
+
+        return compact(['nowWeek', 'groups', 'positions', 'grades', 'students']);
     }
 }

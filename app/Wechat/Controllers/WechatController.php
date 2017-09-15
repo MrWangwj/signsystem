@@ -50,7 +50,7 @@ class WechatController extends Controller
                     break;
                 }
                 default:
-                    return '待开发';
+                    return User::user($message->FromUserName)->name;
             }
 
 

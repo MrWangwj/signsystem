@@ -93,7 +93,7 @@ Route::group(['prefix' => 'wechat'], function(){
         //补签渲染
         Route::get('/sign/patch', '\App\Wechat\Controllers\SignController@patch');
         //考勤记录
-        Route::get('/sign/signrecode', '\App\Wechat\Controllers\SignController@signRecode');
+        Route::get('/sign/signrecode/{week?}', '\App\Wechat\Controllers\SignController@signRecode');
         //补签记录渲染
         Route::get('/sign/patchrecode', '\App\Wechat\Controllers\SignController@patchrecode');
         //重新申请补签渲染

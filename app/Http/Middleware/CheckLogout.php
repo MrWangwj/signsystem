@@ -17,7 +17,7 @@ class CheckLogout
      public function handle($request, Closure $next)
      {
          if(!empty(Auth::id()))
-            return redirect('/');
+            return redirect('/admin');
          else    
              return $next($request);
      }

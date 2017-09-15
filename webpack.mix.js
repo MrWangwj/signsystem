@@ -13,4 +13,5 @@ let mix = require('laravel-mix');
 
 mix.js('resources/assets/js/app.js', 'public/js')
    .js('resources/assets/js/login.js', 'public/js')
+   .extract(['vue', "vue-router", "axios"])
    .sass('resources/assets/sass/app.scss', 'public/css');
