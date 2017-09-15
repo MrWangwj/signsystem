@@ -68,7 +68,7 @@
                   type: 'success',
                   duration: 1000,
                   onClose: function() {
-                    window.location="/";
+                    window.location="/admin";
                   },
                 });                                      
               }else{
