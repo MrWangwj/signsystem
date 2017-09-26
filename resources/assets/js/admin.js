@@ -17,11 +17,13 @@ window.Vue = require('vue');
  */
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
+
 Vue.use(ElementUI)
 
 import Vue from 'vue'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+
 Vue.use(VueAxios, axios)
 
 import router from './router/index.js'

@@ -12,9 +12,40 @@
 */
 include_once ('wechat.php');
 
-Route::get('/admin',function(){
-    return view('admin.index');
-})->middleware('checklogin');
+
+Route::get('/test', 'UserController@test');
+
+
+//后台界面
+Route::group(['middleware' => 'checklogin', 'prefix' => 'admin'], function () {
+    //后台总页
+    Route::get('/',function(){
+        return view('admin.index');
+    });
+
+    //获取登录用户的信息
+    Route::get('/user', 'UserController@user');
+    //获取用户信息
+    Route::get('/user/list', 'UserController@users');
+    //获取添加页中的组别职务信息
+    Route::get('/user/add/info', 'UserController@getAddData');
+    //添加用户
+    Route::post('/user/add', 'UserController@addUser');
+    //导入用户
+    Route::post('/user/input', 'UserController@inputExcel');
+
+    //编辑用户页获取数据
+    Route::get('/user/edit/info', 'UserController@getEditUserInfo');
+
+    //更新用户信息
+    Route::post('/user/edit', 'UserController@editUser');
+
+    //删除用户信息
+    Route::post('/user/delete', 'UserController@userDelete');
+});
+
+
+
 
 //登出验证
 Route::get('/login', function () {
@@ -34,7 +65,8 @@ Route::group(['prefix' => 'sign'], function(){
     Route::post('/check', 'LoginController@check');
     Route::post('/captcha','LoginController@captcha');
 });
-    
+
+
 Route::group(['prefix' => 'user'],function(){
     Route::post('/list','LoginController@index');
 });

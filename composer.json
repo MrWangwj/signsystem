@@ -12,7 +12,8 @@
         "mews/captcha": "^2.1",
         "overtrue/laravel-wechat": "~3.0",
         "symfony/css-selector": "^3.3",
-        "symfony/dom-crawler": "^3.3"
+        "symfony/dom-crawler": "^3.3",
+        "maatwebsite/excel": "~2.1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

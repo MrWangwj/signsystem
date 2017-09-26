@@ -181,6 +181,8 @@ return [
         Overtrue\LaravelWechat\ServiceProvider::class,
         //Captcha
         Mews\Captcha\CaptchaServiceProvider::class,
+
+        Maatwebsite\Excel\ExcelServiceProvider::class,
     ],
 
     /*
@@ -230,7 +232,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'EasyWeChat' => Overtrue\LaravelWechat\Facade::class,
-        'Captcha' => Mews\Captcha\Facades\Captcha::class
+        'Captcha' => Mews\Captcha\Facades\Captcha::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     ],
 
 ];
