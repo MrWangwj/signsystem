@@ -167,10 +167,8 @@
                 }).then(response => {
                     let data = response.data;
 
-
                     this.infoData.groups = data.groups;
                     this.infoData.positions = data.positions;
-
 
                     console.log(this.infoData.groups);
                 }).catch(function(err){

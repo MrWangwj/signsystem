@@ -252,18 +252,6 @@ class UserController extends Controller
     }
 
     public function test(){
-        $user = new User();
-        $user->id    = 20151515110 ;
-        $user->name  = 'test';
-        $user->sex   = 0;
-        $user->grouping_id = 0;
-        $user->tel   = 15688889999;
-        $user->email = 'test3@qq.com';
-        $user->openid = '1234';
-        $user->password = '1';
-        $user->save();
-
-        sleep(5);
-        $user->positions()->attach(0);
+        echo Storage::url('users/users.xlsx');
     }
 }
