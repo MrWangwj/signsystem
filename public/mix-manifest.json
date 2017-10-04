@@ -4,5 +4,6 @@
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/js/vendor.js": "/js/vendor.js",
+    "/js/wechat.js": "/js/wechat.js",
     "/js/manifest.js": "/js/manifest.js"
 }

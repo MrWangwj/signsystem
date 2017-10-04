@@ -254,4 +254,7 @@ class UserController extends Controller
     public function test(){
         echo Storage::url('users/users.xlsx');
     }
+
+
+
 }

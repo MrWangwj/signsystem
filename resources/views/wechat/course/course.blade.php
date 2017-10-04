@@ -534,7 +534,7 @@
         $('.selWeek').each(function () {
             $(this).removeClass('selWeek');
         });
-        if(parseInt(week) != parseInt(nowWeek))
+        if(parseInt(week) !== parseInt(nowWeek))
             $('.selWeekDay').each(function () {
                 $(this).removeClass('selWeekDay');
             });
@@ -603,7 +603,7 @@
                     if($(this).hasClass('noCourse')) courseClass = 'noCourse';
                     var slide = '<div class="swiper-slide '+courseClass+'">' +
                         '<h4>'+ options.name + '</h4>' +
-                        '<p>教师 '+ options.name +'</p>' +
+                        '<p>教师 '+ options.teacher +'</p>' +
                         '<p>教室 '+ options.location +'</p>' +
                         '<p>周数 '+ options.startWeek +'-'+options.endWeek +'周'+week +'</p>' +
                         '<p>节数 '+weekDays[options.weekDay] +' '+options.startSection+'-'+options.endSection+'节</p>' +

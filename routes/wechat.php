@@ -9,7 +9,7 @@ Route::group(['prefix' => 'wechat'], function(){
      */
 
     //微信连接
-    Route::any('/', '\App\Wechat\Controllers\WechatController@server');
+    Route::any('/server', '\App\Wechat\Controllers\WechatController@server');
     //设置菜单
     Route::any('/menu', '\App\Wechat\Controllers\WechatController@setMenu');
     //微信授权回调函数
@@ -103,12 +103,13 @@ Route::group(['prefix' => 'wechat'], function(){
         //我的课表
         Route::get('/course/show/{user?}', '\App\Wechat\Controllers\CourseController@course');
         //课表统计
-        Route::get('/course/count', '\App\Wechat\Controllers\CourseController@count');
+        Route::get('/', '\App\Wechat\Controllers\CourseController@count');
         //导入课表渲染
         Route::get('/course/input', '\App\Wechat\Controllers\CourseController@input');
 
         //显示要导入的信息
         Route::get('/course/input/show', '\App\Wechat\Controllers\CourseController@show');
+        Route::get('/course/count', '\App\Wechat\Controllers\CourseController@getCount');
 
     });
 });

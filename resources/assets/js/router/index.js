@@ -63,18 +63,18 @@ export default new Router({
         {
             path: '/',
             component: Home,
-            name: '导航二',
+            name: '课表管理',
             iconCls: 'el-icon-menu',
             children: [
                 {
-                    path: '/page4',
-                    component: Page4,
-                    name: '页面4'
+                    path: '/course/my',
+                    component: resolve => void(require(['../components/nav2/MyCourses.vue'], resolve)),
+                    name: '我的课表'
                 },
                 {
-                    path: '/page5',
-                    component: Page5,
-                    name: '页面5'
+                    path: '/course/count',
+                    component: resolve => void(require(['../components/nav2/CourseCount.vue'], resolve)),
+                    name: '课表统计'
                 }
             ]
         },
