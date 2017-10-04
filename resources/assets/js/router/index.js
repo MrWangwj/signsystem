@@ -6,9 +6,7 @@ import Main from '../components/Main.vue'
 import Table from '../components/nav1/Table.vue'
 import Form from '../components/nav1/Form.vue'
 import user from '../components/nav1/user.vue'
-import Page4 from '../components/nav2/Page4.vue'
-import Page5 from '../components/nav2/Page5.vue'
-import Page6 from '../components/nav3/Page6.vue'
+
 import Test from '../components/nav1/AddUser.vue'
 
 
@@ -81,14 +79,14 @@ export default new Router({
         {
             path: '/',
             component: Home,
-            name: '',
+            name: '考勤管理',
             iconCls: 'el-icon-setting',
-            leaf: true,//只有一个节点
+            // leaf: true, //只有一个节点
             children: [
                 {
-                    path: '/page6',
-                    component: Page6,
-                    name: '导航三'
+                    path: '/set/course',
+                    component: resolve => void(require(['../components/nav3/Course.vue'], resolve)),
+                    name: '课表管理'
                 }
             ]
         },

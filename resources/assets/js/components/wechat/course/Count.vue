@@ -255,23 +255,23 @@
         data () {
             return {
                 get: {
-                    nowWeek:0,
-                    groups: [],
-                    positions: [],
-                    grades: [],
-                    students: [],
+                    nowWeek:0,      //当前周
+                    groups: [],     //所有分组
+                    positions: [],  //所有职务
+                    grades: [],     //年级
+                    students: [],   //所有学生
                 },
                 set: {
-                    weeks: [],
-                    selPositions: [],
-                    selSexs:[],
-                    selGrades:[],
-                    selGroups:[],
-                    selStudent:[],
-                    selWeek: 0,
+                    weeks: [],          //一共有多少周
+                    selPositions: [],   //选择额职务
+                    selSexs:[],         //选择的性别
+                    selGrades:[],       //选中你的年级
+                    selGroups:[],       //选中的分组
+                    selStudent:[],      //选中的学生
+                    selWeek: 0,         //选中的周
                 },
-                count :false,
-                haveNoCourse: true,
+                count :false,           //是否打开统计页面
+                haveNoCourse: true,     //是否有课
                 courses: [
                     [],
                     [],
@@ -525,6 +525,8 @@
                     }
                 }
             },
+
+            //点击用户显示课程
             courseInfo(user_id, course_id){
                 if(this.haveNoCourse){
                     let course = this.get.students[user_id].courses[course_id];
@@ -564,7 +566,6 @@
         width: 210px;
         height: 420px;
         margin: 10px auto;
-        border:1px solid red;
     }
 
 
@@ -580,7 +581,7 @@
         border-radius: 10px;
         margin: 10px auto;
         display: block;
-        width: 40px;
+        width: 50px;
         text-align: center;
     }
 

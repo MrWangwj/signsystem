@@ -19,30 +19,20 @@ class WechatPower
     //排除不需要绑定用户的路由
     protected $except = [
         '/wechat/user/bind',
-        '/wechat'
     ];
 
-    //TODO:: 不用微信授权的界面， 上线时删除
-
-    protected $test = [
-        '/wechat',
-        '/wechat/course/count'
-    ];
 
     public function handle($request, Closure $next)
     {
-        //判断session 是否有openid
-        $target_url = $request->server()['REQUEST_URI'];
 
-        //TODO:: 直接进入
-        if(in_array($target_url, $this->test)){
-            return $next($request);
-        }
+
 
         $app = app('wechat');
         $oauth = $app->oauth;
 
 
+        //判断session 是否有openid
+        $target_url = $request->server()['REQUEST_URI'];
         if (!session()->has('wechat_user')) {
             session(['target_url' => $target_url]);
             return $oauth->redirect();
