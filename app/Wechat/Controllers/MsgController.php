@@ -14,7 +14,6 @@ use App\User;
 class MsgController
 {
     public function noPermissions(){
-        dd(session('wechat_user')['id']);
         return view('wechat.msg.noPermissions');
     }
 

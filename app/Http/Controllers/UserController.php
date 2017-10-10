@@ -124,6 +124,8 @@ class UserController extends Controller
 
         $groupings = Grouping::all();
         $groupingNames = Grouping::all()->pluck('name')->toArray();
+
+
         $msg = $addUsers->checkUsers($groupingNames);
 
         if(count($msg) == 0){
