@@ -1,31 +1,87 @@
+<style>
+
+    .title{
+        width: 100%;
+        height: 45px;
+        font-size: small;
+    }
+
+    .title>div{
+        width: 335px;
+        margin:5px auto;
+        height: 35px;
+    }
+
+    .title>div>div{
+        float: left;
+        height: 100%;
+    }
+    .title>div:after{
+        display: block;
+        content: '';
+        clear: both;
+    }
+
+    .see-type{
+        width: 50px;
+        margin-right: 5px;
+    }
+
+    .now-week-but{
+        width: 35px;
+        height: 100%;
+        margin-right: 5px;
+    }
+
+    .weeks{
+        width: 200px;
+    }
+
+    .count{
+        width: 35px;
+        margin-left: 5px;
+    }
+
+    .see-type, .now-week-but, .count{
+        background-color: #227B86;
+        border-radius: 5px;
+        line-height: 35px;
+        text-align: center;
+        color: white;
+    }
+</style>
+
 <template>
-    <div>
+    <div class="main">
 
         <div class="title">
-            <button @click="count = true">统计</button>
+
+                <div>
+                    <div class="see-type">
+                        <label>格式一</label>
+                    </div>
+                    <div @click="setNowWeek()" class="now-week-but">
+                        本周
+                    </div>
+                    <div class="weeks">
+                        <scroller lock-y :scrollbar-x=false>
+                            <div class="box1" id="weeks">
+                                <div :class="{'box1-item':true, 'test':test, 'now-week': get.nowWeek == i.id, 'sel-week': i.sel }" @click="addSelWeek(i.id)" v-for="i in set.weeks" >
+                                    <span>{{' ' + i.id + ' '}}</span>
+                                </div>
+                            </div>
+                        </scroller>
+                    </div>
+                    <div @click="count = true" class="count">
+                        统计
+                    </div>
+                </div>
+
         </div>
 
         <div v-transfer-dom>
             <popup v-model="count" position="right">
                 <div style="width:300px;">
-                    <divider>周数</divider>
-
-                    <div class="weeks">
-                        <div @click="setNowWeek()">
-                            本周
-                        </div>
-                        <div>
-                            <scroller lock-y :scrollbar-x=false>
-                                <div class="box1" id="weeks">
-                                    <div :class="{'box1-item':true, 'test':test, 'now-week': get.nowWeek == i.id, 'sel-week': i.sel }" @click="addSelWeek(i.id)" v-for="i in set.weeks" >
-                                        <span>{{' ' + i.id + ' '}}</span>
-                                    </div>
-                                </div>
-                            </scroller>
-                        </div>
-                    </div>
-
-
 
                     <divider>组别</divider>
 
@@ -86,8 +142,8 @@
         <carousel-3d :display="5" :perspective="0" space="50" width="250" height="500" :inverseScaling="50" :loop="false" :controlsVisible="true" :minSwipeDistance="50">
 
             
-            <slide :index="0" class="week-day" >
-                <div class="week-title">
+            <slide :index="0" class="week-day" :style="{backgroundColor: colors[colorIndex[0]].content}">
+                <div class="week-title" :style="{backgroundColor: colors[colorIndex[0]].title}">
                     星期一（
                     <span v-if="haveNoCourse" @click="setHasNoCourse(false)">有课</span>
                     <span v-if="!haveNoCourse" @click="setHasNoCourse(true)">无课</span>
@@ -97,7 +153,7 @@
                 <div class="courseContent">
                     <div style="width: 100%;" class="section" v-for="section in courses[0]">
                         <div>
-                            <label>{{ section.id }}</label>
+                            <label :style="{backgroundColor: colors[colorIndex[0]].title}">{{ section.id }}</label>
                         </div>
                         <div>
                             <label v-for="(stu,index) in section.stus" @click="courseInfo(stu.id, stu.course_id)">{{ stu.name }},</label>
@@ -106,8 +162,8 @@
                 </div>
             </slide>
 
-            <slide :index="1" class="week-day" >
-                <div class="week-title">
+            <slide :index="1" class="week-day" :style="{backgroundColor: colors[colorIndex[1]].content}">
+                <div class="week-title" :style="{backgroundColor: colors[colorIndex[1]].title}">
                     星期二（
                     <span v-if="haveNoCourse" @click="setHasNoCourse(false)">有课</span>
                     <span v-if="!haveNoCourse" @click="setHasNoCourse(true)">无课</span>
@@ -117,7 +173,7 @@
                 <div class="courseContent">
                     <div style="width: 100%;" class="section" v-for="section in courses[1]">
                         <div>
-                            <label>{{ section.id }}</label>
+                            <label :style="{backgroundColor: colors[colorIndex[1]].title}">{{ section.id }}</label>
                         </div>
                         <div>
                             <label v-for="(stu,index) in section.stus" @click="courseInfo(stu.id, stu.course_id)" >{{ stu.name }},</label>
@@ -126,8 +182,8 @@
                 </div>
             </slide>
 
-            <slide :index="2" class="week-day" >
-                <div class="week-title">
+            <slide :index="2" class="week-day" :style="{backgroundColor: colors[colorIndex[2]].content}">
+                <div class="week-title" :style="{backgroundColor: colors[colorIndex[2]].title}">
                     星期三（
                     <span v-if="haveNoCourse" @click="setHasNoCourse(false)">有课</span>
                     <span v-if="!haveNoCourse" @click="setHasNoCourse(true)">无课</span>
@@ -137,7 +193,7 @@
                 <div class="courseContent">
                     <div style="width: 100%;" class="section" v-for="section in courses[2]">
                         <div>
-                            <label>{{ section.id }}</label>
+                            <label :style="{backgroundColor: colors[colorIndex[2]].title}">{{ section.id }}</label>
                         </div>
                         <div>
                             <label v-for="(stu,index) in section.stus" @click="courseInfo(stu.id, stu.course_id)" >{{ stu.name }},</label>
@@ -146,8 +202,8 @@
                 </div>
             </slide>
 
-            <slide :index="3" class="week-day" >
-                <div class="week-title">
+            <slide :index="3" class="week-day" :style="{backgroundColor: colors[colorIndex[3]].content}">
+                <div class="week-title" :style="{backgroundColor: colors[colorIndex[3]].title}">
                     星期四（
                     <span v-if="haveNoCourse" @click="setHasNoCourse(false)">有课</span>
                     <span v-if="!haveNoCourse" @click="setHasNoCourse(true)">无课</span>
@@ -157,7 +213,7 @@
                 <div class="courseContent">
                     <div style="width: 100%;" class="section" v-for="section in courses[3]">
                         <div>
-                            <label>{{ section.id }}</label>
+                            <label :style="{backgroundColor: colors[colorIndex[3]].title}">{{ section.id }}</label>
                         </div>
                         <div>
                             <label v-for="(stu,index) in section.stus" @click="courseInfo(stu.id, stu.course_id)" >{{ stu.name }},</label>
@@ -166,8 +222,8 @@
                 </div>
             </slide>
 
-            <slide :index="4" class="week-day" >
-                <div class="week-title">
+            <slide :index="4" class="week-day" :style="{backgroundColor: colors[colorIndex[4]].content}">
+                <div class="week-title" :style="{backgroundColor: colors[colorIndex[4]].title}">
                     星期五（
                     <span v-if="haveNoCourse" @click="setHasNoCourse(false)">有课</span>
                     <span v-if="!haveNoCourse" @click="setHasNoCourse(true)">无课</span>
@@ -177,7 +233,7 @@
                 <div class="courseContent">
                     <div style="width: 100%;" class="section" v-for="section in courses[4]">
                         <div>
-                            <label>{{ section.id }}</label>
+                            <label :style="{backgroundColor: colors[colorIndex[4]].title}">{{ section.id }}</label>
                         </div>
                         <div>
                             <label v-for="(stu,index) in section.stus" @click="courseInfo(stu.id, stu.course_id)" >{{ stu.name }},</label>
@@ -186,8 +242,8 @@
                 </div>
             </slide>
 
-            <slide :index="5" class="week-day" >
-                <div class="week-title">
+            <slide :index="5" class="week-day" :style="{backgroundColor: colors[colorIndex[5]].content}">
+                <div class="week-title" :style="{backgroundColor: colors[colorIndex[5]].title}">
                     星期六（
                     <span v-if="haveNoCourse" @click="setHasNoCourse(false)">有课</span>
                     <span v-if="!haveNoCourse" @click="setHasNoCourse(true)">无课</span>
@@ -197,7 +253,7 @@
                 <div class="courseContent">
                     <div style="width: 100%;" class="section" v-for="section in courses[5]">
                         <div>
-                            <label>{{ section.id }}</label>
+                            <label :style="{backgroundColor: colors[colorIndex[5]].title}">{{ section.id }}</label>
                         </div>
                         <div>
                             <label v-for="(stu,index) in section.stus" @click="courseInfo(stu.id, stu.course_id)" >{{ stu.name }},</label>
@@ -206,8 +262,8 @@
                 </div>
             </slide>
 
-            <slide :index="6" class="week-day" >
-                <div class="week-title">
+            <slide :index="6" class="week-day" :style="{backgroundColor: colors[colorIndex[6]].content}">
+                <div class="week-title" :style="{backgroundColor: colors[colorIndex[6]].title}">
                     星期日（
                     <span v-if="haveNoCourse" @click="setHasNoCourse(false)">有课</span>
                     <span v-if="!haveNoCourse" @click="setHasNoCourse(true)">无课</span>
@@ -217,7 +273,7 @@
                 <div class="courseContent">
                     <div style="width: 100%;" class="section" v-for="section in courses[6]">
                         <div>
-                            <label>{{ section.id }}</label>
+                            <label :style="{backgroundColor: colors[colorIndex[6]].title}">{{ section.id }}</label>
                         </div>
                         <div>
                             <label v-for="(stu,index) in section.stus" @click="courseInfo(stu.id, stu.course_id)" >{{ stu.name }},</label>
@@ -282,11 +338,45 @@
                     [],
                 ],    //统计的课表人员信息
                 test: true,
+                colorIndex:[0,1,2,3,4,5,6],
+                colors:[
+                    {
+                        title: '#1A9053',
+                        content: '#26CDB2',
+                    },
+                    {
+                        title: '#EF3C67',
+                        content: '#FD9693',
+                    },
+                    {
+                        title: '#794017',
+                        content: '#FEC961',
+                    },
+                    {
+                        title: '#1BAE9A',
+                        content: '#91FBC1',
+                    },
+                    {
+                        title: '#D13420',
+                        content: '#FD8E6B',
+                    },
+                    {
+                        title: '#82BD4B',
+                        content: '#CAF3A3',
+                    },
+                    {
+                        title: '#E23B5B',
+                        content: '#FCC5CC',
+                    },
+                ],
             }
         },
         methods: {
             //初始化信息
             info(){
+                document.getElementsByTagName('html')[0].style.background='#89E4DF';
+
+
                 let maxWeek = 20; // 最大周
                 this.$vux.loading.show({
                     text: '正在加载数据',
@@ -322,10 +412,16 @@
 
                     //选中今天
                     let nowWeekDay = (new Date().getDay()+6)%7;
-                    this.$children[1].goSlide(nowWeekDay);
+                    this.$children[2].goSlide(nowWeekDay);
 
+                    //返回当前周
+                    this.setNowWeek();
                     this.$vux.loading.hide();
-                })
+                });
+
+                //初始化颜色板
+                this.colorIndex.sort(this.randomsort)
+
             },
 
             //设置有课无课
@@ -353,7 +449,7 @@
                     this.set.weeks[this.get.nowWeek-1].sel = true;
 
                     this.test = !this.test;
-                    document.getElementById('weeks').style.transform = 'translate('+((this.get.nowWeek-3)*-50)+'px, 0)';
+                    document.getElementById('weeks').style.transform = 'translate('+((this.get.nowWeek-3)*-40)+'px, 0)';
                     this.getCourses();
 
             },
@@ -533,6 +629,11 @@
 
                     this.$vux.toast.text(course.name+'/'+course.location, 'top')
                 }
+            },
+
+            //随机排序
+            randomsort(a, b) {
+                return Math.random()>.5 ? -1 : 1; //通过随机产生0到1的数，然后判断是否大于0.5从而影响排序，产生随机性的效果。
             }
         },
         mounted(){
@@ -554,12 +655,12 @@
 
     .week-day{
         border-radius: 25px;
-        padding: 10px;
+
     }
     .week-title{
-        height: 30px;
+        height: 40px;
         text-align: center;
-        line-height: 30px;
+        line-height: 40px;
     }
     .courseContent{
         overflow-y: scroll;
@@ -576,7 +677,6 @@
         height: 50px;
     }
     .section>div:first-child label{
-        border: 1px solid black;
         padding: 8px;
         border-radius: 10px;
         margin: 10px auto;
@@ -590,7 +690,7 @@
         padding: 10px;
         box-sizing: border-box;
         border-radius: 10px;
-        border: 1px solid black;
+        /*border: 1px solid black;*/
     }
     .section>div:last-child label {
         display: block;
@@ -616,19 +716,20 @@
         box-sizing: border-box;
     }
     .group-item-selected {
-        background: #ffffff url(/images/course/download.png) no-repeat right bottom;
+        background: #ffffff url(/images/wechat/sel.png) no-repeat right bottom;
         border-color: #ff4a00;
     }
 
     .box1-item {
-        width: 40px;
-        height: 40px;
-        background-color: #ccc;
+        width: 35px;
+        height: 100%;
+        background-color: #FDCA62;
         display:inline-block;
-        margin-left: 10px;
+        margin-left: 5px;
         float: left;
         text-align: center;
-        line-height: 40px;
+        line-height: 35px;
+        border-radius: 5px;
     }
 
     .box1 {
@@ -637,34 +738,55 @@
     }
 
 
-    .weeks:after{
-        display: block;
-        content: '';
-        clear: both;
-    }
 
-    .weeks>div:first-child{
-        text-align: center;
-        width: 40px;
-        float: left;
-        line-height: 40px;
-        text-align: center;
-    }
+    /*.weeks>div:first-child{*/
+        /*text-align: center;*/
+        /*width: 40px;*/
+        /*float: left;*/
+        /*line-height: 40px;*/
+        /*text-align: center;*/
+    /*}*/
 
-    .weeks>div:last-child{
-        float: left;
-        width: 250px;
-        overflow: hidden;
-    }
+    /*.weeks>div:last-child{*/
+        /*float: left;*/
+        /*width: 250px;*/
+        /*overflow: hidden;*/
+    /*}*/
+
+
 
     .now-week{
-        background-color: #10AEFF;
+        background-color: #227B86;
+        color: white;
     }
     .sel-week{
-        background-color: #ff4a00;
+        color: #DB5061;
+        background-color: #F6C1C3;
     }
 
-    .test{
+
+
+
+    .week-day .week-title{
+         color: white;
 
     }
+
+    .week-day>.courseContent>div>div:first-child>label{
+        color: white;
+
+    }
+
+
+    .week-day>.courseContent>div>div:last-child{
+        box-shadow: #666 0px 0px 10px;
+        background-color: #F9EAC7;
+    }
+
+    .main{
+        background: url(/images/wechat/cloud.png) no-repeat;
+        background-size: 100% 60px;
+        background-position: 0 35px;
+    }
+
 </style>
