@@ -51,7 +51,14 @@ return [
                 "User-Agent" => "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3080.5 Safari/537.36",
             ],
             'course' => [
-
+                'Accept'=>'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+                'Accept-Encoding'=>'gzip, deflate',
+                'Accept-Language'=>'zh-CN,zh;q=0.8',
+                'Connection'=>'keep-alive',
+                'Host'=>'jwgl.hist.edu.cn',
+                'Referer'=>'http://jwgl.hist.edu.cn/jwweb/wsxk/stu_zxjg.aspx',
+                'Upgrade-Insecure-Requests'=>1,
+                'User-Agent'=>'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36'
             ],
         ],
     ],

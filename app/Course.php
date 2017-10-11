@@ -83,6 +83,7 @@ class Course extends Model
         $data       = config('course');
         $base_url   = $data['base_uri'][$school];
         $timeout    = $data['timeout'];
+        $header     = $data['header'][$school]['course'];
         $method     = $data['method'][$school]['course'];
         $uri        = $data['uri'][$school]['course'];
         $jar        = session('user_cookie');
@@ -93,6 +94,7 @@ class Course extends Model
         ];
         $client = new Client($set);
         $course = $client->request($method, $uri, [
+            'headers' => $header,
             'cookies' => $jar,
         ]);
 
