@@ -16,6 +16,7 @@ use App\User;
 use GuzzleHttp\Client;
 use GuzzleHttp\Cookie\CookieJar;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 use Symfony\Component\DomCrawler\Crawler;
 use Illuminate\Support\Facades\Cache;
 
@@ -39,31 +40,60 @@ class CourseController extends Controller
 
     //导入课表渲染
     public function input(){
-        return view('wechat.course.input');
+        $userId = Cache::get(session('wechat_user')['id']);
+        return view('wechat.course.input',compact('userId'));
     }
 
     //导入课表
     public function setInput(){
+
         $this->validate(request(), [
-            'user_id' => 'required|numeric',
             'password' => 'required',
             'validate' =>'required',
         ]);
         $openid =session('wechat_user')['id'];
-        //登录，获取登录状态
-        $text = Course::login(request(['user_id','password', 'validate']));
 
-        if($text != '正在加载权限数据...') return ['code' => '0', 'msg' => $text];
+        if(Cache::has($openid)){
+            $userId = Cache::get($openid);
+        }else{
+            $userId = User::user($openid)->id;
+        }
+
+
+        if($userId < 10000000000) $school = 'xinke';
+        else $school = 'hist';
+
+
+
+        $data = request(['password', 'validate']);
+        $data['user_id'] = $userId;
+
+        //登录，获取登录状态
+        $text = Course::login($data, $school);
+
+        if($text != '正在加载权限数据...') return ['code' => 0, 'msg' => $text];
         else{
-            Course::getCourse($openid);
-            return ['code' => '1', 'msg' => '登录成功'];
+            Course::getCourse($openid, $school);
+            return ['code' => 1, 'msg' => '登录成功'];
         }
 
     }
 
     //登录验证码
     public function getValidate($t = 0){
-        return Course::validate($t);
+        $openid = session('wechat_user')['id'];
+        if(Cache::has($openid)){
+            $userId = Cache::get($openid);
+        }else{
+            $userId = User::user($openid)->id;
+        }
+        if($userId<10000000000){
+            return Course::validate($t, 'xinke');
+        }else{
+            return Course::validate($t, 'hist');
+        }
+
+
     }
 
 
@@ -81,11 +111,13 @@ class CourseController extends Controller
     public function inputShow(){
         //判断是否有课表导入
         $openid =session('wechat_user')['id'];
-//        if(!Cache::has($openid.'_course'))
-//            return redirect('/wechat/noCourseLogin');
+        if(!Cache::has($openid.'_course'))
+            return redirect('/wechat/noCourseLogin');
 
         //分割字符串成为课表数据
         $courses = Course::getFrmateCourse(Cache::get($openid.'_course'));
+
+
 
         //创建课表信息
         $course_id = [];

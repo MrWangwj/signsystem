@@ -42,16 +42,31 @@ class Course extends Model
     public static function login($fromdata, $school = 'hist'){
         $data = config('course');
 
-        $base_url   = $data['base_uri']['hist'];
+        $base_url   = $data['base_uri'][$school];
         $timeout    = $data['timeout'];
         $header     = $data['header'][$school]['login'];
         $method     = $data['method'][$school]['login'];
         $uri        = $data['uri'][$school]['login'];
         $postData   = $data['formdata'][$school]['login'];
 
-        $postData['dsdsdsdsdxcxdfgfg']      = $fromdata['password'];
-        $postData['fgfggfdgtyuuyyuuckjg']   = $fromdata['validate'];
-        $postData['txt_asmcdefsddsd']       = $fromdata['user_id'];
+
+        if($school == 'hist'){
+                $postData['dsdsdsdsdxcxdfgfg']      = $fromdata['password'];
+                $postData['fgfggfdgtyuuyyuuckjg']   = $fromdata['validate'];
+                $postData['txt_asmcdefsddsd']       = $fromdata['user_id'];
+
+            }else{
+
+
+                $postData['PassWord']      = $fromdata['password'];
+                $postData['cCode']          = $fromdata['validate'];
+                $postData['UserID']       = $fromdata['user_id'];
+
+            }
+
+
+
+
 
 
         $set = [
@@ -103,18 +118,93 @@ class Course extends Model
 
         $html = '';
 
-        $datas = $crawler
-            ->filter('.T')
-            ->eq(1)
-            ->nextAll()
-            ->each(function (Crawler $node, $i){
-                $data       = [];
-                $tdNodes                = $node->filter('td');
-                $data['course_name']    = explode(']', $tdNodes->eq(1)->text())[1];
-                $data['teacher']        = $tdNodes->eq(4)->filter('a')->text();
-                $data['info']           = array_filter(explode('<br>',$tdNodes->eq(10)->html()));
-                return $data;
-             });
+
+//        return $crawler->filter('.T')
+//            ->eq(1)
+//            ->nextAll()->html();
+
+
+        $datas = [];
+
+        if($school == 'hist'){
+            $datas = $crawler
+                ->filter('.T')
+                ->eq(1)
+                ->nextAll()
+                ->each(function (Crawler $node, $i){
+                    $data       = [];
+                    $tdNodes                = $node->filter('td');
+                    $data['course_name']    = explode(']', $tdNodes->eq(1)->text())[1];
+                    $data['teacher']        = $tdNodes->eq(4)->filter('a')->text();
+                    $tmpdata           = array_filter(explode('<br>',$tdNodes->eq(10)->html()));
+                    foreach ($tmpdata as $tmp){
+                        $str = trim($tmp);
+                        if(strpos($str, ',') != false){
+                            $f = substr(explode(']', $str)[0],1, -3);
+                            $l = strstr($str, ']');
+
+                            foreach (explode(',', $f) as $sec){
+                                $data['info'][] = '['.$sec.$l;
+                            }
+
+                        }else{
+                            $data['info'][] = $str;
+                        }
+                    }
+//                    $data['info']           = array_filter(explode('<br>',$tdNodes->eq(10)->html()));
+                    return $data;
+                });
+        }else{
+            $n = 0;
+
+            foreach ($crawler->filter('.T')->eq(1)->nextAll() as $key=>$value){
+                $index =  $key - $n*11;
+                    switch ($index){
+                        case 1:{
+                            $datas[$n]['course_name'] = trim(explode(']', $value->nodeValue)[1]);
+                            break;
+                        }
+                        case 4:{
+                            $datas[$n]['teacher'] = trim($value->nodeValue);
+                            break;
+                        }
+                        case 10:{
+                            $innerHTML= '';
+                            $children = $value->childNodes;
+                            $data = [];
+                            foreach ($children as $child) {
+
+                                $str = trim($child->nodeValue);
+                                if(strpos($str, ',') != false){
+                                    $f = substr(explode(']', $str)[0],1, -3);
+                                    $l = strstr($str, ']');
+
+                                    foreach (explode(',', $f) as $sec){
+
+                                        $data[] = '['.$sec.'周'.$l;
+                                    }
+
+                                }else{
+                                    $data[] = $str;
+                                }
+
+                            }
+                            $datas[$n]['info'] = array_filter($data);
+                            $n++;
+                            break;
+                        }
+                    }
+
+
+//                $datas[] = $value->ownerDocument->saveXML($value);
+
+
+            }
+
+
+        }
+
+
 //            Storage::put('course/'.$openid.'.html', implode(',',$datas), 'private');
         Cache::forever($openid.'_course',$datas);
     }
@@ -133,8 +223,10 @@ class Course extends Model
         foreach ($courses as $course){
             $pattern = '/\[(\d{1,2}-\d{1,2}|\d{1,2})(单|双|)周\]星期(一|二|三|四|五|六|日)\[(\d{1,2})-(\d{1,2})节\]\/(\S*)/';
             foreach ($course['info'] as $info){
-                if(! preg_match($pattern, $info, $matches))
+                if(! preg_match($pattern, $info, $matches)){
                     return false;
+                }
+
                 $courseInfo = [];
                 $courseInfo['name']     = $course['course_name'];
                 $courseInfo['teacher']  = $course['teacher'];

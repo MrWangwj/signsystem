@@ -10,7 +10,7 @@
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">学号</label></div>
             <div class="weui-cell__bd">
-                <input class="weui-input" type="number" pattern="[0-9]*" placeholder="请输入学号" maxlength="11" id="user_id">
+                <p id="user_id">{{ $userId }}</p>
             </div>
         </div>
         <div class="weui-cell">
@@ -49,7 +49,7 @@
         
         function input() {
             $.showLoading();
-            var $user_id = $('#user_id').val(),
+            let $user_id = $('#user_id').text(),
                 $password = $('#password').val(),
                 $validate = $('#validate').val();
 
@@ -58,20 +58,21 @@
                 return ;
             }
 
+            if($user_id.length === 11){
+                $password = chkpwd($password);
+                $validate = chkyzm($validate);
 
-            $password = chkpwd($password);
-            $validate = chkyzm($validate);
+            }
 
             $.post(
                 '/wechat/course/input',
                 {
-                    user_id: $user_id,
                     password: $password,
                     validate: $validate
                 },
                 function (data) {
                     $.hideLoading();
-                    if(data.code == 0){
+                    if(parseInt(data.code) === 0){
                         $.toptip(data.msg);
                     }else{
                         $.toast(data.msg, function () {
@@ -111,7 +112,7 @@
         }
 
         function chkpwd(pwd) {
-           return md5($('#user_id').val()+md5(pwd).substring(0,30).toUpperCase()+'10467').substring(0,30).toUpperCase();
+           return md5($('#user_id').text()+md5(pwd).substring(0,30).toUpperCase()+'10467').substring(0,30).toUpperCase();
         }
 
         function chkyzm(validate) {
