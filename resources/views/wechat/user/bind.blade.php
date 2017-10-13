@@ -76,7 +76,7 @@
                 },
                 success: function (data) {
                     $.hideLoading();
-                    if(data.code === 0){
+                    if(parseInt(data.code) === 0){
                         $.toptip(data.msg);
                     }else{
                         $.toast("操作成功", function () {
