@@ -144,7 +144,7 @@ class Course extends Model
                             $l = strstr($str, ']');
 
                             foreach (explode(',', $f) as $sec){
-                                $data['info'][] = '['.$sec.$l;
+                                $data['info'][] = '['.$sec.'周'.$l;
                             }
 
                         }else{
