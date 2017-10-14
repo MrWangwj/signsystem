@@ -145,8 +145,9 @@ class Course extends Model
 
                             $tmptext = '周';
                             if(substr($f, -3) == '单' || substr($f, -3) == '双'){
-                                $f = substr($f, 0, -3);
                                 $tmptext = substr($f, -3).'周';
+                                $f = substr($f, 0, -3);
+
                             }
 
 
@@ -188,10 +189,9 @@ class Course extends Model
 
                                     $tmptext = '周';
                                     if(substr($f, -3) == '单' || substr($f, -3) == '双'){
-                                        $f = substr($f, 0, -3);
                                         $tmptext = substr($f, -3).'周';
+                                        $f = substr($f, 0, -3);
                                     }
-
 
                                     foreach (array_filter(explode(',', $f)) as $sec){
                                         $data['info'][] = '['.$sec.$tmptext.$l;
@@ -207,11 +207,7 @@ class Course extends Model
                             break;
                         }
                     }
-
-
-//                $datas[] = $value->ownerDocument->saveXML($value);
-
-
+                
             }
 
 
