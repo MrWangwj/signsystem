@@ -47,10 +47,14 @@
                         {},
                         function (data) {
                             $.hideLoading();
-                            $.toast(data.msg, function () {
-                                window.location = '/wechat/course/show';
-                            });
 
+                            if(parseInt(data.code) === 0){
+                                $.toast(data.msg);
+                            }else{
+                                $.toast(data.msg, function () {
+                                    window.location = '/wechat/course/show';
+                                });
+                            }
                         }
                     );
                 },

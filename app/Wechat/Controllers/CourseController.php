@@ -115,12 +115,14 @@ class CourseController extends Controller
             return redirect('/wechat/noCourseLogin');
 
         //分割字符串成为课表数据
-        $courses = Course::getFrmateCourse(Cache::get($openid.'_course'));
+        $result = Course::getFrmateCourse(Cache::get($openid.'_course'));
 
-        if(!$courses){
-            return ['code' => 0, 'msg' => '导入失败，请联系管理员'];
+        if(count($result['error']) > 0){
+            return ['code' => 0, 'msg' => $result['error'][0]];
         }
 
+
+        $courses = $result['data'];
         //创建课表信息
         $course_id = [];
         foreach ($courses as $course) {

@@ -143,8 +143,14 @@ class Course extends Model
                             $f = substr(explode(']', $str)[0],1, -3);
                             $l = strstr($str, ']');
 
+                            $tmptext = '周';
+                            if(substr($f, -3) == '单' || substr($f, -3) == '双'){
+                                $tmptext = substr($f, -3).'周';
+                            }
+
+
                             foreach (explode(',', $f) as $sec){
-                                $data['info'][] = '['.$sec.'周'.$l;
+                                $data['info'][] = '['.$sec.$tmptext.$l;
                             }
 
                         }else{
@@ -179,9 +185,14 @@ class Course extends Model
                                     $f = substr(explode(']', $str)[0],1, -3);
                                     $l = strstr($str, ']');
 
-                                    foreach (explode(',', $f) as $sec){
+                                    $tmptext = '周';
+                                    if(substr($f, -3) == '单' || substr($f, -3) == '双'){
+                                        $tmptext = substr($f, -3).'周';
+                                    }
 
-                                        $data[] = '['.$sec.'周'.$l;
+
+                                    foreach (explode(',', $f) as $sec){
+                                        $data['info'][] = '['.$sec.$tmptext.$l;
                                     }
 
                                 }else{
@@ -216,15 +227,16 @@ class Course extends Model
      */
     public static function getFrmateCourse($courses){
         $data = [];
-        $weeks = ['一' => 1, '二' => 2, '三' => 3, '四' => 4, '五' => 5, '六' => 6, '日' => 7 ];
+        $weeks = ['一' => 1, '二' => 2, '三' => 3, '四' => 4, '五' => 5, '六' => 6, '七'=> 7, '日' => 7 ];
         $status = ['' => 0, '单' => 1, '双' => 2];
-
+        $error = [];
 
         foreach ($courses as $course){
-            $pattern = '/\[(\d{1,2}-\d{1,2}|\d{1,2})(单|双|)周\]星期(一|二|三|四|五|六|日)\[(\d{1,2})-(\d{1,2})节\]\/(\S*)/';
+            $pattern = '/\[(\d{1,2}-\d{1,2}|\d{1,2})(单|双|)周\]星期(一|二|三|四|五|六|七|日)\[(\d{1,2})-(\d{1,2})节\]\/(\S*)/';
             foreach ($course['info'] as $info){
                 if(! preg_match($pattern, $info, $matches)){
-                    return false;
+                    $error[] = $course['course_name'].$info;
+                    continue;
                 }
 
                 $courseInfo = [];
@@ -242,7 +254,7 @@ class Course extends Model
             }
         }
 
-        return $data;
+        return ['data' => $data, 'error' => $error];
     }
 
 }
