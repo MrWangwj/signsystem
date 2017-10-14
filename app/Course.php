@@ -145,11 +145,12 @@ class Course extends Model
 
                             $tmptext = '周';
                             if(substr($f, -3) == '单' || substr($f, -3) == '双'){
+                                $f = substr($f, 0, -3);
                                 $tmptext = substr($f, -3).'周';
                             }
 
 
-                            foreach (explode(',', $f) as $sec){
+                            foreach (array_filter(explode(',', $f)) as $sec){
                                 $data['info'][] = '['.$sec.$tmptext.$l;
                             }
 
@@ -187,11 +188,12 @@ class Course extends Model
 
                                     $tmptext = '周';
                                     if(substr($f, -3) == '单' || substr($f, -3) == '双'){
+                                        $f = substr($f, 0, -3);
                                         $tmptext = substr($f, -3).'周';
                                     }
 
 
-                                    foreach (explode(',', $f) as $sec){
+                                    foreach (array_filter(explode(',', $f)) as $sec){
                                         $data['info'][] = '['.$sec.$tmptext.$l;
                                     }
 
