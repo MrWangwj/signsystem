@@ -42,6 +42,21 @@ Route::group(['middleware' => 'checklogin', 'prefix' => 'admin'], function () {
 
     //删除用户信息
     Route::post('/user/delete', 'UserController@userDelete');
+
+
+    //获取用户的课表信息
+    Route::get('/user/course/get', 'CourseController@getUserCourse');
+    //添加用户课程
+    Route::post('/user/course/add', 'CourseController@addUserCourse');
+    //修改用户课程
+    Route::post('/user/course/edit', 'CourseController@editUserCourse');
+    //删除用户课程
+    Route::post('/user/course/delete', 'CourseController@deleteUserCourse');
+    //清除此用户的所有信息
+    Route::post('/user/course/clear', 'CourseController@clearUserAllCourse');
+    //导入用户课表
+    Route::post('/user/course/input', 'CourseController@inputUserAllCourse');
+
 });
 
 

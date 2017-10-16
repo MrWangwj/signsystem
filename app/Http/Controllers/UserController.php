@@ -254,7 +254,14 @@ class UserController extends Controller
     }
 
     public function test(){
-        echo Storage::url('users/users.xlsx');
+        $users = User::all();
+        $info = [];
+        foreach ($users as $user){
+            if(count($user->courses) == 0)
+                $info[] = $user->id.' '.$user->name.' '.$user->grouping->name;
+        }
+
+        dd($info);
     }
 
 

@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    //等录方法
+    //登陆方法
     public function login(Request $request){
         //验证
         $this->validate($request,[

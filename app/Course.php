@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 class Course extends Model
 {
+
+    //关联模型，关联用户
+    public function users(){
+        return $this->belongsToMany('App\User','user_courses','course_id','user_id');
+    }
+
     //获取cookie 和验证码
     public static function validate($t = 0, $school='hist'){
         $data       = config('course');  //获取配置
@@ -143,8 +149,16 @@ class Course extends Model
                             $f = substr(explode(']', $str)[0],1, -3);
                             $l = strstr($str, ']');
 
-                            foreach (explode(',', $f) as $sec){
-                                $data['info'][] = '['.$sec.$l;
+                            $tmptext = '周';
+                            if(substr($f, -3) == '单' || substr($f, -3) == '双'){
+                                $tmptext = substr($f, -3).'周';
+                                $f = substr($f, 0, -3);
+
+                            }
+
+
+                            foreach (array_filter(explode(',', $f)) as $sec){
+                                $data['info'][] = '['.$sec.$tmptext.$l;
                             }
 
                         }else{
@@ -179,9 +193,14 @@ class Course extends Model
                                     $f = substr(explode(']', $str)[0],1, -3);
                                     $l = strstr($str, ']');
 
-                                    foreach (explode(',', $f) as $sec){
+                                    $tmptext = '周';
+                                    if(substr($f, -3) == '单' || substr($f, -3) == '双'){
+                                        $tmptext = substr($f, -3).'周';
+                                        $f = substr($f, 0, -3);
+                                    }
 
-                                        $data[] = '['.$sec.'周'.$l;
+                                    foreach (array_filter(explode(',', $f)) as $sec){
+                                        $data['info'][] = '['.$sec.$tmptext.$l;
                                     }
 
                                 }else{
@@ -194,11 +213,7 @@ class Course extends Model
                             break;
                         }
                     }
-
-
-//                $datas[] = $value->ownerDocument->saveXML($value);
-
-
+                
             }
 
 
@@ -216,15 +231,16 @@ class Course extends Model
      */
     public static function getFrmateCourse($courses){
         $data = [];
-        $weeks = ['一' => 1, '二' => 2, '三' => 3, '四' => 4, '五' => 5, '六' => 6, '日' => 7 ];
+        $weeks = ['一' => 1, '二' => 2, '三' => 3, '四' => 4, '五' => 5, '六' => 6, '七'=> 7, '日' => 7 ];
         $status = ['' => 0, '单' => 1, '双' => 2];
-
+        $error = [];
 
         foreach ($courses as $course){
-            $pattern = '/\[(\d{1,2}-\d{1,2}|\d{1,2})(单|双|)周\]星期(一|二|三|四|五|六|日)\[(\d{1,2})-(\d{1,2})节\]\/(\S*)/';
+            $pattern = '/\[(\d{1,2}-\d{1,2}|\d{1,2})(单|双|)周\]星期(一|二|三|四|五|六|七|日)\[(\d{1,2})-(\d{1,2})节\]\/(\S*)/';
             foreach ($course['info'] as $info){
                 if(! preg_match($pattern, $info, $matches)){
-                    return false;
+                    $error[] = $course['course_name'].$info;
+                    continue;
                 }
 
                 $courseInfo = [];
@@ -242,7 +258,7 @@ class Course extends Model
             }
         }
 
-        return $data;
+        return ['data' => $data, 'error' => $error];
     }
 
 }

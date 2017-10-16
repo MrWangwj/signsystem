@@ -19,10 +19,12 @@ class WechatController extends Controller
     //微信连接
     public function server(Application $wechat){
         $wechat->server->setMessageHandler(function($message) {
+
             $openId = $message->FromUserName;
 
+
             //关注时的提示
-            if(strtolower($message->Type) == 'event' && strtolower($message->Event) == 'subscribe') return '欢迎关注三月考勤';
+            if(strtolower($message->MsgType) == 'event' && strtolower($message->Event) == 'subscribe') return '欢迎关注三月考勤';
 
             $user = User::user($openId);
             //判断用户是否有权限
