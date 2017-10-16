@@ -258,7 +258,7 @@
         data() {
 
             return {
-                userId: 20151515105,
+                userId: '',
                 inputUserId:'',
                 courses: [],
                 addCourseVisible: false,
@@ -570,7 +570,7 @@
         },
 
         mounted(){
-//            this.inputId();
+            this.inputId();
             this.userInfo();
         }
 

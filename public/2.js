@@ -350,7 +350,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
 
         return {
-            userId: 20151515105,
+            userId: '',
             inputUserId: '',
             courses: [],
             addCourseVisible: false,
@@ -641,7 +641,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     mounted: function mounted() {
-        //            this.inputId();
+        this.inputId();
         this.userInfo();
     }
 });
