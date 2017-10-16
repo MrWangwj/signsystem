@@ -538,6 +538,7 @@
                                     type: 'success'
                                 });
                                 this.userInfo();
+                                this.inputCourseVisible = false;
                             }
                         });
                     });

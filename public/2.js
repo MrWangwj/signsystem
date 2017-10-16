@@ -608,6 +608,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                                 type: 'success'
                             });
                             _this6.userInfo();
+                            _this6.inputCourseVisible = false;
                         }
                     });
                 });
