@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 class Course extends Model
 {
+
+    //关联模型，关联用户
+    public function users(){
+        return $this->belongsToMany('App\User','user_courses','course_id','user_id');
+    }
+
     //获取cookie 和验证码
     public static function validate($t = 0, $school='hist'){
         $data       = config('course');  //获取配置

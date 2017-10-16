@@ -139,7 +139,6 @@ class CourseController extends Controller
         return ['code' => '1', 'msg' => '导入成功'];
     }
 
-
     //获取课表统计信息
 
     public function getCount(){
