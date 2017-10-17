@@ -125,13 +125,20 @@ class Course extends Model
         $html = '';
 
 
-//        return $crawler->filter('.T')
-//            ->eq(1)
-//            ->nextAll()->html();
-
-
         $datas = [];
 
+
+        // 处理html形式的课表信息，处理为数组[
+        //  0=> [
+        //          'course_name'=>'课程名称',
+        //          'teacher' => '老师姓名'
+        //          'info'  => [
+        //              '[1-4周]星期一[10-11节]/0＃一',
+        //              '[1-4周]星期一[10-11节]/0＃一',
+        //              '[1-4周]星期一[10-11节]/0＃一',
+        //          ],
+        //      ]
+        //  ]
         if($school == 'hist'){
             $datas = $crawler
                 ->filter('.T')

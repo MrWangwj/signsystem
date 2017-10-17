@@ -363,6 +363,9 @@
         },
 
         mounted(){
+            if(this.$route.path === '/set/course'){
+                this.$router.push('/set/course/type/two');
+            }
             this.inputId();
 //            this.userInfo();
         }
