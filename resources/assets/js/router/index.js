@@ -84,9 +84,24 @@ export default new Router({
             // leaf: true, //只有一个节点
             children: [
                 {
+                    name: '课程管理',
                     path: '/set/course',
                     component: resolve => void(require(['../components/nav3/Course.vue'], resolve)),
-                    name: '课表管理'
+                    children: [
+
+                        {
+                            name: '格式一',
+                            path: 'type/one',
+                            component: resolve => void(require(['../components/nav3/CourseOne.vue'], resolve)),
+                            props: true,
+                        },
+                        {
+                            name: '格式二',
+                            path: 'type/two',
+                            component: resolve => void(require(['../components/nav3/CourseTwo.vue'], resolve)),
+                            props: true,
+                        }
+                    ]
                 }
             ]
         },

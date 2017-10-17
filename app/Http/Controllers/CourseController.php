@@ -75,7 +75,7 @@ class CourseController extends Controller
 
 
         if($result->count() > 0){
-            return ['code' => 0, 'msg' => '课程冲突'.$result[0]->name];
+            return ['code' => 0, 'msg' => '课程冲突'.$result->first()->name];
         }
 
         //存储
