@@ -27,8 +27,6 @@ class WechatPower
     {
 
 
-            return $next($request);
-
         $app = app('wechat');
         $oauth = $app->oauth;
 
