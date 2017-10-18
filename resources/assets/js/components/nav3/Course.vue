@@ -364,7 +364,7 @@
 
         mounted(){
             if(this.$route.path === '/set/course'){
-                this.$router.push('/set/course/type/two');
+                this.$router.push('/set/course/type/one');
             }
             this.inputId();
 //            this.userInfo();
