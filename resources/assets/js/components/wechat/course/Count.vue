@@ -312,8 +312,8 @@
             <div v-transfer-dom>
                 <x-dialog v-model="type2Data.showHideOnBlur" class="dialog-demo" hide-on-blur>
                     <div class="img-box">
-                        <div style=" margin: 10px auto;height:330px; text-align: center; overflow: scroll">
-                            <div style="width: 100%;height: 40px; line-height: 40px;">
+                        <div style=" margin: 10px auto;height:330px; text-align: center; overflow: scroll;position: relative;">
+                            <div style="width: 100%;height: 40px; line-height: 40px;position: absolute;top: 0;">
                                 <p>
                                 {{ type2Data.title }}节
                                     (
@@ -697,6 +697,8 @@
             randomsort(a, b) {
                 return Math.random()>.5 ? -1 : 1; //通过随机产生0到1的数，然后判断是否大于0.5从而影响排序，产生随机性的效果。
             },
+
+            //单击表格时
             selTd(i, j){
 
                 let weeks = ['周一', '周二', '周三', '周四', '周五', '周六', '周日' ];
@@ -889,6 +891,7 @@
 <style scoped>
     .label-stu{
         width: 100%;
+        margin-top: 40px;
 
     }
     .label-stu:after{

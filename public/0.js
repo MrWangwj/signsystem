@@ -2117,13 +2117,16 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "margin": "10px auto",
       "height": "330px",
       "text-align": "center",
-      "overflow": "scroll"
+      "overflow": "scroll",
+      "position": "relative"
     }
   }, [_c('div', {
     staticStyle: {
       "width": "100%",
       "height": "40px",
-      "line-height": "40px"
+      "line-height": "40px",
+      "position": "absolute",
+      "top": "0"
     }
   }, [_c('p', [_vm._v("\n                            " + _vm._s(_vm.type2Data.title) + "节\n                                (\n                                "), (_vm.haveNoCourse) ? _c('span', {
     on: {
@@ -11085,7 +11088,7 @@ exports = module.exports = __webpack_require__(8)();
 
 
 // module
-exports.push([module.i, "\n.label-stu[data-v-43186183]{\n    width: 100%;\n}\n.label-stu[data-v-43186183]:after{\n    display: block;\n    content: '';\n    clear: both;\n}\n.label-stu>label[data-v-43186183]{\n    float: left;\n    display: block;\n    width: 25%;\n    overflow: hidden;\n    height: 30px;\n    line-height: 30px;\n}\n", ""]);
+exports.push([module.i, "\n.label-stu[data-v-43186183]{\n    width: 100%;\n    margin-top: 40px;\n}\n.label-stu[data-v-43186183]:after{\n    display: block;\n    content: '';\n    clear: both;\n}\n.label-stu>label[data-v-43186183]{\n    float: left;\n    display: block;\n    width: 25%;\n    overflow: hidden;\n    height: 30px;\n    line-height: 30px;\n}\n", ""]);
 
 // exports
 

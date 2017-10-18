@@ -521,23 +521,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         getCourses: function getCourses() {
 
-            this.courses = [];
-            //设置课程表格
-            for (var i = 0; i < 12; i++) {
-                this.courses[i] = {
-                    section: i + 1,
-                    mon: '',
-                    tue: '',
-                    wed: '',
-                    thu: '',
-                    fri: '',
-                    sat: '',
-                    sun: ''
-                };
-            }
-
-            var weekDay = ['', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
-
             var all = this.get.students,
                 //所有的学生
             selStu = this.set.selStudent,
@@ -561,13 +544,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
             //                console.log(selStu);
             if (!hasCourse) {
-                for (var _i = 0; _i < 12; _i++) {
+                for (var i = 0; i < 12; i++) {
                     for (var j = 1; j <= 7; j++) {
-                        var tempNames = this.courses[_i][weekDay[j]];
-                        this.courses[_i][weekDay[j]] = "";
+                        var tempNames = this.courses[i][weekDay[j]];
+                        this.courses[i][weekDay[j]] = "";
                         for (var _id in selStu) {
                             if (tempNames.indexOf(selStu[_id].name + ",") === -1) {
-                                this.courses[_i][weekDay[j]] += selStu[_id].name + ",";
+                                this.courses[i][weekDay[j]] += selStu[_id].name + ",";
                             }
                         }
                     }

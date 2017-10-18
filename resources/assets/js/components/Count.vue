@@ -206,22 +206,7 @@
             },
             getCourses(){
 
-                this.courses = [];
-                //设置课程表格
-                for(let i = 0; i < 12; i++){
-                    this.courses[i] = {
-                        section: i+1,
-                        mon: '',
-                        tue: '',
-                        wed: '',
-                        thu: '',
-                        fri: '',
-                        sat: '',
-                        sun: ''
-                    }
-                }
 
-                let weekDay = ['','mon','tue','wed','thu','fri','sat','sun'];
 
 
                 let all     = this.get.students,    //所有的学生
