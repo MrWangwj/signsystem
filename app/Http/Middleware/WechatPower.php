@@ -26,6 +26,9 @@ class WechatPower
     public function handle($request, Closure $next)
     {
 
+
+            return $next($request);
+
         $app = app('wechat');
         $oauth = $app->oauth;
 

@@ -124,7 +124,6 @@
 
             <div slot="footer" class="dialog-footer">
                 <el-button @click="editCourseVisible = false">取 消</el-button>
-                <el-button @click="resetForm('editCourse')">重 置</el-button>
                 <el-button type="primary" @click="editSubmit('editCourse')">修 改</el-button>
             </div>
         </el-dialog>
@@ -233,14 +232,11 @@
 
             },
             startSectionChange(type){
-
                 if(type === 0){
                     if(this.newCourse.end_section < this.newCourse.start_section) this.newCourse.end_section = '';
                 }else{
                     if(this.editCourse.end_section < this.editCourse.start_section) this.editCourse.end_section = '';
                 }
-
-
             },
 
             startWeekChange(type){
@@ -249,9 +245,6 @@
                 }else{
                     if(this.editCourse.end_week < this.editCourse.start_week) this.editCourse.end_week = '';
                 }
-            },
-            resetForm(formName) {
-                this.$refs[formName].resetFields();
             },
             editSubmit(formName) {
                 this.$refs[formName].validate((valid) => {
@@ -277,14 +270,11 @@
                                     message: '修改成功',
                                     type: 'success'
                                 });
-
                                 this.$emit('courseInfo');
                                 this.editCourseVisible = false;
                                 this.$refs[formName].resetFields();
                             }else{
                                 this.$message.error(data.msg);
-
-
                             }
                         });
 

@@ -6,13 +6,13 @@ webpackJsonp([4],{
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(194)
+  __webpack_require__(187)
 }
 var Component = __webpack_require__(6)(
   /* script */
-  __webpack_require__(196),
+  __webpack_require__(189),
   /* template */
-  __webpack_require__(197),
+  __webpack_require__(190),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -45,13 +45,13 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 194:
+/***/ 187:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(195);
+var content = __webpack_require__(188);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -72,7 +72,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 195:
+/***/ 188:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(8)();
@@ -87,7 +87,7 @@ exports.push([module.i, "\n.dialog-width>div{\n    min-width: 520px;\n}\n", ""])
 
 /***/ }),
 
-/***/ 196:
+/***/ 189:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -248,7 +248,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             end_weeks: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
             end_sections: [2, 4, 5, 7, 9, 11, 12],
-            typeVisible: true,
+
             rules: {
                 name: [{ required: true, message: '请输入课程名称', trigger: 'blur' }, { max: 50, message: '长度在50个字符内', trigger: 'blur' }],
                 teacher: [{ required: true, message: '请输入上课教师', trigger: 'blur' }, { max: 15, message: '长度在15个字符内', trigger: 'blur' }],
@@ -287,8 +287,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         changeType: function changeType(url) {
             this.$router.push(url);
-            this.typeVisible = !this.typeVisible;
             this.userInfo();
+        },
+        setType: function setType(value) {
+            this.typeVisible = value;
         },
         inputId: function inputId() {
             var _this2 = this;
@@ -426,6 +428,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     mounted: function mounted() {
+        if (this.$route.path === '/set/course') {
+            this.$router.push('/set/course/type/two');
+        }
         this.inputId();
         //            this.userInfo();
     }
@@ -433,7 +438,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 197:
+/***/ 190:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -449,7 +454,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "click": _vm.inputId
     }
-  }, [_vm._v("修改")])]), _vm._v(" "), _c('div', [_c('div', [(!_vm.typeVisible) ? _c('el-button', {
+  }, [_vm._v("修改")])]), _vm._v(" "), _c('div', [_c('div', [(_vm.$route.path == '/set/course/type/two') ? _c('el-button', {
     attrs: {
       "type": "primary"
     },
@@ -458,7 +463,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.changeType('/set/course/type/one')
       }
     }
-  }, [_vm._v("格式一")]) : _vm._e(), _vm._v(" "), (_vm.typeVisible) ? _c('el-button', {
+  }, [_vm._v("格式一")]) : _vm._e(), _vm._v(" "), (_vm.$route.path == '/set/course/type/one' || _vm.$route.path == '/set/course') ? _c('el-button', {
     attrs: {
       "type": "primary"
     },
@@ -498,6 +503,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "courseInfos": _vm.courseInfos
     },
     on: {
+      "setType": function($event) {
+        _vm.setType(_vm.value)
+      },
       "courseInfo": _vm.userInfo
     }
   }), _vm._v(" "), _c('el-dialog', {

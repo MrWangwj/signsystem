@@ -58,7 +58,8 @@
 
                 <div>
                     <div class="see-type">
-                        <label>格式一</label>
+                        <label v-if="!type" @click="type = true">格式一</label>
+                        <label v-if="type" @click="type = false">格式二</label>
                     </div>
                     <div @click="setNowWeek()" class="now-week-but">
                         本周
@@ -134,14 +135,9 @@
         </div>
 
 
+        <carousel-3d v-show="type" :display="5" :perspective="0" space="50" width="250" height="500" :inverseScaling="50" :loop="false" :controlsVisible="true" :minSwipeDistance="50">
 
 
-
-
-
-        <carousel-3d :display="5" :perspective="0" space="50" width="250" height="500" :inverseScaling="50" :loop="false" :controlsVisible="true" :minSwipeDistance="50">
-
-            
             <slide :index="0" class="week-day" :style="{backgroundColor: colors[colorIndex[0]].content}">
                 <div class="week-title" :style="{backgroundColor: colors[colorIndex[0]].title}">
                     星期一（
@@ -284,13 +280,66 @@
 
         </carousel-3d>
 
+
+        <div v-if="!type" style="padding:15px;">
+            <x-table full-bordered style="background-color:#fff;">
+                <thead>
+                <tr>
+                    <th>
+                        <span v-if="haveNoCourse" @click="setHasNoCourse(false)">有课</span>
+                        <span v-if="!haveNoCourse" @click="setHasNoCourse(true)">无课</span>
+                    </th>
+                    <th>周一</th>
+                    <th>周二</th>
+                    <th>周三</th>
+                    <th>周四</th>
+                    <th>周五</th>
+                    <th>周六</th>
+                    <th>周日</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="i in 7">
+                        <td>{{ courses[i-1].length>0?courses[0][i-1].id:0 }}节</td>
+                        <td v-for="j in 7" @click="selTd(j-1, i-1)">
+                            {{ courses[j-1].length>0?courses[j-1][i-1].stus.length:0 }}
+                        </td>
+                    </tr>
+                </tbody>
+            </x-table>
+
+
+            <div v-transfer-dom>
+                <x-dialog v-model="type2Data.showHideOnBlur" class="dialog-demo" hide-on-blur>
+                    <div class="img-box">
+                        <div style=" margin: 10px auto;height:330px; text-align: center; overflow: scroll">
+                            <div style="width: 100%;height: 40px; line-height: 40px;">
+                                <p>
+                                {{ type2Data.title }}节
+                                    (
+                                    <span v-if="haveNoCourse" @click="setHasNoCourse(false)">有课</span>
+                                    <span v-if="!haveNoCourse" @click="setHasNoCourse(true)">无课</span>
+                                    )
+                                </p>
+                            </div>
+                            <div class="label-stu">
+                                <label v-if="" v-for="(stu,index) in courses[type2Data.x].length > 0?courses[type2Data.x][type2Data.y].stus:[]" @click="courseInfo(stu.id, stu.course_id)" >{{ stu.name }},</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div @click="type2Data.showHideOnBlur=false">
+                        <span class="vux-close"></span>
+                    </div>
+                </x-dialog>
+            </div>
+        </div>
     </div>
 </template>
 
 
 <script>
     import { Carousel3d, Slide } from 'vue-carousel-3d';
-    import { Popup, TransferDom,  Checker, CheckerItem, Divider, Scroller, ToastPlugin, LoadingPlugin } from 'vux';
+    import { Popup, TransferDom,  Checker, CheckerItem, Divider, Scroller, ToastPlugin, LoadingPlugin, XTable, XDialog} from 'vux';
     Vue.use(ToastPlugin);
     Vue.use(LoadingPlugin);
     export default {
@@ -306,7 +355,9 @@
             CheckerItem,
             Divider,
             Scroller,
-            ToastPlugin
+            ToastPlugin,
+            XTable,
+            XDialog,
         },
         data () {
             return {
@@ -339,6 +390,15 @@
                 ],    //统计的课表人员信息
                 test: true,
                 colorIndex:[0,1,2,3,4,5,6],
+
+                type2Data:{
+                    showHideOnBlur: false,
+                    title: '',
+                    x: 0,
+                    y: 0,
+                },
+                type: true,
+
                 colors:[
                     {
                         title: '#1A9053',
@@ -375,7 +435,6 @@
             //初始化信息
             info(){
                 document.getElementsByTagName('html')[0].style.background='#89E4DF';
-
 
                 let maxWeek = 20; // 最大周
                 this.$vux.loading.show({
@@ -416,7 +475,10 @@
 
                     //返回当前周
                     this.setNowWeek();
+
                     this.$vux.loading.hide();
+
+                    console.log(this.courses);
                 });
 
                 //初始化颜色板
@@ -634,6 +696,15 @@
             //随机排序
             randomsort(a, b) {
                 return Math.random()>.5 ? -1 : 1; //通过随机产生0到1的数，然后判断是否大于0.5从而影响排序，产生随机性的效果。
+            },
+            selTd(i, j){
+
+                let weeks = ['周一', '周二', '周三', '周四', '周五', '周六', '周日' ];
+
+                this.type2Data.title = weeks[i]+ this.courses[i][j].id;
+                this.type2Data.x = i;
+                this.type2Data.y = j;
+                this.type2Data.showHideOnBlur = true;
             }
         },
         mounted(){
@@ -789,4 +860,48 @@
         background-position: 0 35px;
     }
 
+</style>
+
+<style lang="less" scoped>
+    @import '~vux/src/styles/close';
+
+    .dialog-demo {
+        .weui-dialog{
+            border-radius: 8px;
+            padding-bottom: 8px;
+        }
+        .dialog-title {
+            line-height: 30px;
+            color: #666;
+        }
+        .img-box {
+            height: 350px;
+            overflow: hidden;
+        }
+        .vux-close {
+            margin-top: 8px;
+            margin-bottom: 8px;
+        }
+    }
+
+</style>
+
+<style scoped>
+    .label-stu{
+        width: 100%;
+
+    }
+    .label-stu:after{
+        display: block;
+        content: '';
+        clear: both;
+    }
+    .label-stu>label{
+        float: left;
+        display: block;
+        width: 25%;
+        overflow: hidden;
+        height: 30px;
+        line-height: 30px;
+    }
 </style>
