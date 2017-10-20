@@ -17,7 +17,6 @@
         </div>
 
 
-
         <router-view @setType="setType(value)" @courseInfo="userInfo" :userId="userId" :courseInfos="courseInfos"></router-view>
 
         <el-dialog title="添加课程" :visible.sync="addCourseVisible" class="dialog-width">

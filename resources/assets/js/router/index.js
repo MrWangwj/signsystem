@@ -102,7 +102,13 @@ export default new Router({
                             props: true,
                         }
                     ]
-                }
+                },
+
+                // {
+                //     name: '惩罚管理',
+                //     path: '/set/illegal',
+                //     component: resolve => void(require(['../components/nav3/Illegal.vue'], resolve)),
+                // }
             ]
         },
         {

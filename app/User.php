@@ -65,9 +65,11 @@ class User extends Authenticatable
         return $this->belongsToMany('\App\Position','position_users','user_id','position_id');
     }
 
+    public function illegals(){
+        return $this->hasMany('\App\UserIllegal', 'user_id', 'id');
+    }
 
-
-    //返回用户当前签到的记录
+        //返回用户当前签到的记录
     public function getSign(){
         return $this->attendances()->where('type', '=', 0);
     }
