@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div >
         <div style="margin-top: 20px;">
             <label >用户：</label>
             <span>{{ userId }}</span>
@@ -161,6 +161,9 @@
                     2,4,5,7,9,11,12
                 ],
 
+
+
+
                 rules: {
                     name: [
                         { required: true, message: '请输入课程名称', trigger: 'blur' },
@@ -198,6 +201,7 @@
         },
         methods: {
             userInfo(){
+
                 axios.get('/admin/user/course/get', {
                     params: {
                         'user-id': this.userId,

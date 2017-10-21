@@ -26,12 +26,15 @@ class WechatPower
     public function handle($request, Closure $next)
     {
 
+        $target_url = $request->server()['REQUEST_URI'];
+        if($target_url == '/wechat')
+            return $next($request);
+
 
         $app = app('wechat');
         $oauth = $app->oauth;
 
         //判断session 是否有openid
-        $target_url = $request->server()['REQUEST_URI'];
         if (!session()->has('wechat_user')) {
             //TODO:: 后期若做纯Vue的话需修改
             if($target_url == '/wechat') session(['target_url' => $target_url.'#/course/count']);

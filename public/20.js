@@ -80,7 +80,7 @@ exports = module.exports = __webpack_require__(8)();
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -231,6 +231,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -238,6 +240,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             illegalVisible: false,
             punishVisible: false,
+
+            loading: true,
 
             users: [], //所有用户
             illegals: [], //违规种类
@@ -274,14 +278,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         info: function info() {
             var _this = this;
 
+            this.loading = true;
             axios.get('/admin/user/get/illegal').then(function (response) {
                 console.log(response.data);
-
                 var data = response.data;
 
                 _this.users = data.users;
                 _this.illegals = data.illegals;
                 _this.userIllegals = data.userIllegals;
+
+                _this.loading = false;
             });
         },
         mtDate: function mtDate(timeStamp) {
@@ -319,10 +325,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     type: 'warning'
                 });
             } else {
+
+                this.loading = true;
                 axios.post('/admin/user/set/illegal', this.addIllegal).then(function (response) {
                     console.log(response.data);
                     var data = response.data;
                     if (data.code === 1) {
+
                         _this2.$message({
                             message: '添加成功',
                             type: 'success'
@@ -335,6 +344,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                             type: 'error'
                         });
                     }
+                    _this2.loading = false;
                 });
             }
         },
@@ -355,25 +365,61 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.addPunish.type = row.illegal.name;
             this.punishVisible = true;
         },
-        addPunishFun: function addPunishFun() {
-            //                axios.post('/admin/user/set/illegal', this.addIllegal).then(response => {
-            //                    console.log(response.data);
-            //                    let data = response.data;
-            //                    if(data.code === 1){
-            //                        this.$message({
-            //                            message: '添加成功',
-            //                            type: 'success'
-            //                        });
-            //                        this.illegalVisible = false;
-            //                        this.info();
-            //
-            //                    }else{
-            //                        this.$message({
-            //                            message: data.msg,
-            //                            type: 'error'
-            //                        });
-            //                    }
-            //                });
+        addPunishFun: function addPunishFun(formName) {
+            var _this3 = this;
+
+            this.$refs[formName].validate(function (valid) {
+                if (valid) {
+                    _this3.loading = true;
+                    axios.post('/admin/user/set/punish', _this3.addPunish).then(function (response) {
+                        console.log(response.data);
+                        var data = response.data;
+                        if (data.code === 1) {
+                            _this3.$message({
+                                message: '添加成功',
+                                type: 'success'
+                            });
+                            _this3.punishVisible = false;
+                            _this3.info();
+                        } else {
+                            _this3.$message({
+                                message: data.msg,
+                                type: 'error'
+                            });
+                        }
+                        _this3.loading = false;
+                    });
+                } else {
+                    console.log('error submit!!');
+                    return false;
+                }
+            });
+        },
+        delUserIllegal: function delUserIllegal(illegalId) {
+            var _this4 = this;
+
+            this.$confirm('确认删除此条违规吗，删除后将无法恢复？').then(function (_) {
+                _this4.loading = true;
+                axios.post('/admin/user/del/illegal', {
+                    id: illegalId
+                }).then(function (response) {
+                    console.log(response.data);
+                    var data = response.data;
+                    if (data.code === 1) {
+                        _this4.$message({
+                            message: '删除成功',
+                            type: 'success'
+                        });
+                        _this4.info();
+                    } else {
+                        _this4.$message({
+                            message: data.msg,
+                            type: 'error'
+                        });
+                    }
+                    _this4.loading = false;
+                });
+            });
         }
     },
 
@@ -398,6 +444,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }
   }, [_vm._v("添加违规")])], 1), _vm._v(" "), _c('div', [_c('el-table', {
+    directives: [{
+      name: "loading",
+      rawName: "v-loading.body",
+      value: (_vm.loading),
+      expression: "loading",
+      modifiers: {
+        "body": true
+      }
+    }],
     staticStyle: {
       "width": "100%"
     },
@@ -596,9 +651,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }
   }, [_c('el-form', {
+    ref: "addPunish",
     attrs: {
       "model": _vm.addPunish,
-      "label-width": "80px"
+      "label-width": "80px",
+      "rules": _vm.punishRules
     }
   }, [_c('el-form-item', {
     attrs: {
@@ -610,7 +667,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('span', [_vm._v(_vm._s(_vm.addPunish.type))])]), _vm._v(" "), _c('el-form-item', {
     attrs: {
-      "label": "数量"
+      "label": "数量",
+      "prop": "count"
     }
   }, [_c('el-input', {
     attrs: {
@@ -626,7 +684,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   })], 1), _vm._v(" "), _c('el-form-item', {
     attrs: {
-      "label": "时间"
+      "label": "时间",
+      "prop": "time"
     }
   }, [_c('el-date-picker', {
     staticStyle: {
@@ -646,7 +705,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   })], 1), _vm._v(" "), _c('el-form-item', {
     attrs: {
-      "label": "内容"
+      "label": "内容",
+      "prop": "content"
     }
   }, [_c('el-input', {
     attrs: {
@@ -666,7 +726,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('el-button', {
     on: {
       "click": function($event) {
-        _vm.addPunish = false
+        _vm.punishVisible = false
       }
     }
   }, [_vm._v("取 消")]), _vm._v(" "), _c('el-button', {
@@ -674,7 +734,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "primary"
     },
     on: {
-      "click": _vm.addPunishFun
+      "click": function($event) {
+        _vm.addPunishFun('addPunish')
+      }
     }
   }, [_vm._v("惩 罚")])], 1)], 1)], 1)
 },staticRenderFns: []}

@@ -83,10 +83,13 @@ class IllegalController extends Controller
         if(count($illegals_id) < \request('count'))
             return ['code' => 0, 'msg' => '消除的的次数多于'.count($illegals_id).'条'];
 
-        DB::beginTransation();
+        DB::beginTransaction();
 
+
+        $request = \request(['user_id', 'content', 'time']);
+        $request['time'] = strtotime($request['time']);
         //添加用户的惩罚
-        $punish = Punish::create(\request(['user_id', 'content', 'time']));
+        $punish = Punish::create($request);
         if(!$punish) return ['code' => 0, 'msg' => '添加失败'];
 
 
@@ -99,6 +102,24 @@ class IllegalController extends Controller
 
         DB::commit();
         return ['code' => 1, 'msg' => '添加成功'];
+    }
+
+    //删除用户违规
+    public function delIllegal(){
+        $this->validate(\request(),[
+           'id' => 'required|exists:user_illegals,id',
+        ]);
+
+        $userIllegal = UserIllegal::find(\request('id'));
+
+
+
+        if(!$userIllegal || $userIllegal->punish_id != 0)
+            return ['code' => 0, 'msg' => '未知错误'];
+
+        $userIllegal->delete();
+
+        return ['code' => 1, 'msg' => '删除成功'];
     }
 
 }

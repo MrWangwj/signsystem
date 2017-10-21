@@ -812,21 +812,6 @@
 
 
 
-    /*.weeks>div:first-child{*/
-        /*text-align: center;*/
-        /*width: 40px;*/
-        /*float: left;*/
-        /*line-height: 40px;*/
-        /*text-align: center;*/
-    /*}*/
-
-    /*.weeks>div:last-child{*/
-        /*float: left;*/
-        /*width: 250px;*/
-        /*overflow: hidden;*/
-    /*}*/
-
-
 
     .now-week{
         background-color: #227B86;

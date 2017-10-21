@@ -6,6 +6,7 @@ use App\Grouping;
 use App\Position;
 use App\User;
 use App\Vender\UserInput;
+use Doctrine\Common\Cache\Cache;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -245,7 +246,9 @@ class UserController extends Controller
 
     public function userDelete(){
         $user = User::find(\request('id'));
+
         if($user){
+            Cache::forget($user->openid);
             $user->delete();
             return ['code' => 1, 'msg' => '删除成功'];
         }else{

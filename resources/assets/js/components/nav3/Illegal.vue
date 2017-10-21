@@ -1,11 +1,13 @@
 <template>
-    <div>
+    <div >
         <div>
             <el-button type="primary" @click="illegalVisible = true">添加违规</el-button>
         </div>
 
         <div>
             <el-table
+                    v-loading.body="loading"
+
                     :data="userIllegals"
                     style="width: 100%">
                 <el-table-column type="expand">
@@ -100,7 +102,7 @@
         </el-dialog>
 
         <el-dialog title="惩罚" :visible.sync="punishVisible">
-            <el-form :model="addPunish" label-width="80px">
+            <el-form :model="addPunish" label-width="80px" :rules="punishRules" ref="addPunish">
                 <el-form-item label="用户">
                     <span>{{ addPunish.user_id }}</span>
                 </el-form-item>
@@ -109,11 +111,11 @@
                     <span>{{ addPunish.type }}</span>
                 </el-form-item>
 
-                <el-form-item label="数量">
+                <el-form-item label="数量" prop="count">
                     <el-input type="number" v-model="addPunish.count" placeholder="请输入惩罚抵消的违规数量"></el-input>
                 </el-form-item>
 
-                <el-form-item label="时间">
+                <el-form-item label="时间" prop="time">
                     <el-date-picker
                             v-model="addPunish.time"
                             type="datetime"
@@ -124,13 +126,13 @@
                     </el-date-picker>
                 </el-form-item>
 
-                <el-form-item label="内容">
+                <el-form-item label="内容" prop="content">
                     <el-input type="textarea" placeholder="请输入惩罚内容" v-model="addPunish.content"></el-input>
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
-                <el-button @click="addPunish = false">取 消</el-button>
-                <el-button type="primary" @click="addPunishFun">惩 罚</el-button>
+                <el-button @click="punishVisible = false">取 消</el-button>
+                <el-button type="primary" @click="addPunishFun('addPunish')">惩 罚</el-button>
             </div>
         </el-dialog>
 
@@ -146,6 +148,8 @@
             return {
                 illegalVisible: false,
                 punishVisible: false,
+
+                loading: true,
 
                 users:[],       //所有用户
                 illegals:[],    //违规种类
@@ -185,14 +189,17 @@
         },
         methods: {
             info(){
+                this.loading = true;
                 axios.get('/admin/user/get/illegal').then(response => {
                     console.log(response.data);
-
                     let data = response.data;
+
 
                     this.users = data.users;
                     this.illegals = data.illegals;
                     this.userIllegals = data.userIllegals;
+
+                    this.loading =  false;
                 });
             },
             mtDate(timeStamp){
@@ -229,10 +236,13 @@
                         type: 'warning'
                     });
                 }else{
+
+                    this.loading = true;
                     axios.post('/admin/user/set/illegal', this.addIllegal).then(response => {
                         console.log(response.data);
                         let data = response.data;
                         if(data.code === 1){
+
                             this.$message({
                                 message: '添加成功',
                                 type: 'success'
@@ -246,6 +256,7 @@
                                 type: 'error'
                             });
                         }
+                        this.loading = false;
                     });
                 }
 
@@ -268,25 +279,59 @@
                 this.punishVisible = true;
             },
 
-            addPunishFun(){
-//                axios.post('/admin/user/set/illegal', this.addIllegal).then(response => {
-//                    console.log(response.data);
-//                    let data = response.data;
-//                    if(data.code === 1){
-//                        this.$message({
-//                            message: '添加成功',
-//                            type: 'success'
-//                        });
-//                        this.illegalVisible = false;
-//                        this.info();
-//
-//                    }else{
-//                        this.$message({
-//                            message: data.msg,
-//                            type: 'error'
-//                        });
-//                    }
-//                });
+            addPunishFun(formName){
+                this.$refs[formName].validate((valid) => {
+                    if (valid) {
+                        this.loading = true;
+                        axios.post('/admin/user/set/punish',this.addPunish).then(response => {
+                            console.log(response.data);
+                            let data = response.data;
+                            if(data.code === 1){
+                                this.$message({
+                                    message: '添加成功',
+                                    type: 'success'
+                                });
+                                this.punishVisible = false;
+                                this.info();
+                            }else{
+                                this.$message({
+                                    message: data.msg,
+                                    type: 'error'
+                                });
+                            }
+                            this.loading = false;
+                        });
+                    } else {
+                        console.log('error submit!!');
+                        return false;
+                    }
+                });
+            },
+
+            delUserIllegal(illegalId){
+                this.$confirm('确认删除此条违规吗，删除后将无法恢复？')
+                    .then(_ => {
+                        this.loading = true;
+                        axios.post('/admin/user/del/illegal',{
+                            id: illegalId,
+                        }).then(response => {
+                            console.log(response.data);
+                            let data = response.data;
+                            if(data.code === 1){
+                                this.$message({
+                                    message: '删除成功',
+                                    type: 'success'
+                                });
+                                this.info();
+                            }else{
+                                this.$message({
+                                    message: data.msg,
+                                    type: 'error'
+                                });
+                            }
+                            this.loading = false;
+                        });
+                    });
             }
         },
 

@@ -104,11 +104,11 @@ export default new Router({
                     ]
                 },
 
-                // {
-                //     name: '惩罚管理',
-                //     path: '/set/illegal',
-                //     component: resolve => void(require(['../components/nav3/Illegal.vue'], resolve)),
-                // }
+                {
+                    name: '惩罚管理',
+                    path: '/set/illegal',
+                    component: resolve => void(require(['../components/nav3/Illegal.vue'], resolve)),
+                }
             ]
         },
         {
