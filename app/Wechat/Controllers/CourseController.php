@@ -64,7 +64,6 @@ class CourseController extends Controller
         else $school = 'hist';
 
 
-
         $data = request(['password', 'validate']);
         $data['user_id'] = $userId;
 
@@ -140,7 +139,6 @@ class CourseController extends Controller
     }
 
     //获取课表统计信息
-
     public function getCount(){
         $nowWeek    = Seting::getNowWeek();  //获得当前周
         $groups     = Grouping::all(['id', 'name'])->toArray();  //获得分组

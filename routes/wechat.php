@@ -56,7 +56,12 @@ Route::group(['prefix' => 'wechat'], function(){
 
     //我的课表
 
+
+    //TODO::有微信授权时删除
     //课表统计
+    Route::get('/', '\App\Wechat\Controllers\CourseController@count');
+    //课表统计页面信息
+    Route::get('/course/count', '\App\Wechat\Controllers\CourseController@getCount');
 
     //导入课表渲染
 
@@ -102,14 +107,14 @@ Route::group(['prefix' => 'wechat'], function(){
 
         //我的课表
         Route::get('/course/show/{user?}', '\App\Wechat\Controllers\CourseController@course');
-        //课表统计
-        Route::get('/', '\App\Wechat\Controllers\CourseController@count');
+//        //课表统计
+//        Route::get('/', '\App\Wechat\Controllers\CourseController@count');
         //导入课表渲染
         Route::get('/course/input', '\App\Wechat\Controllers\CourseController@input');
 
         //显示要导入的信息
         Route::get('/course/input/show', '\App\Wechat\Controllers\CourseController@show');
-        Route::get('/course/count', '\App\Wechat\Controllers\CourseController@getCount');
+
 
     });
 });
