@@ -180,7 +180,7 @@
 
                             this.users.splice(userIndex, 1);
                         }else{
-                            this.$message.error('删除失败');
+                            this.$message.error(response.data.msg);
                         }
                     }).catch(function(err){
                         console.log(err);

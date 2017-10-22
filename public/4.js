@@ -1,18 +1,18 @@
 webpackJsonp([4],{
 
-/***/ 171:
+/***/ 172:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(187)
+  __webpack_require__(202)
 }
 var Component = __webpack_require__(6)(
   /* script */
-  __webpack_require__(189),
+  __webpack_require__(204),
   /* template */
-  __webpack_require__(190),
+  __webpack_require__(205),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -20,9 +20,9 @@ var Component = __webpack_require__(6)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Applications/MAMP/htdocs/signsystem2.1/resources/assets/js/components/nav3/Course.vue"
+Component.options.__file = "/Applications/MAMP/htdocs/signsystem2.1/resources/assets/js/components/nav3/CourseOne.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] Course.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] CourseOne.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -31,9 +31,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-7a1706f9", Component.options)
+    hotAPI.createRecord("data-v-fe7acc46", Component.options)
   } else {
-    hotAPI.reload("data-v-7a1706f9", Component.options)
+    hotAPI.reload("data-v-fe7acc46", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -45,23 +45,23 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 187:
+/***/ 202:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(188);
+var content = __webpack_require__(203);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(17)("d70c48ba", content, false);
+var update = __webpack_require__(17)("750741ed", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-7a1706f9\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vux-loader/src/style-loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Course.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-7a1706f9\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vux-loader/src/style-loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Course.vue");
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-fe7acc46\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vux-loader/src/style-loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CourseOne.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-fe7acc46\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vux-loader/src/style-loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CourseOne.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -72,7 +72,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 188:
+/***/ 203:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(8)();
@@ -80,14 +80,14 @@ exports = module.exports = __webpack_require__(8)();
 
 
 // module
-exports.push([module.i, "\n.dialog-width>div{\n    min-width: 520px;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
 
 /***/ }),
 
-/***/ 189:
+/***/ 204:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -221,33 +221,156 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        userId: {
+            required: true
+        },
+        courseInfos: {
+            type: Array,
+            required: true
+        }
+    },
     data: function data() {
+
         return {
-            userId: 0,
-            inputUserId: '',
-
-            addCourseVisible: false,
-
-            inputCourseVisible: false,
-            courseInfos: [],
-            newCourse: {
+            userCourse: [],
+            editCourseVisible: false,
+            editCourse: {
+                id: 0,
                 name: '',
                 teacher: '',
                 location: '',
                 week_day: 1,
                 start_week: 1,
-                end_week: 1,
                 status: 0,
+                end_week: 1,
                 start_section: 1,
                 end_section: ''
             },
-
             end_weeks: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
             end_sections: [2, 4, 5, 7, 9, 11, 12],
-
             rules: {
                 name: [{ required: true, message: '请输入课程名称', trigger: 'blur' }, { max: 50, message: '长度在50个字符内', trigger: 'blur' }],
                 teacher: [{ required: true, message: '请输入上课教师', trigger: 'blur' }, { max: 15, message: '长度在15个字符内', trigger: 'blur' }],
@@ -259,107 +382,116 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 end_section: [{ required: true, message: '请选择结束节数' }],
                 status: [{ required: true, message: '请选择周类型' }]
             }
-
         };
     },
 
     methods: {
-        userInfo: function userInfo() {
+        info: function info() {
+            this.userCourse = [];
+            //设置课程表格
+            var sectionsName = ['第1-2节', '第3-4节', '第5节', '第6-7节', '第8-9节', '第10-11节', '第12节'];
+            for (var i = 0; i < 7; i++) {
+                this.userCourse[i] = {
+                    section: sectionsName[i],
+                    mon: [],
+                    tue: [],
+                    wed: [],
+                    thu: [],
+                    fri: [],
+                    sat: [],
+                    sun: []
+                };
+            }
+
+            var weekDay = ['', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+            for (var _i in this.courseInfos) {
+                var course = {
+                    id: _i,
+                    course: this.courseInfos[_i]
+                };
+                for (var j = course.course.start_section; j <= course.course.end_section; j++) {
+                    switch (j) {
+                        case 1:
+                            {
+                                this.userCourse[0][weekDay[course.course.week_day]].push(course);
+                                continue;
+                                break;
+                            }
+                        case 3:
+                            {
+                                this.userCourse[1][weekDay[course.course.week_day]].push(course);
+                                continue;
+                                break;
+                            }
+                        case 5:
+                            {
+                                this.userCourse[2][weekDay[course.course.week_day]].push(course);
+                                break;
+                            }
+                        case 6:
+                            {
+                                this.userCourse[3][weekDay[course.course.week_day]].push(course);
+                                continue;
+                                break;
+                            }
+                        case 8:
+                            {
+                                this.userCourse[4][weekDay[course.course.week_day]].push(course);
+                                continue;
+                                break;
+                            }
+                        case 10:
+                            {
+                                this.userCourse[5][weekDay[course.course.week_day]].push(course);
+                                continue;
+                                break;
+                            }
+                        case 12:
+                            {
+                                this.userCourse[6][weekDay[course.course.week_day]].push(course);
+                                break;
+                            }
+                    }
+                }
+            }
+            console.log(this.userCourse);
+        },
+        editCourseFun: function editCourseFun(id) {
+            this.editCourse = this.courseInfos[id];
+            this.editCourseVisible = true;
+        },
+        editSubmit: function editSubmit(formName) {
             var _this = this;
-
-            axios.get('/admin/user/course/get', {
-                params: {
-                    'user-id': this.userId
-                }
-            }).then(function (response) {
-                console.log(response.data);
-                var data = response.data;
-
-                if (parseInt(data.code) === 0) {
-                    _this.$message.error(data.msg);
-                } else {
-                    _this.courseInfos = data.courses;
-                }
-
-                console.log(_this.courseInfos);
-            });
-        },
-        changeType: function changeType(url) {
-            this.$router.push(url);
-            this.userInfo();
-        },
-        setType: function setType(value) {
-            this.typeVisible = value;
-        },
-        inputId: function inputId() {
-            var _this2 = this;
-
-            this.$prompt('请输入修改的学号', '提示', {
-                confirmButtonText: '确定',
-                cancelButtonText: '取消',
-                inputPattern: /\d{10,11}/,
-                inputErrorMessage: '请输入正确的学号'
-            }).then(function (_ref) {
-                var value = _ref.value;
-
-                _this2.userId = value;
-                _this2.userInfo();
-            }).catch(function () {
-                _this2.$message({
-                    type: 'error',
-                    message: '操作取消'
-                });
-            });
-        },
-        startSectionChange: function startSectionChange(type) {
-
-            if (type === 0) {
-                if (this.newCourse.end_section < this.newCourse.start_section) this.newCourse.end_section = '';
-            } else {
-                if (this.editCourse.end_section < this.editCourse.start_section) this.editCourse.end_section = '';
-            }
-        },
-        startWeekChange: function startWeekChange(type) {
-            if (type === 0) {
-                if (this.newCourse.end_week < this.newCourse.start_week) this.newCourse.end_week = '';
-            } else {
-                if (this.editCourse.end_week < this.editCourse.start_week) this.editCourse.end_week = '';
-            }
-        },
-        resetForm: function resetForm(formName) {
-            this.$refs[formName].resetFields();
-        },
-        addSubmit: function addSubmit(formName) {
-            var _this3 = this;
 
             this.$refs[formName].validate(function (valid) {
                 if (valid) {
-
-                    axios.post('/admin/user/course/add', {
-                        'user-id': _this3.userId,
-                        name: _this3.newCourse.name,
-                        teacher: _this3.newCourse.teacher,
-                        location: _this3.newCourse.location,
-                        week_day: _this3.newCourse.week_day,
-                        start_week: _this3.newCourse.start_week,
-                        end_week: _this3.newCourse.end_week,
-                        status: _this3.newCourse.status,
-                        start_section: _this3.newCourse.start_section,
-                        end_section: _this3.newCourse.end_section
+                    console.log(_this.editCourse);
+                    axios.post('/admin/user/course/edit', {
+                        'user-id': _this.userId,
+                        id: _this.editCourse.id,
+                        name: _this.editCourse.name,
+                        teacher: _this.editCourse.teacher,
+                        location: _this.editCourse.location,
+                        week_day: _this.editCourse.week_day,
+                        start_week: _this.editCourse.start_week,
+                        end_week: _this.editCourse.end_week,
+                        status: _this.editCourse.status,
+                        start_section: _this.editCourse.start_section,
+                        end_section: _this.editCourse.end_section
                     }).then(function (response) {
                         //                            console.log(response.data);
                         var data = response.data;
-                        if (parseInt(data.code) === 0) {
-                            _this3.$message.error(data.msg);
-                        } else {
-                            _this3.$message({
-                                message: '添加成功',
+                        if (parseInt(data.code) === 1) {
+                            _this.$message({
+                                message: '修改成功',
                                 type: 'success'
                             });
-
-                            _this3.userInfo();
-                            _this3.addCourseVisible = false;
-                            _this3.$refs[formName].resetFields();
+                            _this.$emit('courseInfo');
+                            _this.editCourseVisible = false;
+                            _this.$refs[formName].resetFields();
+                        } else {
+                            _this.$message.error(data.msg);
                         }
                     });
                 } else {
@@ -368,58 +500,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }
             });
         },
-        inputCourseFun: function inputCourseFun() {
-            var _this4 = this;
+        deleteCourseFun: function deleteCourseFun(id) {
+            var _this2 = this;
 
-            if (!/^\d{10,11}$/.test(this.inputUserId)) {
-                this.$message.error('请输入正确的学号');
-            } else {
-                this.$confirm('此操作将清除所有课程导入, 是否继续?', '提示', {
-                    confirmButtonText: '继续',
-                    cancelButtonText: '取消',
-                    type: 'warning'
-                }).then(function () {
-                    axios.post('/admin/user/course/input', {
-                        'user-id': _this4.userId,
-                        'input-user-id': _this4.inputUserId
-                    }).then(function (response) {
-                        //                            console.log(response.data);
-                        var data = response.data;
-                        if (parseInt(data.code) === 0) {
-                            _this4.$message.error(data.msg);
-                        } else {
-                            _this4.$message({
-                                message: data.msg,
-                                type: 'success'
-                            });
-                            _this4.userInfo();
-                            _this4.inputCourseVisible = false;
-                        }
-                    });
-                });
-            }
-        },
-        clearAllCourse: function clearAllCourse() {
-            var _this5 = this;
-
-            this.$confirm('此操作将清除所有课程, 是否继续?', '提示', {
-                confirmButtonText: '继续',
+            this.$confirm('此操作将删除当前课程, 是否继续?', '提示', {
+                confirmButtonText: '删除',
                 cancelButtonText: '取消',
                 type: 'warning'
             }).then(function () {
-                axios.post('/admin/user/course/clear', {
-                    'user-id': _this5.userId
+                axios.post('/admin/user/course/delete', {
+                    'user-id': _this2.userId,
+                    id: id
                 }).then(function (response) {
                     //                            console.log(response.data);
                     var data = response.data;
                     if (parseInt(data.code) === 0) {
-                        _this5.$message.error(data.msg);
+                        _this2.$message.error(data.msg);
                     } else {
-                        _this5.$message({
-                            message: '清除成功',
+                        _this2.$message({
+                            message: '删除成功',
                             type: 'success'
                         });
-                        _this5.userInfo();
+
+                        _this2.editCourseVisible = false;
+                        _this2.$refs['editCourse'].resetFields();
+                        _this2.$emit('courseInfo');
                     }
                 });
             });
@@ -427,104 +532,207 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     mounted: function mounted() {
-        if (this.$route.path === '/set/course') {
-            this.$router.push('/set/course/type/one');
+        this.info();
+    },
+
+    watch: {
+        courseInfos: {
+            handler: function handler(curVal, oldVal) {
+                this.info();
+            },
+
+            deep: true
         }
-        this.inputId();
-        //            this.userInfo();
     }
+
 });
 
 /***/ }),
 
-/***/ 190:
+/***/ 205:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('div', {
+  return _c('div', [_c('el-table', {
     staticStyle: {
-      "margin-top": "20px"
-    }
-  }, [_c('label', [_vm._v("用户：")]), _vm._v(" "), _c('span', [_vm._v(_vm._s(_vm.userId))]), _vm._v(" "), _c('a', {
-    staticStyle: {
-      "color": "blue",
-      "cursor": "pointer"
+      "cursor": "pointer",
+      "width": "100%",
+      "font-size": "xx-small"
     },
-    on: {
-      "click": _vm.inputId
-    }
-  }, [_vm._v("修改")])]), _vm._v(" "), _c('div', [_c('div', [(_vm.$route.path == '/set/course/type/two') ? _c('el-button', {
     attrs: {
-      "type": "primary"
+      "data": _vm.userCourse,
+      "border": ""
+    }
+  }, [_c('el-table-column', {
+    attrs: {
+      "prop": "section",
+      "label": "节数"
+    }
+  }), _vm._v(" "), _c('el-table-column', {
+    attrs: {
+      "label": "周一"
     },
-    on: {
-      "click": function($event) {
-        _vm.changeType('/set/course/type/one')
+    scopedSlots: _vm._u([{
+      key: "default",
+      fn: function(scope) {
+        return _vm._l((scope.row.mon), function(course) {
+          return _c('div', {
+            staticStyle: {
+              "margin-bottom": "10px"
+            },
+            on: {
+              "click": function($event) {
+                _vm.editCourseFun(course.id)
+              }
+            }
+          }, [_vm._v("\n                    " + _vm._s(course.course.name) + "\n                    "), _c('br'), _vm._v("\n                    [" + _vm._s(course.course.start_week + '-' + course.course.end_week) + "\n                        "), (course.course.status == 1) ? _c('span', [_vm._v("单")]) : _vm._e(), _vm._v(" "), (course.course.status == 2) ? _c('span', [_vm._v("双")]) : _vm._e(), _vm._v("\n                        周]\n                        [" + _vm._s(course.course.start_section + '-' + course.course.end_section) + "节]/\n                        " + _vm._s(course.course.location) + "\n\n                ")])
+        })
       }
-    }
-  }, [_vm._v("格式一")]) : _vm._e(), _vm._v(" "), (_vm.$route.path == '/set/course/type/one' || _vm.$route.path == '/set/course') ? _c('el-button', {
+    }])
+  }), _vm._v(" "), _c('el-table-column', {
     attrs: {
-      "type": "primary"
+      "label": "周二"
     },
-    on: {
-      "click": function($event) {
-        _vm.changeType('/set/course/type/two')
+    scopedSlots: _vm._u([{
+      key: "default",
+      fn: function(scope) {
+        return _vm._l((scope.row.tue), function(course) {
+          return _c('div', {
+            staticStyle: {
+              "margin-bottom": "10px"
+            },
+            on: {
+              "click": function($event) {
+                _vm.editCourseFun(course.id)
+              }
+            }
+          }, [_vm._v("\n                    " + _vm._s(course.course.name) + "\n                    "), _c('br'), _vm._v("\n                    [" + _vm._s(course.course.start_week + '-' + course.course.end_week) + "\n                    "), (course.course.status == 1) ? _c('span', [_vm._v("单")]) : _vm._e(), _vm._v(" "), (course.course.status == 2) ? _c('span', [_vm._v("双")]) : _vm._e(), _vm._v("\n                    周]\n                    [" + _vm._s(course.course.start_section + '-' + course.course.end_section) + "节]/\n                    " + _vm._s(course.course.location) + "\n\n                ")])
+        })
       }
-    }
-  }, [_vm._v("格式二")]) : _vm._e(), _vm._v(" "), _c('el-button', {
+    }])
+  }), _vm._v(" "), _c('el-table-column', {
     attrs: {
-      "type": "primary"
+      "label": "周三"
     },
-    on: {
-      "click": function($event) {
-        _vm.addCourseVisible = true
+    scopedSlots: _vm._u([{
+      key: "default",
+      fn: function(scope) {
+        return _vm._l((scope.row.wed), function(course) {
+          return _c('div', {
+            staticStyle: {
+              "margin-bottom": "10px"
+            },
+            on: {
+              "click": function($event) {
+                _vm.editCourseFun(course.id)
+              }
+            }
+          }, [_vm._v("\n                    " + _vm._s(course.course.name) + "\n                    "), _c('br'), _vm._v("\n                    [" + _vm._s(course.course.start_week + '-' + course.course.end_week) + "\n                    "), (course.course.status == 1) ? _c('span', [_vm._v("单")]) : _vm._e(), _vm._v(" "), (course.course.status == 2) ? _c('span', [_vm._v("双")]) : _vm._e(), _vm._v("\n                    周]\n                    [" + _vm._s(course.course.start_section + '-' + course.course.end_section) + "节]/\n                    " + _vm._s(course.course.location) + "\n\n                ")])
+        })
       }
-    }
-  }, [_vm._v("添加课程")]), _vm._v(" "), _c('el-button', {
+    }])
+  }), _vm._v(" "), _c('el-table-column', {
     attrs: {
-      "type": "primary"
+      "label": "周四"
     },
-    on: {
-      "click": function($event) {
-        _vm.inputCourseVisible = true
+    scopedSlots: _vm._u([{
+      key: "default",
+      fn: function(scope) {
+        return _vm._l((scope.row.thu), function(course) {
+          return _c('div', {
+            staticStyle: {
+              "margin-bottom": "10px"
+            },
+            on: {
+              "click": function($event) {
+                _vm.editCourseFun(course.id)
+              }
+            }
+          }, [_vm._v("\n                    " + _vm._s(course.course.name) + "\n                    "), _c('br'), _vm._v("\n                    [" + _vm._s(course.course.start_week + '-' + course.course.end_week) + "\n                    "), (course.course.status == 1) ? _c('span', [_vm._v("单")]) : _vm._e(), _vm._v(" "), (course.course.status == 2) ? _c('span', [_vm._v("双")]) : _vm._e(), _vm._v("\n                    周]\n                    [" + _vm._s(course.course.start_section + '-' + course.course.end_section) + "节]/\n                    " + _vm._s(course.course.location) + "\n\n                ")])
+        })
       }
-    }
-  }, [_vm._v("导入他人课表")]), _vm._v(" "), _c('el-button', {
+    }])
+  }), _vm._v(" "), _c('el-table-column', {
     attrs: {
-      "type": "primary"
+      "label": "周五"
     },
-    on: {
-      "click": _vm.clearAllCourse
-    }
-  }, [_vm._v("清除所有课表")])], 1)]), _vm._v(" "), _c('router-view', {
+    scopedSlots: _vm._u([{
+      key: "default",
+      fn: function(scope) {
+        return _vm._l((scope.row.fri), function(course) {
+          return _c('div', {
+            staticStyle: {
+              "margin-bottom": "10px"
+            },
+            on: {
+              "click": function($event) {
+                _vm.editCourseFun(course.id)
+              }
+            }
+          }, [_vm._v("\n                    " + _vm._s(course.course.name) + "\n                    "), _c('br'), _vm._v("\n                    [" + _vm._s(course.course.start_week + '-' + course.course.end_week) + "\n                    "), (course.course.status == 1) ? _c('span', [_vm._v("单")]) : _vm._e(), _vm._v(" "), (course.course.status == 2) ? _c('span', [_vm._v("双")]) : _vm._e(), _vm._v("\n                    周]\n                    [" + _vm._s(course.course.start_section + '-' + course.course.end_section) + "节]/\n                    " + _vm._s(course.course.location) + "\n\n                ")])
+        })
+      }
+    }])
+  }), _vm._v(" "), _c('el-table-column', {
     attrs: {
-      "userId": _vm.userId,
-      "courseInfos": _vm.courseInfos
+      "label": "周六"
     },
-    on: {
-      "setType": function($event) {
-        _vm.setType(_vm.value)
-      },
-      "courseInfo": _vm.userInfo
-    }
-  }), _vm._v(" "), _c('el-dialog', {
+    scopedSlots: _vm._u([{
+      key: "default",
+      fn: function(scope) {
+        return _vm._l((scope.row.sat), function(course) {
+          return _c('div', {
+            staticStyle: {
+              "margin-bottom": "10px"
+            },
+            on: {
+              "click": function($event) {
+                _vm.editCourseFun(course.id)
+              }
+            }
+          }, [_vm._v("\n                    " + _vm._s(course.course.name) + "\n                    "), _c('br'), _vm._v("\n                    [" + _vm._s(course.course.start_week + '-' + course.course.end_week) + "\n                    "), (course.course.status == 1) ? _c('span', [_vm._v("单")]) : _vm._e(), _vm._v(" "), (course.course.status == 2) ? _c('span', [_vm._v("双")]) : _vm._e(), _vm._v("\n                    周]\n                    [" + _vm._s(course.course.start_section + '-' + course.course.end_section) + "节]/\n                    " + _vm._s(course.course.location) + "\n\n                ")])
+        })
+      }
+    }])
+  }), _vm._v(" "), _c('el-table-column', {
+    attrs: {
+      "label": "周日"
+    },
+    scopedSlots: _vm._u([{
+      key: "default",
+      fn: function(scope) {
+        return _vm._l((scope.row.sun), function(course) {
+          return _c('div', {
+            staticStyle: {
+              "margin-bottom": "10px"
+            },
+            on: {
+              "click": function($event) {
+                _vm.editCourseFun(course.id)
+              }
+            }
+          }, [_vm._v("\n                    " + _vm._s(course.course.name) + "\n                    "), _c('br'), _vm._v("\n                    [" + _vm._s(course.course.start_week + '-' + course.course.end_week) + "\n                    "), (course.course.status == 1) ? _c('span', [_vm._v("单")]) : _vm._e(), _vm._v(" "), (course.course.status == 2) ? _c('span', [_vm._v("双")]) : _vm._e(), _vm._v("\n                    周]\n                    [" + _vm._s(course.course.start_section + '-' + course.course.end_section) + "节]/\n                    " + _vm._s(course.course.location) + "\n\n                ")])
+        })
+      }
+    }])
+  })], 1), _vm._v(" "), _c('el-dialog', {
     staticClass: "dialog-width",
     attrs: {
-      "title": "添加课程",
-      "visible": _vm.addCourseVisible
+      "title": "编辑课程",
+      "visible": _vm.editCourseVisible
     },
     on: {
       "update:visible": function($event) {
-        _vm.addCourseVisible = $event
+        _vm.editCourseVisible = $event
       }
     }
   }, [_c('el-form', {
-    ref: "newCourse",
+    ref: "editCourse",
     staticStyle: {
       "width": "460px"
     },
     attrs: {
-      "model": _vm.newCourse,
+      "model": _vm.editCourse,
       "label-width": "80px",
       "rules": _vm.rules
     }
@@ -535,11 +743,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('el-input', {
     model: {
-      value: (_vm.newCourse.name),
+      value: (_vm.editCourse.name),
       callback: function($$v) {
-        _vm.newCourse.name = $$v
+        _vm.editCourse.name = $$v
       },
-      expression: "newCourse.name"
+      expression: "editCourse.name"
     }
   })], 1), _vm._v(" "), _c('el-form-item', {
     attrs: {
@@ -548,11 +756,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('el-input', {
     model: {
-      value: (_vm.newCourse.teacher),
+      value: (_vm.editCourse.teacher),
       callback: function($$v) {
-        _vm.newCourse.teacher = $$v
+        _vm.editCourse.teacher = $$v
       },
-      expression: "newCourse.teacher"
+      expression: "editCourse.teacher"
     }
   })], 1), _vm._v(" "), _c('el-form-item', {
     attrs: {
@@ -561,11 +769,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('el-input', {
     model: {
-      value: (_vm.newCourse.location),
+      value: (_vm.editCourse.location),
       callback: function($$v) {
-        _vm.newCourse.location = $$v
+        _vm.editCourse.location = $$v
       },
-      expression: "newCourse.location"
+      expression: "editCourse.location"
     }
   })], 1), _vm._v(" "), _c('el-form-item', {
     attrs: {
@@ -580,11 +788,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "placeholder": "请选择"
     },
     model: {
-      value: (_vm.newCourse.week_day),
+      value: (_vm.editCourse.week_day),
       callback: function($$v) {
-        _vm.newCourse.week_day = $$v
+        _vm.editCourse.week_day = $$v
       },
-      expression: "newCourse.week_day"
+      expression: "editCourse.week_day"
     }
   }, [_c('el-option', {
     key: 1,
@@ -646,15 +854,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "change": function($event) {
-        _vm.startSectionChange(0)
+        _vm.startSectionChange(1)
       }
     },
     model: {
-      value: (_vm.newCourse.start_section),
+      value: (_vm.editCourse.start_section),
       callback: function($$v) {
-        _vm.newCourse.start_section = $$v
+        _vm.editCourse.start_section = $$v
       },
-      expression: "newCourse.start_section"
+      expression: "editCourse.start_section"
     }
   }, [_c('el-option', {
     key: 1,
@@ -706,14 +914,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "placeholder": "结束"
     },
     model: {
-      value: (_vm.newCourse.end_section),
+      value: (_vm.editCourse.end_section),
       callback: function($$v) {
-        _vm.newCourse.end_section = $$v
+        _vm.editCourse.end_section = $$v
       },
-      expression: "newCourse.end_section"
+      expression: "editCourse.end_section"
     }
   }, _vm._l((_vm.end_sections), function(section) {
-    return (section >= _vm.newCourse.start_section) ? _c('el-option', {
+    return (section >= _vm.editCourse.start_section) ? _c('el-option', {
       key: section,
       attrs: {
         "label": '第' + section + '节',
@@ -738,15 +946,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "change": function($event) {
-        _vm.startWeekChange(0)
+        _vm.startWeekChange(1)
       }
     },
     model: {
-      value: (_vm.newCourse.start_week),
+      value: (_vm.editCourse.start_week),
       callback: function($$v) {
-        _vm.newCourse.start_week = $$v
+        _vm.editCourse.start_week = $$v
       },
-      expression: "newCourse.start_week"
+      expression: "editCourse.start_week"
     }
   }, _vm._l((20), function(n) {
     return _c('el-option', {
@@ -776,14 +984,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "placeholder": "结束"
     },
     model: {
-      value: (_vm.newCourse.end_week),
+      value: (_vm.editCourse.end_week),
       callback: function($$v) {
-        _vm.newCourse.end_week = $$v
+        _vm.editCourse.end_week = $$v
       },
-      expression: "newCourse.end_week"
+      expression: "editCourse.end_week"
     }
   }, _vm._l((_vm.end_weeks), function(week) {
-    return (week >= _vm.newCourse.start_week) ? _c('el-option', {
+    return (week >= _vm.editCourse.start_week) ? _c('el-option', {
       key: week,
       attrs: {
         "label": '第' + week + '周',
@@ -811,11 +1019,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "placeholder": "类型"
     },
     model: {
-      value: (_vm.newCourse.status),
+      value: (_vm.editCourse.status),
       callback: function($$v) {
-        _vm.newCourse.status = $$v
+        _vm.editCourse.status = $$v
       },
-      expression: "newCourse.status"
+      expression: "editCourse.status"
     }
   }, [_c('el-option', {
     key: "0",
@@ -841,73 +1049,34 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('el-button', {
     on: {
       "click": function($event) {
-        _vm.addCourseVisible = false
+        _vm.editCourseVisible = false
       }
     }
   }, [_vm._v("取 消")]), _vm._v(" "), _c('el-button', {
+    attrs: {
+      "type": "waring"
+    },
     on: {
       "click": function($event) {
-        _vm.resetForm('newCourse')
+        _vm.deleteCourseFun(_vm.editCourse.id)
       }
     }
-  }, [_vm._v("重 置")]), _vm._v(" "), _c('el-button', {
+  }, [_vm._v("删 除")]), _vm._v(" "), _c('el-button', {
     attrs: {
       "type": "primary"
     },
     on: {
       "click": function($event) {
-        _vm.addSubmit('newCourse')
+        _vm.editSubmit('editCourse')
       }
     }
-  }, [_vm._v("添 加")])], 1)], 1), _vm._v(" "), _c('el-dialog', {
-    staticClass: "dialog-width",
-    attrs: {
-      "title": "导入课表",
-      "visible": _vm.inputCourseVisible
-    },
-    on: {
-      "update:visible": function($event) {
-        _vm.inputCourseVisible = $event
-      }
-    }
-  }, [_c('el-form', [_c('el-form-item', {
-    attrs: {
-      "label": "学号"
-    }
-  }, [_c('el-input', {
-    attrs: {
-      "type": "number"
-    },
-    model: {
-      value: (_vm.inputUserId),
-      callback: function($$v) {
-        _vm.inputUserId = _vm._n($$v)
-      },
-      expression: "inputUserId"
-    }
-  })], 1)], 1), _vm._v(" "), _c('div', {
-    staticClass: "dialog-footer",
-    slot: "footer"
-  }, [_c('el-button', {
-    on: {
-      "click": function($event) {
-        _vm.inputCourseVisible = false
-      }
-    }
-  }, [_vm._v("取 消")]), _vm._v(" "), _c('el-button', {
-    attrs: {
-      "type": "primary"
-    },
-    on: {
-      "click": _vm.inputCourseFun
-    }
-  }, [_vm._v("导入")])], 1)], 1)], 1)
+  }, [_vm._v("修 改")])], 1)], 1)], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-7a1706f9", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-fe7acc46", module.exports)
   }
 }
 

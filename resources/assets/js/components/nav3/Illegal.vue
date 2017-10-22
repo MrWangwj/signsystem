@@ -24,7 +24,9 @@
                 <el-table-column
                         label="分组"
                 >
-
+                    <template scope="props">
+                        <span>{{ props.row.grouping.name }}</span>
+                    </template>
                 </el-table-column>
                 <el-table-column
                         label="姓名"
@@ -220,6 +222,8 @@
             },
 
             addIllegalFun(){
+
+
                 if(this.addIllegal.ids.length === 0){
                     this.$message({
                         message: '请选择用户',
@@ -248,6 +252,14 @@
                                 type: 'success'
                             });
                             this.illegalVisible = false;
+
+                            this.addIllegal = {
+                                ids: [],
+                                    illegal_id:'',
+                                    cause:'',
+                                    time: '',
+                            };
+
                             this.info();
 
                         }else{

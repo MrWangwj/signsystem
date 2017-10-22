@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Course;
 use App\User;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
 class CourseController extends Controller
@@ -57,15 +58,22 @@ class CourseController extends Controller
 
 
         $user = User::with('courses')->find($request['user-id']);
+
+        $nowUser = Auth::user();
+        if(!$nowUser->can('add-user-course', $user)){
+            return ['code' => 0, 'msg' => '无权操作'];
+        }
+
+
         $week_day_course = $user->courses->where('week_day', $request['week_day']);
 
         $result = $week_day_course->filter(function ($value, $key) use($request){
             if($value->status ==0 || $value->status = $request['status']){
                 if(max($request['start_section'], $value->start_section)
-                    < min($request['end_section'], $value->end_section)){
+                    <= min($request['end_section'], $value->end_section)){
 
                     if(max($request['start_week'], $value->start_week)
-                        < min($request['end_week'], $value->end_week)){
+                        <= min($request['end_week'], $value->end_week)){
                         return true;
                     }
 
@@ -134,6 +142,15 @@ class CourseController extends Controller
 
 
         $user = User::with('courses')->find($request['user-id']);
+
+
+
+        $nowUser = Auth::user();
+        if(!$nowUser->can('edit-user-course', $user)){
+            return ['code' => 0, 'msg' => '无权操作'];
+        }
+
+
         $week_day_course = $user->courses->where('week_day', $request['week_day']);
 
         $result = $week_day_course->filter(function ($value, $key) use($request){
@@ -195,6 +212,12 @@ class CourseController extends Controller
         ]);
 
         $user = User::where('id', request('user-id'))->first();
+
+        $nowUser = Auth::user();
+        if(!$nowUser->can('delete-user-course', $user)){
+            return ['code' => 0, 'msg' => '无权操作'];
+        }
+
         $user->courses()->detach(request('id'));
         return ['code' => 1, 'msg' => '删除成功'];
     }
@@ -206,6 +229,13 @@ class CourseController extends Controller
         ]);
 
         $user = User::where('id', request('user-id'))->first();
+
+
+        $nowUser = Auth::user();
+        if(!$nowUser->can('delete-user-course', $user)){
+            return ['code' => 0, 'msg' => '无权操作'];
+        }
+
         $user->courses()->detach();
         return ['code' => 1, 'msg' => '清除成功'];
 
@@ -223,6 +253,12 @@ class CourseController extends Controller
         }
 
         $inputUser = User::with('courses')->where('id', request('input-user-id'))->first();
+
+        $nowUser = Auth::user();
+        if(!$nowUser->can('add-user-course', $nowUser)){
+            return ['code' => 0, 'msg' => '无权操作'];
+        }
+
         if(!$inputUser){
             return ['code' => 0, 'msg' => '用户不存在'];
         }

@@ -6,13 +6,13 @@ webpackJsonp([1],{
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(175)
+  __webpack_require__(186)
 }
 var Component = __webpack_require__(6)(
   /* script */
-  __webpack_require__(177),
+  __webpack_require__(188),
   /* template */
-  __webpack_require__(178),
+  __webpack_require__(189),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -267,13 +267,13 @@ function applyToTag (styleElement, obj) {
 
 /***/ }),
 
-/***/ 175:
+/***/ 186:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(176);
+var content = __webpack_require__(187);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -294,7 +294,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 176:
+/***/ 187:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(8)();
@@ -309,7 +309,7 @@ exports.push([module.i, "\n.main[data-v-4fd45aee]{\n    width: 80%;\n    margin:
 
 /***/ }),
 
-/***/ 177:
+/***/ 188:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -521,6 +521,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         getCourses: function getCourses() {
 
+            for (var i = 0; i < 12; i++) {
+                this.courses[i] = {
+                    section: i + 1,
+                    mon: '',
+                    tue: '',
+                    wed: '',
+                    thu: '',
+                    fri: '',
+                    sat: '',
+                    sun: ''
+                };
+            }
+
+            var weekDay = ['', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+            console.log(this.courses);
             var all = this.get.students,
                 //所有的学生
             selStu = this.set.selStudent,
@@ -544,13 +559,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
             //                console.log(selStu);
             if (!hasCourse) {
-                for (var i = 0; i < 12; i++) {
+                for (var _i = 0; _i < 12; _i++) {
                     for (var j = 1; j <= 7; j++) {
-                        var tempNames = this.courses[i][weekDay[j]];
-                        this.courses[i][weekDay[j]] = "";
+                        var tempNames = this.courses[_i][weekDay[j]];
+                        this.courses[_i][weekDay[j]] = "";
                         for (var _id in selStu) {
                             if (tempNames.indexOf(selStu[_id].name + ",") === -1) {
-                                this.courses[i][weekDay[j]] += selStu[_id].name + ",";
+                                this.courses[_i][weekDay[j]] += selStu[_id].name + ",";
                             }
                         }
                     }
@@ -654,7 +669,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 178:
+/***/ 189:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;

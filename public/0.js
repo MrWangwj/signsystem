@@ -307,53 +307,7 @@ function applyToTag (styleElement, obj) {
 /* 30 */,
 /* 31 */,
 /* 32 */,
-/* 33 */,
-/* 34 */,
-/* 35 */,
-/* 36 */,
-/* 37 */,
-/* 38 */,
-/* 39 */,
-/* 40 */,
-/* 41 */,
-/* 42 */,
-/* 43 */,
-/* 44 */,
-/* 45 */,
-/* 46 */,
-/* 47 */,
-/* 48 */,
-/* 49 */,
-/* 50 */,
-/* 51 */,
-/* 52 */,
-/* 53 */,
-/* 54 */,
-/* 55 */,
-/* 56 */,
-/* 57 */,
-/* 58 */,
-/* 59 */,
-/* 60 */,
-/* 61 */,
-/* 62 */,
-/* 63 */,
-/* 64 */,
-/* 65 */,
-/* 66 */,
-/* 67 */,
-/* 68 */,
-/* 69 */,
-/* 70 */,
-/* 71 */,
-/* 72 */,
-/* 73 */,
-/* 74 */,
-/* 75 */,
-/* 76 */,
-/* 77 */,
-/* 78 */,
-/* 79 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -399,7 +353,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(80);
+var	fixUrls = __webpack_require__(34);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -712,7 +666,7 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 80 */
+/* 34 */
 /***/ (function(module, exports) {
 
 
@@ -807,6 +761,52 @@ module.exports = function (css) {
 
 
 /***/ }),
+/* 35 */,
+/* 36 */,
+/* 37 */,
+/* 38 */,
+/* 39 */,
+/* 40 */,
+/* 41 */,
+/* 42 */,
+/* 43 */,
+/* 44 */,
+/* 45 */,
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */,
+/* 56 */,
+/* 57 */,
+/* 58 */,
+/* 59 */,
+/* 60 */,
+/* 61 */,
+/* 62 */,
+/* 63 */,
+/* 64 */,
+/* 65 */,
+/* 66 */,
+/* 67 */,
+/* 68 */,
+/* 69 */,
+/* 70 */,
+/* 71 */,
+/* 72 */,
+/* 73 */,
+/* 74 */,
+/* 75 */,
+/* 76 */,
+/* 77 */,
+/* 78 */,
+/* 79 */,
+/* 80 */,
 /* 81 */,
 /* 82 */
 /***/ (function(module, exports) {
@@ -932,23 +932,24 @@ module.exports = function listToStyles (parentId, list) {
 /* 171 */,
 /* 172 */,
 /* 173 */,
-/* 174 */
+/* 174 */,
+/* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(199)
-  __webpack_require__(201)
-  __webpack_require__(203)
-  __webpack_require__(205)
-  __webpack_require__(301)
+  __webpack_require__(214)
+  __webpack_require__(216)
+  __webpack_require__(218)
+  __webpack_require__(220)
+  __webpack_require__(222)
 }
 var Component = __webpack_require__(6)(
   /* script */
-  __webpack_require__(207),
+  __webpack_require__(224),
   /* template */
-  __webpack_require__(208),
+  __webpack_require__(291),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -980,1202 +981,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 175 */,
-/* 176 */,
-/* 177 */,
-/* 178 */,
-/* 179 */,
-/* 180 */,
-/* 181 */,
-/* 182 */,
-/* 183 */,
-/* 184 */,
-/* 185 */,
-/* 186 */,
-/* 187 */,
-/* 188 */,
-/* 189 */,
-/* 190 */,
-/* 191 */,
-/* 192 */,
-/* 193 */,
-/* 194 */,
-/* 195 */,
-/* 196 */,
-/* 197 */,
-/* 198 */,
-/* 199 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(200);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(17)("63f9fa08", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-43186183\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vux-loader/src/style-loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Count.vue", function() {
-     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-43186183\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vux-loader/src/style-loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Count.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 200 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(8)();
-// imports
-
-
-// module
-exports.push([module.i, "\n.title{\n    width: 100%;\n    height: 45px;\n    font-size: small;\n}\n.title>div{\n    width: 335px;\n    margin:5px auto;\n    height: 35px;\n}\n.title>div>div{\n    float: left;\n    height: 100%;\n}\n.title>div:after{\n    display: block;\n    content: '';\n    clear: both;\n}\n.see-type{\n    width: 50px;\n    margin-right: 5px;\n}\n.now-week-but{\n    width: 35px;\n    height: 100%;\n    margin-right: 5px;\n}\n.weeks{\n    width: 200px;\n}\n.count{\n    width: 35px;\n    margin-left: 5px;\n}\n.see-type, .now-week-but, .count{\n    background-color: #227B86;\n    border-radius: 5px;\n    line-height: 35px;\n    text-align: center;\n    color: white;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 201 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(202);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(17)("45d7c3a7", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-43186183\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vux-loader/src/style-loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=1!./Count.vue", function() {
-     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-43186183\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vux-loader/src/style-loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=1!./Count.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 202 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(8)();
-// imports
-
-
-// module
-exports.push([module.i, "\n* {\n    margin: 0;\n    padding: 0;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 203 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(204);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(17)("e8c6f766", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-43186183\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vux-loader/src/style-loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=2!./Count.vue", function() {
-     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-43186183\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vux-loader/src/style-loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=2!./Count.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 204 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(8)();
-// imports
-
-
-// module
-exports.push([module.i, "\n.week-day[data-v-43186183]{\n    border-radius: 25px;\n}\n.week-title[data-v-43186183]{\n    height: 40px;\n    text-align: center;\n    line-height: 40px;\n}\n.courseContent[data-v-43186183]{\n    overflow-y: scroll;\n    width: 210px;\n    height: 420px;\n    margin: 10px auto;\n}\n.courseContent label[data-v-43186183]{\n    text-align: center;\n}\n.section>div[data-v-43186183]:first-child{\n    height: 50px;\n}\n.section>div:first-child label[data-v-43186183]{\n    padding: 8px;\n    border-radius: 10px;\n    margin: 10px auto;\n    display: block;\n    width: 50px;\n    text-align: center;\n}\n.section>div[data-v-43186183]:last-child {\n    width: 100%;\n    padding: 10px;\n    box-sizing: border-box;\n    border-radius: 10px;\n    /*border: 1px solid black;*/\n}\n.section>div:last-child label[data-v-43186183] {\n    display: block;\n    width: 33.3%;\n    float: left;\n}\n.section>div[data-v-43186183]:last-child:after {\n    display: block;\n    content: '';\n    clear: both;\n}\n.group-item[data-v-43186183] {\n    width: 90px;\n    height: 26px;\n    line-height: 26px;\n    text-align: center;\n    border-radius: 3px;\n    border: 1px solid #ccc;\n    background-color: #fff;\n    margin: 5px;\n    box-sizing: border-box;\n}\n.group-item-selected[data-v-43186183] {\n    background: #ffffff url(/images/wechat/sel.png) no-repeat right bottom;\n    border-color: #ff4a00;\n}\n.box1-item[data-v-43186183] {\n    width: 35px;\n    height: 100%;\n    background-color: #FDCA62;\n    display:inline-block;\n    margin-left: 5px;\n    float: left;\n    text-align: center;\n    line-height: 35px;\n    border-radius: 5px;\n}\n.box1[data-v-43186183] {\n    position: relative;\n    width: max-content;\n}\n.now-week[data-v-43186183]{\n    background-color: #227B86;\n    color: white;\n}\n.sel-week[data-v-43186183]{\n    color: #DB5061;\n    background-color: #F6C1C3;\n}\n.week-day .week-title[data-v-43186183]{\n     color: white;\n}\n.week-day>.courseContent>div>div:first-child>label[data-v-43186183]{\n    color: white;\n}\n.week-day>.courseContent>div>div[data-v-43186183]:last-child{\n    box-shadow: #666 0px 0px 10px;\n    background-color: #F9EAC7;\n}\n.main[data-v-43186183]{\n    background: url(/images/wechat/cloud.png) no-repeat;\n    background-size: 100% 60px;\n    background-position: 0 35px;\n}\n\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 205 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(206);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(17)("726adb54", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-43186183\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vux-loader/src/after-less-loader.js!../../../../../../node_modules/less-loader/dist/cjs.js!../../../../../../node_modules/vux-loader/src/style-loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=3!./Count.vue", function() {
-     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-43186183\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vux-loader/src/after-less-loader.js!../../../../../../node_modules/less-loader/dist/cjs.js!../../../../../../node_modules/vux-loader/src/style-loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=3!./Count.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 206 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(8)();
-// imports
-
-
-// module
-exports.push([module.i, "\n.vux-close[data-v-43186183] {\n  position: relative;\n  display: inline-block;\n  vertical-align: middle;\n  color: #999;\n  width: 24px;\n  height: 24px;\n}\n.vux-close[data-v-43186183]:before,\n.vux-close[data-v-43186183]:after {\n  content: '';\n  position: absolute;\n  left: 0;\n  top: 11px;\n  width: 24px;\n  height: 1px;\n  background-color: currentColor;\n  transform: rotate(-45deg);\n}\n.vux-close[data-v-43186183]:after {\n  transform: rotate(45deg);\n}\n.dialog-demo .weui-dialog[data-v-43186183] {\n  border-radius: 8px;\n  padding-bottom: 8px;\n}\n.dialog-demo .dialog-title[data-v-43186183] {\n  line-height: 30px;\n  color: #666;\n}\n.dialog-demo .img-box[data-v-43186183] {\n  height: 350px;\n  overflow: hidden;\n}\n.dialog-demo .vux-close[data-v-43186183] {\n  margin-top: 8px;\n  margin-bottom: 8px;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 207 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_carousel_3d__ = __webpack_require__(225);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_carousel_3d___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_carousel_3d__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vux_src_components_popup_index_vue__ = __webpack_require__(226);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vux_src_components_popup_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vux_src_components_popup_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vux_src_directives_transfer_dom_index_js__ = __webpack_require__(233);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vux_src_components_checker_checker_vue__ = __webpack_require__(234);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vux_src_components_checker_checker_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_vux_src_components_checker_checker_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vux_src_components_checker_checker_item_vue__ = __webpack_require__(239);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vux_src_components_checker_checker_item_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_vux_src_components_checker_checker_item_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vux_src_components_divider_index_vue__ = __webpack_require__(244);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vux_src_components_divider_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_vux_src_components_divider_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_vux_src_components_scroller_index_vue__ = __webpack_require__(249);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_vux_src_components_scroller_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_vux_src_components_scroller_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_vux_src_plugins_toast_index_js__ = __webpack_require__(265);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_vux_src_plugins_loading_index_js__ = __webpack_require__(272);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_vux_src_components_x_table_index_vue__ = __webpack_require__(278);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_vux_src_components_x_table_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_vux_src_components_x_table_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_vux_src_components_x_dialog_index_vue__ = __webpack_require__(283);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_vux_src_components_x_dialog_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_vux_src_components_x_dialog_index_vue__);
-
-
-
-
-
-
-
-
-
-
-
-
-
-Vue.use(__WEBPACK_IMPORTED_MODULE_7_vux_src_plugins_toast_index_js__["a" /* default */]);
-Vue.use(__WEBPACK_IMPORTED_MODULE_8_vux_src_plugins_loading_index_js__["a" /* default */]);
-/* harmony default export */ __webpack_exports__["default"] = ({
-  directives: {
-    TransferDom: __WEBPACK_IMPORTED_MODULE_2_vux_src_directives_transfer_dom_index_js__["a" /* default */]
-  },
-  components: {
-    Carousel3d: __WEBPACK_IMPORTED_MODULE_0_vue_carousel_3d__["Carousel3d"],
-    Slide: __WEBPACK_IMPORTED_MODULE_0_vue_carousel_3d__["Slide"],
-    Popup: __WEBPACK_IMPORTED_MODULE_1_vux_src_components_popup_index_vue___default.a,
-    TransferDom: __WEBPACK_IMPORTED_MODULE_2_vux_src_directives_transfer_dom_index_js__["a" /* default */],
-    Checker: __WEBPACK_IMPORTED_MODULE_3_vux_src_components_checker_checker_vue___default.a,
-    CheckerItem: __WEBPACK_IMPORTED_MODULE_4_vux_src_components_checker_checker_item_vue___default.a,
-    Divider: __WEBPACK_IMPORTED_MODULE_5_vux_src_components_divider_index_vue___default.a,
-    Scroller: __WEBPACK_IMPORTED_MODULE_6_vux_src_components_scroller_index_vue___default.a,
-    ToastPlugin: __WEBPACK_IMPORTED_MODULE_7_vux_src_plugins_toast_index_js__["a" /* default */],
-    XTable: __WEBPACK_IMPORTED_MODULE_9_vux_src_components_x_table_index_vue___default.a,
-    XDialog: __WEBPACK_IMPORTED_MODULE_10_vux_src_components_x_dialog_index_vue___default.a
-  },
-  data: function data() {
-    return {
-      get: {
-        nowWeek: 0, //当前周
-        groups: [], //所有分组
-        positions: [], //所有职务
-        grades: [], //年级
-        students: [] //所有学生
-      },
-      set: {
-        weeks: [], //一共有多少周
-        selPositions: [], //选择额职务
-        selSexs: [], //选择的性别
-        selGrades: [], //选中你的年级
-        selGroups: [], //选中的分组
-        selStudent: [], //选中的学生
-        selWeek: 0 //选中的周
-      },
-      count: false, //是否打开统计页面
-      haveNoCourse: true, //是否有课
-      courses: [[], [], [], [], [], [], []], //统计的课表人员信息
-      test: true,
-      colorIndex: [0, 1, 2, 3, 4, 5, 6],
-
-      type2Data: {
-        showHideOnBlur: false,
-        title: '',
-        x: 0,
-        y: 0
-      },
-      type: true,
-
-      colors: [{
-        title: '#1A9053',
-        content: '#26CDB2'
-      }, {
-        title: '#EF3C67',
-        content: '#FD9693'
-      }, {
-        title: '#794017',
-        content: '#FEC961'
-      }, {
-        title: '#1BAE9A',
-        content: '#91FBC1'
-      }, {
-        title: '#D13420',
-        content: '#FD8E6B'
-      }, {
-        title: '#82BD4B',
-        content: '#CAF3A3'
-      }, {
-        title: '#E23B5B',
-        content: '#FCC5CC'
-      }]
-    };
-  },
-
-  methods: {
-    info: function info() {
-      var _this = this;
-
-      document.getElementsByTagName('html')[0].style.background = '#89E4DF';
-
-      var maxWeek = 20; // 最大周
-      this.$vux.loading.show({
-        text: '正在加载数据'
-      });
-      axios.get('/wechat/course/count').then(function (response) {
-        console.log(response.data);
-
-        var data = response.data;
-        _this.get.nowWeek = data.nowWeek; //当前周
-        _this.get.groups = data.groups; //分组情况
-        _this.get.positions = data.positions; //职位情况
-        _this.get.grades = data.grades; //年级情况
-        _this.get.students = data.students; //学生
-
-        if (_this.get.nowWeek > 20) maxWeek = _this.get.nowWeek; //判断若用户大于20周，则以当前为最大
-
-        for (var i = 1; i <= maxWeek; i++) {
-          _this.set.weeks[i - 1] = {
-            id: i
-          };
-          if (_this.get.nowWeek === i) {
-            _this.set.weeks[i - 1].sel = true;
-          } else {
-            _this.set.weeks[i - 1].sel = false;
-          }
-        }
-
-        _this.set.selWeek = _this.get.nowWeek;
-
-        _this.getSelStudents();
-
-        var nowWeekDay = (new Date().getDay() + 6) % 7;
-        _this.$children[2].goSlide(nowWeekDay);
-
-        _this.setNowWeek();
-
-        _this.$vux.loading.hide();
-
-        console.log(_this.courses);
-      });
-
-      this.colorIndex.sort(this.randomsort);
-    },
-    setHasNoCourse: function setHasNoCourse(bool) {
-      this.haveNoCourse = bool;
-      this.getCourses();
-    },
-    addSelWeek: function addSelWeek(id) {
-      if (this.set.selWeel !== id) {
-        this.test = true;
-        this.set.weeks[this.set.selWeek - 1].sel = false;
-        this.set.selWeek = id;
-        this.set.weeks[id - 1].sel = true;
-        this.test = false;
-        this.getCourses();
-      }
-    },
-    setNowWeek: function setNowWeek() {
-
-      this.set.weeks[this.set.selWeek - 1].sel = false;
-      this.set.selWeek = this.get.nowWeek;
-      this.set.weeks[this.get.nowWeek - 1].sel = true;
-
-      this.test = !this.test;
-      document.getElementById('weeks').style.transform = 'translate(' + (this.get.nowWeek - 3) * -40 + 'px, 0)';
-      this.getCourses();
-    },
-    getSelStudents: function getSelStudents() {
-      this.set.selStudent = [];
-
-      var all = this.get.students,
-          groups = this.set.selGroups,
-          sexs = this.set.selSexs,
-          positions = this.set.selPositions,
-          grades = this.set.selGrades;
-
-      if (groups.length === 0 && positions.length === 0 && sexs.length === 0 && grades.length === 0) {
-        for (var index in all) {
-          this.set.selStudent.push({
-            id: index,
-            name: all[index].name
-          });
-        }
-      } else {
-        for (var _index in all) {
-          if (groups.indexOf(all[_index].grouping_id) !== -1 || sexs.indexOf(all[_index].sex) !== -1 || grades.indexOf(parseInt(_index.substring(2, 4))) !== -1) {
-            //判断用户是否符合选择的条件
-            this.set.selStudent.push({
-              id: _index,
-              name: all[_index].name
-            });
-          } else {
-            var userPositions = all[_index].positions;
-            for (var position in userPositions) {
-              if (positions.indexOf(userPositions[position].id) !== -1) {
-                this.set.selStudent.push({
-                  id: _index,
-                  name: all[_index].name
-                });
-                break;
-              }
-            }
-          }
-        }
-      }
-
-      this.getCourses();
-    },
-    getCourses: function getCourses() {
-      for (var i = 0; i < 7; i++) {
-        this.courses[i] = [{ id: '1-2', stus: [] }, { id: '3-4', stus: [] }, { id: '5', stus: [] }, { id: '6-7', stus: [] }, { id: '8-9', stus: [] }, { id: '10-11', stus: [] }, { id: '12', stus: [] }];
-      }
-
-      var all = this.get.students,
-          //所有用户信息
-      selStu = this.set.selStudent,
-          //选中的用户信息
-      selWeek = this.set.selWeek,
-          //选中的周
-      hasCourse = this.haveNoCourse; //是否有课
-
-      for (var _i in selStu) {
-        //循环选中用户
-        for (var course in all[selStu[_i].id].courses) {
-          // 循环用户的课表
-          var tempCourse = all[selStu[_i].id].courses[course];
-          if (tempCourse.start_week <= selWeek && selWeek <= tempCourse.end_week && (tempCourse.status === 0 || selWeek % 2 === tempCourse.status % 2)) {
-
-            for (var n = tempCourse.start_section; n <= tempCourse.end_section; n++) {
-              switch (n) {
-                case 1:
-                  {
-                    this.courses[tempCourse.week_day - 1][0].stus.push({
-                      id: selStu[_i].id,
-                      name: selStu[_i].name,
-                      course_id: course
-                    });
-                    continue;
-                    break;
-                  }
-                case 3:
-                  {
-                    this.courses[tempCourse.week_day - 1][1].stus.push({
-                      id: selStu[_i].id,
-                      name: selStu[_i].name,
-                      course_id: course
-                    });
-                    continue;
-                    break;
-                  }
-                case 5:
-                  {
-                    this.courses[tempCourse.week_day - 1][2].stus.push({
-                      id: selStu[_i].id,
-                      name: selStu[_i].name,
-                      course_id: course
-                    });
-                    break;
-                  }
-                case 6:
-                  {
-                    this.courses[tempCourse.week_day - 1][3].stus.push({
-                      id: selStu[_i].id,
-                      name: selStu[_i].name,
-                      course_id: course
-                    });
-                    continue;
-                    break;
-                  }
-                case 8:
-                  {
-                    this.courses[tempCourse.week_day - 1][4].stus.push({
-                      id: selStu[_i].id,
-                      name: selStu[_i].name,
-                      course_id: course
-                    });
-                    continue;
-                    break;
-                  }
-                case 10:
-                  {
-                    this.courses[tempCourse.week_day - 1][5].stus.push({
-                      id: selStu[_i].id,
-                      name: selStu[_i].name,
-                      course_id: course
-                    });
-                    continue;
-                    break;
-                  }
-                case 12:
-                  {
-                    this.courses[tempCourse.week_day - 1][6].stus.push({
-                      id: selStu[_i].id,
-                      name: selStu[_i].name,
-                      course_id: course
-                    });
-                    break;
-                  }
-              }
-            }
-          }
-        }
-      }
-
-      if (!hasCourse) {
-        for (var _i2 = 0; _i2 < 7; _i2++) {
-          for (var j = 0; j < 7; j++) {
-            var tmpStus = this.courses[_i2][j].stus.slice();
-            this.courses[_i2][j].stus = [];
-            for (var stu in selStu) {
-              var id = selStu[stu].id;
-              var status = false;
-              for (var tmpStu in tmpStus) {
-                if (id === tmpStus[tmpStu].id) {
-                  status = true;
-                  break;
-                }
-              }
-
-              if (!status) {
-                this.courses[_i2][j].stus.push({
-                  id: selStu[stu].id,
-                  name: selStu[stu].name,
-                  course_id: 0
-                });
-              }
-            }
-          }
-        }
-      }
-    },
-    courseInfo: function courseInfo(user_id, course_id) {
-      if (this.haveNoCourse) {
-        var course = this.get.students[user_id].courses[course_id];
-
-        this.$vux.toast.text(course.name + '/' + course.location, 'top');
-      }
-    },
-    randomsort: function randomsort(a, b) {
-      return Math.random() > .5 ? -1 : 1; //通过随机产生0到1的数，然后判断是否大于0.5从而影响排序，产生随机性的效果。
-    },
-    selTd: function selTd(i, j) {
-
-      var weeks = ['周一', '周二', '周三', '周四', '周五', '周六', '周日'];
-
-      this.type2Data.title = weeks[i] + this.courses[i][j].id;
-      this.type2Data.x = i;
-      this.type2Data.y = j;
-      this.type2Data.showHideOnBlur = true;
-    }
-  },
-  mounted: function mounted() {
-
-    this.info();
-  }
-});
-
-/***/ }),
-/* 208 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "main"
-  }, [_c('div', {
-    staticClass: "title"
-  }, [_c('div', [_c('div', {
-    staticClass: "see-type"
-  }, [(!_vm.type) ? _c('label', {
-    on: {
-      "click": function($event) {
-        _vm.type = true
-      }
-    }
-  }, [_vm._v("格式一")]) : _vm._e(), _vm._v(" "), (_vm.type) ? _c('label', {
-    on: {
-      "click": function($event) {
-        _vm.type = false
-      }
-    }
-  }, [_vm._v("格式二")]) : _vm._e()]), _vm._v(" "), _c('div', {
-    staticClass: "now-week-but",
-    on: {
-      "click": function($event) {
-        _vm.setNowWeek()
-      }
-    }
-  }, [_vm._v("\n                    本周\n                ")]), _vm._v(" "), _c('div', {
-    staticClass: "weeks"
-  }, [_c('scroller', {
-    attrs: {
-      "lock-y": "",
-      "scrollbar-x": false
-    }
-  }, [_c('div', {
-    staticClass: "box1",
-    attrs: {
-      "id": "weeks"
-    }
-  }, _vm._l((_vm.set.weeks), function(i) {
-    return _c('div', {
-      class: {
-        'box1-item': true, 'test': _vm.test, 'now-week': _vm.get.nowWeek == i.id, 'sel-week': i.sel
-      },
-      on: {
-        "click": function($event) {
-          _vm.addSelWeek(i.id)
-        }
-      }
-    }, [_c('span', [_vm._v(_vm._s(' ' + i.id + ' '))])])
-  }))])], 1), _vm._v(" "), _c('div', {
-    staticClass: "count",
-    on: {
-      "click": function($event) {
-        _vm.count = true
-      }
-    }
-  }, [_vm._v("\n                    统计\n                ")])])]), _vm._v(" "), _c('div', {
-    directives: [{
-      name: "transfer-dom",
-      rawName: "v-transfer-dom"
-    }]
-  }, [_c('popup', {
-    attrs: {
-      "position": "right"
-    },
-    model: {
-      value: (_vm.count),
-      callback: function($$v) {
-        _vm.count = $$v
-      },
-      expression: "count"
-    }
-  }, [_c('div', {
-    staticStyle: {
-      "width": "300px"
-    }
-  }, [_c('divider', [_vm._v("组别")]), _vm._v(" "), _c('checker', {
-    attrs: {
-      "type": "checkbox",
-      "default-item-class": "group-item",
-      "selected-item-class": "group-item-selected"
-    },
-    on: {
-      "on-change": _vm.getSelStudents
-    },
-    model: {
-      value: (_vm.set.selGroups),
-      callback: function($$v) {
-        _vm.set.selGroups = $$v
-      },
-      expression: "set.selGroups"
-    }
-  }, _vm._l((_vm.get.groups), function(i) {
-    return _c('checker-item', {
-      key: i.id,
-      staticClass: "group-item",
-      attrs: {
-        "value": i.id
-      }
-    }, [_vm._v(_vm._s(i.name))])
-  })), _vm._v(" "), _c('divider', [_vm._v("职务")]), _vm._v(" "), _c('checker', {
-    attrs: {
-      "type": "checkbox",
-      "default-item-class": "group-item",
-      "selected-item-class": "group-item-selected"
-    },
-    on: {
-      "on-change": _vm.getSelStudents
-    },
-    model: {
-      value: (_vm.set.selPositions),
-      callback: function($$v) {
-        _vm.set.selPositions = $$v
-      },
-      expression: "set.selPositions"
-    }
-  }, _vm._l((_vm.get.positions), function(i) {
-    return _c('checker-item', {
-      key: i.id,
-      staticClass: "group-item",
-      attrs: {
-        "value": i.id
-      }
-    }, [_vm._v(_vm._s(i.name))])
-  })), _vm._v(" "), _c('divider', [_vm._v("性别")]), _vm._v(" "), _c('checker', {
-    attrs: {
-      "type": "checkbox",
-      "default-item-class": "group-item",
-      "selected-item-class": "group-item-selected"
-    },
-    on: {
-      "on-change": _vm.getSelStudents
-    },
-    model: {
-      value: (_vm.set.selSexs),
-      callback: function($$v) {
-        _vm.set.selSexs = $$v
-      },
-      expression: "set.selSexs"
-    }
-  }, [_c('checker-item', {
-    key: 0,
-    staticClass: "group-item",
-    attrs: {
-      "value": 0
-    }
-  }, [_vm._v("男")]), _vm._v(" "), _c('checker-item', {
-    key: 1,
-    staticClass: "group-item",
-    attrs: {
-      "value": 1
-    }
-  }, [_vm._v("女")])], 1), _vm._v(" "), _c('divider', [_vm._v("年级")]), _vm._v(" "), _c('checker', {
-    attrs: {
-      "type": "checkbox",
-      "default-item-class": "group-item",
-      "selected-item-class": "group-item-selected"
-    },
-    on: {
-      "on-change": _vm.getSelStudents
-    },
-    model: {
-      value: (_vm.set.selGrades),
-      callback: function($$v) {
-        _vm.set.selGrades = $$v
-      },
-      expression: "set.selGrades"
-    }
-  }, _vm._l((_vm.get.grades), function(i) {
-    return _c('checker-item', {
-      key: i,
-      staticClass: "group-item",
-      attrs: {
-        "value": i
-      }
-    }, [_vm._v(_vm._s(i) + "级")])
-  }))], 1)])], 1), _vm._v(" "), _c('carousel-3d', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.type),
-      expression: "type"
-    }],
-    attrs: {
-      "display": 5,
-      "perspective": 0,
-      "space": "50",
-      "width": "250",
-      "height": "500",
-      "inverseScaling": 50,
-      "loop": false,
-      "controlsVisible": true,
-      "minSwipeDistance": 50
-    }
-  }, [_c('slide', {
-    staticClass: "week-day",
-    style: ({
-      backgroundColor: _vm.colors[_vm.colorIndex[0]].content
-    }),
-    attrs: {
-      "index": 0
-    }
-  }, [_c('div', {
-    staticClass: "week-title",
-    style: ({
-      backgroundColor: _vm.colors[_vm.colorIndex[0]].title
-    })
-  }, [_vm._v("\n                星期一（\n                "), (_vm.haveNoCourse) ? _c('span', {
-    on: {
-      "click": function($event) {
-        _vm.setHasNoCourse(false)
-      }
-    }
-  }, [_vm._v("有课")]) : _vm._e(), _vm._v(" "), (!_vm.haveNoCourse) ? _c('span', {
-    on: {
-      "click": function($event) {
-        _vm.setHasNoCourse(true)
-      }
-    }
-  }, [_vm._v("无课")]) : _vm._e(), _vm._v("\n                ）\n            ")]), _vm._v(" "), _c('div', {
-    staticClass: "courseContent"
-  }, _vm._l((_vm.courses[0]), function(section) {
-    return _c('div', {
-      staticClass: "section",
-      staticStyle: {
-        "width": "100%"
-      }
-    }, [_c('div', [_c('label', {
-      style: ({
-        backgroundColor: _vm.colors[_vm.colorIndex[0]].title
-      })
-    }, [_vm._v(_vm._s(section.id))])]), _vm._v(" "), _c('div', _vm._l((section.stus), function(stu, index) {
-      return _c('label', {
-        on: {
-          "click": function($event) {
-            _vm.courseInfo(stu.id, stu.course_id)
-          }
-        }
-      }, [_vm._v(_vm._s(stu.name) + ",")])
-    }))])
-  }))]), _vm._v(" "), _c('slide', {
-    staticClass: "week-day",
-    style: ({
-      backgroundColor: _vm.colors[_vm.colorIndex[1]].content
-    }),
-    attrs: {
-      "index": 1
-    }
-  }, [_c('div', {
-    staticClass: "week-title",
-    style: ({
-      backgroundColor: _vm.colors[_vm.colorIndex[1]].title
-    })
-  }, [_vm._v("\n                星期二（\n                "), (_vm.haveNoCourse) ? _c('span', {
-    on: {
-      "click": function($event) {
-        _vm.setHasNoCourse(false)
-      }
-    }
-  }, [_vm._v("有课")]) : _vm._e(), _vm._v(" "), (!_vm.haveNoCourse) ? _c('span', {
-    on: {
-      "click": function($event) {
-        _vm.setHasNoCourse(true)
-      }
-    }
-  }, [_vm._v("无课")]) : _vm._e(), _vm._v("\n                ）\n            ")]), _vm._v(" "), _c('div', {
-    staticClass: "courseContent"
-  }, _vm._l((_vm.courses[1]), function(section) {
-    return _c('div', {
-      staticClass: "section",
-      staticStyle: {
-        "width": "100%"
-      }
-    }, [_c('div', [_c('label', {
-      style: ({
-        backgroundColor: _vm.colors[_vm.colorIndex[1]].title
-      })
-    }, [_vm._v(_vm._s(section.id))])]), _vm._v(" "), _c('div', _vm._l((section.stus), function(stu, index) {
-      return _c('label', {
-        on: {
-          "click": function($event) {
-            _vm.courseInfo(stu.id, stu.course_id)
-          }
-        }
-      }, [_vm._v(_vm._s(stu.name) + ",")])
-    }))])
-  }))]), _vm._v(" "), _c('slide', {
-    staticClass: "week-day",
-    style: ({
-      backgroundColor: _vm.colors[_vm.colorIndex[2]].content
-    }),
-    attrs: {
-      "index": 2
-    }
-  }, [_c('div', {
-    staticClass: "week-title",
-    style: ({
-      backgroundColor: _vm.colors[_vm.colorIndex[2]].title
-    })
-  }, [_vm._v("\n                星期三（\n                "), (_vm.haveNoCourse) ? _c('span', {
-    on: {
-      "click": function($event) {
-        _vm.setHasNoCourse(false)
-      }
-    }
-  }, [_vm._v("有课")]) : _vm._e(), _vm._v(" "), (!_vm.haveNoCourse) ? _c('span', {
-    on: {
-      "click": function($event) {
-        _vm.setHasNoCourse(true)
-      }
-    }
-  }, [_vm._v("无课")]) : _vm._e(), _vm._v("\n                ）\n            ")]), _vm._v(" "), _c('div', {
-    staticClass: "courseContent"
-  }, _vm._l((_vm.courses[2]), function(section) {
-    return _c('div', {
-      staticClass: "section",
-      staticStyle: {
-        "width": "100%"
-      }
-    }, [_c('div', [_c('label', {
-      style: ({
-        backgroundColor: _vm.colors[_vm.colorIndex[2]].title
-      })
-    }, [_vm._v(_vm._s(section.id))])]), _vm._v(" "), _c('div', _vm._l((section.stus), function(stu, index) {
-      return _c('label', {
-        on: {
-          "click": function($event) {
-            _vm.courseInfo(stu.id, stu.course_id)
-          }
-        }
-      }, [_vm._v(_vm._s(stu.name) + ",")])
-    }))])
-  }))]), _vm._v(" "), _c('slide', {
-    staticClass: "week-day",
-    style: ({
-      backgroundColor: _vm.colors[_vm.colorIndex[3]].content
-    }),
-    attrs: {
-      "index": 3
-    }
-  }, [_c('div', {
-    staticClass: "week-title",
-    style: ({
-      backgroundColor: _vm.colors[_vm.colorIndex[3]].title
-    })
-  }, [_vm._v("\n                星期四（\n                "), (_vm.haveNoCourse) ? _c('span', {
-    on: {
-      "click": function($event) {
-        _vm.setHasNoCourse(false)
-      }
-    }
-  }, [_vm._v("有课")]) : _vm._e(), _vm._v(" "), (!_vm.haveNoCourse) ? _c('span', {
-    on: {
-      "click": function($event) {
-        _vm.setHasNoCourse(true)
-      }
-    }
-  }, [_vm._v("无课")]) : _vm._e(), _vm._v("\n                ）\n            ")]), _vm._v(" "), _c('div', {
-    staticClass: "courseContent"
-  }, _vm._l((_vm.courses[3]), function(section) {
-    return _c('div', {
-      staticClass: "section",
-      staticStyle: {
-        "width": "100%"
-      }
-    }, [_c('div', [_c('label', {
-      style: ({
-        backgroundColor: _vm.colors[_vm.colorIndex[3]].title
-      })
-    }, [_vm._v(_vm._s(section.id))])]), _vm._v(" "), _c('div', _vm._l((section.stus), function(stu, index) {
-      return _c('label', {
-        on: {
-          "click": function($event) {
-            _vm.courseInfo(stu.id, stu.course_id)
-          }
-        }
-      }, [_vm._v(_vm._s(stu.name) + ",")])
-    }))])
-  }))]), _vm._v(" "), _c('slide', {
-    staticClass: "week-day",
-    style: ({
-      backgroundColor: _vm.colors[_vm.colorIndex[4]].content
-    }),
-    attrs: {
-      "index": 4
-    }
-  }, [_c('div', {
-    staticClass: "week-title",
-    style: ({
-      backgroundColor: _vm.colors[_vm.colorIndex[4]].title
-    })
-  }, [_vm._v("\n                星期五（\n                "), (_vm.haveNoCourse) ? _c('span', {
-    on: {
-      "click": function($event) {
-        _vm.setHasNoCourse(false)
-      }
-    }
-  }, [_vm._v("有课")]) : _vm._e(), _vm._v(" "), (!_vm.haveNoCourse) ? _c('span', {
-    on: {
-      "click": function($event) {
-        _vm.setHasNoCourse(true)
-      }
-    }
-  }, [_vm._v("无课")]) : _vm._e(), _vm._v("\n                ）\n            ")]), _vm._v(" "), _c('div', {
-    staticClass: "courseContent"
-  }, _vm._l((_vm.courses[4]), function(section) {
-    return _c('div', {
-      staticClass: "section",
-      staticStyle: {
-        "width": "100%"
-      }
-    }, [_c('div', [_c('label', {
-      style: ({
-        backgroundColor: _vm.colors[_vm.colorIndex[4]].title
-      })
-    }, [_vm._v(_vm._s(section.id))])]), _vm._v(" "), _c('div', _vm._l((section.stus), function(stu, index) {
-      return _c('label', {
-        on: {
-          "click": function($event) {
-            _vm.courseInfo(stu.id, stu.course_id)
-          }
-        }
-      }, [_vm._v(_vm._s(stu.name) + ",")])
-    }))])
-  }))]), _vm._v(" "), _c('slide', {
-    staticClass: "week-day",
-    style: ({
-      backgroundColor: _vm.colors[_vm.colorIndex[5]].content
-    }),
-    attrs: {
-      "index": 5
-    }
-  }, [_c('div', {
-    staticClass: "week-title",
-    style: ({
-      backgroundColor: _vm.colors[_vm.colorIndex[5]].title
-    })
-  }, [_vm._v("\n                星期六（\n                "), (_vm.haveNoCourse) ? _c('span', {
-    on: {
-      "click": function($event) {
-        _vm.setHasNoCourse(false)
-      }
-    }
-  }, [_vm._v("有课")]) : _vm._e(), _vm._v(" "), (!_vm.haveNoCourse) ? _c('span', {
-    on: {
-      "click": function($event) {
-        _vm.setHasNoCourse(true)
-      }
-    }
-  }, [_vm._v("无课")]) : _vm._e(), _vm._v("\n                ）\n            ")]), _vm._v(" "), _c('div', {
-    staticClass: "courseContent"
-  }, _vm._l((_vm.courses[5]), function(section) {
-    return _c('div', {
-      staticClass: "section",
-      staticStyle: {
-        "width": "100%"
-      }
-    }, [_c('div', [_c('label', {
-      style: ({
-        backgroundColor: _vm.colors[_vm.colorIndex[5]].title
-      })
-    }, [_vm._v(_vm._s(section.id))])]), _vm._v(" "), _c('div', _vm._l((section.stus), function(stu, index) {
-      return _c('label', {
-        on: {
-          "click": function($event) {
-            _vm.courseInfo(stu.id, stu.course_id)
-          }
-        }
-      }, [_vm._v(_vm._s(stu.name) + ",")])
-    }))])
-  }))]), _vm._v(" "), _c('slide', {
-    staticClass: "week-day",
-    style: ({
-      backgroundColor: _vm.colors[_vm.colorIndex[6]].content
-    }),
-    attrs: {
-      "index": 6
-    }
-  }, [_c('div', {
-    staticClass: "week-title",
-    style: ({
-      backgroundColor: _vm.colors[_vm.colorIndex[6]].title
-    })
-  }, [_vm._v("\n                星期日（\n                "), (_vm.haveNoCourse) ? _c('span', {
-    on: {
-      "click": function($event) {
-        _vm.setHasNoCourse(false)
-      }
-    }
-  }, [_vm._v("有课")]) : _vm._e(), _vm._v(" "), (!_vm.haveNoCourse) ? _c('span', {
-    on: {
-      "click": function($event) {
-        _vm.setHasNoCourse(true)
-      }
-    }
-  }, [_vm._v("无课")]) : _vm._e(), _vm._v("\n                ）\n            ")]), _vm._v(" "), _c('div', {
-    staticClass: "courseContent"
-  }, _vm._l((_vm.courses[6]), function(section) {
-    return _c('div', {
-      staticClass: "section",
-      staticStyle: {
-        "width": "100%"
-      }
-    }, [_c('div', [_c('label', {
-      style: ({
-        backgroundColor: _vm.colors[_vm.colorIndex[6]].title
-      })
-    }, [_vm._v(_vm._s(section.id))])]), _vm._v(" "), _c('div', _vm._l((section.stus), function(stu, index) {
-      return _c('label', {
-        on: {
-          "click": function($event) {
-            _vm.courseInfo(stu.id, stu.course_id)
-          }
-        }
-      }, [_vm._v(_vm._s(stu.name) + ",")])
-    }))])
-  }))])], 1), _vm._v(" "), (!_vm.type) ? _c('div', {
-    staticStyle: {
-      "padding": "15px"
-    }
-  }, [_c('x-table', {
-    staticStyle: {
-      "background-color": "#fff"
-    },
-    attrs: {
-      "full-bordered": ""
-    }
-  }, [_c('thead', [_c('tr', [_c('th', [(_vm.haveNoCourse) ? _c('span', {
-    on: {
-      "click": function($event) {
-        _vm.setHasNoCourse(false)
-      }
-    }
-  }, [_vm._v("有课")]) : _vm._e(), _vm._v(" "), (!_vm.haveNoCourse) ? _c('span', {
-    on: {
-      "click": function($event) {
-        _vm.setHasNoCourse(true)
-      }
-    }
-  }, [_vm._v("无课")]) : _vm._e()]), _vm._v(" "), _c('th', [_vm._v("周一")]), _vm._v(" "), _c('th', [_vm._v("周二")]), _vm._v(" "), _c('th', [_vm._v("周三")]), _vm._v(" "), _c('th', [_vm._v("周四")]), _vm._v(" "), _c('th', [_vm._v("周五")]), _vm._v(" "), _c('th', [_vm._v("周六")]), _vm._v(" "), _c('th', [_vm._v("周日")])])]), _vm._v(" "), _c('tbody', _vm._l((7), function(i) {
-    return _c('tr', [_c('td', [_vm._v(_vm._s(_vm.courses[i - 1].length > 0 ? _vm.courses[0][i - 1].id : 0) + "节")]), _vm._v(" "), _vm._l((7), function(j) {
-      return _c('td', {
-        on: {
-          "click": function($event) {
-            _vm.selTd(j - 1, i - 1)
-          }
-        }
-      }, [_vm._v("\n                        " + _vm._s(_vm.courses[j - 1].length > 0 ? _vm.courses[j - 1][i - 1].stus.length : 0) + "\n                    ")])
-    })], 2)
-  }))]), _vm._v(" "), _c('div', {
-    directives: [{
-      name: "transfer-dom",
-      rawName: "v-transfer-dom"
-    }]
-  }, [_c('x-dialog', {
-    staticClass: "dialog-demo",
-    attrs: {
-      "hide-on-blur": ""
-    },
-    model: {
-      value: (_vm.type2Data.showHideOnBlur),
-      callback: function($$v) {
-        _vm.type2Data.showHideOnBlur = $$v
-      },
-      expression: "type2Data.showHideOnBlur"
-    }
-  }, [_c('div', {
-    staticClass: "img-box"
-  }, [_c('div', {
-    staticStyle: {
-      "margin": "10px auto",
-      "height": "330px",
-      "text-align": "center",
-      "overflow": "scroll",
-      "position": "relative"
-    }
-  }, [_c('div', {
-    staticStyle: {
-      "width": "100%",
-      "height": "40px",
-      "line-height": "40px",
-      "position": "absolute",
-      "top": "0"
-    }
-  }, [_c('p', [_vm._v("\n                            " + _vm._s(_vm.type2Data.title) + "节\n                                (\n                                "), (_vm.haveNoCourse) ? _c('span', {
-    on: {
-      "click": function($event) {
-        _vm.setHasNoCourse(false)
-      }
-    }
-  }, [_vm._v("有课")]) : _vm._e(), _vm._v(" "), (!_vm.haveNoCourse) ? _c('span', {
-    on: {
-      "click": function($event) {
-        _vm.setHasNoCourse(true)
-      }
-    }
-  }, [_vm._v("无课")]) : _vm._e(), _vm._v("\n                                )\n                            ")])]), _vm._v(" "), _c('div', {
-    staticClass: "label-stu"
-  }, _vm._l((_vm.courses[_vm.type2Data.x].length > 0 ? _vm.courses[_vm.type2Data.x][_vm.type2Data.y].stus : []), function(stu, index) {
-    return _c('label', {
-      on: {
-        "click": function($event) {
-          _vm.courseInfo(stu.id, stu.course_id)
-        }
-      }
-    }, [_vm._v(_vm._s(stu.name) + ",")])
-  }))])]), _vm._v(" "), _c('div', {
-    on: {
-      "click": function($event) {
-        _vm.type2Data.showHideOnBlur = false
-      }
-    }
-  }, [_c('span', {
-    staticClass: "vux-close"
-  })])])], 1)], 1) : _vm._e()], 1)
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-43186183", module.exports)
-  }
-}
-
-/***/ }),
-/* 209 */,
-/* 210 */,
-/* 211 */,
-/* 212 */,
-/* 213 */,
-/* 214 */,
-/* 215 */
+/* 176 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_RESULT__ = function(require, exports, module) {
@@ -2507,12 +1313,12 @@ else {
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 216 */
+/* 177 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_RESULT__ = function(require, exports, module) {
 "use strict";
-var Util = __webpack_require__(215);
+var Util = __webpack_require__(176);
 var Events = __webpack_require__(254);
 /** 
       @constructor 
@@ -2582,15 +1388,15 @@ else {
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 217 */
+/* 178 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_RESULT__ = function(require, exports, module) {
 "use strict";
-var Util = __webpack_require__(215);
-var Timer = __webpack_require__(221);
-var Easing = __webpack_require__(222);
-var Base = __webpack_require__(216);
+var Util = __webpack_require__(176);
+var Timer = __webpack_require__(182);
+var Easing = __webpack_require__(183);
+var Base = __webpack_require__(177);
 //transform
 var vendorTransform = Util.prefixStyle("transform");
 //transition webkitTransition MozTransition OTransition msTtransition
@@ -2937,7 +1743,7 @@ else {
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 218 */
+/* 179 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3034,7 +1840,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
 
 /***/ }),
-/* 219 */
+/* 180 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_RESULT__ = function(require, exports, module) {
@@ -5496,7 +4302,7 @@ else {
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 220 */
+/* 181 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5527,14 +4333,14 @@ else {
 });
 
 /***/ }),
-/* 221 */
+/* 182 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_RESULT__ = function(require, exports, module) {
 "use strict";
-var Util = __webpack_require__(215);
-var Base = __webpack_require__(216);
-var Easing = __webpack_require__(222);
+var Util = __webpack_require__(176);
+var Base = __webpack_require__(177);
+var Easing = __webpack_require__(183);
 
 var RAF = window.requestAnimationFrame ||
 	window.webkitRequestAnimationFrame ||
@@ -5702,7 +4508,7 @@ else {
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 222 */
+/* 183 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_RESULT__ = function(require, exports, module) {
@@ -5739,16 +4545,16 @@ if (typeof module == 'object' && module.exports) {
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 223 */
+/* 184 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_RESULT__ = function(require, exports, module) {
 "use strict";
-var Util = __webpack_require__(215),
-    Base = __webpack_require__(216),
-    Animate = __webpack_require__(217),
+var Util = __webpack_require__(176),
+    Base = __webpack_require__(177),
+    Animate = __webpack_require__(178),
     Boundry = __webpack_require__(256),
-    Hammer = __webpack_require__(219),
+    Hammer = __webpack_require__(180),
     Sticky = __webpack_require__(257),
     Fixed = __webpack_require__(258);
 // boundry checked bounce effect
@@ -6107,12 +4913,12 @@ else {
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 224 */
+/* 185 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return mergeOptions; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_object_assign__ = __webpack_require__(218);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_object_assign__ = __webpack_require__(179);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_object_assign___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_object_assign__);
 
 
@@ -6130,6 +4936,611 @@ const mergeOptions = function ($vm, options) {
 };
 
 
+
+/***/ }),
+/* 186 */,
+/* 187 */,
+/* 188 */,
+/* 189 */,
+/* 190 */,
+/* 191 */,
+/* 192 */,
+/* 193 */,
+/* 194 */,
+/* 195 */,
+/* 196 */,
+/* 197 */,
+/* 198 */,
+/* 199 */,
+/* 200 */,
+/* 201 */,
+/* 202 */,
+/* 203 */,
+/* 204 */,
+/* 205 */,
+/* 206 */,
+/* 207 */,
+/* 208 */,
+/* 209 */,
+/* 210 */,
+/* 211 */,
+/* 212 */,
+/* 213 */,
+/* 214 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(215);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(17)("63f9fa08", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-43186183\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vux-loader/src/style-loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Count.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-43186183\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vux-loader/src/style-loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Count.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 215 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(8)();
+// imports
+
+
+// module
+exports.push([module.i, "\n.title{\n    width: 100%;\n    height: 45px;\n    font-size: small;\n}\n.title>div{\n    width: 335px;\n    margin:5px auto;\n    height: 35px;\n}\n.title>div>div{\n    float: left;\n    height: 100%;\n}\n.title>div:after{\n    display: block;\n    content: '';\n    clear: both;\n}\n.see-type{\n    width: 50px;\n    margin-right: 5px;\n}\n.now-week-but{\n    width: 35px;\n    height: 100%;\n    margin-right: 5px;\n}\n.weeks{\n    width: 200px;\n}\n.count{\n    width: 35px;\n    margin-left: 5px;\n}\n.see-type, .now-week-but, .count{\n    background-color: #227B86;\n    border-radius: 5px;\n    line-height: 35px;\n    text-align: center;\n    color: white;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 216 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(217);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(17)("45d7c3a7", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-43186183\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vux-loader/src/style-loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=1!./Count.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-43186183\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vux-loader/src/style-loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=1!./Count.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 217 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(8)();
+// imports
+
+
+// module
+exports.push([module.i, "\n* {\n    margin: 0;\n    padding: 0;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 218 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(219);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(17)("e8c6f766", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-43186183\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vux-loader/src/style-loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=2!./Count.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-43186183\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vux-loader/src/style-loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=2!./Count.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 219 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(8)();
+// imports
+
+
+// module
+exports.push([module.i, "\n.week-day[data-v-43186183]{\n    border-radius: 25px;\n}\n.week-title[data-v-43186183]{\n    height: 40px;\n    text-align: center;\n    line-height: 40px;\n}\n.courseContent[data-v-43186183]{\n    overflow-y: scroll;\n    width: 210px;\n    height: 420px;\n    margin: 10px auto;\n}\n.courseContent label[data-v-43186183]{\n    text-align: center;\n}\n.section>div[data-v-43186183]:first-child{\n    height: 50px;\n}\n.section>div:first-child label[data-v-43186183]{\n    padding: 8px;\n    border-radius: 10px;\n    margin: 10px auto;\n    display: block;\n    width: 50px;\n    text-align: center;\n}\n.section>div[data-v-43186183]:last-child {\n    width: 100%;\n    padding: 10px;\n    box-sizing: border-box;\n    border-radius: 10px;\n    /*border: 1px solid black;*/\n}\n.section>div:last-child label[data-v-43186183] {\n    display: block;\n    width: 33.3%;\n    float: left;\n}\n.section>div[data-v-43186183]:last-child:after {\n    display: block;\n    content: '';\n    clear: both;\n}\n.group-item[data-v-43186183] {\n    width: 90px;\n    height: 26px;\n    line-height: 26px;\n    text-align: center;\n    border-radius: 3px;\n    border: 1px solid #ccc;\n    background-color: #fff;\n    margin: 5px;\n    box-sizing: border-box;\n}\n.group-item-selected[data-v-43186183] {\n    background: #ffffff url(/images/wechat/sel.png) no-repeat right bottom;\n    border-color: #ff4a00;\n}\n.box1-item[data-v-43186183] {\n    width: 35px;\n    height: 100%;\n    background-color: #FDCA62;\n    display:inline-block;\n    margin-left: 5px;\n    float: left;\n    text-align: center;\n    line-height: 35px;\n    border-radius: 5px;\n}\n.box1[data-v-43186183] {\n    position: relative;\n    width: max-content;\n}\n.now-week[data-v-43186183]{\n    background-color: #227B86;\n    color: white;\n}\n.sel-week[data-v-43186183]{\n    color: #DB5061;\n    background-color: #F6C1C3;\n}\n.week-day .week-title[data-v-43186183]{\n     color: white;\n}\n.week-day>.courseContent>div>div:first-child>label[data-v-43186183]{\n    color: white;\n}\n.week-day>.courseContent>div>div[data-v-43186183]:last-child{\n    box-shadow: #666 0px 0px 10px;\n    background-color: #F9EAC7;\n}\n.main[data-v-43186183]{\n    background: url(/images/wechat/cloud.png) no-repeat;\n    background-size: 100% 60px;\n    background-position: 0 35px;\n}\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 220 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(221);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(17)("726adb54", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-43186183\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vux-loader/src/after-less-loader.js!../../../../../../node_modules/less-loader/dist/cjs.js!../../../../../../node_modules/vux-loader/src/style-loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=3!./Count.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-43186183\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vux-loader/src/after-less-loader.js!../../../../../../node_modules/less-loader/dist/cjs.js!../../../../../../node_modules/vux-loader/src/style-loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=3!./Count.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 221 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(8)();
+// imports
+
+
+// module
+exports.push([module.i, "\n.vux-close[data-v-43186183] {\n  position: relative;\n  display: inline-block;\n  vertical-align: middle;\n  color: #999;\n  width: 24px;\n  height: 24px;\n}\n.vux-close[data-v-43186183]:before,\n.vux-close[data-v-43186183]:after {\n  content: '';\n  position: absolute;\n  left: 0;\n  top: 11px;\n  width: 24px;\n  height: 1px;\n  background-color: currentColor;\n  transform: rotate(-45deg);\n}\n.vux-close[data-v-43186183]:after {\n  transform: rotate(45deg);\n}\n.dialog-demo .weui-dialog[data-v-43186183] {\n  border-radius: 8px;\n  padding-bottom: 8px;\n}\n.dialog-demo .dialog-title[data-v-43186183] {\n  line-height: 30px;\n  color: #666;\n}\n.dialog-demo .img-box[data-v-43186183] {\n  height: 350px;\n  overflow: hidden;\n}\n.dialog-demo .vux-close[data-v-43186183] {\n  margin-top: 8px;\n  margin-bottom: 8px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 222 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(223);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(17)("4f58178b", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-43186183\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vux-loader/src/style-loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=4!./Count.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-43186183\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vux-loader/src/style-loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=4!./Count.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 223 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(8)();
+// imports
+
+
+// module
+exports.push([module.i, "\n.label-stu[data-v-43186183]{\n    width: 100%;\n    margin-top: 40px;\n}\n.label-stu[data-v-43186183]:after{\n    display: block;\n    content: '';\n    clear: both;\n}\n.label-stu>label[data-v-43186183]{\n    float: left;\n    display: block;\n    width: 25%;\n    overflow: hidden;\n    height: 30px;\n    line-height: 30px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 224 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_carousel_3d__ = __webpack_require__(225);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_carousel_3d___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_carousel_3d__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vux_src_components_popup_index_vue__ = __webpack_require__(226);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vux_src_components_popup_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vux_src_components_popup_index_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vux_src_directives_transfer_dom_index_js__ = __webpack_require__(233);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vux_src_components_checker_checker_vue__ = __webpack_require__(234);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vux_src_components_checker_checker_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_vux_src_components_checker_checker_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vux_src_components_checker_checker_item_vue__ = __webpack_require__(239);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vux_src_components_checker_checker_item_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_vux_src_components_checker_checker_item_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vux_src_components_divider_index_vue__ = __webpack_require__(244);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vux_src_components_divider_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_vux_src_components_divider_index_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_vux_src_components_scroller_index_vue__ = __webpack_require__(249);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_vux_src_components_scroller_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_vux_src_components_scroller_index_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_vux_src_plugins_toast_index_js__ = __webpack_require__(265);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_vux_src_plugins_loading_index_js__ = __webpack_require__(272);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_vux_src_components_x_table_index_vue__ = __webpack_require__(278);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_vux_src_components_x_table_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_vux_src_components_x_table_index_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_vux_src_components_x_dialog_index_vue__ = __webpack_require__(283);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_vux_src_components_x_dialog_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_vux_src_components_x_dialog_index_vue__);
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vue.use(__WEBPACK_IMPORTED_MODULE_7_vux_src_plugins_toast_index_js__["a" /* default */]);
+Vue.use(__WEBPACK_IMPORTED_MODULE_8_vux_src_plugins_loading_index_js__["a" /* default */]);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  directives: {
+    TransferDom: __WEBPACK_IMPORTED_MODULE_2_vux_src_directives_transfer_dom_index_js__["a" /* default */]
+  },
+  components: {
+    Carousel3d: __WEBPACK_IMPORTED_MODULE_0_vue_carousel_3d__["Carousel3d"],
+    Slide: __WEBPACK_IMPORTED_MODULE_0_vue_carousel_3d__["Slide"],
+    Popup: __WEBPACK_IMPORTED_MODULE_1_vux_src_components_popup_index_vue___default.a,
+    TransferDom: __WEBPACK_IMPORTED_MODULE_2_vux_src_directives_transfer_dom_index_js__["a" /* default */],
+    Checker: __WEBPACK_IMPORTED_MODULE_3_vux_src_components_checker_checker_vue___default.a,
+    CheckerItem: __WEBPACK_IMPORTED_MODULE_4_vux_src_components_checker_checker_item_vue___default.a,
+    Divider: __WEBPACK_IMPORTED_MODULE_5_vux_src_components_divider_index_vue___default.a,
+    Scroller: __WEBPACK_IMPORTED_MODULE_6_vux_src_components_scroller_index_vue___default.a,
+    ToastPlugin: __WEBPACK_IMPORTED_MODULE_7_vux_src_plugins_toast_index_js__["a" /* default */],
+    XTable: __WEBPACK_IMPORTED_MODULE_9_vux_src_components_x_table_index_vue___default.a,
+    XDialog: __WEBPACK_IMPORTED_MODULE_10_vux_src_components_x_dialog_index_vue___default.a
+  },
+  data: function data() {
+    return {
+      get: {
+        nowWeek: 0, //当前周
+        groups: [], //所有分组
+        positions: [], //所有职务
+        grades: [], //年级
+        students: [] //所有学生
+      },
+      set: {
+        weeks: [], //一共有多少周
+        selPositions: [], //选择额职务
+        selSexs: [], //选择的性别
+        selGrades: [], //选中你的年级
+        selGroups: [], //选中的分组
+        selStudent: [], //选中的学生
+        selWeek: 0 //选中的周
+      },
+      count: false, //是否打开统计页面
+      haveNoCourse: true, //是否有课
+      courses: [[], [], [], [], [], [], []], //统计的课表人员信息
+      test: true,
+      colorIndex: [0, 1, 2, 3, 4, 5, 6],
+
+      type2Data: {
+        showHideOnBlur: false,
+        title: '',
+        x: 0,
+        y: 0
+      },
+      type: true,
+
+      colors: [{
+        title: '#1A9053',
+        content: '#26CDB2'
+      }, {
+        title: '#EF3C67',
+        content: '#FD9693'
+      }, {
+        title: '#794017',
+        content: '#FEC961'
+      }, {
+        title: '#1BAE9A',
+        content: '#91FBC1'
+      }, {
+        title: '#D13420',
+        content: '#FD8E6B'
+      }, {
+        title: '#82BD4B',
+        content: '#CAF3A3'
+      }, {
+        title: '#E23B5B',
+        content: '#FCC5CC'
+      }]
+    };
+  },
+
+  methods: {
+    info: function info() {
+      var _this = this;
+
+      document.getElementsByTagName('html')[0].style.background = '#89E4DF';
+
+      var maxWeek = 20; // 最大周
+      this.$vux.loading.show({
+        text: '正在加载数据'
+      });
+      axios.get('/wechat/course/count').then(function (response) {
+        console.log(response.data);
+
+        var data = response.data;
+        _this.get.nowWeek = data.nowWeek; //当前周
+        _this.get.groups = data.groups; //分组情况
+        _this.get.positions = data.positions; //职位情况
+        _this.get.grades = data.grades; //年级情况
+        _this.get.students = data.students; //学生
+
+        if (_this.get.nowWeek > 20) maxWeek = _this.get.nowWeek; //判断若用户大于20周，则以当前为最大
+
+        for (var i = 1; i <= maxWeek; i++) {
+          _this.set.weeks[i - 1] = {
+            id: i
+          };
+          if (_this.get.nowWeek === i) {
+            _this.set.weeks[i - 1].sel = true;
+          } else {
+            _this.set.weeks[i - 1].sel = false;
+          }
+        }
+
+        _this.set.selWeek = _this.get.nowWeek;
+
+        _this.getSelStudents();
+
+        var nowWeekDay = (new Date().getDay() + 6) % 7;
+        _this.$children[2].goSlide(nowWeekDay);
+
+        _this.setNowWeek();
+
+        _this.$vux.loading.hide();
+
+        console.log(_this.courses);
+      });
+
+      this.colorIndex.sort(this.randomsort);
+    },
+    setHasNoCourse: function setHasNoCourse(bool) {
+      this.haveNoCourse = bool;
+      this.getCourses();
+    },
+    addSelWeek: function addSelWeek(id) {
+      if (this.set.selWeel !== id) {
+        this.test = true;
+        this.set.weeks[this.set.selWeek - 1].sel = false;
+        this.set.selWeek = id;
+        this.set.weeks[id - 1].sel = true;
+        this.test = false;
+        this.getCourses();
+      }
+    },
+    setNowWeek: function setNowWeek() {
+
+      this.set.weeks[this.set.selWeek - 1].sel = false;
+      this.set.selWeek = this.get.nowWeek;
+      this.set.weeks[this.get.nowWeek - 1].sel = true;
+
+      this.test = !this.test;
+      document.getElementById('weeks').style.transform = 'translate(' + (this.get.nowWeek - 3) * -40 + 'px, 0)';
+      this.getCourses();
+    },
+    getSelStudents: function getSelStudents() {
+      this.set.selStudent = [];
+
+      var all = this.get.students,
+          groups = this.set.selGroups,
+          sexs = this.set.selSexs,
+          positions = this.set.selPositions,
+          grades = this.set.selGrades;
+
+      if (groups.length === 0 && positions.length === 0 && sexs.length === 0 && grades.length === 0) {
+        for (var index in all) {
+          this.set.selStudent.push({
+            id: index,
+            name: all[index].name
+          });
+        }
+      } else {
+        for (var _index in all) {
+          if (groups.indexOf(all[_index].grouping_id) !== -1 || sexs.indexOf(all[_index].sex) !== -1 || grades.indexOf(parseInt(_index.substring(2, 4))) !== -1) {
+            //判断用户是否符合选择的条件
+            this.set.selStudent.push({
+              id: _index,
+              name: all[_index].name
+            });
+          } else {
+            var userPositions = all[_index].positions;
+            for (var position in userPositions) {
+              if (positions.indexOf(userPositions[position].id) !== -1) {
+                this.set.selStudent.push({
+                  id: _index,
+                  name: all[_index].name
+                });
+                break;
+              }
+            }
+          }
+        }
+      }
+
+      this.getCourses();
+    },
+    getCourses: function getCourses() {
+      for (var i = 0; i < 7; i++) {
+        this.courses[i] = [{ id: '1-2', stus: [] }, { id: '3-4', stus: [] }, { id: '5', stus: [] }, { id: '6-7', stus: [] }, { id: '8-9', stus: [] }, { id: '10-11', stus: [] }, { id: '12', stus: [] }];
+      }
+
+      var all = this.get.students,
+          //所有用户信息
+      selStu = this.set.selStudent,
+          //选中的用户信息
+      selWeek = this.set.selWeek,
+          //选中的周
+      hasCourse = this.haveNoCourse; //是否有课
+
+      for (var _i in selStu) {
+        //循环选中用户
+        for (var course in all[selStu[_i].id].courses) {
+          // 循环用户的课表
+          var tempCourse = all[selStu[_i].id].courses[course];
+          if (tempCourse.start_week <= selWeek && selWeek <= tempCourse.end_week && (tempCourse.status === 0 || selWeek % 2 === tempCourse.status % 2)) {
+
+            for (var n = tempCourse.start_section; n <= tempCourse.end_section; n++) {
+              switch (n) {
+                case 1:
+                  {
+                    this.courses[tempCourse.week_day - 1][0].stus.push({
+                      id: selStu[_i].id,
+                      name: selStu[_i].name,
+                      course_id: course
+                    });
+                    continue;
+                    break;
+                  }
+                case 3:
+                  {
+                    this.courses[tempCourse.week_day - 1][1].stus.push({
+                      id: selStu[_i].id,
+                      name: selStu[_i].name,
+                      course_id: course
+                    });
+                    continue;
+                    break;
+                  }
+                case 5:
+                  {
+                    this.courses[tempCourse.week_day - 1][2].stus.push({
+                      id: selStu[_i].id,
+                      name: selStu[_i].name,
+                      course_id: course
+                    });
+                    break;
+                  }
+                case 6:
+                  {
+                    this.courses[tempCourse.week_day - 1][3].stus.push({
+                      id: selStu[_i].id,
+                      name: selStu[_i].name,
+                      course_id: course
+                    });
+                    continue;
+                    break;
+                  }
+                case 8:
+                  {
+                    this.courses[tempCourse.week_day - 1][4].stus.push({
+                      id: selStu[_i].id,
+                      name: selStu[_i].name,
+                      course_id: course
+                    });
+                    continue;
+                    break;
+                  }
+                case 10:
+                  {
+                    this.courses[tempCourse.week_day - 1][5].stus.push({
+                      id: selStu[_i].id,
+                      name: selStu[_i].name,
+                      course_id: course
+                    });
+                    continue;
+                    break;
+                  }
+                case 12:
+                  {
+                    this.courses[tempCourse.week_day - 1][6].stus.push({
+                      id: selStu[_i].id,
+                      name: selStu[_i].name,
+                      course_id: course
+                    });
+                    break;
+                  }
+              }
+            }
+          }
+        }
+      }
+
+      if (!hasCourse) {
+        for (var _i2 = 0; _i2 < 7; _i2++) {
+          for (var j = 0; j < 7; j++) {
+            var tmpStus = this.courses[_i2][j].stus.slice();
+            this.courses[_i2][j].stus = [];
+            for (var stu in selStu) {
+              var id = selStu[stu].id;
+              var status = false;
+              for (var tmpStu in tmpStus) {
+                if (id === tmpStus[tmpStu].id) {
+                  status = true;
+                  break;
+                }
+              }
+
+              if (!status) {
+                this.courses[_i2][j].stus.push({
+                  id: selStu[stu].id,
+                  name: selStu[stu].name,
+                  course_id: 0
+                });
+              }
+            }
+          }
+        }
+      }
+    },
+    courseInfo: function courseInfo(user_id, course_id) {
+      if (this.haveNoCourse) {
+        var course = this.get.students[user_id].courses[course_id];
+
+        this.$vux.toast.text(course.name + '/' + course.location, 'top');
+      }
+    },
+    randomsort: function randomsort(a, b) {
+      return Math.random() > .5 ? -1 : 1; //通过随机产生0到1的数，然后判断是否大于0.5从而影响排序，产生随机性的效果。
+    },
+    selTd: function selTd(i, j) {
+
+      var weeks = ['周一', '周二', '周三', '周四', '周五', '周六', '周日'];
+
+      this.type2Data.title = weeks[i] + this.courses[i][j].id;
+      this.type2Data.x = i;
+      this.type2Data.y = j;
+      this.type2Data.showHideOnBlur = true;
+    }
+  },
+  mounted: function mounted() {
+
+    this.info();
+  }
+});
 
 /***/ }),
 /* 225 */
@@ -6233,7 +5644,7 @@ exports.push([module.i, "/**\n* actionsheet\n*/\n/**\n* datetime\n*/\n/**\n* tab
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__popup__ = __webpack_require__(230);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__libs_dom__ = __webpack_require__(220);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__libs_dom__ = __webpack_require__(181);
 //
 //
 //
@@ -6562,7 +5973,7 @@ if (false) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_object_assign__ = __webpack_require__(218);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_object_assign__ = __webpack_require__(179);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_object_assign___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_object_assign__);
 // Thanks to: https://github.com/calebroseland/vue-dom-portal
 
@@ -7250,7 +6661,7 @@ exports.push([module.i, "\n.xs-plugin-pullup-container {\n  text-align: center;\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_object_assign__ = __webpack_require__(218);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_object_assign__ = __webpack_require__(179);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_object_assign___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_object_assign__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vux_xscroll_build_cmd_xscroll_js__ = __webpack_require__(253);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vux_xscroll_build_cmd_xscroll_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vux_xscroll_build_cmd_xscroll_js__);
@@ -7607,11 +7018,11 @@ function pure(obj) {
 
 var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_RESULT__ = function(require, exports, module) {
 "use strict";
-var Util = __webpack_require__(215),
-	Base = __webpack_require__(216),
-	Timer = __webpack_require__(221),
-	Animate = __webpack_require__(217),
-	Hammer = __webpack_require__(219),
+var Util = __webpack_require__(176),
+	Base = __webpack_require__(177),
+	Timer = __webpack_require__(182),
+	Animate = __webpack_require__(178),
+	Hammer = __webpack_require__(180),
 	SimuScroll = __webpack_require__(255),
 	OriginScroll = __webpack_require__(261);
 var XScroll = function(cfg) {
@@ -7671,7 +7082,7 @@ else {
 
 var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_RESULT__ = function(require, exports, module) {
 "use strict";
-var Util = __webpack_require__(215);
+var Util = __webpack_require__(176);
 // Returns a function that will be executed at most one time, no matter how
 // often you call it. Useful for lazy initialization.
 var _once = function(func) {
@@ -7905,11 +7316,11 @@ else {
 
 var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_RESULT__ = function(require, exports, module) {
 "use strict";
-var Util = __webpack_require__(215),
-  Base = __webpack_require__(216),
-  Core = __webpack_require__(223),
-  Animate = __webpack_require__(217),
-  Hammer = __webpack_require__(219),
+var Util = __webpack_require__(176),
+  Base = __webpack_require__(177),
+  Core = __webpack_require__(184),
+  Animate = __webpack_require__(178),
+  Hammer = __webpack_require__(180),
   ScrollBar = __webpack_require__(259),
   Controller = __webpack_require__(260);
 //reduced boundry pan distance
@@ -8612,7 +8023,7 @@ else {
 
 var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_RESULT__ = function(require, exports, module) {
 "use strict";
- var Util = __webpack_require__(215);
+ var Util = __webpack_require__(176);
 
  function Boundry(cfg) {
      this.cfg = Util.mix({
@@ -8709,8 +8120,8 @@ var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_RESULT__ = function(req
 
 var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_RESULT__ = function(require, exports, module) {
 "use strict";
-var Util = __webpack_require__(215);
-var Base = __webpack_require__(216);
+var Util = __webpack_require__(176);
+var Base = __webpack_require__(177);
 //transform
 var transform = Util.prefixStyle("transform");
 // default render function for position:sticky elements
@@ -8945,8 +8356,8 @@ else {
 
 var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_RESULT__ = function(require, exports, module) {
 "use strict";
-var Util = __webpack_require__(215);
-var Base = __webpack_require__(216);
+var Util = __webpack_require__(176);
+var Base = __webpack_require__(177);
 var transform = Util.prefixStyle("transform");
 
 var Fixed = function(cfg) {
@@ -9086,8 +8497,8 @@ else {
 
 var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_RESULT__ = function(require, exports, module) {
 "use strict";
-var Util = __webpack_require__(215);
-var Animate = __webpack_require__(217);
+var Util = __webpack_require__(176);
+var Animate = __webpack_require__(178);
 var MAX_BOUNCE_DISTANCE = 40;
 var MIN_BAR_SCROLLED_SIZE = 10;
 var MIN_BAR_SIZE = 50;
@@ -9290,8 +8701,8 @@ var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_RESULT__ = function(req
 	wrapped scroll controller
 */
 "use strict";
-var Util = __webpack_require__(215),
-	Base = __webpack_require__(216);
+var Util = __webpack_require__(176),
+	Base = __webpack_require__(177);
 
 var Controller = function(cfg) {
 	Controller.superclass.constructor.call(this, cfg);
@@ -9432,10 +8843,10 @@ else {
 
 var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_RESULT__ = function(require, exports, module) {
 "use strict";
-var Util = __webpack_require__(215),
-    Base = __webpack_require__(216),
-    Core = __webpack_require__(223),
-    Animate = __webpack_require__(217);
+var Util = __webpack_require__(176),
+    Base = __webpack_require__(177),
+    Core = __webpack_require__(184),
+    Animate = __webpack_require__(178);
 
 var transformOrigin = Util.prefixStyle("transformOrigin");
 /** 
@@ -9575,8 +8986,8 @@ else {
 
 var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_RESULT__ = function(require, exports, module) {
 "use strict";
-var Util = __webpack_require__(215);
-var Base = __webpack_require__(216);
+var Util = __webpack_require__(176);
+var Base = __webpack_require__(177);
 var clsPrefix;
 var containerCls;
 var content = "Pull Down To Refresh";
@@ -9766,8 +9177,8 @@ else if (window.XScroll && window.XScroll.Plugins) {
 
 var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_RESULT__ = function(require, exports, module) {
 "use strict";
-var Util = __webpack_require__(215);
-var Base = __webpack_require__(216);
+var Util = __webpack_require__(176);
+var Base = __webpack_require__(177);
 var clsPrefix;
 var containerCls;
 var loadingContent = "Loading...";
@@ -10009,7 +9420,7 @@ if (false) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_toast__ = __webpack_require__(266);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_toast___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_toast__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__libs_plugin_helper__ = __webpack_require__(224);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__libs_plugin_helper__ = __webpack_require__(185);
 
 
 
@@ -10370,7 +9781,7 @@ if (false) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_loading__ = __webpack_require__(273);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_loading___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_loading__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__libs_plugin_helper__ = __webpack_require__(224);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__libs_plugin_helper__ = __webpack_require__(185);
 
 
 
@@ -10914,7 +10325,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__libs_dom__ = __webpack_require__(220);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__libs_dom__ = __webpack_require__(181);
 
 __webpack_require__(288);
 
@@ -10967,7 +10378,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(79)(content, options);
+var update = __webpack_require__(33)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -11044,54 +10455,632 @@ if (false) {
 }
 
 /***/ }),
-/* 291 */,
-/* 292 */,
-/* 293 */,
-/* 294 */,
-/* 295 */,
-/* 296 */,
-/* 297 */,
-/* 298 */,
-/* 299 */,
-/* 300 */,
-/* 301 */
+/* 291 */
 /***/ (function(module, exports, __webpack_require__) {
 
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(302);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(17)("4f58178b", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-43186183\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vux-loader/src/style-loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=4!./Count.vue", function() {
-     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-43186183\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vux-loader/src/style-loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=4!./Count.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "main"
+  }, [_c('div', {
+    staticClass: "title"
+  }, [_c('div', [_c('div', {
+    staticClass: "see-type"
+  }, [(!_vm.type) ? _c('label', {
+    on: {
+      "click": function($event) {
+        _vm.type = true
+      }
+    }
+  }, [_vm._v("格式一")]) : _vm._e(), _vm._v(" "), (_vm.type) ? _c('label', {
+    on: {
+      "click": function($event) {
+        _vm.type = false
+      }
+    }
+  }, [_vm._v("格式二")]) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "now-week-but",
+    on: {
+      "click": function($event) {
+        _vm.setNowWeek()
+      }
+    }
+  }, [_vm._v("\n                    本周\n                ")]), _vm._v(" "), _c('div', {
+    staticClass: "weeks"
+  }, [_c('scroller', {
+    attrs: {
+      "lock-y": "",
+      "scrollbar-x": false
+    }
+  }, [_c('div', {
+    staticClass: "box1",
+    attrs: {
+      "id": "weeks"
+    }
+  }, _vm._l((_vm.set.weeks), function(i) {
+    return _c('div', {
+      class: {
+        'box1-item': true, 'test': _vm.test, 'now-week': _vm.get.nowWeek == i.id, 'sel-week': i.sel
+      },
+      on: {
+        "click": function($event) {
+          _vm.addSelWeek(i.id)
+        }
+      }
+    }, [_c('span', [_vm._v(_vm._s(' ' + i.id + ' '))])])
+  }))])], 1), _vm._v(" "), _c('div', {
+    staticClass: "count",
+    on: {
+      "click": function($event) {
+        _vm.count = true
+      }
+    }
+  }, [_vm._v("\n                    统计\n                ")])])]), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "transfer-dom",
+      rawName: "v-transfer-dom"
+    }]
+  }, [_c('popup', {
+    attrs: {
+      "position": "right"
+    },
+    model: {
+      value: (_vm.count),
+      callback: function($$v) {
+        _vm.count = $$v
+      },
+      expression: "count"
+    }
+  }, [_c('div', {
+    staticStyle: {
+      "width": "300px"
+    }
+  }, [_c('divider', [_vm._v("组别")]), _vm._v(" "), _c('checker', {
+    attrs: {
+      "type": "checkbox",
+      "default-item-class": "group-item",
+      "selected-item-class": "group-item-selected"
+    },
+    on: {
+      "on-change": _vm.getSelStudents
+    },
+    model: {
+      value: (_vm.set.selGroups),
+      callback: function($$v) {
+        _vm.set.selGroups = $$v
+      },
+      expression: "set.selGroups"
+    }
+  }, _vm._l((_vm.get.groups), function(i) {
+    return _c('checker-item', {
+      key: i.id,
+      staticClass: "group-item",
+      attrs: {
+        "value": i.id
+      }
+    }, [_vm._v(_vm._s(i.name))])
+  })), _vm._v(" "), _c('divider', [_vm._v("职务")]), _vm._v(" "), _c('checker', {
+    attrs: {
+      "type": "checkbox",
+      "default-item-class": "group-item",
+      "selected-item-class": "group-item-selected"
+    },
+    on: {
+      "on-change": _vm.getSelStudents
+    },
+    model: {
+      value: (_vm.set.selPositions),
+      callback: function($$v) {
+        _vm.set.selPositions = $$v
+      },
+      expression: "set.selPositions"
+    }
+  }, _vm._l((_vm.get.positions), function(i) {
+    return _c('checker-item', {
+      key: i.id,
+      staticClass: "group-item",
+      attrs: {
+        "value": i.id
+      }
+    }, [_vm._v(_vm._s(i.name))])
+  })), _vm._v(" "), _c('divider', [_vm._v("性别")]), _vm._v(" "), _c('checker', {
+    attrs: {
+      "type": "checkbox",
+      "default-item-class": "group-item",
+      "selected-item-class": "group-item-selected"
+    },
+    on: {
+      "on-change": _vm.getSelStudents
+    },
+    model: {
+      value: (_vm.set.selSexs),
+      callback: function($$v) {
+        _vm.set.selSexs = $$v
+      },
+      expression: "set.selSexs"
+    }
+  }, [_c('checker-item', {
+    key: 0,
+    staticClass: "group-item",
+    attrs: {
+      "value": 0
+    }
+  }, [_vm._v("男")]), _vm._v(" "), _c('checker-item', {
+    key: 1,
+    staticClass: "group-item",
+    attrs: {
+      "value": 1
+    }
+  }, [_vm._v("女")])], 1), _vm._v(" "), _c('divider', [_vm._v("年级")]), _vm._v(" "), _c('checker', {
+    attrs: {
+      "type": "checkbox",
+      "default-item-class": "group-item",
+      "selected-item-class": "group-item-selected"
+    },
+    on: {
+      "on-change": _vm.getSelStudents
+    },
+    model: {
+      value: (_vm.set.selGrades),
+      callback: function($$v) {
+        _vm.set.selGrades = $$v
+      },
+      expression: "set.selGrades"
+    }
+  }, _vm._l((_vm.get.grades), function(i) {
+    return _c('checker-item', {
+      key: i,
+      staticClass: "group-item",
+      attrs: {
+        "value": i
+      }
+    }, [_vm._v(_vm._s(i) + "级")])
+  }))], 1)])], 1), _vm._v(" "), _c('carousel-3d', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.type),
+      expression: "type"
+    }],
+    attrs: {
+      "display": 5,
+      "perspective": 0,
+      "space": "50",
+      "width": "250",
+      "height": "500",
+      "inverseScaling": 50,
+      "loop": false,
+      "controlsVisible": true,
+      "minSwipeDistance": 50
+    }
+  }, [_c('slide', {
+    staticClass: "week-day",
+    style: ({
+      backgroundColor: _vm.colors[_vm.colorIndex[0]].content
+    }),
+    attrs: {
+      "index": 0
+    }
+  }, [_c('div', {
+    staticClass: "week-title",
+    style: ({
+      backgroundColor: _vm.colors[_vm.colorIndex[0]].title
+    })
+  }, [_vm._v("\n                星期一（\n                "), (_vm.haveNoCourse) ? _c('span', {
+    on: {
+      "click": function($event) {
+        _vm.setHasNoCourse(false)
+      }
+    }
+  }, [_vm._v("有课")]) : _vm._e(), _vm._v(" "), (!_vm.haveNoCourse) ? _c('span', {
+    on: {
+      "click": function($event) {
+        _vm.setHasNoCourse(true)
+      }
+    }
+  }, [_vm._v("无课")]) : _vm._e(), _vm._v("\n                ）\n            ")]), _vm._v(" "), _c('div', {
+    staticClass: "courseContent"
+  }, _vm._l((_vm.courses[0]), function(section) {
+    return _c('div', {
+      staticClass: "section",
+      staticStyle: {
+        "width": "100%"
+      }
+    }, [_c('div', [_c('label', {
+      style: ({
+        backgroundColor: _vm.colors[_vm.colorIndex[0]].title
+      })
+    }, [_vm._v(_vm._s(section.id))])]), _vm._v(" "), _c('div', _vm._l((section.stus), function(stu, index) {
+      return _c('label', {
+        on: {
+          "click": function($event) {
+            _vm.courseInfo(stu.id, stu.course_id)
+          }
+        }
+      }, [_vm._v(_vm._s(stu.name) + ",")])
+    }))])
+  }))]), _vm._v(" "), _c('slide', {
+    staticClass: "week-day",
+    style: ({
+      backgroundColor: _vm.colors[_vm.colorIndex[1]].content
+    }),
+    attrs: {
+      "index": 1
+    }
+  }, [_c('div', {
+    staticClass: "week-title",
+    style: ({
+      backgroundColor: _vm.colors[_vm.colorIndex[1]].title
+    })
+  }, [_vm._v("\n                星期二（\n                "), (_vm.haveNoCourse) ? _c('span', {
+    on: {
+      "click": function($event) {
+        _vm.setHasNoCourse(false)
+      }
+    }
+  }, [_vm._v("有课")]) : _vm._e(), _vm._v(" "), (!_vm.haveNoCourse) ? _c('span', {
+    on: {
+      "click": function($event) {
+        _vm.setHasNoCourse(true)
+      }
+    }
+  }, [_vm._v("无课")]) : _vm._e(), _vm._v("\n                ）\n            ")]), _vm._v(" "), _c('div', {
+    staticClass: "courseContent"
+  }, _vm._l((_vm.courses[1]), function(section) {
+    return _c('div', {
+      staticClass: "section",
+      staticStyle: {
+        "width": "100%"
+      }
+    }, [_c('div', [_c('label', {
+      style: ({
+        backgroundColor: _vm.colors[_vm.colorIndex[1]].title
+      })
+    }, [_vm._v(_vm._s(section.id))])]), _vm._v(" "), _c('div', _vm._l((section.stus), function(stu, index) {
+      return _c('label', {
+        on: {
+          "click": function($event) {
+            _vm.courseInfo(stu.id, stu.course_id)
+          }
+        }
+      }, [_vm._v(_vm._s(stu.name) + ",")])
+    }))])
+  }))]), _vm._v(" "), _c('slide', {
+    staticClass: "week-day",
+    style: ({
+      backgroundColor: _vm.colors[_vm.colorIndex[2]].content
+    }),
+    attrs: {
+      "index": 2
+    }
+  }, [_c('div', {
+    staticClass: "week-title",
+    style: ({
+      backgroundColor: _vm.colors[_vm.colorIndex[2]].title
+    })
+  }, [_vm._v("\n                星期三（\n                "), (_vm.haveNoCourse) ? _c('span', {
+    on: {
+      "click": function($event) {
+        _vm.setHasNoCourse(false)
+      }
+    }
+  }, [_vm._v("有课")]) : _vm._e(), _vm._v(" "), (!_vm.haveNoCourse) ? _c('span', {
+    on: {
+      "click": function($event) {
+        _vm.setHasNoCourse(true)
+      }
+    }
+  }, [_vm._v("无课")]) : _vm._e(), _vm._v("\n                ）\n            ")]), _vm._v(" "), _c('div', {
+    staticClass: "courseContent"
+  }, _vm._l((_vm.courses[2]), function(section) {
+    return _c('div', {
+      staticClass: "section",
+      staticStyle: {
+        "width": "100%"
+      }
+    }, [_c('div', [_c('label', {
+      style: ({
+        backgroundColor: _vm.colors[_vm.colorIndex[2]].title
+      })
+    }, [_vm._v(_vm._s(section.id))])]), _vm._v(" "), _c('div', _vm._l((section.stus), function(stu, index) {
+      return _c('label', {
+        on: {
+          "click": function($event) {
+            _vm.courseInfo(stu.id, stu.course_id)
+          }
+        }
+      }, [_vm._v(_vm._s(stu.name) + ",")])
+    }))])
+  }))]), _vm._v(" "), _c('slide', {
+    staticClass: "week-day",
+    style: ({
+      backgroundColor: _vm.colors[_vm.colorIndex[3]].content
+    }),
+    attrs: {
+      "index": 3
+    }
+  }, [_c('div', {
+    staticClass: "week-title",
+    style: ({
+      backgroundColor: _vm.colors[_vm.colorIndex[3]].title
+    })
+  }, [_vm._v("\n                星期四（\n                "), (_vm.haveNoCourse) ? _c('span', {
+    on: {
+      "click": function($event) {
+        _vm.setHasNoCourse(false)
+      }
+    }
+  }, [_vm._v("有课")]) : _vm._e(), _vm._v(" "), (!_vm.haveNoCourse) ? _c('span', {
+    on: {
+      "click": function($event) {
+        _vm.setHasNoCourse(true)
+      }
+    }
+  }, [_vm._v("无课")]) : _vm._e(), _vm._v("\n                ）\n            ")]), _vm._v(" "), _c('div', {
+    staticClass: "courseContent"
+  }, _vm._l((_vm.courses[3]), function(section) {
+    return _c('div', {
+      staticClass: "section",
+      staticStyle: {
+        "width": "100%"
+      }
+    }, [_c('div', [_c('label', {
+      style: ({
+        backgroundColor: _vm.colors[_vm.colorIndex[3]].title
+      })
+    }, [_vm._v(_vm._s(section.id))])]), _vm._v(" "), _c('div', _vm._l((section.stus), function(stu, index) {
+      return _c('label', {
+        on: {
+          "click": function($event) {
+            _vm.courseInfo(stu.id, stu.course_id)
+          }
+        }
+      }, [_vm._v(_vm._s(stu.name) + ",")])
+    }))])
+  }))]), _vm._v(" "), _c('slide', {
+    staticClass: "week-day",
+    style: ({
+      backgroundColor: _vm.colors[_vm.colorIndex[4]].content
+    }),
+    attrs: {
+      "index": 4
+    }
+  }, [_c('div', {
+    staticClass: "week-title",
+    style: ({
+      backgroundColor: _vm.colors[_vm.colorIndex[4]].title
+    })
+  }, [_vm._v("\n                星期五（\n                "), (_vm.haveNoCourse) ? _c('span', {
+    on: {
+      "click": function($event) {
+        _vm.setHasNoCourse(false)
+      }
+    }
+  }, [_vm._v("有课")]) : _vm._e(), _vm._v(" "), (!_vm.haveNoCourse) ? _c('span', {
+    on: {
+      "click": function($event) {
+        _vm.setHasNoCourse(true)
+      }
+    }
+  }, [_vm._v("无课")]) : _vm._e(), _vm._v("\n                ）\n            ")]), _vm._v(" "), _c('div', {
+    staticClass: "courseContent"
+  }, _vm._l((_vm.courses[4]), function(section) {
+    return _c('div', {
+      staticClass: "section",
+      staticStyle: {
+        "width": "100%"
+      }
+    }, [_c('div', [_c('label', {
+      style: ({
+        backgroundColor: _vm.colors[_vm.colorIndex[4]].title
+      })
+    }, [_vm._v(_vm._s(section.id))])]), _vm._v(" "), _c('div', _vm._l((section.stus), function(stu, index) {
+      return _c('label', {
+        on: {
+          "click": function($event) {
+            _vm.courseInfo(stu.id, stu.course_id)
+          }
+        }
+      }, [_vm._v(_vm._s(stu.name) + ",")])
+    }))])
+  }))]), _vm._v(" "), _c('slide', {
+    staticClass: "week-day",
+    style: ({
+      backgroundColor: _vm.colors[_vm.colorIndex[5]].content
+    }),
+    attrs: {
+      "index": 5
+    }
+  }, [_c('div', {
+    staticClass: "week-title",
+    style: ({
+      backgroundColor: _vm.colors[_vm.colorIndex[5]].title
+    })
+  }, [_vm._v("\n                星期六（\n                "), (_vm.haveNoCourse) ? _c('span', {
+    on: {
+      "click": function($event) {
+        _vm.setHasNoCourse(false)
+      }
+    }
+  }, [_vm._v("有课")]) : _vm._e(), _vm._v(" "), (!_vm.haveNoCourse) ? _c('span', {
+    on: {
+      "click": function($event) {
+        _vm.setHasNoCourse(true)
+      }
+    }
+  }, [_vm._v("无课")]) : _vm._e(), _vm._v("\n                ）\n            ")]), _vm._v(" "), _c('div', {
+    staticClass: "courseContent"
+  }, _vm._l((_vm.courses[5]), function(section) {
+    return _c('div', {
+      staticClass: "section",
+      staticStyle: {
+        "width": "100%"
+      }
+    }, [_c('div', [_c('label', {
+      style: ({
+        backgroundColor: _vm.colors[_vm.colorIndex[5]].title
+      })
+    }, [_vm._v(_vm._s(section.id))])]), _vm._v(" "), _c('div', _vm._l((section.stus), function(stu, index) {
+      return _c('label', {
+        on: {
+          "click": function($event) {
+            _vm.courseInfo(stu.id, stu.course_id)
+          }
+        }
+      }, [_vm._v(_vm._s(stu.name) + ",")])
+    }))])
+  }))]), _vm._v(" "), _c('slide', {
+    staticClass: "week-day",
+    style: ({
+      backgroundColor: _vm.colors[_vm.colorIndex[6]].content
+    }),
+    attrs: {
+      "index": 6
+    }
+  }, [_c('div', {
+    staticClass: "week-title",
+    style: ({
+      backgroundColor: _vm.colors[_vm.colorIndex[6]].title
+    })
+  }, [_vm._v("\n                星期日（\n                "), (_vm.haveNoCourse) ? _c('span', {
+    on: {
+      "click": function($event) {
+        _vm.setHasNoCourse(false)
+      }
+    }
+  }, [_vm._v("有课")]) : _vm._e(), _vm._v(" "), (!_vm.haveNoCourse) ? _c('span', {
+    on: {
+      "click": function($event) {
+        _vm.setHasNoCourse(true)
+      }
+    }
+  }, [_vm._v("无课")]) : _vm._e(), _vm._v("\n                ）\n            ")]), _vm._v(" "), _c('div', {
+    staticClass: "courseContent"
+  }, _vm._l((_vm.courses[6]), function(section) {
+    return _c('div', {
+      staticClass: "section",
+      staticStyle: {
+        "width": "100%"
+      }
+    }, [_c('div', [_c('label', {
+      style: ({
+        backgroundColor: _vm.colors[_vm.colorIndex[6]].title
+      })
+    }, [_vm._v(_vm._s(section.id))])]), _vm._v(" "), _c('div', _vm._l((section.stus), function(stu, index) {
+      return _c('label', {
+        on: {
+          "click": function($event) {
+            _vm.courseInfo(stu.id, stu.course_id)
+          }
+        }
+      }, [_vm._v(_vm._s(stu.name) + ",")])
+    }))])
+  }))])], 1), _vm._v(" "), (!_vm.type) ? _c('div', {
+    staticStyle: {
+      "padding": "15px"
+    }
+  }, [_c('x-table', {
+    staticStyle: {
+      "background-color": "#fff"
+    },
+    attrs: {
+      "full-bordered": ""
+    }
+  }, [_c('thead', [_c('tr', [_c('th', [(_vm.haveNoCourse) ? _c('span', {
+    on: {
+      "click": function($event) {
+        _vm.setHasNoCourse(false)
+      }
+    }
+  }, [_vm._v("有课")]) : _vm._e(), _vm._v(" "), (!_vm.haveNoCourse) ? _c('span', {
+    on: {
+      "click": function($event) {
+        _vm.setHasNoCourse(true)
+      }
+    }
+  }, [_vm._v("无课")]) : _vm._e()]), _vm._v(" "), _c('th', [_vm._v("周一")]), _vm._v(" "), _c('th', [_vm._v("周二")]), _vm._v(" "), _c('th', [_vm._v("周三")]), _vm._v(" "), _c('th', [_vm._v("周四")]), _vm._v(" "), _c('th', [_vm._v("周五")]), _vm._v(" "), _c('th', [_vm._v("周六")]), _vm._v(" "), _c('th', [_vm._v("周日")])])]), _vm._v(" "), _c('tbody', _vm._l((7), function(i) {
+    return _c('tr', [_c('td', [_vm._v(_vm._s(_vm.courses[i - 1].length > 0 ? _vm.courses[0][i - 1].id : 0) + "节")]), _vm._v(" "), _vm._l((7), function(j) {
+      return _c('td', {
+        on: {
+          "click": function($event) {
+            _vm.selTd(j - 1, i - 1)
+          }
+        }
+      }, [_vm._v("\n                        " + _vm._s(_vm.courses[j - 1].length > 0 ? _vm.courses[j - 1][i - 1].stus.length : 0) + "\n                    ")])
+    })], 2)
+  }))]), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "transfer-dom",
+      rawName: "v-transfer-dom"
+    }]
+  }, [_c('x-dialog', {
+    staticClass: "dialog-demo",
+    attrs: {
+      "hide-on-blur": ""
+    },
+    model: {
+      value: (_vm.type2Data.showHideOnBlur),
+      callback: function($$v) {
+        _vm.type2Data.showHideOnBlur = $$v
+      },
+      expression: "type2Data.showHideOnBlur"
+    }
+  }, [_c('div', {
+    staticClass: "img-box"
+  }, [_c('div', {
+    staticStyle: {
+      "margin": "10px auto",
+      "height": "330px",
+      "text-align": "center",
+      "overflow": "scroll",
+      "position": "relative"
+    }
+  }, [_c('div', {
+    staticStyle: {
+      "width": "100%",
+      "height": "40px",
+      "line-height": "40px",
+      "position": "absolute",
+      "top": "0"
+    }
+  }, [_c('p', [_vm._v("\n                            " + _vm._s(_vm.type2Data.title) + "节\n                                (\n                                "), (_vm.haveNoCourse) ? _c('span', {
+    on: {
+      "click": function($event) {
+        _vm.setHasNoCourse(false)
+      }
+    }
+  }, [_vm._v("有课")]) : _vm._e(), _vm._v(" "), (!_vm.haveNoCourse) ? _c('span', {
+    on: {
+      "click": function($event) {
+        _vm.setHasNoCourse(true)
+      }
+    }
+  }, [_vm._v("无课")]) : _vm._e(), _vm._v("\n                                )\n                            ")])]), _vm._v(" "), _c('div', {
+    staticClass: "label-stu"
+  }, _vm._l((_vm.courses[_vm.type2Data.x].length > 0 ? _vm.courses[_vm.type2Data.x][_vm.type2Data.y].stus : []), function(stu, index) {
+    return _c('label', {
+      on: {
+        "click": function($event) {
+          _vm.courseInfo(stu.id, stu.course_id)
+        }
+      }
+    }, [_vm._v(_vm._s(stu.name) + ",")])
+  }))])]), _vm._v(" "), _c('div', {
+    on: {
+      "click": function($event) {
+        _vm.type2Data.showHideOnBlur = false
+      }
+    }
+  }, [_c('span', {
+    staticClass: "vux-close"
+  })])])], 1)], 1) : _vm._e()], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-43186183", module.exports)
+  }
 }
-
-/***/ }),
-/* 302 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(8)();
-// imports
-
-
-// module
-exports.push([module.i, "\n.label-stu[data-v-43186183]{\n    width: 100%;\n    margin-top: 40px;\n}\n.label-stu[data-v-43186183]:after{\n    display: block;\n    content: '';\n    clear: both;\n}\n.label-stu>label[data-v-43186183]{\n    float: left;\n    display: block;\n    width: 25%;\n    overflow: hidden;\n    height: 30px;\n    line-height: 30px;\n}\n", ""]);
-
-// exports
-
 
 /***/ })
 ]);

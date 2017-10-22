@@ -28,20 +28,20 @@ Route::group(['middleware' => 'checklogin', 'prefix' => 'admin'], function () {
     //获取用户信息
     Route::get('/user/list', 'UserController@users');
     //获取添加页中的组别职务信息
-//    Route::get('/user/add/info', 'UserController@getAddData');
-//    //添加用户
-//    Route::post('/user/add', 'UserController@addUser');
-//    //导入用户
-//    Route::post('/user/input', 'UserController@inputExcel');
-//
-//    //编辑用户页获取数据
-//    Route::get('/user/edit/info', 'UserController@getEditUserInfo');
-//
-//    //更新用户信息
-//    Route::post('/user/edit', 'UserController@editUser');
+    Route::get('/user/add/info', 'UserController@getAddData');
+    //添加用户
+    Route::post('/user/add', 'UserController@addUser');
+    //导入用户
+    Route::post('/user/input', 'UserController@inputExcel');
+
+    //编辑用户页获取数据
+    Route::get('/user/edit/info', 'UserController@getEditUserInfo');
+
+    //更新用户信息
+    Route::post('/user/edit', 'UserController@editUser');
 
     //删除用户信息
-//    Route::post('/user/delete', 'UserController@userDelete');
+    Route::post('/user/delete', 'UserController@userDelete');
 
 
     //获取用户的课表信息

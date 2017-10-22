@@ -7,6 +7,7 @@ use App\Punish;
 use App\User;
 use App\UserIllegal;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class IllegalController extends Controller
@@ -28,6 +29,11 @@ class IllegalController extends Controller
 
     //添加用户违规
     public function setIllegal(){
+        $nowUser = Auth::user();
+        if (!$nowUser->can('addUserIllegal', User::class)) {
+            return ['code' => 0, 'msg' => '无权操作'];
+        }
+
         $this->validate(\request(),[
             'ids' => 'required|array',
             'ids.*' => 'exists:users,id',
@@ -63,6 +69,11 @@ class IllegalController extends Controller
 
     //用户违规惩罚
     public function setPunish(){
+        $nowUser = Auth::user();
+        if (!$nowUser->can('addUserPunish', User::class)) {
+            return ['code' => 0, 'msg' => '无权操作'];
+        }
+
         $this->validate(\request(),[
             'user_id' => 'required|exists:users,id',
             'illegal_id'  =>'required|exists:illegals,id',
@@ -71,10 +82,15 @@ class IllegalController extends Controller
             'time' => 'required|before:now'
         ]);
 
+        //php获取本月起始时间戳和结束时间戳
+        $beginThisMonth=mktime(0,0,0,date('m'),1,date('Y'));
+        $endThisMonth=mktime(23,59,59,date('m'),date('t'),date('Y'));
+
         //获取要消除的违规
         $illegals = UserIllegal::where('user_id','=', \request('user_id'))
             ->where('punish_id', '=', 0)
             ->where('illegal_id', '=',\request('illegal_id'))
+            ->whereBetween('time', [$beginThisMonth, $endThisMonth])
             ->orderBy('time')
             ->take(\request('count'))
             ->get();
@@ -106,6 +122,12 @@ class IllegalController extends Controller
 
     //删除用户违规
     public function delIllegal(){
+
+        $user = Auth::user();
+        if (!$user->can('deleteUserIllegal', User::class)) {
+            return ['code' => 0, 'msg' => '无权操作'];
+        }
+
         $this->validate(\request(),[
            'id' => 'required|exists:user_illegals,id',
         ]);

@@ -6,9 +6,9 @@ use App\Grouping;
 use App\Position;
 use App\User;
 use App\Vender\UserInput;
-use Doctrine\Common\Cache\Cache;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
@@ -50,6 +50,11 @@ class UserController extends Controller
 
     //添加用户
     public function addUser(){
+        $nowUser = Auth::user();
+        if (!$nowUser->can('addUser', User::class)) {
+            return ['code' => 0, 'msg' => '无权操作'];
+        }
+
         $this->validate(\request(),[
             'id' => 'required|numeric',
             'name' => 'required|min:2|max:5',
@@ -98,6 +103,11 @@ class UserController extends Controller
 
     //Excel 导入用户
     public function inputExcel(Request $request) {
+
+        $nowUser = Auth::user();
+        if (!$nowUser->can('addUser', User::class)) {
+            return ['code' => 0, 'msg' => '无权操作'];
+        }
 
         $file = $request->file('users');
         $fileType =  $file->getClientOriginalExtension();
@@ -193,7 +203,6 @@ class UserController extends Controller
 
     //编辑用户
     public function editUser(){
-
         //用户信息格式验证
         $this->validate(\request(), [
             'id' => 'required|numeric',
@@ -211,6 +220,8 @@ class UserController extends Controller
             'position.*' => 'exists:positions,id',
         ]);
 
+
+
         //判断用户信息是否存在
         $userInfo = \request();
         $user = User::find($userInfo['id']);
@@ -218,6 +229,11 @@ class UserController extends Controller
             return ['code' => 0, 'msg' => '用户不存在'];
         }
 
+        //判断编辑权限
+        $nowUser = Auth::user();
+        if (!$nowUser->can('editUser', $user)) {
+            return ['code' => 0, 'msg' => '无权操作'];
+        }
 
         //判断邮箱是否唯一
         $usersInfo = collect(User::where('id','<>', $userInfo['id'])->get(['email'])->toArray());
@@ -245,10 +261,17 @@ class UserController extends Controller
     }
 
     public function userDelete(){
+
         $user = User::find(\request('id'));
 
         if($user){
-            Cache::forget($user->openid);
+
+            $nowUser = Auth::user();
+            if (!$nowUser->can('deleteUser', $user)) {
+                return ['code' => 0, 'msg' => '无权操作'];
+            }
+
+            if(Cache::has($user->openid)) Cache::forget($user->openid);
             $user->delete();
             return ['code' => 1, 'msg' => '删除成功'];
         }else{

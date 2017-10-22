@@ -65,11 +65,31 @@ class User extends Authenticatable
         return $this->belongsToMany('\App\Position','position_users','user_id','position_id');
     }
 
+
+    //关联违规表
     public function illegals(){
         return $this->hasMany('\App\UserIllegal', 'user_id', 'id');
     }
 
-        //返回用户当前签到的记录
+
+
+
+
+    //判断用户是否有某种权限
+    public function isPower($powerName){
+        foreach ($this->positions as $position){
+            foreach ($position->powers as $power){
+                if($power->name == $powerName){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+
+
+    //返回用户当前签到的记录
     public function getSign(){
         return $this->attendances()->where('type', '=', 0);
     }

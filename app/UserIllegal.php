@@ -26,17 +26,20 @@ class UserIllegal extends Model
 
     //获取用户违规信息
     public static function getIllegalUserInfo(){
+        //php获取本月起始时间戳和结束时间戳
+        $beginThisMonth=mktime(0,0,0,date('m'),1,date('Y'));
+        $endThisMonth=mktime(23,59,59,date('m'),date('t'),date('Y'));
+
+
         //获取有未结清违规记录的人员信息和违规记录
         $userIllegals = User::with([
             'grouping' ,
-            'illegals' => function($query) {
-                $query->with('illegal')->where('punish_id', '=', 0);
+            'illegals' => function($query) use($beginThisMonth, $endThisMonth) {
+                $query->with('illegal')->where('punish_id', '=', 0)->whereBetween('time', [$beginThisMonth, $endThisMonth]);
             }
-        ])->whereHas('illegals', function ($query) {
-            $query->where('punish_id', '=', 0);
+        ])->whereHas('illegals', function ($query) use($beginThisMonth, $endThisMonth) {
+            $query->where('punish_id', '=', 0)->whereBetween('time', [$beginThisMonth, $endThisMonth]);
         })->get(['id', 'name', 'grouping_id']);
-
-
 
         $data = collect([]);
 
