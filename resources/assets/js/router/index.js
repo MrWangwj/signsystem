@@ -58,24 +58,24 @@ export default new Router({
                 },
             ]
         },
-        {
-            path: '/',
-            component: Home,
-            name: '课表管理',
-            iconCls: 'el-icon-menu',
-            children: [
-                {
-                    path: '/course/my',
-                    component: resolve => void(require(['../components/nav2/MyCourses.vue'], resolve)),
-                    name: '我的课表'
-                },
-                {
-                    path: '/course/count',
-                    component: resolve => void(require(['../components/nav2/CourseCount.vue'], resolve)),
-                    name: '课表统计'
-                }
-            ]
-        },
+        // {
+        //     path: '/',
+        //     component: Home,
+        //     name: '课表管理',
+        //     iconCls: 'el-icon-menu',
+        //     children: [
+        //         {
+        //             path: '/course/my',
+        //             component: resolve => void(require(['../components/nav2/MyCourses.vue'], resolve)),
+        //             name: '我的课表'
+        //         },
+        //         {
+        //             path: '/course/count',
+        //             component: resolve => void(require(['../components/nav2/CourseCount.vue'], resolve)),
+        //             name: '课表统计'
+        //         }
+        //     ]
+        // },
         {
             path: '/',
             component: Home,
