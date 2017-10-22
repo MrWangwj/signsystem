@@ -23,13 +23,21 @@ class UserIllegal extends Model
         return $this->belongsTo('App\Illegal', 'illegal_id', 'id');
     }
 
+    /**
+     * @return array
+     *
+     *
+     * 各级权限说明：
+     * 事务负责人：用户的增、删、改；违规的添加、删除；课表的修改
+     * 组长： 修改本组人员的课表
+     * 成员：只能查看人员信息，课表信息，惩罚信息
+     */
 
     //获取用户违规信息
     public static function getIllegalUserInfo(){
         //php获取本月起始时间戳和结束时间戳
         $beginThisMonth=mktime(0,0,0,date('m'),1,date('Y'));
         $endThisMonth=mktime(23,59,59,date('m'),date('t'),date('Y'));
-
 
         //获取有未结清违规记录的人员信息和违规记录
         $userIllegals = User::with([

@@ -442,26 +442,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     components: {},
@@ -853,51 +833,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }, [_vm._v(_vm._s(grade) + "级")])
   }))], 1)], 1), _vm._v(" "), _c('el-row', [_c('el-col', {
-    attrs: {
-      "span": 2
-    }
-  }, [_vm._v("\n                人员选择：\n            ")]), _vm._v(" "), _c('el-col', {
-    attrs: {
-      "span": 22
-    }
-  }, [_c('el-button', {
-    attrs: {
-      "type": "primary"
-    },
-    on: {
-      "click": function($event) {
-        _vm.dialogVisible = true
-      }
-    }
-  }, [_vm._v("选择人员")])], 1)], 1), _vm._v(" "), _c('el-dialog', {
-    attrs: {
-      "title": "选择人员",
-      "visible": _vm.dialogVisible
-    },
-    on: {
-      "update:visible": function($event) {
-        _vm.dialogVisible = $event
-      }
-    }
-  }, [_c('div', {
-    staticClass: "dialog-footer",
-    slot: "footer"
-  }, [_c('el-button', {
-    on: {
-      "click": function($event) {
-        _vm.dialogVisible = false
-      }
-    }
-  }, [_vm._v("取 消")]), _vm._v(" "), _c('el-button', {
-    attrs: {
-      "type": "primary"
-    },
-    on: {
-      "click": function($event) {
-        _vm.dialogVisible = false
-      }
-    }
-  }, [_vm._v("选 择")])], 1)]), _vm._v(" "), _c('el-row', [_c('el-col', {
     attrs: {
       "span": 2
     }

@@ -63,26 +63,6 @@
 
             </el-row>
 
-
-            <el-row>
-                <el-col :span="2">
-                    人员选择：
-                </el-col>
-
-                <el-col :span="22">
-                    <el-button type="primary" @click="dialogVisible = true">选择人员</el-button>
-                </el-col>
-            </el-row>
-
-            <el-dialog title="选择人员" :visible.sync="dialogVisible">
-
-                <div slot="footer" class="dialog-footer">
-                    <el-button @click="dialogVisible = false">取 消</el-button>
-                    <el-button type="primary" @click="dialogVisible = false">选 择</el-button>
-                </div>
-            </el-dialog>
-
-
             <el-row>
                 <el-col :span="2">
                     已选人员：
