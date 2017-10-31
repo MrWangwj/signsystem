@@ -108,6 +108,7 @@
 <style>
   .inputBac input{
     background-color: #252323;
+    color: white;
   }
 </style>
 <style lang="scss" scoped>

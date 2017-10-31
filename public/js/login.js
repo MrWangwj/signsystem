@@ -70251,7 +70251,7 @@ exports = module.exports = __webpack_require__(8)();
 
 
 // module
-exports.push([module.i, "\n.inputBac input{\n  background-color: #252323;\n}\n", ""]);
+exports.push([module.i, "\n.inputBac input{\n  background-color: #252323;\n  color: white;\n}\n", ""]);
 
 // exports
 
