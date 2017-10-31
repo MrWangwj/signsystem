@@ -69698,50 +69698,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof="fun
 /* 90 */,
 /* 91 */,
 /* 92 */,
-/* 93 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(154)
-}
-var Component = __webpack_require__(6)(
-  /* script */
-  __webpack_require__(156),
-  /* template */
-  __webpack_require__(157),
-  /* styles */
-  injectStyle,
-  /* scopeId */
-  "data-v-ad3ac2c8",
-  /* moduleIdentifier (server only) */
-  null
-)
-Component.options.__file = "/Applications/MAMP/htdocs/signsystem2.1/resources/assets/js/components/nav1/AddUser.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] AddUser.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-ad3ac2c8", Component.options)
-  } else {
-    hotAPI.reload("data-v-ad3ac2c8", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
+/* 93 */,
 /* 94 */,
 /* 95 */,
 /* 96 */,
@@ -69846,16 +69803,6 @@ var app = new __WEBPACK_IMPORTED_MODULE_2_vue___default.a({
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_Main_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_Main_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_nav1_Table_vue__ = __webpack_require__(141);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_nav1_Table_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_nav1_Table_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_nav1_Form_vue__ = __webpack_require__(146);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_nav1_Form_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_nav1_Form_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_nav1_user_vue__ = __webpack_require__(149);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_nav1_user_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__components_nav1_user_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_nav1_AddUser_vue__ = __webpack_require__(93);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_nav1_AddUser_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__components_nav1_AddUser_vue__);
-
-
-
-
 
 
 
@@ -69895,7 +69842,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
             name: '添加用户',
             path: '/user/add',
             component: function component(resolve) {
-                return void new Promise(function(resolve) { resolve(); }).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(93)]; (resolve.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+                return void __webpack_require__.e/* require */(13).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(93)]; (resolve.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
             },
             hidden: true
         }, {
@@ -70806,6 +70753,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -70832,13 +70793,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 var usersInfo = res.data.users;
                 //                    console.log(usersInfo);
                 for (var key in usersInfo) {
+
+                    var positions = '';
+                    for (var i in usersInfo[key].positions) {
+                        positions += usersInfo[key].positions[i].name + ',';
+                    }
+
                     var tmpUser = {
                         id: usersInfo[key].id,
                         name: usersInfo[key].name,
+                        position: positions,
                         grouping: usersInfo[key].grouping.name,
                         tel: usersInfo[key].tel,
                         email: usersInfo[key].email
                     };
+
                     _this.users.push(tmpUser);
                 }
             });
@@ -70943,55 +70912,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "span": 20
     }
-  }, [_c('el-form', {
-    staticClass: "demo-form-inline",
-    attrs: {
-      "inline": true,
-      "model": _vm.formData
-    }
-  }, [_c('el-form-item', {
-    attrs: {
-      "label": "姓名"
-    }
-  }, [_c('el-input', {
-    attrs: {
-      "placeholder": "请输入搜索姓名",
-      "icon": "search",
-      "on-icon-click": _vm.searchUser
-    },
-    model: {
-      value: (_vm.formData.user),
-      callback: function($$v) {
-        _vm.formData.user = $$v
-      },
-      expression: "formData.user"
-    }
-  })], 1), _vm._v(" "), _c('el-form-item', {
-    attrs: {
-      "label": "分组"
-    }
-  }, [_c('el-select', {
-    attrs: {
-      "placeholder": "请选择分组"
-    },
-    model: {
-      value: (_vm.formData.grouping),
-      callback: function($$v) {
-        _vm.formData.grouping = $$v
-      },
-      expression: "formData.grouping"
-    }
-  }, [_c('el-option', {
-    attrs: {
-      "label": "区域一",
-      "value": "shanghai"
-    }
-  }), _vm._v(" "), _c('el-option', {
-    attrs: {
-      "label": "区域二",
-      "value": "beijing"
-    }
-  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('el-col', {
+  }), _vm._v(" "), _c('el-col', {
     attrs: {
       "span": 4
     }
@@ -71034,7 +70955,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }), _vm._v(" "), _c('el-table-column', {
     attrs: {
       "prop": "grouping",
-      "label": "组别"
+      "label": "组别",
+      "sortable": ""
+    }
+  }), _vm._v(" "), _c('el-table-column', {
+    attrs: {
+      "prop": "position",
+      "label": "职务",
+      "sortable": ""
     }
   }), _vm._v(" "), _c('el-table-column', {
     attrs: {
@@ -71075,12 +71003,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }, [_vm._v("删除")])]
       }
     }])
-  })], 1), _vm._v(" "), _c('el-pagination', {
-    attrs: {
-      "layout": "prev, pager, next",
-      "total": 1000
-    }
-  }), _vm._v(" "), _c('el-dialog', {
+  })], 1), _vm._v(" "), _c('el-dialog', {
     attrs: {
       "title": "导入用户",
       "visible": _vm.inputVisible
@@ -71153,802 +71076,18 @@ if (false) {
 }
 
 /***/ }),
-/* 146 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var Component = __webpack_require__(6)(
-  /* script */
-  __webpack_require__(147),
-  /* template */
-  __webpack_require__(148),
-  /* styles */
-  null,
-  /* scopeId */
-  null,
-  /* moduleIdentifier (server only) */
-  null
-)
-Component.options.__file = "/Applications/MAMP/htdocs/signsystem2.1/resources/assets/js/components/nav1/Form.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] Form.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-caaee338", Component.options)
-  } else {
-    hotAPI.reload("data-v-caaee338", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 147 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-	data: function data() {
-		return {
-			form: {
-				name: '',
-				region: '',
-				date1: '',
-				date2: '',
-				delivery: false,
-				type: [],
-				resource: '',
-				desc: ''
-			}
-		};
-	},
-
-	methods: {
-		onSubmit: function onSubmit() {
-			console.log('submit!');
-		}
-	}
-});
-
-/***/ }),
-/* 148 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('el-form', {
-    ref: "form",
-    staticStyle: {
-      "margin": "20px",
-      "width": "60%",
-      "min-width": "600px"
-    },
-    attrs: {
-      "model": _vm.form,
-      "label-width": "80px"
-    },
-    on: {
-      "submit": function($event) {
-        $event.preventDefault();
-        _vm.onSubmit($event)
-      }
-    }
-  }, [_c('el-form-item', {
-    attrs: {
-      "label": "活动名称"
-    }
-  }, [_c('el-input', {
-    model: {
-      value: (_vm.form.name),
-      callback: function($$v) {
-        _vm.form.name = $$v
-      },
-      expression: "form.name"
-    }
-  })], 1), _vm._v(" "), _c('el-form-item', {
-    attrs: {
-      "label": "活动区域"
-    }
-  }, [_c('el-select', {
-    attrs: {
-      "placeholder": "请选择活动区域"
-    },
-    model: {
-      value: (_vm.form.region),
-      callback: function($$v) {
-        _vm.form.region = $$v
-      },
-      expression: "form.region"
-    }
-  }, [_c('el-option', {
-    attrs: {
-      "label": "区域一",
-      "value": "shanghai"
-    }
-  }), _vm._v(" "), _c('el-option', {
-    attrs: {
-      "label": "区域二",
-      "value": "beijing"
-    }
-  })], 1)], 1), _vm._v(" "), _c('el-form-item', {
-    attrs: {
-      "label": "活动时间"
-    }
-  }, [_c('el-col', {
-    attrs: {
-      "span": 11
-    }
-  }, [_c('el-date-picker', {
-    staticStyle: {
-      "width": "100%"
-    },
-    attrs: {
-      "type": "date",
-      "placeholder": "选择日期"
-    },
-    model: {
-      value: (_vm.form.date1),
-      callback: function($$v) {
-        _vm.form.date1 = $$v
-      },
-      expression: "form.date1"
-    }
-  })], 1), _vm._v(" "), _c('el-col', {
-    staticClass: "line",
-    attrs: {
-      "span": 2
-    }
-  }, [_vm._v("-")]), _vm._v(" "), _c('el-col', {
-    attrs: {
-      "span": 11
-    }
-  }, [_c('el-time-picker', {
-    staticStyle: {
-      "width": "100%"
-    },
-    attrs: {
-      "type": "fixed-time",
-      "placeholder": "选择时间"
-    },
-    model: {
-      value: (_vm.form.date2),
-      callback: function($$v) {
-        _vm.form.date2 = $$v
-      },
-      expression: "form.date2"
-    }
-  })], 1)], 1), _vm._v(" "), _c('el-form-item', {
-    attrs: {
-      "label": "即时配送"
-    }
-  }, [_c('el-switch', {
-    attrs: {
-      "on-text": "",
-      "off-text": ""
-    },
-    model: {
-      value: (_vm.form.delivery),
-      callback: function($$v) {
-        _vm.form.delivery = $$v
-      },
-      expression: "form.delivery"
-    }
-  })], 1), _vm._v(" "), _c('el-form-item', {
-    attrs: {
-      "label": "活动性质"
-    }
-  }, [_c('el-checkbox-group', {
-    model: {
-      value: (_vm.form.type),
-      callback: function($$v) {
-        _vm.form.type = $$v
-      },
-      expression: "form.type"
-    }
-  }, [_c('el-checkbox', {
-    attrs: {
-      "label": "美食/餐厅线上活动",
-      "name": "type"
-    }
-  }), _vm._v(" "), _c('el-checkbox', {
-    attrs: {
-      "label": "地推活动",
-      "name": "type"
-    }
-  }), _vm._v(" "), _c('el-checkbox', {
-    attrs: {
-      "label": "线下主题活动",
-      "name": "type"
-    }
-  }), _vm._v(" "), _c('el-checkbox', {
-    attrs: {
-      "label": "单纯品牌曝光",
-      "name": "type"
-    }
-  })], 1)], 1), _vm._v(" "), _c('el-form-item', {
-    attrs: {
-      "label": "特殊资源"
-    }
-  }, [_c('el-radio-group', {
-    model: {
-      value: (_vm.form.resource),
-      callback: function($$v) {
-        _vm.form.resource = $$v
-      },
-      expression: "form.resource"
-    }
-  }, [_c('el-radio', {
-    attrs: {
-      "label": "线上品牌商赞助"
-    }
-  }), _vm._v(" "), _c('el-radio', {
-    attrs: {
-      "label": "线下场地免费"
-    }
-  })], 1)], 1), _vm._v(" "), _c('el-form-item', {
-    attrs: {
-      "label": "活动形式"
-    }
-  }, [_c('el-input', {
-    attrs: {
-      "type": "textarea"
-    },
-    model: {
-      value: (_vm.form.desc),
-      callback: function($$v) {
-        _vm.form.desc = $$v
-      },
-      expression: "form.desc"
-    }
-  })], 1), _vm._v(" "), _c('el-form-item', [_c('el-button', {
-    attrs: {
-      "type": "primary"
-    }
-  }, [_vm._v("立即创建")]), _vm._v(" "), _c('el-button', {
-    nativeOn: {
-      "click": function($event) {
-        $event.preventDefault();
-      }
-    }
-  }, [_vm._v("取消")])], 1)], 1)
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-caaee338", module.exports)
-  }
-}
-
-/***/ }),
-/* 149 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(150)
-}
-var Component = __webpack_require__(6)(
-  /* script */
-  __webpack_require__(152),
-  /* template */
-  __webpack_require__(153),
-  /* styles */
-  injectStyle,
-  /* scopeId */
-  null,
-  /* moduleIdentifier (server only) */
-  null
-)
-Component.options.__file = "/Applications/MAMP/htdocs/signsystem2.1/resources/assets/js/components/nav1/user.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] user.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-6ab02dcb", Component.options)
-  } else {
-    hotAPI.reload("data-v-6ab02dcb", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 150 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(151);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(17)("391a94b2", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6ab02dcb\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vux-loader/src/style-loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./user.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6ab02dcb\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vux-loader/src/style-loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./user.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 151 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(8)();
-// imports
-
-
-// module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 152 */
-/***/ (function(module, exports) {
-
-//
-//
-//
-
-/***/ }),
-/* 153 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('p', [_vm._v("user")])
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-6ab02dcb", module.exports)
-  }
-}
-
-/***/ }),
-/* 154 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(155);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(17)("2b260eab", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-ad3ac2c8\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vux-loader/src/style-loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./AddUser.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-ad3ac2c8\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vux-loader/src/style-loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./AddUser.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 155 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(8)();
-// imports
-
-
-// module
-exports.push([module.i, "\n.nameWidth[data-v-ad3ac2c8]{\n    width: 22%;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 156 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-
-        var checkId = function checkId(rule, value, callback) {
-            if (!/^\d{10,11}$/.test(value)) {
-                return callback(new Error('请输入正确的学号'));
-            } else {
-                callback();
-            }
-        };
-
-        var checkTel = function checkTel(rule, value, callback) {
-            if (!/^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/.test(value)) {
-                return callback(new Error('请输入正确的手机号'));
-            } else {
-                callback();
-            }
-        };
-
-        return {
-            infoData: {
-                groups: [],
-                positions: []
-            },
-            form: {
-                id: '',
-                name: '',
-                sex: '0',
-                grouping: '',
-                email: '',
-                tel: '',
-                position: []
-            },
-            rules: {
-                id: [{ required: true, message: '请输入学号' }, { validator: checkId, message: '请输入正确的学号' }],
-                name: [{ required: true, message: '请输入姓名' }, { min: 2, max: 4, message: '请输入正确的姓名' }],
-                sex: [{ required: true, message: '请输选择性别' }],
-                grouping: [{ required: true, message: '请选择分组' }],
-                position: [{ type: 'array', required: true, message: '请选择职务' }],
-                tel: [{ required: true, message: '请输入手机号' }, { validator: checkTel, message: '请输入正确的手机号' }],
-                email: [{ required: true, message: '请输入邮箱' }, { type: 'email', message: '请输入正确的邮箱' }]
-            }
-
-        };
-    },
-
-    methods: {
-        onSubmit: function onSubmit(formName) {
-            var _this = this;
-
-            this.$refs[formName].validate(function (valid) {
-                if (valid) {
-                    _this.$loading();
-                    var form = _this.form;
-
-                    axios.post('/admin/user/add', {
-                        id: form.id,
-                        name: form.name,
-                        sex: form.sex,
-                        grouping_id: form.grouping,
-                        positions: form.position,
-                        tel: form.tel,
-                        email: form.email
-                    }).then(function (response) {
-                        console.log(response.data);
-                        _this.$loading().close();
-
-                        var data = response.data;
-                        if (parseInt(data.code) === 1) {
-                            _this.$confirm('人员添加成功，是否继续添加？', '提示', {
-                                confirmButtonText: '继续',
-                                cancelButtonText: '返回',
-                                type: 'info'
-                            }).then(function () {
-                                _this.$refs[formName].resetFields();
-                            }).catch(function () {
-                                _this.$router.push('/user/list');
-                            });
-                        } else {
-                            _this.$message({
-                                message: data.msg,
-                                type: 'warning'
-                            });
-                        }
-                    }).catch(function (err) {
-                        console.log(err);
-                    });
-                } else {
-                    console.log('error submit!!');
-                    return false;
-                }
-            });
-        },
-        info: function info() {
-            var _this2 = this;
-
-            axios.get('/admin/user/add/info', {}).then(function (response) {
-                var data = response.data;
-
-                _this2.infoData.groups = data.groups;
-                _this2.infoData.positions = data.positions;
-
-                console.log(_this2.infoData.groups);
-            }).catch(function (err) {
-                console.log(err);
-            });
-        }
-    },
-    mounted: function mounted() {
-        this.info();
-    }
-});
-
-/***/ }),
-/* 157 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('el-form', {
-    ref: "form",
-    attrs: {
-      "rules": _vm.rules,
-      "model": _vm.form,
-      "label-width": "80px"
-    }
-  }, [_c('el-form-item', {
-    attrs: {
-      "label": "学号",
-      "prop": "id"
-    }
-  }, [_c('el-input', {
-    staticClass: "nameWidth",
-    model: {
-      value: (_vm.form.id),
-      callback: function($$v) {
-        _vm.form.id = _vm._n($$v)
-      },
-      expression: "form.id"
-    }
-  })], 1), _vm._v(" "), _c('el-form-item', {
-    attrs: {
-      "label": "姓名",
-      "prop": "name"
-    }
-  }, [_c('el-input', {
-    staticClass: "nameWidth",
-    model: {
-      value: (_vm.form.name),
-      callback: function($$v) {
-        _vm.form.name = $$v
-      },
-      expression: "form.name"
-    }
-  })], 1), _vm._v(" "), _c('el-form-item', {
-    attrs: {
-      "label": "性别",
-      "prop": "sex"
-    }
-  }, [_c('el-radio-group', {
-    model: {
-      value: (_vm.form.sex),
-      callback: function($$v) {
-        _vm.form.sex = $$v
-      },
-      expression: "form.sex"
-    }
-  }, [_c('el-radio', {
-    attrs: {
-      "label": "0"
-    }
-  }, [_vm._v("男")]), _vm._v(" "), _c('el-radio', {
-    attrs: {
-      "label": "1"
-    }
-  }, [_vm._v("女")])], 1)], 1), _vm._v(" "), _c('el-form-item', {
-    attrs: {
-      "label": "分组",
-      "prop": "grouping"
-    }
-  }, [_c('el-select', {
-    attrs: {
-      "placeholder": "请选择分组"
-    },
-    model: {
-      value: (_vm.form.grouping),
-      callback: function($$v) {
-        _vm.form.grouping = $$v
-      },
-      expression: "form.grouping"
-    }
-  }, _vm._l((_vm.infoData.groups), function(group) {
-    return _c('el-option', {
-      key: group.id,
-      attrs: {
-        "label": group.name,
-        "value": group.id
-      }
-    })
-  }))], 1), _vm._v(" "), _c('el-form-item', {
-    attrs: {
-      "label": "职务",
-      "prop": "position"
-    }
-  }, [_c('el-checkbox-group', {
-    model: {
-      value: (_vm.form.position),
-      callback: function($$v) {
-        _vm.form.position = $$v
-      },
-      expression: "form.position"
-    }
-  }, _vm._l((_vm.infoData.positions), function(position) {
-    return _c('el-checkbox', {
-      key: position.id,
-      attrs: {
-        "label": position.id,
-        "value": position.id,
-        "name": "type"
-      }
-    }, [_vm._v(_vm._s(position.name))])
-  }))], 1), _vm._v(" "), _c('el-form-item', {
-    attrs: {
-      "label": "电话",
-      "prop": "tel"
-    }
-  }, [_c('el-input', {
-    staticClass: "nameWidth",
-    model: {
-      value: (_vm.form.tel),
-      callback: function($$v) {
-        _vm.form.tel = $$v
-      },
-      expression: "form.tel"
-    }
-  })], 1), _vm._v(" "), _c('el-form-item', {
-    attrs: {
-      "label": "邮箱",
-      "prop": "email"
-    }
-  }, [_c('el-input', {
-    staticClass: "nameWidth",
-    model: {
-      value: (_vm.form.email),
-      callback: function($$v) {
-        _vm.form.email = $$v
-      },
-      expression: "form.email"
-    }
-  })], 1), _vm._v(" "), _c('el-form-item', [_c('el-button', {
-    attrs: {
-      "type": "primary"
-    },
-    on: {
-      "click": function($event) {
-        _vm.onSubmit('form')
-      }
-    }
-  }, [_vm._v("立即添加")]), _vm._v(" "), _c('el-button', [_vm._v("取消")])], 1)], 1)], 1)
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-ad3ac2c8", module.exports)
-  }
-}
-
-/***/ }),
+/* 146 */,
+/* 147 */,
+/* 148 */,
+/* 149 */,
+/* 150 */,
+/* 151 */,
+/* 152 */,
+/* 153 */,
+/* 154 */,
+/* 155 */,
+/* 156 */,
+/* 157 */,
 /* 158 */
 /***/ (function(module, exports, __webpack_require__) {
 

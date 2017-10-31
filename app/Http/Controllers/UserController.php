@@ -34,7 +34,7 @@ class UserController extends Controller
 
     //获取用户列表信息
     public function users(){
-        $users = User::with('grouping')->get(['id', 'name', 'email', 'grouping_id', 'sex', 'tel']);
+        $users = User::with('grouping','positions')->get(['id', 'name', 'email', 'grouping_id', 'sex', 'tel']);
         return compact('users');
     }
 

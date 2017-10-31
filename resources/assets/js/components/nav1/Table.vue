@@ -2,24 +2,24 @@
     <div>
         <el-row :gutter="0">
             <el-col :span="20">
-                <el-form :inline="true" :model="formData" class="demo-form-inline">
-                    <el-form-item label="姓名">
+                <!--<el-form :inline="true" :model="formData" class="demo-form-inline">-->
+                    <!--<el-form-item label="姓名">-->
 
-                        <el-input
-                                placeholder="请输入搜索姓名"
-                                icon="search"
-                                v-model="formData.user"
-                                :on-icon-click="searchUser">
-                        </el-input>
-                    </el-form-item>
+                        <!--<el-input-->
+                                <!--placeholder="请输入搜索姓名"-->
+                                <!--icon="search"-->
+                                <!--v-model="formData.user"-->
+                                <!--:on-icon-click="searchUser">-->
+                        <!--</el-input>-->
+                    <!--</el-form-item>-->
 
-                    <el-form-item label="分组">
-                        <el-select v-model="formData.grouping" placeholder="请选择分组">
-                            <el-option label="区域一" value="shanghai"></el-option>
-                            <el-option label="区域二" value="beijing"></el-option>
-                        </el-select>
-                    </el-form-item>
-                </el-form>
+                    <!--<el-form-item label="分组">-->
+                        <!--<el-select v-model="formData.grouping" placeholder="请选择分组">-->
+                            <!--<el-option label="区域一" value="shanghai"></el-option>-->
+                            <!--<el-option label="区域二" value="beijing"></el-option>-->
+                        <!--</el-select>-->
+                    <!--</el-form-item>-->
+                <!--</el-form>-->
             </el-col>
             <el-col :span="4">
                 <el-button type="primary" @click="addUser()">添加</el-button>
@@ -35,21 +35,34 @@
                 style="width: 100%">
             <el-table-column
                     prop="id"
-                    label="学号">
+                    label="学号"
+            >
             </el-table-column>
 
 
             <el-table-column
                     prop="name"
-                    label="姓名">
+                    label="姓名"
+            >
             </el-table-column>
             <el-table-column
                     prop="grouping"
-                    label="组别">
+                    label="组别"
+                    sortable
+            >
             </el-table-column>
+
+            <el-table-column
+                    prop="position"
+                    label="职务"
+                    sortable
+            >
+            </el-table-column>
+
             <el-table-column
                     prop="tel"
-                    label="电话">
+                    label="电话"
+            >
             </el-table-column>
 
             <el-table-column
@@ -71,8 +84,8 @@
             </el-table-column>
         </el-table>
 
-        <el-pagination layout="prev, pager, next" :total="1000">
-        </el-pagination>
+        <!--<el-pagination layout="prev, pager, next" :total="1000">-->
+        <!--</el-pagination>-->
 
         <el-dialog title="导入用户" :visible.sync="inputVisible">
             <el-upload
@@ -105,6 +118,7 @@
                 </li>
             </ul>
         </el-dialog>
+
     </div>
 </template>
 
@@ -132,13 +146,22 @@
                     let usersInfo = res.data.users;
 //                    console.log(usersInfo);
                     for (let key in usersInfo) {
+
+
+                        let positions = '';
+                        for(let i in usersInfo[key].positions){
+                            positions += usersInfo[key].positions[i].name+',';
+                        }
+
                         let tmpUser = {
                             id: usersInfo[key].id,
                             name: usersInfo[key].name,
+                            position: positions,
                             grouping: usersInfo[key].grouping.name,
                             tel: usersInfo[key].tel,
                             email: usersInfo[key].email,
                         };
+
                         this.users.push(tmpUser);
                     }
                 })

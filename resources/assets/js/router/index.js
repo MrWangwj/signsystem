@@ -4,10 +4,7 @@ import NotFound from '../components/404.vue'
 import Home from '../components/Home.vue'
 import Main from '../components/Main.vue'
 import Table from '../components/nav1/Table.vue'
-import Form from '../components/nav1/Form.vue'
-import user from '../components/nav1/user.vue'
 
-import Test from '../components/nav1/AddUser.vue'
 
 
 Vue.use(Router)
