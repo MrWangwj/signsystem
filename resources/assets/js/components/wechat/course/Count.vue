@@ -152,7 +152,7 @@
                             <label :style="{backgroundColor: colors[colorIndex[0]].title}">{{ section.id }}</label>
                         </div>
                         <div>
-                            <label v-for="(stu,index) in section.stus" @click="courseInfo(stu.id, stu.course_id)">{{ stu.name }},</label>
+                            <label :class="{'sel-user': stu.id == selUserId}" v-for="(stu,index) in section.stus" @click="courseInfo(stu.id, stu.course_id)">{{ stu.name }},</label>
                         </div>
                     </div>
                 </div>
@@ -172,7 +172,7 @@
                             <label :style="{backgroundColor: colors[colorIndex[1]].title}">{{ section.id }}</label>
                         </div>
                         <div>
-                            <label v-for="(stu,index) in section.stus" @click="courseInfo(stu.id, stu.course_id)" >{{ stu.name }},</label>
+                            <label :class="{'sel-user': stu.id == selUserId}" v-for="(stu,index) in section.stus" @click="courseInfo(stu.id, stu.course_id)" >{{ stu.name }},</label>
                         </div>
                     </div>
                 </div>
@@ -192,7 +192,7 @@
                             <label :style="{backgroundColor: colors[colorIndex[2]].title}">{{ section.id }}</label>
                         </div>
                         <div>
-                            <label v-for="(stu,index) in section.stus" @click="courseInfo(stu.id, stu.course_id)" >{{ stu.name }},</label>
+                            <label :class="{'sel-user': stu.id == selUserId}" v-for="(stu,index) in section.stus" @click="courseInfo(stu.id, stu.course_id)" >{{ stu.name }},</label>
                         </div>
                     </div>
                 </div>
@@ -212,7 +212,7 @@
                             <label :style="{backgroundColor: colors[colorIndex[3]].title}">{{ section.id }}</label>
                         </div>
                         <div>
-                            <label v-for="(stu,index) in section.stus" @click="courseInfo(stu.id, stu.course_id)" >{{ stu.name }},</label>
+                            <label :class="{'sel-user': stu.id == selUserId}" v-for="(stu,index) in section.stus" @click="courseInfo(stu.id, stu.course_id)" >{{ stu.name }},</label>
                         </div>
                     </div>
                 </div>
@@ -232,7 +232,7 @@
                             <label :style="{backgroundColor: colors[colorIndex[4]].title}">{{ section.id }}</label>
                         </div>
                         <div>
-                            <label v-for="(stu,index) in section.stus" @click="courseInfo(stu.id, stu.course_id)" >{{ stu.name }},</label>
+                            <label :class="{'sel-user': stu.id == selUserId}" v-for="(stu,index) in section.stus" @click="courseInfo(stu.id, stu.course_id)" >{{ stu.name }},</label>
                         </div>
                     </div>
                 </div>
@@ -252,7 +252,7 @@
                             <label :style="{backgroundColor: colors[colorIndex[5]].title}">{{ section.id }}</label>
                         </div>
                         <div>
-                            <label v-for="(stu,index) in section.stus" @click="courseInfo(stu.id, stu.course_id)" >{{ stu.name }},</label>
+                            <label :class="{'sel-user': stu.id == selUserId}" v-for="(stu,index) in section.stus" @click="courseInfo(stu.id, stu.course_id)" >{{ stu.name }},</label>
                         </div>
                     </div>
                 </div>
@@ -272,7 +272,7 @@
                             <label :style="{backgroundColor: colors[colorIndex[6]].title}">{{ section.id }}</label>
                         </div>
                         <div>
-                            <label v-for="(stu,index) in section.stus" @click="courseInfo(stu.id, stu.course_id)" >{{ stu.name }},</label>
+                            <label :class="{'sel-user': stu.id == selUserId}" v-for="(stu,index) in section.stus" @click="courseInfo(stu.id, stu.course_id)" >{{ stu.name }},</label>
                         </div>
                     </div>
                 </div>
@@ -323,7 +323,7 @@
                                 </p>
                             </div>
                             <div class="label-stu">
-                                <label v-if="" v-for="(stu,index) in courses[type2Data.x].length > 0?courses[type2Data.x][type2Data.y].stus:[]" @click="courseInfo(stu.id, stu.course_id)" >{{ stu.name }},</label>
+                                <label :class="{'sel-user': stu.id == selUserId}"  v-for="(stu,index) in courses[type2Data.x].length > 0?courses[type2Data.x][type2Data.y].stus:[]" @click="courseInfo(stu.id, stu.course_id)" >{{ stu.name }},</label>
                             </div>
                         </div>
                     </div>
@@ -429,6 +429,7 @@
                         content: '#FCC5CC',
                     },
                 ],
+                selUserId: 0,
             }
         },
         methods: {
@@ -686,6 +687,8 @@
 
             //点击用户显示课程
             courseInfo(user_id, course_id){
+                this.selUserId = user_id;
+
                 if(this.haveNoCourse){
                     let course = this.get.students[user_id].courses[course_id];
 
@@ -891,5 +894,9 @@
         overflow: hidden;
         height: 30px;
         line-height: 30px;
+    }
+
+    .sel-user{
+        color: #289886;
     }
 </style>

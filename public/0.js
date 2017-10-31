@@ -5154,7 +5154,7 @@ exports = module.exports = __webpack_require__(8)();
 
 
 // module
-exports.push([module.i, "\n.label-stu[data-v-43186183]{\n    width: 100%;\n    margin-top: 40px;\n}\n.label-stu[data-v-43186183]:after{\n    display: block;\n    content: '';\n    clear: both;\n}\n.label-stu>label[data-v-43186183]{\n    float: left;\n    display: block;\n    width: 25%;\n    overflow: hidden;\n    height: 30px;\n    line-height: 30px;\n}\n", ""]);
+exports.push([module.i, "\n.label-stu[data-v-43186183]{\n    width: 100%;\n    margin-top: 40px;\n}\n.label-stu[data-v-43186183]:after{\n    display: block;\n    content: '';\n    clear: both;\n}\n.label-stu>label[data-v-43186183]{\n    float: left;\n    display: block;\n    width: 25%;\n    overflow: hidden;\n    height: 30px;\n    line-height: 30px;\n}\n.sel-user[data-v-43186183]{\n    color: #289886;\n}\n", ""]);
 
 // exports
 
@@ -5269,7 +5269,8 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_8_vux_src_plugins_loading_index_js__["a" /* de
       }, {
         title: '#E23B5B',
         content: '#FCC5CC'
-      }]
+      }],
+      selUserId: 0
     };
   },
 
@@ -5511,6 +5512,8 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_8_vux_src_plugins_loading_index_js__["a" /* de
       }
     },
     courseInfo: function courseInfo(user_id, course_id) {
+      this.selUserId = user_id;
+
       if (this.haveNoCourse) {
         var course = this.get.students[user_id].courses[course_id];
 
@@ -10685,6 +10688,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       })
     }, [_vm._v(_vm._s(section.id))])]), _vm._v(" "), _c('div', _vm._l((section.stus), function(stu, index) {
       return _c('label', {
+        class: {
+          'sel-user': stu.id == _vm.selUserId
+        },
         on: {
           "click": function($event) {
             _vm.courseInfo(stu.id, stu.course_id)
@@ -10731,6 +10737,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       })
     }, [_vm._v(_vm._s(section.id))])]), _vm._v(" "), _c('div', _vm._l((section.stus), function(stu, index) {
       return _c('label', {
+        class: {
+          'sel-user': stu.id == _vm.selUserId
+        },
         on: {
           "click": function($event) {
             _vm.courseInfo(stu.id, stu.course_id)
@@ -10777,6 +10786,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       })
     }, [_vm._v(_vm._s(section.id))])]), _vm._v(" "), _c('div', _vm._l((section.stus), function(stu, index) {
       return _c('label', {
+        class: {
+          'sel-user': stu.id == _vm.selUserId
+        },
         on: {
           "click": function($event) {
             _vm.courseInfo(stu.id, stu.course_id)
@@ -10823,6 +10835,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       })
     }, [_vm._v(_vm._s(section.id))])]), _vm._v(" "), _c('div', _vm._l((section.stus), function(stu, index) {
       return _c('label', {
+        class: {
+          'sel-user': stu.id == _vm.selUserId
+        },
         on: {
           "click": function($event) {
             _vm.courseInfo(stu.id, stu.course_id)
@@ -10869,6 +10884,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       })
     }, [_vm._v(_vm._s(section.id))])]), _vm._v(" "), _c('div', _vm._l((section.stus), function(stu, index) {
       return _c('label', {
+        class: {
+          'sel-user': stu.id == _vm.selUserId
+        },
         on: {
           "click": function($event) {
             _vm.courseInfo(stu.id, stu.course_id)
@@ -10915,6 +10933,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       })
     }, [_vm._v(_vm._s(section.id))])]), _vm._v(" "), _c('div', _vm._l((section.stus), function(stu, index) {
       return _c('label', {
+        class: {
+          'sel-user': stu.id == _vm.selUserId
+        },
         on: {
           "click": function($event) {
             _vm.courseInfo(stu.id, stu.course_id)
@@ -10961,6 +10982,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       })
     }, [_vm._v(_vm._s(section.id))])]), _vm._v(" "), _c('div', _vm._l((section.stus), function(stu, index) {
       return _c('label', {
+        class: {
+          'sel-user': stu.id == _vm.selUserId
+        },
         on: {
           "click": function($event) {
             _vm.courseInfo(stu.id, stu.course_id)
@@ -11052,6 +11076,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "label-stu"
   }, _vm._l((_vm.courses[_vm.type2Data.x].length > 0 ? _vm.courses[_vm.type2Data.x][_vm.type2Data.y].stus : []), function(stu, index) {
     return _c('label', {
+      class: {
+        'sel-user': stu.id == _vm.selUserId
+      },
       on: {
         "click": function($event) {
           _vm.courseInfo(stu.id, stu.course_id)
