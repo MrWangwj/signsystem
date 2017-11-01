@@ -1,18 +1,18 @@
 webpackJsonp([1],{
 
-/***/ 167:
+/***/ 156:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(184)
+  __webpack_require__(174)
 }
-var Component = __webpack_require__(6)(
+var Component = __webpack_require__(9)(
   /* script */
-  __webpack_require__(186),
+  __webpack_require__(176),
   /* template */
-  __webpack_require__(187),
+  __webpack_require__(177),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -267,13 +267,13 @@ function applyToTag (styleElement, obj) {
 
 /***/ }),
 
-/***/ 184:
+/***/ 174:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(185);
+var content = __webpack_require__(175);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -294,10 +294,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 185:
+/***/ 175:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(8)();
+exports = module.exports = __webpack_require__(7)();
 // imports
 
 
@@ -309,11 +309,27 @@ exports.push([module.i, "\n.main[data-v-4fd45aee]{\n    width: 80%;\n    margin:
 
 /***/ }),
 
-/***/ 186:
+/***/ 176:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -501,21 +517,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         getCourses: function getCourses() {
 
-            for (var i = 0; i < 12; i++) {
+            var sections = ['1－2节', '3-4节', '5节', '6-7节', '8-9节', '10-11节', '12节'];
+            this.courses = [];
+            for (var i = 0; i < 7; i++) {
                 this.courses[i] = {
-                    section: i + 1,
-                    mon: '',
-                    tue: '',
-                    wed: '',
-                    thu: '',
-                    fri: '',
-                    sat: '',
-                    sun: ''
+                    section: sections[i],
+                    mon: [],
+                    tue: [],
+                    wed: [],
+                    thu: [],
+                    fri: [],
+                    sat: [],
+                    sun: []
                 };
             }
 
             var weekDay = ['', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
-            console.log(this.courses);
+
+            //                console.log(this.courses);
             var all = this.get.students,
                 //所有的学生
             selStu = this.set.selStudent,
@@ -524,28 +543,71 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 //选中的周
             hasCourse = this.haveNoCourse; //选中要查看的有课状态
 
+
             //获取用户的有课 信息
             for (var id in selStu) {
                 for (var course in all[selStu[id].id].courses) {
                     var tmpCourse = all[selStu[id].id].courses[course];
                     if (tmpCourse.start_week <= selWeek && selWeek <= tmpCourse.end_week) {
+
                         if (tmpCourse.status === 0 || selWeek % 2 === tmpCourse.status % 2) {
                             for (var n = tmpCourse.start_section; n <= tmpCourse.end_section; n++) {
-                                this.courses[n - 1][weekDay[tmpCourse.week_day]] += selStu[id].name + ",";
+                                var _i = void 0;
+                                switch (n) {
+                                    case 1:
+                                        _i = 0;
+                                        break;
+                                    case 3:
+                                        _i = 1;
+                                        break;
+                                    case 5:
+                                        _i = 2;
+                                        break;
+                                    case 6:
+                                        _i = 3;
+                                        break;
+                                    case 8:
+                                        _i = 4;
+                                        break;
+                                    case 10:
+                                        _i = 5;
+                                        break;
+                                    case 12:
+                                        _i = 6;
+                                        break;
+                                    default:
+                                        continue;
+                                        break;
+                                }
+
+                                this.courses[_i][weekDay[tmpCourse.week_day]].push({
+                                    id: selStu[id].id,
+                                    name: selStu[id].name,
+                                    course: course
+                                });
                             }
                         }
                     }
                 }
             }
-            //                console.log(selStu);
+
             if (!hasCourse) {
-                for (var _i = 0; _i < 12; _i++) {
+                for (var _i2 = 0; _i2 < 7; _i2++) {
                     for (var j = 1; j <= 7; j++) {
-                        var tempNames = this.courses[_i][weekDay[j]];
-                        this.courses[_i][weekDay[j]] = "";
+                        var tmpUsers = this.courses[_i2][weekDay[j]];
+                        this.courses[_i2][weekDay[j]] = [];
+
                         for (var _id in selStu) {
-                            if (tempNames.indexOf(selStu[_id].name + ",") === -1) {
-                                this.courses[_i][weekDay[j]] += selStu[_id].name + ",";
+
+                            var status = true;
+                            for (var _i3 = 0; _i3 < tmpUsers.length; _i3++) {
+                                if (tmpUsers[_i3].id === selStu[_id].id) {
+                                    status = false;
+                                    break;
+                                }
+                            }
+                            if (status) {
+                                this.courses[_i2][weekDay[j]].push(selStu[_id]);
                             }
                         }
                     }
@@ -649,7 +711,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 187:
+/***/ 177:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -865,42 +927,97 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "prop": "section",
       "label": "节数"
-    }
+    },
+    scopedSlots: _vm._u([{
+      key: "default",
+      fn: function(scope) {
+        return [_c('label', [_vm._v(_vm._s(scope.row.section))])]
+      }
+    }])
   }), _vm._v(" "), _c('el-table-column', {
     attrs: {
-      "prop": "mon",
       "label": "周一"
-    }
+    },
+    scopedSlots: _vm._u([{
+      key: "default",
+      fn: function(scope) {
+        return _vm._l((scope.row.mon), function(user) {
+          return _c('label', [_vm._v(_vm._s(user.name) + ",")])
+        })
+      }
+    }])
   }), _vm._v(" "), _c('el-table-column', {
     attrs: {
-      "prop": "tue",
       "label": "周二"
-    }
+    },
+    scopedSlots: _vm._u([{
+      key: "default",
+      fn: function(scope) {
+        return _vm._l((scope.row.tue), function(user) {
+          return _c('label', [_vm._v(_vm._s(user.name) + ",")])
+        })
+      }
+    }])
   }), _vm._v(" "), _c('el-table-column', {
     attrs: {
-      "prop": "wed",
       "label": "周三"
-    }
+    },
+    scopedSlots: _vm._u([{
+      key: "default",
+      fn: function(scope) {
+        return _vm._l((scope.row.wed), function(user) {
+          return _c('label', [_vm._v(_vm._s(user.name) + ",")])
+        })
+      }
+    }])
   }), _vm._v(" "), _c('el-table-column', {
     attrs: {
-      "prop": "thu",
       "label": "周四"
-    }
+    },
+    scopedSlots: _vm._u([{
+      key: "default",
+      fn: function(scope) {
+        return _vm._l((scope.row.thu), function(user) {
+          return _c('label', [_vm._v(_vm._s(user.name) + ",")])
+        })
+      }
+    }])
   }), _vm._v(" "), _c('el-table-column', {
     attrs: {
-      "prop": "fri",
       "label": "周五"
-    }
+    },
+    scopedSlots: _vm._u([{
+      key: "default",
+      fn: function(scope) {
+        return _vm._l((scope.row.fri), function(user) {
+          return _c('label', [_vm._v(_vm._s(user.name) + ",")])
+        })
+      }
+    }])
   }), _vm._v(" "), _c('el-table-column', {
     attrs: {
-      "prop": "sat",
       "label": "周六"
-    }
+    },
+    scopedSlots: _vm._u([{
+      key: "default",
+      fn: function(scope) {
+        return _vm._l((scope.row.sat), function(user) {
+          return _c('label', [_vm._v(_vm._s(user.name) + ",")])
+        })
+      }
+    }])
   }), _vm._v(" "), _c('el-table-column', {
     attrs: {
-      "prop": "sun",
       "label": "周日"
-    }
+    },
+    scopedSlots: _vm._u([{
+      key: "default",
+      fn: function(scope) {
+        return _vm._l((scope.row.sun), function(user) {
+          return _c('label', [_vm._v(_vm._s(user.name) + ",")])
+        })
+      }
+    }])
   })], 1)], 1)])
 },staticRenderFns: []}
 module.exports.render._withStripped = true

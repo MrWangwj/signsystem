@@ -85,40 +85,56 @@
                     :data="courses"
                     border
                     style="width: 100%">
-                <el-table-column
-                        prop="section"
-                        label="节数"
-                        >
+                <el-table-column prop="section" label="节数">
+                    <template scope="scope">
+                        <label>{{ scope.row.section }}</label>
+                    </template>
                 </el-table-column>
-                <el-table-column
-                        prop="mon"
-                        label="周一"
-                        >
+
+
+                <el-table-column  label="周一">
+                    <template scope="scope">
+                        <label v-for="user in scope.row.mon">{{ user.name }},</label>
+                    </template>
                 </el-table-column>
-                <el-table-column
-                        prop="tue"
-                        label="周二">
+
+                <el-table-column label="周二">
+                    <template scope="scope">
+                        <label v-for="user in scope.row.tue">{{ user.name }},</label>
+                    </template>
                 </el-table-column>
-                <el-table-column
-                        prop="wed"
-                        label="周三">
+
+
+                <el-table-column  label="周三">
+                    <template scope="scope">
+                        <label v-for="user in scope.row.wed">{{ user.name }},</label>
+                    </template>
                 </el-table-column>
-                <el-table-column
-                        prop="thu"
-                        label="周四">
+
+                <el-table-column label="周四">
+                    <template scope="scope">
+                        <label v-for="user in scope.row.thu">{{ user.name }},</label>
+                    </template>
                 </el-table-column>
-                <el-table-column
-                        prop="fri"
-                        label="周五">
+
+                <el-table-column  label="周五">
+                    <template scope="scope">
+                        <label v-for="user in scope.row.fri">{{ user.name }},</label>
+                    </template>
                 </el-table-column>
-                <el-table-column
-                        prop="sat"
-                        label="周六">
+
+                <el-table-column  label="周六">
+                    <template scope="scope">
+                        <label v-for="user in scope.row.sat">{{ user.name }},</label>
+                    </template>
                 </el-table-column>
-                <el-table-column
-                        prop="sun"
-                        label="周日">
+
+                <el-table-column  label="周日">
+                    <template scope="scope">
+                        <label v-for="user in scope.row.sun">{{ user.name }},</label>
+                    </template>
                 </el-table-column>
+
             </el-table>
 
         </div>
@@ -186,49 +202,103 @@
             },
             getCourses(){
 
-                for(let i = 0; i < 12; i++){
+                let sections = ['1－2节','3-4节','5节','6-7节','8-9节','10-11节','12节'];
+                this.courses = [];
+                for(let i = 0; i < 7; i++){
                     this.courses[i] = {
-                        section: i+1,
-                        mon: '',
-                        tue: '',
-                        wed: '',
-                        thu: '',
-                        fri: '',
-                        sat: '',
-                        sun: ''
+                        section: sections[i],
+                        mon: [],
+                        tue: [],
+                        wed: [],
+                        thu: [],
+                        fri: [],
+                        sat: [],
+                        sun: [],
                     }
                 }
 
                 let weekDay = ['','mon','tue','wed','thu','fri','sat','sun'];
-                console.log(this.courses);
+
+
+//                console.log(this.courses);
                 let all     = this.get.students,    //所有的学生
                     selStu  = this.set.selStudent,  //选中的学生
                     selWeek = this.sleWeek,     //选中的周
                     hasCourse = this.haveNoCourse;  //选中要查看的有课状态
+
+
+
 
                 //获取用户的有课 信息
                 for(let id in selStu){
                     for (let course in all[selStu[id].id].courses){
                         let tmpCourse = all[selStu[id].id].courses[course];
                         if(tmpCourse.start_week <= selWeek && selWeek <= tmpCourse.end_week){
+
+
+
                             if(tmpCourse.status === 0 || selWeek % 2 === tmpCourse.status % 2){
                                 for(let n = tmpCourse.start_section; n <= tmpCourse.end_section; n++){
-                                    this.courses[n-1][weekDay[tmpCourse.week_day]] += selStu[id].name+",";
+                                    let i ;
+                                    switch (n) {
+                                        case 1:
+                                            i = 0;
+                                            break;
+                                        case 3:
+                                            i = 1;
+                                            break;
+                                        case 5:
+                                            i = 2;
+                                            break;
+                                        case 6:
+                                            i = 3;
+                                            break;
+                                        case 8:
+                                            i = 4;
+                                            break;
+                                        case 10:
+                                            i = 5;
+                                            break;
+                                        case 12:
+                                            i = 6;
+                                            break;
+                                        default:
+                                            continue;
+                                            break;
+                                    }
+
+                                    this.courses[i][weekDay[tmpCourse.week_day]].push({
+                                        id : selStu[id].id,
+                                        name: selStu[id].name,
+                                        course: course,
+                                    });
+
+
                                 }
                             }
-                        }
 
+                        }
                     }
                 }
-//                console.log(selStu);
+
                 if(!hasCourse){
-                    for(let i = 0; i < 12; i++){
+                    for(let i = 0; i < 7; i++){
                         for(let j = 1; j <= 7; j++){
-                            let tempNames = this.courses[i][weekDay[j]];
-                            this.courses[i][weekDay[j]] = "";
+                            let tmpUsers = this.courses[i][weekDay[j]];
+                            this.courses[i][weekDay[j]] = [];
+
                             for(let id in selStu){
-                                if(tempNames.indexOf(selStu[id].name+",") === -1){
-                                    this.courses[i][weekDay[j]] += selStu[id].name+",";
+
+                                let status = true;
+                                for(let i = 0; i < tmpUsers.length; i ++){
+                                    if(tmpUsers[i].id === selStu[id].id){
+                                        status = false;
+                                        break;
+                                    }
+
+                                }
+                                if(status){
+                                    this.courses[i][weekDay[j]].push(selStu[id]);
                                 }
                             }
                         }
