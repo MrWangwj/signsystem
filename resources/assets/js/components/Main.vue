@@ -12,8 +12,7 @@
 			<li>
 				<div><label>性别:</label></div>
 				<div>
-					<p v-if="user.sex === 0">男</p>
-					<p v-else>女</p>
+					<p>{{ (parseInt(user.sex) === 0)?'男':'女' }}</p>
 				</div>
 			</li>
 			<li>

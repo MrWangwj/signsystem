@@ -70485,7 +70485,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -70528,7 +70527,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "main"
-  }, [_c('ul', [_c('li', [_vm._m(0), _vm._v(" "), _c('div', [_c('p', [_vm._v(_vm._s(_vm.user.id))])])]), _vm._v(" "), _c('li', [_vm._m(1), _vm._v(" "), _c('div', [_c('p', [_vm._v(_vm._s(_vm.user.name))])])]), _vm._v(" "), _c('li', [_vm._m(2), _vm._v(" "), _c('div', [(_vm.user.sex === 0) ? _c('p', [_vm._v("男")]) : _c('p', [_vm._v("女")])])]), _vm._v(" "), _c('li', [_vm._m(3), _vm._v(" "), _c('div', [_c('p', _vm._l((_vm.user.positions), function(position) {
+  }, [_c('ul', [_c('li', [_vm._m(0), _vm._v(" "), _c('div', [_c('p', [_vm._v(_vm._s(_vm.user.id))])])]), _vm._v(" "), _c('li', [_vm._m(1), _vm._v(" "), _c('div', [_c('p', [_vm._v(_vm._s(_vm.user.name))])])]), _vm._v(" "), _c('li', [_vm._m(2), _vm._v(" "), _c('div', [_c('p', [_vm._v(_vm._s((parseInt(_vm.user.sex) === 0) ? '男' : '女'))])])]), _vm._v(" "), _c('li', [_vm._m(3), _vm._v(" "), _c('div', [_c('p', _vm._l((_vm.user.positions), function(position) {
     return _c('span', [_vm._v("\n\t\t\t\t\t\t" + _vm._s(position) + ",\n\t\t\t\t\t")])
   }))])]), _vm._v(" "), _c('li', [_vm._m(4), _vm._v(" "), _c('div', [_c('p', [_vm._v(_vm._s(_vm.user.group))])])]), _vm._v(" "), _c('li', [_vm._m(5), _vm._v(" "), _c('div', [_c('p', [_vm._v(_vm._s(_vm.user.tel))])])]), _vm._v(" "), _c('li', [_vm._m(6), _vm._v(" "), _c('div', [_c('p', [_vm._v(_vm._s(_vm.user.email))])])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
