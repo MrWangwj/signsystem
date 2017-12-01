@@ -66,8 +66,8 @@
                     </div>
                     <div class="weeks">
                         <scroller lock-y :scrollbar-x=false>
-                            <div class="box1" id="weeks">
-                                <div :style="{width: set.weeks*40+'px'}" :class="{'box1-item':true, 'test':test, 'now-week': get.nowWeek == i.id, 'sel-week': i.sel }" @click="addSelWeek(i.id)" v-for="i in set.weeks" >
+                            <div class="box1" id="weeks" :style="{width: set.weeks.length*40+'px'}">
+                                <div  :class="{'box1-item':true, 'test':test, 'now-week': get.nowWeek == i.id, 'sel-week': i.sel }" @click="addSelWeek(i.id)" v-for="i in set.weeks" >
                                     <span>{{' ' + i.id + ' '}}</span>
                                 </div>
                             </div>
