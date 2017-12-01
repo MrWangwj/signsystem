@@ -810,7 +810,7 @@
 
     .box1 {
         position: relative;
-        width: max-content;
+
         white-space: nowrap;
     }
 
