@@ -811,6 +811,7 @@
     .box1 {
         position: relative;
 
+        width: 800px;
         white-space: nowrap;
     }
 
