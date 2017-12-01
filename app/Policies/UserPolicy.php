@@ -42,7 +42,6 @@ class UserPolicy
     }
 
 
-
     //操作违规
     public function addUserIllegal(User $user){
         return $user->isPower('add-user-illegal');
