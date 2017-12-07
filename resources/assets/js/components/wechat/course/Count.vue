@@ -706,10 +706,10 @@
                 }
 //                console.log(this.courses);
 
+                if (!hasCourse) {
+                    for (let i = 0; i < 7; i++) {
+                        for (let j = 0; j < 7; j++) {
 
-                for (let i = 0; i < 7; i++) {
-                    for (let j = 0; j < 7; j++) {
-                        if (!hasCourse) {
                             let tmpStus = tmpCourses[i][j].stus.slice();
                             tmpCourses[i][j].stus = [];
                             for (let stu in selStu) {
@@ -731,10 +731,6 @@
                                 }
                             }
                         }
-
-                        tmpCourses[i][j].stus = tmpCourses[i][j].stus.sort(function (stu1, stu2) {
-                            return stu1.name.localeCompare(stu2.name, "zh");
-                        });
                     }
                 }
 

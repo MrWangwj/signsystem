@@ -144,7 +144,7 @@ class CourseController extends Controller
         $groups     = Grouping::all(['id', 'name'])->toArray();  //获得分组
         $positions  = Position::all(['id', 'name'])->toArray(); //获得职务
 
-        $allStudents   = User::with('grouping', 'positions', 'courses')->get(['id', 'name', 'grouping_id','sex']);  //获得学生的信息
+        $allStudents   = User::with('grouping', 'positions', 'courses')->orderBy('name')->get(['id', 'name', 'grouping_id','sex']);  //获得学生的信息
 
 
         // 以id为键排列
