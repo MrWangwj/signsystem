@@ -17,6 +17,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Cookie\CookieJar;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
+use Overtrue\LaravelPinyin\Facades\Pinyin;
 use Symfony\Component\DomCrawler\Crawler;
 use Illuminate\Support\Facades\Cache;
 
@@ -144,7 +145,7 @@ class CourseController extends Controller
         $groups     = Grouping::all(['id', 'name'])->toArray();  //获得分组
         $positions  = Position::all(['id', 'name'])->toArray(); //获得职务
 
-        $allStudents   = User::with('grouping', 'positions', 'courses')->orderBy('name')->get(['id', 'name', 'grouping_id','sex']);  //获得学生的信息
+        $allStudents   = User::with('grouping', 'positions', 'courses')->orderBy('name_py')->get(['id', 'name', 'grouping_id','sex']);  //获得学生的信息
 
 
         // 以id为键排列
@@ -155,7 +156,7 @@ class CourseController extends Controller
             $tmpGrade = intval(substr($student['id'], 2,2));
             if(!in_array($tmpGrade,$grades)) $grades[] = $tmpGrade;
 
-            $students[$student['id']] = $student;
+            $students['s'.$student['id']] = $student;
         }
 
         return compact(['nowWeek', 'groups', 'positions', 'grades', 'students']);
@@ -180,24 +181,28 @@ class CourseController extends Controller
 //                }
 //            }
 //        }
+
+
         $nowWeek    = Seting::getNowWeek();  //获得当前周
         $groups     = Grouping::all(['id', 'name'])->toArray();  //获得分组
         $positions  = Position::all(['id', 'name'])->toArray(); //获得职务
 
-        $allStudents   = User::with('grouping', 'positions', 'courses')->get(['id', 'name', 'grouping_id','sex']);  //获得学生的信息
-
+        $allStudents   = User::with('grouping', 'positions', 'courses')->orderBy('name_py')->get(['id', 'name', 'grouping_id','sex']);  //获得学生的信息
 
         // 以id为键排列
         $students = [];
         $grades = [];
+
         foreach ($allStudents->toArray() as $student){
             //获取年级
             $tmpGrade = intval(substr($student['id'], 2,2));
             if(!in_array($tmpGrade,$grades)) $grades[] = $tmpGrade;
 
-            $students[$student['id']] = $student;
+            $students[$student['id'].'s'] = $student;
         }
 
+
+        dd(compact(['nowWeek', 'groups', 'positions', 'grades', 'students']));
         return compact(['nowWeek', 'groups', 'positions', 'grades', 'students']);
     }
 }
