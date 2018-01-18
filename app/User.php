@@ -71,6 +71,10 @@ class User extends Authenticatable
         return $this->hasMany('\App\UserIllegal', 'user_id', 'id');
     }
 
+    //关联地点表
+    public function location(){
+        return $this->belongsTo(Location::class, 'location_id', 'id');
+    }
 
 
 

@@ -10,6 +10,7 @@ namespace App\Wechat\Controllers;
 
 use App\Course;
 use App\Grouping;
+use App\Location;
 use App\Position;
 use App\Seting;
 use App\User;
@@ -142,10 +143,12 @@ class CourseController extends Controller
     //获取课表统计信息
     public function getCount(){
         $nowWeek    = Seting::getNowWeek();  //获得当前周
-        $groups     = Grouping::all(['id', 'name'])->toArray();  //获得分组
+        $groups     = Grouping::all(['id', 'name'])->toArray(); //获得分组
         $positions  = Position::all(['id', 'name'])->toArray(); //获得职务
+        $locations  = Location::all(['id', 'name'])->toArray(); //地址
 
-        $allStudents   = User::with('grouping', 'positions', 'courses')->orderBy('name_py')->get(['id', 'name', 'grouping_id','sex']);  //获得学生的信息
+
+        $allStudents   = User::with('grouping', 'positions', 'courses','location')->orderBy('name_py')->get(['id', 'name', 'grouping_id','sex', 'location_id']);  //获得学生的信息
 
 
         // 以id为键排列
@@ -159,7 +162,7 @@ class CourseController extends Controller
             $students['s'.$student['id']] = $student;
         }
 
-        return compact(['nowWeek', 'groups', 'positions', 'grades', 'students']);
+        return compact(['nowWeek', 'groups', 'positions', 'grades', 'students', 'locations']);
     }
 
 
@@ -182,27 +185,39 @@ class CourseController extends Controller
 //            }
 //        }
 
+        $users = User::all();
 
-        $nowWeek    = Seting::getNowWeek();  //获得当前周
-        $groups     = Grouping::all(['id', 'name'])->toArray();  //获得分组
-        $positions  = Position::all(['id', 'name'])->toArray(); //获得职务
-
-        $allStudents   = User::with('grouping', 'positions', 'courses')->orderBy('name_py')->get(['id', 'name', 'grouping_id','sex']);  //获得学生的信息
-
-        // 以id为键排列
-        $students = [];
-        $grades = [];
-
-        foreach ($allStudents->toArray() as $student){
-            //获取年级
-            $tmpGrade = intval(substr($student['id'], 2,2));
-            if(!in_array($tmpGrade,$grades)) $grades[] = $tmpGrade;
-
-            $students[$student['id'].'s'] = $student;
+        foreach ($users as $user) {
+            if(substr($user->id,0,4) == 2015){
+                $user->location_id = 2;
+            }else{
+                $user->location_id = 1;
+            }
+            $user->save();
+            echo $user->name;
         }
 
 
-        dd(compact(['nowWeek', 'groups', 'positions', 'grades', 'students']));
-        return compact(['nowWeek', 'groups', 'positions', 'grades', 'students']);
+//        $nowWeek    = Seting::getNowWeek();  //获得当前周
+//        $groups     = Grouping::all(['id', 'name'])->toArray();  //获得分组
+//        $positions  = Position::all(['id', 'name'])->toArray(); //获得职务
+//
+//        $allStudents   = User::with('grouping', 'positions', 'courses')->orderBy('name_py')->get(['id', 'name', 'grouping_id','sex']);  //获得学生的信息
+//
+//        // 以id为键排列
+//        $students = [];
+//        $grades = [];
+//
+//        foreach ($allStudents->toArray() as $student){
+//            //获取年级
+//            $tmpGrade = intval(substr($student['id'], 2,2));
+//            if(!in_array($tmpGrade,$grades)) $grades[] = $tmpGrade;
+//
+//            $students[$student['id'].'s'] = $student;
+//        }
+//
+//
+//
+//        return compact(['nowWeek', 'groups', 'positions', 'grades', 'students']);
     }
 }

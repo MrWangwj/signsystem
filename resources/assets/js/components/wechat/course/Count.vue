@@ -137,6 +137,25 @@
                         <checker-item v-for="i in get.grades" :key="i" :value="i" class="group-item">{{ i }}级
                         </checker-item>
                     </checker>
+
+                    <divider>地点</divider>
+                    <checker
+                            v-model="set.selLocation"
+                            type="checkbox"
+                            default-item-class="group-item"
+                            selected-item-class="group-item-selected"
+                            @on-change="getSelStudents"
+                    >
+                        <!--<checker-item v-for="i in get.grades" :key="i" :value="i" class="group-item">{{ i }}级-->
+                        <!--</checker-item>-->
+
+                        <checker-item  :key="1" :value="1" class="group-item">906
+                        </checker-item>
+
+                        <checker-item  :key="2" :value="2" class="group-item">910
+                        </checker-item>
+                    </checker>
+
                 </div>
             </popup>
         </div>
@@ -395,7 +414,8 @@
                     groups: [],     //所有分组
                     positions: [],  //所有职务
                     grades: [],     //年级
-                    students: [],   //所有学生
+                    students: [],   //所有学生,
+                    locations:[],   //所有地点
                 },
                 set: {
                     weeks: [],          //一共有多少周
@@ -405,6 +425,7 @@
                     selGroups: [],       //选中的分组
                     selStudent: [],      //选中的学生
                     selWeek: 0,         //选中的周
+                    selLocation: [],     //选中的地点
                 },
                 count: false,           //是否打开统计页面
                 haveNoCourse: true,     //是否有课
@@ -482,12 +503,14 @@
                     this.get.grades = data.grades;      //年级情况
                     this.get.students = data.students;    //学生
 
+
                     if (this.get.nowWeek > 20) maxWeek = this.get.nowWeek;   //判断若用户大于20周，则以当前为最大
 
                     for (let i = 1; i <= maxWeek; i++) {
                         this.set.weeks[i - 1] = {
                             id: i,
                         };
+
                         if (this.get.nowWeek === i) {
                             this.set.weeks[i - 1].sel = true;
                         } else {
