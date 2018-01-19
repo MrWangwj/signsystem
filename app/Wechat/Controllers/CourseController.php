@@ -148,7 +148,7 @@ class CourseController extends Controller
         $locations  = Location::all(['id', 'name'])->toArray(); //地址
 
 
-        $allStudents   = User::with('grouping', 'positions', 'courses','location')->orderBy('name_py')->get(['id', 'name', 'grouping_id','sex', 'location_id']);  //获得学生的信息
+        $allStudents   = User::with('grouping', 'positions', 'courses')->orderBy('name_py')->get(['id', 'name', 'grouping_id','sex', 'location_id']);  //获得学生的信息
 
 
         // 以id为键排列

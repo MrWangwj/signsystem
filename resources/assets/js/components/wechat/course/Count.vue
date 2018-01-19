@@ -140,25 +140,21 @@
 
                     <divider>地点</divider>
                     <checker
-                            v-model="set.selLocation"
+                            v-model="set.selLocations"
                             type="checkbox"
                             default-item-class="group-item"
                             selected-item-class="group-item-selected"
                             @on-change="getSelStudents"
                     >
-                        <!--<checker-item v-for="i in get.grades" :key="i" :value="i" class="group-item">{{ i }}级-->
-                        <!--</checker-item>-->
-
-                        <checker-item  :key="1" :value="1" class="group-item">906
-                        </checker-item>
-
-                        <checker-item  :key="2" :value="2" class="group-item">910
-                        </checker-item>
+                        <checker-item v-for="i in get.locations" :key="i.id" :value="i.id" class="group-item">{{ i.name }}</checker-item>
                     </checker>
-
+                    <divider>----</divider>
+                    <x-button style="background-color:#ff4a00;color: white;"  @click.native="selStuBut">选择人员</x-button>
                 </div>
             </popup>
         </div>
+
+
 
 
         <carousel-3d v-show="type" :display="5" :perspective="0" space="50" width="250" height="500"
@@ -346,8 +342,8 @@
             <div v-transfer-dom>
                 <x-dialog v-model="type2Data.showHideOnBlur" class="dialog-demo" hide-on-blur>
                     <div class="img-box">
-                        <div style=" margin: 10px auto;height:330px; text-align: center; overflow: scroll;position: relative;">
-                            <div style="width: 100%;height: 40px; line-height: 40px;position: absolute;top: 0;">
+                        <div style=" margin: 10px auto;height:330px; text-align: center;position: relative;">
+                            <div style="width: 100%;height: 40px; line-height: 40px;position: absolute;top: 0;background-color: white;">
                                 <p>
                                     {{ type2Data.title }}节
                                     (
@@ -369,6 +365,36 @@
                 </x-dialog>
             </div>
         </div>
+
+
+        <div v-transfer-dom>
+            <x-dialog v-model="selStu.showHideOnBlur" class="dialog-demo" hide-on-blur>
+                <div class="img-box">
+                    <div style=" margin: 10px auto;height:330px; text-align: center; ;position: relative;">
+                        <div style="width: 100%;height: 40px; line-height: 40px;top: 0;position: absolute;background-color: white;">
+                            <p>
+                                人员选择<check-icon :value.sync="selStu.allType" @click.native="selAllStu">全选</check-icon>
+                            </p>
+                        </div>
+                        <div style="padding-top: 40px;overflow: scroll;height: 300px;">
+                                <checker
+                                        v-model="selStu.students"
+                                        :type="'checkbox'"
+                                        :default-item-class="'group-item'"
+                                        :selected-item-class="'group-item-selected'"
+                                >
+                                    <checker-item @click.native="selStuFun" v-for="i in get.students" :key="'s'+i.id" :value="'s'+i.id" class="group-item">{{ i.name }}</checker-item>
+                                </checker>
+                        </div>
+                    </div>
+                </div>
+                <div @click="selStu.showHideOnBlur=false">
+                    <span class="vux-close"></span>
+                </div>
+            </x-dialog>
+        </div>
+
+
     </div>
 </template>
 
@@ -385,7 +411,9 @@
         ToastPlugin,
         LoadingPlugin,
         XTable,
-        XDialog
+        XDialog,
+        XButton,
+        CheckIcon
     } from 'vux';
 
     Vue.use(ToastPlugin);
@@ -406,6 +434,8 @@
             ToastPlugin,
             XTable,
             XDialog,
+            XButton,
+            CheckIcon,
         },
         data() {
             return {
@@ -425,7 +455,7 @@
                     selGroups: [],       //选中的分组
                     selStudent: [],      //选中的学生
                     selWeek: 0,         //选中的周
-                    selLocation: [],     //选中的地点
+                    selLocations: [],     //选中的地点
                 },
                 count: false,           //是否打开统计页面
                 haveNoCourse: true,     //是否有课
@@ -480,6 +510,11 @@
                     },
                 ],
                 selUserId: 0,
+                selStu:{
+                    showHideOnBlur:false,
+                    allType: false,
+                    students:[],
+                },
             }
         },
         methods: {
@@ -497,12 +532,12 @@
 
                     //设置数据
                     let data = response.data;
-                    this.get.nowWeek = data.nowWeek;     //当前周
-                    this.get.groups = data.groups;      //分组情况
-                    this.get.positions = data.positions;   //职位情况
-                    this.get.grades = data.grades;      //年级情况
-                    this.get.students = data.students;    //学生
-
+                    this.get.nowWeek = data.nowWeek;        //当前周
+                    this.get.groups = data.groups;          //分组情况
+                    this.get.positions = data.positions;    //职位情况
+                    this.get.grades = data.grades;          //年级情况
+                    this.get.students = data.students;      //学生
+                    this.get.locations = data.locations;    //地点
 
                     if (this.get.nowWeek > 20) maxWeek = this.get.nowWeek;   //判断若用户大于20周，则以当前为最大
 
@@ -532,7 +567,7 @@
 
                     this.$vux.loading.hide();
 
-                    console.log(this.courses);
+
                 });
 
                 //初始化颜色板
@@ -573,16 +608,20 @@
 
             //获取当前选择的用户
             getSelStudents() {
+
                 this.set.selStudent = [];
+                this.selStu.students = [];
+
 
                 let all = this.get.students,
                     groups = this.set.selGroups,
                     sexs = this.set.selSexs,
                     positions = this.set.selPositions,
-                    grades = this.set.selGrades;
+                    grades = this.set.selGrades,
+                    locations = this.set.selLocations;
 
                 //当用户没有选择条件是默认为全部人员
-                if (groups.length === 0 && positions.length === 0 && sexs.length === 0 && grades.length === 0) {
+                if (groups.length === 0 && positions.length === 0 && sexs.length === 0 && grades.length === 0 && locations.length === 0) {
                     for (let index in all) {
                         this.set.selStudent.push({
                             id: index,
@@ -590,32 +629,19 @@
                         });
                     }
                 } else {
-                    for (let index in all) {
-//                        if (groups.indexOf(all[index].grouping_id) !== -1 || sexs.indexOf(all[index].sex) !== -1 || grades.indexOf(parseInt(index.substring(2, 4))) !== -1) {  //判断用户是否符合选择的条件
-//                            this.set.selStudent.push({
-//                                id: index,
-//                                name: all[index].name,
-//                            });
-//                        } else {
-//                            let userPositions = all[index].positions;
-//                            for (let position in userPositions) {
-//                                if (positions.indexOf(userPositions[position].id) !== -1) {
-//                                    this.set.selStudent.push({
-//                                        id: index,
-//                                        name: all[index].name,
-//                                    });
-//                                    break;
-//                                }
-//                            }
-//                        }
 
+                    for (let index in all) {
                         if ((!groups.length || groups.indexOf(all[index].grouping_id) !== -1) &&
-                            (!sexs.length || sexs.indexOf(all[index].sex)) !== -1 &&
-                            ( !grades.length || grades.indexOf(parseInt(index.substring(2, 4)))) !== -1) {  //判断用户是否符合选择的条件
+                            (!sexs.length || sexs.indexOf(all[index].sex) !== -1) &&
+                            (!grades.length || grades.indexOf(parseInt(index.substring(2, 4)))!== -1) &&
+                            (!locations.length || locations.indexOf(all[index].location_id) !== -1)) {  //判断用户是否符合选择的条件
 
                             let userPositions = all[index].positions;
                             for (let position in userPositions) {
                                 if (!positions.length || positions.indexOf(userPositions[position].id) !== -1) {
+
+                                    this.selStu.students.push(index);
+
                                     this.set.selStudent.push({
                                         id: index,
                                         name: all[index].name,
@@ -787,6 +813,47 @@
                 this.type2Data.x = i;
                 this.type2Data.y = j;
                 this.type2Data.showHideOnBlur = true;
+            },
+
+            //单击选择人员按钮
+            selStuBut(){
+
+                this.count = false;
+                this.selStu.showHideOnBlur = true;
+            },
+
+            //选择人员
+            selStuFun(){
+
+                this.set.selStudent = [];
+
+                for( let i in this.selStu.students){
+                    this.set.selStudent.push({
+                        id: this.selStu.students[i],
+                        name: this.get.students[this.selStu.students[i]].name,
+                    });
+                }
+
+                this.getCourses();
+            },
+            selAllStu(){
+                console.log(this.selStu.allType);
+
+                this.set.selStudent = [];
+                this.selStu.students = [];
+
+                for( let i in this.get.students){
+                    this.set.selStudent.push({
+                        id: i,
+                        name: this.get.students[i].name,
+                    });
+
+                    if(this.selStu.allType)
+                        this.selStu.students.push(i);
+                }
+
+
+                this.getCourses();
             }
         },
         mounted() {
@@ -956,8 +1023,9 @@
 <style scoped>
     .label-stu {
         width: 100%;
-        margin-top: 40px;
-
+        padding-top: 40px;
+        overflow: scroll;
+        height: 300px;
     }
 
     .label-stu:after {
