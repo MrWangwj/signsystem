@@ -13,6 +13,6 @@ class UseridValidate extends Validate
 {
     protected $rule = [
         ['userid', 'require', '（注意：学号不能为空）'],
-        ['userid', '^\d{11}$', '（注意：请输入正确的学号）'],
+        ['userid', '^\d{1,11}$', '（注意：请输入正确的学号）'],
     ];
 }

@@ -31,7 +31,7 @@ class Count extends Model{
 		->field('a.user_id,c.name, b.group_id')
 		->join('user_group b', 'a.user_id = b.user_id')
 		->join('user c', 'a.user_id = c.user_id')
-		->where('(state=0 AND start_time<='.$nowtime.') OR (start_time<='.$nowtime.' AND over_time>='.$nowtime.')')
+		->where('(state=0 AND start_time<='.$nowtime.' AND start_time>'.($nowtime-21600).') OR (start_time<='.$nowtime.' AND over_time>='.$nowtime.')')
 		->select();
 		$userHS = array();
 		foreach ($haveclass as $key => $value) {

@@ -24,4 +24,12 @@ class User extends Model{
         	->select();
         	return $user;
 	}
+
+	public function getgrade(){
+		    $grade = db('user', [], false)
+        	->field("grade,count('grade') AS sum")
+        	->group('grade')
+        	->select();
+        	return $grade;
+	}
 }

@@ -105,16 +105,27 @@
                         <div class="form-group">
                            <label class="col-sm-2 control-label">性别：</label>
                             <div class="col-sm-9" style="margin-top:3px;">
-                                <input name="user_sex" type="radio" id="sex-1"  value="0">
+                                <input name="user_sex" type="radio" id="sex-1"  value="0" checked="checked">
                                 <label for="sex-1">男</label>
-                                <input name="user_sex" type="radio" id="sex-2"  value="1">
-                                <label for="sex-2">女</label></br>
+                                <input name="user_sex" type="radio" id="sex-2"  value="1" >
+                                <label for="sex-2">女</label>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">班级：</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="inputArea" placeholder="Enter class">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">年级：</label>
+                            <div class="col-sm-10">
+                                <input name="grade" type="radio" id="grade-1"  value="16" checked="checked">
+                                <label for="grade-1">大一</label>
+                                <input name="grade" type="radio" id="grade-2"  value="15">
+                                <label for="grade-2">大二</label>
+                                <input name="grade" type="radio" id="grade-3"  value="14">
+                                <label for="grade-3">大三</label>
                             </div>
                         </div>
                         <div class="form-group">
@@ -162,7 +173,7 @@
 
     function login(){
         var userId = $("#userID").val();
-        $.post("{:url('index/docheck')}",{'userid':userId},function (data) {
+        $.post("{:url('home/index/docheck')}",{'userid':userId},function (data) {
             if(data.code==-1){
                 $("#info_span").css("visibility","visible").html(data.msg);
             }else if(data.code==1){
@@ -170,7 +181,7 @@
                     time:1000
                 }, function(){
                     $("#info_span").css("visibility","hidden");
-                    window.location.href="{:url('homepage/index')}";
+                    window.location.href="{:url('home/homepage/index')}";
                 });
 
             }
@@ -195,6 +206,7 @@
         var note = $("#inputArea").val();
         var phone = $("#phone").val();
         var user_sex = $("input[name ='user_sex']:checked").val();
+        var grade = $("input[name ='grade']:checked").val();
         var myReg = /^[\u4e00-\u9fa5]+$/;
         if(!(myReg.test($("#inputName").val()) && ($("#inputName").val().length<=4))){
 
@@ -208,15 +220,26 @@
         if (!($('#phone').val().length==11)) {
                 layer.msg('请输入正确的手机号');
                     return;
-                }    
-        $.post("{:url('index/doLogin')}",{'userid':userid, 'username':username, 'note':note,'phone':phone ,'user_sex':user_sex},function (data) {
-            if(data.code==-1){
-                    $("#info_span2").show().html(data.msg);
-            }else if(data.code==1){
-                $("#body1").hide();
-                $("#body2").show();
-                $("#input_btn").hide();
+                }   
+
+        $.post(
+            "{:url('index/doLogin')}",
+            {
+                'userid':userid, 
+                'username':username, 
+                'note':note,
+                'phone':phone ,
+                'user_sex':user_sex,
+                'grade': grade,
+            },function (data) {
+                if(data.code==-1){
+                        $("#info_span2").show().html(data.msg);
+                }else if(data.code==1){
+                    $("#body1").hide();
+                    $("#body2").show();
+                    $("#input_btn").hide();
+                }
             }
-        })
+        )
     })
 </script>

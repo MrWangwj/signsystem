@@ -55,6 +55,6 @@ class Login extends Controller
     public function loginOut()
     {
         session('adminid', null);
-        $this->redirect(url('index'));
+        $this->redirect(url('admin/login/index'));
     }
 }

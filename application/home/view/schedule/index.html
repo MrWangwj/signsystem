@@ -5,6 +5,9 @@
 {/block}
 
 {block name="main"}
+		{if condition="$Think.session.userid!=''"}
+			
+		
 		<div class="major">
 			<div class="major-title">
 				<h1>个人课表</h1>
@@ -23,7 +26,7 @@
 				<div class="content-right">
 					<div class="clearfix">
 						<div class="schedule-section">
-							<form action="{:url('Schedule/index')}" method="get" id="test">
+							<form action="{:url('home/schedule/index')}" method="get" id="test">
 							<ul>
 								<li class="arrow"><img src="{$Think.config.parse_str.__IMAGE__}up.png" id="lastWeek"></li>
 								<div>
@@ -62,9 +65,9 @@
 													<span>{$vo2.classroom}</span>
 												</div>
 												{if condition="$vo2.whether_course == 2"}
-													<img src="{$Think.config.parse_str.__IMAGE__}haveclass.png">
+													<img src="{$Think.config.parse_str.__IMAGE__}haveclass.jpg">
 												{else/}
-													<img src="{$Think.config.parse_str.__IMAGE__}noclass.png">
+													<img src="{$Think.config.parse_str.__IMAGE__}noclass.jpg">
 												{/if}				
 											</td>
 										{/volist}						
@@ -76,7 +79,7 @@
 					<div>
 						<button type="button" class="btn btn-danger" data-toggle="modal" data-target=".other">查看他人课表</button>
 						<button type="button" class="btn btn-danger"  data-toggle="modal" data-target=".bs-example-modal-sm">导入</button>
-						<!-- <button type="button" class="btn btn-danger">导出</button> -->
+						
 					</div>
 				</div>
 			</div>
@@ -84,64 +87,7 @@
 
 
 
-	<!-- <div class="text">
-		<div class="text-week clearfix">
-			<form action="{:url('Schedule/index')}" method="get" id="test">
-				<span>当前周：</span>
-				<select class="form-control" id="weeks" name="week">
-					<option value='0'>本周</option>
-					<option value='1'>第1周</option>
-					<option value='2'>第2周</option>
-					<option value='3'>第3周</option>
-					<option value='4'>第4周</option>
-					<option value='5'>第5周</option>
-					<option value='6'>第6周</option>
-					<option value='7'>第7周</option>
-					<option value='8'>第8周</option>
-					<option value='9'>第9周</option>
-					<option value='10'>第10周</option>
-					<option value='11'>第11周</option>
-					<option value='12'>第12周</option>
-					<option value='13'>第13周</option>
-					<option value='14'>第14周</option>
-					<option value='15'>第15周</option>
-					<option value='16'>第16周</option>
-					<option value='17'>第17周</option>
-					<option value='18'>第18周</option>
-					<option value='19'>第19周</option>
-					<option value='20'>第20周</option>
-				</select>				
-			</form>
-			<div>
-
-			</div>
-		</div>
-		<div class="table-responsive curriculum">
-  			<table class="table table-bordered schedule">
-				<tr>
-					<th>星期一</th>
-					<th>星期二</th>
-					<th>星期三</th>
-					<th>星期四</th>
-					<th>星期五</th>
-					<th>星期六</th>
-					<th>星期日</th>
-				</tr>
-				{volist name="data" id="vo"}
-					<tr>
-						{volist name="vo" id="vo2"}
-							<td class='{if condition="$vo2.whether_course == 0"}color0{elseif condition="$vo2.whether_course eq 1"/}color1{/if} course' data-toggle="modal" data-target="#myModal" data-id={$vo2.id}>
-								<div >
-									<span>{$vo2.name}</span>
-									<br/>
-									<span>{$vo2.classroom}</span>
-								</div>								
-							</td>
-						{/volist}						
-					</tr>
-				{/volist}
-  			</table>
-		</div> -->
+	
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   			<div class="modal-dialog">
     			<div class="modal-content">
@@ -240,7 +186,11 @@
     			</div>
   			</div>
 		</div>
-
+		{else /}
+			<div class="major">
+				<button type="button" class="btn btn-danger" data-toggle="modal" data-target=".other">查看他人课表</button>
+			</div>
+		{/if}
 
 		<div class="modal fade other" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
   			<div class="modal-dialog modal-sm">
@@ -284,13 +234,13 @@
 	<!-- </div>  -->
 	<script>
 		$('.top>ul>li:eq(3)').addClass('nav_selected');
+
+		{if condition="$Think.session.userid!=''"}
 		var section = 0;
 		var week = 0;
 		var w = '{$week}';
 		$('.schedule-section ul>div').html(getWeekSelect(parseInt(w)));
 		
-
-
 		$('.main').on('click', '.course',function() {
 			section = $(this).parent().index();
 			week = $(this).index()+1;
@@ -465,58 +415,9 @@
 
 
 
-		$('#name2').on('keyup focus', function(event) {
-			$('#hint2').show();
-			var name = $(this).val();
-			$.get("{:url('Schedule:getUser')}", {
-				name: name,
-			}, function(data) {
-				$('#hint2').html(getHint2(data));
-			});
-		});
-		//待解决问题，提示版隐藏问题
-		// $('#hint2').on('click', function(event) {
-		// 	$('#name2').focus();
-		// 	event.stopPropagation();
-		// });
-		
-		$('#name2').on('click', function(event) {
-			event.stopPropagation();
-		});
 
 
-		$('.other').on('click', function(event) {
-			$('#hint2').hide();
-		});	
-		
 
-		$('#hint2').on('click', 'ul', function(event) {
-			var $id =  $(this).find('li:eq(0)').text();
-			var $name = $(this).find('li span:eq(0)').text();
-			$('#account2').val($id);
-			$('#name2').val($name);
-			$('#name2').blur();
-			$('#hint2').hide();
-			
-		});
-
-
-		$('#seeother').on('click', function(event) {
-			var account = $('#account2').val();
-			$.get(
-	   			"{:url('Schedule/otheruser')}",
-	   			{
-	   				user_id: account,
-	   			},
-	   			function(data){
-	   				if(data.code == 1){
-	   					window.location.href = data.url;
-	   				}else{
-	   					layer.msg(data.msg, {icon: 2});
-	   				}
-	   			}
-			);
-		});
 		$('#lastWeek').on('click', function(){
 			var nowWeek = $('#nowWeek').data('id');
 			$('.schedule-section ul>div').html( getWeekSelect(nowWeek-1));
@@ -558,5 +459,57 @@
 			var html ='<li class=""><span>'+weeks[lastid]+'</span></li><li><label id="nowWeek" data-id="'+nowid+'">'+'<input type="hidden" name="week" value="'+nowid+'">'+weeks[nowid]+'</label></li><li class=""><span>'+weeks[nextid]+'</span></li>';
 			return html;
 		}
+		{/if}
+
+		$('#seeother').on('click', function(event) {
+			var account = $('#account2').val();
+			$.get(
+	   			"{:url('Schedule/otheruser')}",
+	   			{
+	   				user_id: account,
+	   			},
+	   			function(data){
+	   				if(data.code == 1){
+	   					window.location.href = data.url;
+	   				}else{
+	   					layer.msg(data.msg, {icon: 2});
+	   				}
+	   			}
+			);
+		});
+		$('#name2').on('keyup focus', function(event) {
+			$('#hint2').show();
+			var name = $(this).val();
+			$.get("{:url('Schedule:getUser')}", {
+				name: name,
+			}, function(data) {
+				$('#hint2').html(getHint2(data));
+			});
+		});
+		//待解决问题，提示版隐藏问题
+		// $('#hint2').on('click', function(event) {
+		// 	$('#name2').focus();
+		// 	event.stopPropagation();
+		// });
+		
+		$('#name2').on('click', function(event) {
+			event.stopPropagation();
+		});
+
+
+		$('.other').on('click', function(event) {
+			$('#hint2').hide();
+		});	
+		
+
+		$('#hint2').on('click', 'ul', function(event) {
+			var $id =  $(this).find('li:eq(0)').text();
+			var $name = $(this).find('li span:eq(0)').text();
+			$('#account2').val($id);
+			$('#name2').val($name);
+			$('#name2').blur();
+			$('#hint2').hide();
+		});
+
 	</script>
 {/block}

@@ -75,7 +75,7 @@ class User extends Base
 			 Db::startTrans();
 			 try{
 			 	$data = Db::table('check') -> where('id',$_POST['id']) ->find();
-			 	$rlt_1 = Db::table('user') -> insert(['name' => $data['name'],'user_id'=>$data['id'],'class'=>$data['note'],'phone'=>$data['phone'],'sex'=>$data['sex']]);
+			 	$rlt_1 = Db::table('user') -> insert(['name' => $data['name'],'user_id'=>$data['id'],'class'=>$data['note'],'phone'=>$data['phone'],'sex'=>$data['sex'], 'grade'=>$data['grade']]);
 			 	if($rlt_1 === false){
 			 		Db::rollback(); 
 			 		return '添加失败';
@@ -105,7 +105,7 @@ class User extends Base
 			  try{
 			 	$data = Db::table('check') -> where("id in(".$_POST['invalue'].")") ->select();
 			 	foreach ($data as $key => $value) {
-			 		$datas[$key] =['name' => $value['name'],'user_id'=>$value['id'],'class'=>$value['note'],'phone'=>$value['phone'],'sex'=>$value['sex']];
+			 		$datas[$key] =['name' => $value['name'],'user_id'=>$value['id'],'class'=>$value['note'],'phone'=>$value['phone'],'sex'=>$value['sex'], 'grade'=>$value['grade']];
 			 	}
 			 	$rlt_1 = Db::table('user') -> insertAll($datas);
 			 	if($rlt_1 === false){

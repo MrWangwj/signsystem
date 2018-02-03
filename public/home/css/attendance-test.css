@@ -1,5 +1,5 @@
 .backgd{
-	background-image: url(../image/scheducount.png);
+	background-image: url(../image/scheducount.jpg);
 	background-size: 100% 100%;
 }
 .main{
@@ -12,7 +12,7 @@
 }
 .bg-up{
 	background-image: url(../image/attendance-up.png);
-	margin-top: 30px;
+	margin-top: 50px;
 }
 .bg-down{
 	background-image: url(../image/attendance_down.png);
@@ -20,6 +20,7 @@
 .bg-middle{
 	background-image: url(../image/attendance_middle.png);
 	background-size: 100% 100%;
+	padding: 20px;
 }
 .bg-middle table{
 	margin-bottom: 0;

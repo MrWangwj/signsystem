@@ -42,188 +42,128 @@
 </head>
 <body class="gray-bg">
 	<div class="wrapper wrapper-content animated fadeInRight">
-					<div class="page-content">
-					<div class="page-header">
-							<h1>
-								分组管理
-								<small>
-									<i class="icon-double-angle-right"></i>
-									分组信息
-								</small>
-							</h1>
+		<div class="page-content">
+			<div class="page-header">
+					<h1>
+						分组管理
+						<small>
+							<i class="icon-double-angle-right"></i>
+							分组信息
+						</small>
+					</h1>
+			</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<form role="form" method="post" action="javascript:addgroup();" type="float:left;">
+					<label class="inline">添加组别</label>
+					<input type="text" name="keyword" id="group" class="control" value="" class="form-control" required >
+					<button type="submit" class="btn  btn-sm " style="border-radius:5px;margin-bottom:5px;" >添&nbsp;加</button>
+				</form>
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="table-responsive" style="overflow: scroll;">
+								<table id="sample-table-1" class="table table-striped table-bordered table-hover">
+									<thead>
+										<tr>
+											<th class="center">
+												<label>
+
+													<span class="lbl"></span>
+												</label>
+											</th>
+											<th>分组</th>
+											<th>人员</th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody>
+										{foreach name="info" id="vo"}
+											<tr>
+												<td class="center" style="width:50px;">
+													<label>
+														{if condition="$vo.group_id eq 1"}
+														<span class="lbl"></span>
+														{else /}
+														<input type="checkbox" name="chkid" class="ace" value="{$vo.group_id}" />
+														<span class="lbl"></span>
+														{/if}
+														
+													</label>
+												</td>
+												<td style="width:200px;">
+													<a   href="#">{$vo.group_name}</a>
+												</td>
+												<td >
+													{volist name="data" id="vi"}
+														{if $vo.group_id eq $vi.group_id}
+															{$vi.name}&nbsp
+														{/if}
+													{/volist}	
+												</td>
+												<td style="width:120px;margin:auto;height: 42px;display: block;">
+													<div class="visible-md visible-lg hidden-sm  btn-group">
+														<button class="btn btn-xs btn-info updgroup" type="submit"  value="{$vo.group_id}">
+															<i class="icon-edit bigger-120"></i>
+														</button>
+														<button class="btn btn-xs btn-danger deluser" type="submit"  value="{$vo.group_id}">
+															<i class="icon-trash bigger-120"></i>
+														</button>
+														<button class="btn btn-xs btn-info  changeuser" data-toggle="modal" data-target="#myModal" value="{$vo.group_id}">
+															<i class="icon-zoom-in bigger-130"></i>
+														</button>
+													</div>					
+												</td>	
+											</tr>												
+										{/foreach}										
+									</tbody>
+								</table>
+							</div>
 						</div>
-						<div class="row">
-							<div class="col-xs-12">
-							<form role="form" method="post" action="javascript:addgroup();" type="float:left;">
-							 	<label class="inline">添加组别</label>
-							 	<input type="text" name="keyword" id="group" class="control" value="" class="form-control" required >
-							 	<button type="submit" class="btn  btn-sm " style="border-radius:5px;margin-bottom:5px;" >添&nbsp;加</button>
-							</form>
-								<div class="row">
-									<div class="col-xs-12">
-										<div class="table-responsive" style="overflow: initial;">
-											<table id="sample-table-1" class="table table-striped table-bordered table-hover">
-												<thead>
-													<tr>
-														<th class="center">
-															<label>
-																<input type="checkbox" class="ace" />
-																<span class="lbl"></span>
-															</label>
-														</th>
-														<th>分组</th>
-														<th>人员</th>
-														<th></th>
-													</tr>
-												</thead>
-
-												<tbody>
-												{foreach name="info" id="vo"}
-												 
-													<tr>
-														<td class="center" style="width:50px;">
-															<label>
-																<input type="checkbox" name="chkid" class="ace" value="{$vo.group_id}" />
-																<span class="lbl"></span>
-															</label>
-														</td>
-
-														<td style="width:200px;">
-															<a   href="#">{$vo.group_name}</a>
-														</td>
-														
-														<td >
-														{volist name="data" id="vi"}{if $vo.group_id eq $vi.group_id}{$vi.name}&nbsp{/if}{/volist}	
-														</td>
-														
-														<td style="width:150px;margin:auto;">
-															<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
-																<button class="btn btn-xs btn-info updgroup" type="submit"  value="{$vo.group_id}">
-																	<i class="icon-edit bigger-120"></i>
-																</button>
-
-																<button class="btn btn-xs btn-danger deluser" type="submit"  value="{$vo.group_id}">
-																	<i class="icon-trash bigger-120"></i>
-																</button>
-																<button class="btn btn-xs btn-info  changeuser" data-toggle="modal" data-target="#myModal" value="{$vo.group_id}">
-																	<i class="icon-zoom-in bigger-130"></i>
-																</button>
-															</div>
-
-															<div class="visible-xs visible-sm hidden-md hidden-lg">
-																<div class="inline position-relative">
-																	<button class="btn btn-minier btn-primary dropdown-toggle " data-toggle="dropdown">
-																		<i class="icon-cog icon-only bigger-110"></i>
-																	</button>
-
-																	<ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
-																		<li>
-																			<a href="#" class="tooltip-success updgroup" data-rel="tooltip" title="Edit" value="{$vo.group_id}">
-																				<span class="green">
-																					<i class="icon-edit bigger-120"></i>
-																				</span>
-																			</a>
-																		</li>
-
-																		<li>
-																			<a href="#" class="tooltip-error deluser" data-rel="tooltip" title="Delete" value="{$vo.group_id}">
-																				<span class="red">
-																					<i class="icon-trash bigger-120"></i>
-																				</span>
-																			</a>
-																		</li>
-
-																		<li>
-																			<a href="#" class="tooltip-error changeuser"  title="Delete" data-toggle="modal" data-target="#myModal" value="{$vo.group_id}">
-																				<span class="red">
-																					<i class="icon-zoom-in bigger-130"></i>
-																				</span>
-																			</a>
-																		</li>
-																	</ul>
-																</div>
-															</div>															
-														</td>
-														
-													</tr>												
-													{/foreach}										
-												</tbody>
-											</table>
-										</div><!-- /.table-responsive -->
-									</div><!-- /span -->
-								</div><!-- /row -->	
-				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					</div>	
+					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 									&times;
-								</button>
-								<h4 class="modal-title" id="myModalLabel">
-									更改分组
-								</h4>
-							</div>
-							<div class="modal-body">
+									</button>
+									<h4 class="modal-title" id="myModalLabel">
+										更改分组
+									</h4>
+								</div>
+								<div class="modal-body">
 							
+								</div>
+								<div class="modal-footer">
+									<button type="button" style="border-radius:5px;" class="btn " data-dismiss="modal">关闭
+									</button>
+									<button type="button"  style="border-radius:5px;" class="btn " value="" onclick="change()">
+										修改
+									</button>
+								</div>
 							</div>
-							<div class="modal-footer">
-								<button type="button" style="border-radius:5px;" class="btn " data-dismiss="modal">关闭
-								</button>
-								<button type="button"  style="border-radius:5px;" class="btn " value="" onclick="change();">
-									修改
-								</button>
-							</div>
-						</div><!-- /.modal-content -->
-					</div><!-- /.modal -->
-				</div>					
-								<div class="cf" style="folat:right;width:100px;">
-                               		 <input id="submit" class="btn " type="button" style="border-radius:5px;" value="删除"> 	 
-                            	</div>
-								<div class="hr hr-18 dotted hr-double"></div>
-
-
-							</div><!-- /.col -->
-						</div><!-- /.row -->
-					</div><!-- /.page-content -->
-				</div><!-- /.main-content -->
-<!-- basic scripts -->
-				
-		<!--[if !IE]> -->
+						</div>
+					</div>					
+					<div class="cf" style="folat:right;width:100px;">
+                      	<input id="submit" class="btn " type="button" style="border-radius:5px;" value="删除"> 	 
+                    </div>
+					<div class="hr hr-18 dotted hr-double">
+							
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/jquery.min.js"></script>
 
-		<!-- <![endif]-->
 
-		<!--[if IE]>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<![endif]-->
 
-		<!--[if !IE]> -->
-
-		<script type="text/javascript">
-			window.jQuery || document.write("<script src='{$Think.config.parse_str.__PUBLIC__}assets/jsassets/js/jquery-2.0.3.min.js'>"+"<"+"script>");
-		</script>
-
-		<!-- <![endif]-->
-
-		<!--[if IE]>
-<script type="text/javascript">
- window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+"<"+"script>");
-</script>
-<![endif]-->
-
-		<script type="text/javascript">
-			if("ontouchend" in document) document.write("<script src='{$Think.config.parse_str.__PUBLIC__}assets/js/jquery.mobile.custom.min.js'>"+"<"+"script>");
-		</script>
+	
 		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/bootstrap.min.js"></script>
 		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/typeahead-bs2.min.js"></script>
 
-		<!-- page specific plugin scripts -->
 
-		<!--[if lte IE 8]>
-		  <script src="assets/js/excanvas.min.js"></script>
-		<![endif]-->
-		<!-- ace scripts -->
 
 		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/ace-elements.min.js"></script>
 		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/ace.min.js"></script>
@@ -257,6 +197,11 @@ function addgroup(){
 $('.updgroup').on('click',function(){
 	var group_id = $(this).attr("value");
 	var operate_watch;
+    if(group_id == 1){
+        layer.msg("禁止修改该分组");
+        return;
+    }
+
     layer.prompt({
         title:'输入修改后组名:',
         formtype:0,
@@ -288,6 +233,10 @@ $('.updgroup').on('click',function(){
 
 $('.deluser').on('click',function(){
 	var group_id = $(this).attr("value");
+    if(group_id == 1){
+        layer.msg("禁止删除该分组");
+        return;
+    }
 	layer.msg('你确定删除？', {
 		  time: 0 //不自动关闭
 		  ,btn: ['确定', '算了']
@@ -312,6 +261,7 @@ $('.deluser').on('click',function(){
 	});
 });
 $('.changeuser').on('click',function(){
+
 	group_id = $(this).attr("value");
 	$.ajax({
           type: 'POST', 

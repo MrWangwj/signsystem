@@ -1,5 +1,5 @@
 .backgd{
-	background-image: url(../image/scheducount.png);
+	background-image: url(../image/background2.jpg);
 	background-size: 100% 100%;
 
 }
@@ -18,22 +18,43 @@
 	margin-top: 10px;
 	/*border: 1px solid #C23001;*/
 	border:1px solid #28cbfd;
+	margin-right: 5px;
 }
 .setup>div{
 	float: right;
 }
 .seeStatus{
 	float: right;
+	width: 200px;
 }
 .seeStatus>span{
 	float: left;
 }
 .seeStatus>select{
-	float: left;
+	
 	width: 200px;
 	margin-top: 10px;
 	/*border: 1px solid #C23001;*/
 	border:1px solid #28cbfd;
+}
+.setup button{
+    border: 2px solid #34BDC5;
+    background-color: #010204;
+    color: white;
+}
+.setup>button{
+	float: left;
+	margin-top: 10px;
+	margin-right: 5px;
+}
+
+.setup button:hover{
+    color: white;
+}
+.seltButton{
+	color: #fff !important;
+    background-color: #5bc0de !important;
+    border-color: #46b8da !important;
 }
 .term-input{
 	/*height: 120px;*/
@@ -43,7 +64,7 @@
 .term-input li{
 	min-height: 40px;
     /*border: 1px solid red;*/
-    line-height: 40px;
+    /*line-height: 40px;*/
     border-bottom: 1px solid #9F9F9F;
 }
 .term-input>li>div,.term-input>li>label{
@@ -121,7 +142,7 @@
 	text-align: center;
 	cursor: pointer;
 }
-.term-label2 label{
+.term-label label{
 	position: relative;
 	float: left;
 	color: white;
@@ -130,14 +151,14 @@
 	margin-right: 25px;
 
 }
-.term-label2 label span{
+.term-label label span{
 	position: absolute;
 	width: 15px;
 	height: 15px;
 	color: #C23001;
 	background-color: #FFF;
     right: -15px;
-    top: 12px;
+    top: 3px;
     line-height: 15px;
     text-align: center;
     border-radius: 7px;
@@ -146,18 +167,67 @@
 .foucus{
 	border-left: 5px solid #C9C6C1 !important;
 }
-.personnel td{
-	width:14.4%;
-	height: 10px;
-	overflow: hidden;
-    /*white-space: nowrap;*/
-    text-overflow: ellipsis;
-    border:1px solid #28cbfd;
+.personnel table{
+	table-layout:fixed; 
 }
 .personnel td, .personnel th{
     border:1px solid #28cbfd !important; 
+    width:14.4%;
+	height: 10px;
+    border:1px solid #28cbfd;
+    text-overflow : ellipsis; 
+	white-space : nowrap; 
+	overflow : hidden;
+	padding: 10px;
+	cursor: pointer;
+	
+}
+.tdText{
+	width: 500px;
+	height: 300px;
+	background-color: #002325;
+	color: white;
+	border-radius: 10px;
+}
+.tdText>div{ 
+	width: 80%;
+	margin: 0 auto;
+	margin-top: 20px;
+}
+
+.tdhidden{
+	text-overflow:inherit !important; 
+	overflow:visible !important; 
+    white-space: pre-line !important;
+    cursor: pointer !important;
 }
 .personnel{
 	margin-top: 20px;
 	color: #FFF;
+}
+
+.checkbox-inline{
+	height: 30px;
+	color: white;
+	font-weight: 300;
+	margin: 0;
+	margin-left: 10px;
+}
+.modal-body{
+	height: 300px;
+	overflow-y: auto;
+}
+.modal-body>div{
+	width: 100%;
+	/*height: 200px;*/
+	/*border:1px solid blue;*/
+}
+.modal-body>div>button{
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+.selt{
+	color: #fff;
+    background-color: #428bca;
+    border-color: #357ebd;
 }

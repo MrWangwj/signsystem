@@ -13,9 +13,10 @@ use think\Controller;
 class Base extends Controller
 {
     public function _initialize(){
-        if(empty(session('userid'))){
-            $this->redirect(url('index/index'));
-        }else{
+        // if(empty(session('userid'))){
+        //     $this->redirect(url('index/index'));
+        // }else{
+        if(!empty(session('userid'))){
         	$user = db('user', [], false)
         	->field("a.*,c.group_name,d.position_name")
 			->alias("a")

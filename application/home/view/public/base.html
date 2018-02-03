@@ -13,38 +13,24 @@
 </head>
 <body>
 	<div class="backgd">
-<!-- 		<div class="title">
-			<nav>
-				<label class="logo"> 
-					
-				</label>
-				<div class="right-menu">
-					<ul class="menu">
-						<a href="{:url('Homepage/index')}"><li>首页</li></a>
-						<a href="{:url('Schedule/count')}"><li>课表统计</li></a>
-						<a href="{:url('Schedule/index')}"><li>查看课表</li></a>
-						<a href="{:url('attendance/test')}"><li>本周考勤统计</li></a>
-						
-					</ul>
-					<div class="exit">
-						
-						<a href="{:url('admin/index/index')}">管理</a>
-						<a href="{:url('Index/exitlogin')}">退出</a>
-					</div>					
-				</div>
-			</nav>
-		</div> -->
+
 		<header>
 			<nav class="top">
 				<a class="logo" href=""><img src="{$Think.config.parse_str.__IMAGE__}logo.png" alt=""></a>
 				<ul>
 
-					<li class="nav_options_bottom exit_font"><a href="{:url('Index/exitlogin')}"><i>退出</i></a></li>
-					<li class="nav_options_top management_font"><a href="{:url('admin/index/index')}"><i>管理</i></a></li>
-					<li class="nav_options_bottom"><a href="{:url('attendance/test')}"><i>本周考勤统计</i></a></li>
-					<li class="nav_options_top"><a href="{:url('Schedule/index')}"><i>查看课表</i></a></li>
-					<li class="nav_options_bottom"><a href="{:url('Schedule/count')}"><i>课表统计</i></a></li>
-					<li class="nav_options_top"><a href="{:url('Homepage/index')}"><i>首页</i></a></li>
+					<li class="nav_options_bottom exit_font">
+					{if condition="$Think.session.userid!=''"}
+							<a href="" id="exit"><i>退出</i></a>
+						{else /}
+							<a href="{:url('home/index/index')}"><i>登陆</i></a>
+					{/if}
+					</li>
+					<li class="nav_options_top management_font"><a href="{:url('admin/login/index')}"><i>管理</i></a></li>
+					<li class="nav_options_bottom"><a href="{:url('home/attendance/test')}"><i>本周考勤统计</i></a></li>
+					<li class="nav_options_top"><a href="{:url('home/schedule/index')}"><i>查看课表</i></a></li>
+					<li class="nav_options_bottom"><a href="{:url('home/schedule/count')}"><i>课表统计</i></a></li>
+					<li class="nav_options_top"><a href="{:url('home/homepage/index')}"><i>首页</i></a></li>
 
 				</ul>
 			</nav>
@@ -58,5 +44,18 @@
 		</footer>
 	</div>
 	{block name="js"}{/block}
+	<script type="text/javascript">
+		$('#exit').on('click', function(){
+			$.post(
+				"{:url('Index/exitlogin')}",
+				{},
+				function(data){
+					if(data.code == 1){
+						window.location.reload();
+					}
+				}
+			);
+		});
+	</script>
 </body>
 </html>

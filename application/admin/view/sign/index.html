@@ -66,6 +66,17 @@
 <script type="text/javascript" src="{$Think.config.parse_str.__JS__}plugins/zTree/jquery.ztree.core-3.5.js"></script>
 <script type="text/javascript" src="{$Think.config.parse_str.__JS__}plugins/zTree/jquery.ztree.excheck-3.5.js"></script>
 <script type="text/javascript" src="{$Think.config.parse_str.__JS__}plugins/zTree/jquery.ztree.exedit-3.5.js"></script>
+
+<script>
+var parentEls = $("b").parents()
+            .map(function () { 
+                  return this.tagName; 
+                })
+            .get().join(", ");
+$("b").append("<strong>" + parentEls + "</strong>");
+</script>
+
+
 <script>
     var table = $('#table');
 
@@ -88,10 +99,11 @@
             onLoadSuccess: function(){  //加载成功时执行
 //                layer.msg("加载成功", {time : 1000});
                 $(".up").click(function () {
-                    var id =  $(this).parents().find('td').eq(0).html();
-                    var userid = $(this).parents().find('td').eq(2).html();
-                    var starTime = $(this).parents().find('td').eq(3).html();
-                    var overTime = $(this).parents().find('td').eq(4).html();
+                    var datas = $(this).parent().parent().find('td');
+                    var id =  datas.eq(0).html();
+                    var userid = datas.eq(2).html();
+                    var starTime = datas.eq(3).html();
+                    var overTime = datas.eq(4).html();
                     $.post("{:url('admin/sign/check_sign')}",{"id":id,"userid":userid,"starTime":starTime,"overTime":overTime},function (data) {
 
                         if(data.code==1){

@@ -1,5 +1,5 @@
 .backgd{
-	background-image: url(../image/scheducount.png);
+	background-image: url(../image/background2.jpg);
 	background-size: 100% 100%;
 
 }
@@ -26,10 +26,11 @@
 .content-left{
 	width: 20%;
 	float: left;
+	margin-top: 140px;
 }
 .content-left p{
 	display: block;
-	width: 70px;
+	width: 90px;
 	height: 0;
 	border:3px solid #28CAFB;
 	border-radius: 3px;
@@ -37,30 +38,36 @@
 	margin-bottom: 10px;
 }
 .content-left label{
-	display: block;
-	width: 50px;
-	height: 50px;
-	line-height: 45px;
-	text-align: center;
-	border:3px solid #28CAFB;
-	border-radius: 25px;
-	margin: 0 auto;
-	color: #28CAFB;
-	font-size: 10px;
+    display: block;
+    width: 70px;
+    height: 70px;
+    line-height: 60px;
+    text-align: center;
+    border: 5px solid #28CAFB;
+    border-radius: 35px;
+    margin: 0 auto;
+    color: #28CAFB;
+    font-size: 18px;
+    margin-bottom: 30px;
 }
 .content-left ul li{
-	padding-left: 50px;
-	height: 30px;
-	line-height: 30px;
-	background-repeat: no-repeat;
-	background-position: left;
-	background-size: 35px 20px;
+    padding-left: 50px;
+    height: 40px;
+    line-height: 40px;
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: 45px 30px;
+    width: 100px;
+    text-align: right;
+    margin: 0 auto;
+    font-size: 20px;
+    margin-top: 10px;
 }
 .content-left ul li:first-child{
-	background-image: url(../image/haveclass.png);
+	background-image: url(../image/haveclass.jpg);
 }
 .content-left ul li:last-child{
-	background-image: url(../image/noclass.png);
+	background-image: url(../image/noclass.jpg);
 }
 .content-right{
 	width: 80%;
@@ -85,7 +92,7 @@
 .schedule-section{
 	width: 15%;
 	height: 100%;
-	float: left;
+	float: right;
 }
 .schedule-section ul{
 	width: 90%;
@@ -116,6 +123,7 @@
 	margin-top: 20px;
 	width: 82%;
 	float: left;
+	margin-left: 2%;
 }
 .schedule td{
 	color: white;
@@ -185,3 +193,15 @@
 #hint2 li span:last-child{
 	float: right;
 }
+
+.major>button{
+	float: right;
+	border: 2px solid #34BDC5;
+    background-color: #010204;
+}
+.major>button:hover{
+	float: right;
+	border: 2px solid #34BDC5;
+    background-color: #010204;
+}
+

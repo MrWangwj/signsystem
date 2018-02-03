@@ -22,6 +22,8 @@ class Homepage extends Base
     }
     //签到
     public function sign(){
+        if(empty(session('userid'))) 
+            return ['code' => -1,'msg'=>'请登陆后在进行操作！'];
         $prohibittime1 = strtotime(date('Y-m-d',time())." 07:00:00");
         $prohibittime2 = strtotime(date('Y-m-d',time())." 23:00:00");
         if(time()<$prohibittime1 || time()>=$prohibittime2){
@@ -54,6 +56,8 @@ class Homepage extends Base
     }
 
     public function signoff(){
+        if(empty(session('userid'))) 
+            return ['code' => -1,'msg'=>'请登陆后在进行操作！'];
         $userid = session('userid');
         //某人没有签退的记录数
         $count = db('sign')
@@ -100,6 +104,8 @@ class Homepage extends Base
 
 
     public function reSign(){
+        if(empty(session('userid'))) 
+            return ['code' => -1,'msg'=>'请登陆后在进行操作！'];
         $userid = session('userid');
         $count = db('sign')
             ->where('user_id',$userid)

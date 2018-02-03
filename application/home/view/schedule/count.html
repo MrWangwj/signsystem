@@ -4,9 +4,10 @@
 {/block}
 {block name="main"}
 <div>
-	<form action="{:url('Schedule/count')}" method="post" id="test">
+	<form action="{:url('home/schedule/count')}" method="post" id="test">
 		<div class="setup clearfix">
-			<span>当前周：</span>
+			<button type="button" class="btn" id="lastweek">上一周</button>
+			
 			<select class="form-control" name="week" id="weeks">
 				<option value='0'>本周</option>
 				<option value='1'>第1周</option>
@@ -30,69 +31,80 @@
 				<option value='19'>第19周</option>
 				<option value='20'>第20周</option>
 			</select>	
+			<button type="button" class="btn" id="nextweek">下一周</button>
 			<div class="seeStatus">
 				<span>
 					查看：
 				</span>
-				<select class="form-control" name="status" id="seestatus">
-					<option value='1'>有课人员表</option>
-					<option value='2'>无课人员表</option>
-				</select>
+				<div>	
+					<button type="button" class="btn seltButton" id="haveClass">有课表</button>
+					<button type="button" class="btn " id="noClass">无课表</button>
+					<input type="hidden" name="status" value="1" id="whetherClass">
+
+				</div>
 			</div>			
 		</div>	
 		<ul class="term-input">
 			<li class="clearfix">
 				<label>选择组别:</label>
 				<div id="term-group">
-					<span data-id="0">全部</span>
 					{volist name="group" id="vo"}
-						<span data-id="{$vo.group_id}">{$vo.group_name}</span>
+						<label class="checkbox-inline">
+							<input type="checkbox"  value="{$vo.group_id}"> {$vo.group_name}
+						</label>
 					{/volist}
 				</div>
 			</li>
 			<li  class="clearfix">
-				<label>职务筛选:</label>
 				<div id="term-post">
-					<span data-id='0'>全部</span>
-					<span data-id='1'>成员</span>
-					<span data-id='2'>组长</span>
-					<span data-id='3'>事物负责人</span>
+					<span>
+						<label class="checkbox-inline ">
+							<input type="checkbox"  value="1"> 成员
+						</label>
+						<label class="checkbox-inline">
+							<input type="checkbox"  value="2"> 组长
+						</label>
+						<label class="checkbox-inline">
+							<input type="checkbox"  value="3"> 事务负责人
+						</label>
+					</span>
+
+					<span>
+						<label class="checkbox-inline">
+							<input type="checkbox"  value="0">男
+						</label>
+						<label class="checkbox-inline">
+							<input type="checkbox"  value="1">女
+						</label>
+					</span>
+
+					<span>
+						{volist name="grade" id="vo"}
+							<label class="checkbox-inline">
+								<input type="checkbox"  value="{$vo.grade}">{$vo.grade}级
+							</label>
+						{/volist}
+					</span>
 				</div>
+				<label>条件筛选:</label>
 			</li>
 			<li>
 				<label>选择人员:</label>
 				<div>
-					<select class="form-control" id="term-personnel">
-						<!-- <option value="0">全部</option> -->
-		  				
-					</select>
+					<button style="background-color:#5bc0de;" type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">选择人员</button>
 				</div>
 			</li>
 		</ul>
 
 		<div class="term">
 			<div class="term-result clearfix">
-				<label for="">筛选条件：</label>
+				<label>筛选条件：</label>
 				<div class="term-label">
-					<ul>
-						{volist name="term" id="vo" key="i" empty="$empty"}
-							<li class='term-label2 {if condition="$i ==$Think.post.foucus"}foucus{/if}'>
-								{volist name="vo" id="vo2" key="j"}
-									<label>
-										<input type='hidden' name='term[{$i-1}][{$j-1}][0]' value='{$vo2[0]}'>
-										<input type='hidden' name='term[{$i-1}][{$j-1}][1]' value='{$vo2[1]}'>
-										<input type='hidden' name='term[{$i-1}][{$j-1}][2]' value='{$vo2[2]}'>
-										{$vo2[2]}
-										<span class='term-close'>X</span>
-									</label>						
-								{/volist}
-							</li>
-						{/volist}						
-					</ul>
+					
 				</div>
-				<input type="hidden" name="foucus" value="{$Think.post.foucus|default=1}" id="term-foucus">
+					
 				<div class="term-but">
-					<span id="addterm">+</span>
+					
 				</div>
 			</div>
 		</div>
@@ -100,148 +112,288 @@
 	</form>
 
 	<div class="table-responsive personnel">
- 			<table class="table table-bordered">
-				<tr>
-					<th>星期一</th>
-					<th>星期二</th>
-					<th>星期三</th>
-					<th>星期四</th>
-					<th>星期五</th>
-					<th>星期六</th>
-					<th>星期日</th>
-				</tr>
-				{volist name="data" id="vo"}
-					<tr>
-						{volist name="vo" id="vo2"}
-							<td >
-								{volist name="vo2" id="vo3"}	
-									<span>{$vo3.name},</span>
-								{/volist}							
-							</td>
-						{/volist}						
-					</tr>
-				{/volist}
- 			</table>
+		<table class="table table-bordered">
+
+		</table>
 	</div>
 </div>
+
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  			<div class="modal-dialog">
+    			<div class="modal-content">
+      				<div class="modal-header">
+        				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        				<h4 class="modal-title" id="myModalLabel">选择人员</h4>
+      				</div>
+      				<div class="modal-body">
+        				<h4>组长</h4>
+        				<hr>
+        				<div>
+        					{volist name="users" id="vo"}
+	        					{if condition="$vo.position == 2"} 
+									<button type="button" class="btn" value="{$vo.user_id}" data-post="{$vo.position}" data-group="{$vo.group_id}" data-grade="{$vo.grade}" data-sex="{$vo.sex}">{$vo.name}</button>
+								{/if}								
+							{/volist}
+        				</div>
+        				<h4>事务负责人</h4>
+        				<hr>
+        				<div>
+        					{volist name="users" id="vo"}
+	        					{if condition="$vo.position == 3"} 
+									<button type="button" class="btn" value="{$vo.user_id}" data-post="{$vo.position}" data-group="{$vo.group_id}" data-grade="{$vo.grade}" data-sex="{$vo.sex}">{$vo.name}</button>
+								{/if}								
+							{/volist}        				
+						</div>
+        				<h4>成员</h4>
+        				<hr>
+        				<div>
+        					{volist name="users" id="vo"}
+	        					{if condition="$vo.position == 1"} 
+									<button type="button" class="btn" value="{$vo.user_id}" data-post="{$vo.position}" data-group="{$vo.group_id}" data-grade="{$vo.grade}" data-sex="{$vo.sex}">{$vo.name}</button>
+								{/if}								
+							{/volist}         				
+						</div>
+      				</div>
+
+      				<div class="modal-footer">
+        				<button type="button" class="btn btn-primary" id="save" >选择</button>
+        				<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+      				</div>
+    			</div>
+  			</div>
+		</div>
 <script>
 	$('.top>ul>li:eq(4)').addClass('nav_selected');
-	$('#seestatus').find("option[value={$Think.post.status|default=1}]").attr("selected",true);
-	$('#weeks').find("option[value={$Think.post.week|default=0}]").attr("selected",true);
+	
+	
 	$('#weeks').on('change', function(event) {
-		$('#test').submit();
-	});
-	$('#seestatus').on('change', function(event) {
-		$('#test').submit();
+		getUser();
 	});
 
+	$('#haveClass').on('click', function(){
+		$('#whetherClass').val('1');
+		// console.log($('#whetherClass').val());
+		$('.seltButton').removeClass("seltButton");
+		$(this).addClass("seltButton");
+		getUser();
+	});
+
+	$('#noClass').on('click', function(){
+		$('#whetherClass').val('2');
+		// console.log($('#whetherClass').val());
+		$('.seltButton').removeClass("seltButton");
+		$(this).addClass("seltButton");
+		getUser();
+	});
+
+	$('#term-group').on('change', 'input', function(event) {
+		// var groupid = $(this).val();
+		// var selt = false;
+	 //    if($(this).is(':checked')) selt = true;
+
+	 //    $('.modal-body').find('button').each(function(index, element){
+	 //    	if($(this).data('group') == groupid){
+	 //    		if(selt){
+		// 			$(this).addClass('selt');
+	 //    		}else{
+	 //    			if($(this).hasClass('selt')) $(this).removeClass('selt');	
+	 //    		}
+	 //    	}
+	 //    });
+	    getUserId();
+	    getUser();
+	});
 
 
-	$('.term-label').on('click', '.term-label2', function(event) {
-		if(!$(this).hasClass('foucus')){
-			$('.term-label2').each(function(index, el) {
-				if($(this).hasClass('foucus')){
-					$(this).removeClass('foucus');
-				}
-			});
-			$(this).addClass('foucus');
-			$('#term-foucus').val($(this).index()+1);
-			getUser();	
+	$('#term-post').on('change', 'input', function(event) {
+		// var postid = $(this).val();
+		// var selt = false;
+	 //    if($(this).is(':checked')) selt = true;
+
+	 //    $('.modal-body').find('button').each(function(index, element){
+	 //    	if($(this).data('post') == postid || $(this).data('grade') == postid){
+	 //    		if(selt){
+		// 			$(this).addClass('selt');
+	 //    		}else{
+	 //    			if($(this).hasClass('selt')) $(this).removeClass('selt');	
+	 //    		}
+	 //    	}
+	 //    });
+	    getUserId();
+	    getUser();
+	});   
+
+	$('.modal-body').on('click', 'button', function(event){
+		if($(this).hasClass('selt')){
+			$(this).removeClass('selt');	
+		}else{
+			$(this).addClass('selt');
 		}
 	});
 
-	/**
-	 * 去除条件
-	 * @param  {[type]} event) {		$(this).parent().remove();	} [description]
-	 * @return {[type]}        [description]
-	 */
-	$('.term-label').on('click', '.term-close', function(event) {
+	$('#save').on('click', function(event){
+		getUser();
+		$('#myModal').modal('hide');
+		getUsers();
+	});
+
+	$('.personnel').on('click', '.user', function(){
+		layer.open({
+					type: 1,
+		  	title: false,
+		  	closeBtn: 0,
+		  	shadeClose: true,
+		  	skin: 'tdText',
+		  	content:$(this).text(),
+		});
+	});	$('.personnel').on('change', 'input', function(){
+		if($(this).is(':checked')){
+			$('.personnel').find('td').each(function(){
+				$(this).removeClass('tdhidden');
+			});
+		}
+		else {
+			$('.personnel').find('td').each(function(){
+				$(this).addClass('tdhidden');
+			});
+		}
+	});
+	$('.term-label').on('click', 'span', function(event) {
+		var userid = $(this).parent().find('input').val();
+		$('.selt').each(function(index, element){
+			if(userid == $(this).val())
+				$(this).removeClass('selt');
+		});
 		$(this).parent().remove();
-		$('#test').submit();
+		getUser();
 	});
 
-	$('#addterm').on('click', function(event) {
-		var a =$('.term-label2:last-child').find("label");
-		if(a.length != 0 ){
-			$('.term-label2').each(function(index, el) {
-				if($(this).hasClass('foucus')){
-					$(this).removeClass('foucus');
+	$('#lastweek').on('click',function(){
+			$('#weeks').find("option").each(function(index, element){
+				if($(this).attr("selected") == "selected"){
+					if(index > 1){
+						selWeek(index-1);
+						getUser();
+						return false;
+					}
 				}
-			});
-			$('.term-label>ul').append("<li class='term-label2 foucus'></li>");
-			$('#term-foucus').val($('.foucus').index()+1);	
-			getUser();		
-		}
-
+			});		
 	});
-
-	$('#term-group').on('click', 'span', function(event) {
-		var text = $(this).text();
-		var val = $(this).data('id');
-		clearTerm("group_id");
-		if(val != 0)
-			$('.foucus').append(getLabel(text, val, "group_id"));
-			
-		$('#test').submit();
+	$('#nextweek').on('click',function(){
+		var weeks = $('#weeks').find("option");
+			weeks.each(function(index, element){
+				if($(this).attr("selected") == "selected"){
+					if(index < weeks.length-1){
+						selWeek(index+1);
+						getUser();
+						return false;
+					}
+				}
+			});		
 	});
-	$('#term-post').on('click', 'span', function(event) {
-		var text = $(this).text();
-		var val = $(this).data('id');
-		clearTerm("position");		
-		if(val != 0)
-			$('.foucus').append(getLabel(text, val, "position"));
-		$('#test').submit();
-	});
+	getUser();
+
+	function getUser(){
+
+		var term = $('.term-label');
+		var html = "";
+
+		$('.selt').each(function(index, element){
+			html += "<label><input type='hidden' name='term[]' value='"+$(this).val()+"'>"+$(this).text()+"<span class='term-close'>X</span></label>";
+		});
+		term.html(html);
 
 
-	$('#term-personnel').on('change', function(event) {
-		var text = $(this).find('option:selected').text();
-		var val = $(this).val()
-		if(val != 0){
-			clearTerm("user_id");
-			$('.foucus').append(getLabel(text, val, "user_id"));
-			$('#test').submit();
-		}
-	});
+		var $terms = [];
+		$('.selt').each(function(index, element){
+			$terms[index] = $(this).val();  
+		});
 
-    function getLabel(text, val, clum){
-   		var labindex = $('.foucus').find('label:last-child').index();
-		var foucusindex = $('.foucus').index();
-		
-		var datatext = "<input type='hidden' name='term["+foucusindex+"]["+(labindex+1)+"][0]' value='"+clum+"'><input type='hidden' name='term["+foucusindex+"]["+(labindex+1)+"][1]' value='"+val+"'><input type='hidden' name='term["+foucusindex+"]["+(labindex+1)+"][2]' value='"+text+"'>";
-		var htmltext = "<label>"+datatext+text+"<span class='term-close'>X</span></label>";
-		return htmltext;
-    }
-    function clearTerm(label){
-		 $('.foucus>label').each(function(index, el) {
-			if($(this).find('input:eq(0)').val() == label){
-				$(this).remove();
+		var week = $('#weeks').val();
+		var whetherClass = $('#whetherClass').val();
+
+		$.post(
+			"{:url('Schedule/getCount')}",
+			{	
+				week: week,
+				term: $terms,
+				status: whetherClass,
+			},
+			function(data){
+				
+				selWeek(data.week);
+				var inputsel = "";
+				// var inputsel = "checked='checked'";
+				var hidd = "tdhidden";
+				var hidden = $('.personnel').find('input');
+				if(hidden.length > 0) 
+					if(!hidden.is(':checked')){
+						inputsel = "";
+						hidd = "tdhidden";
+					}
+				htmltext = "<tr><th><label class='checkbox-inline'><input type='checkbox'  value='0' "+inputsel+"> 是否隐藏</label></th><th>星期一</th><th>星期二</th><th>星期三</th><th>星期四</th><th>星期五</th><th>星期六</th><th>星期日</th></tr>";
+				for (var i = 0; i < data.user.length; i++) {
+					htmltext += "<tr>";
+					htmltext += ("<td>第"+(i+1)+"节</td>");
+					for (var j = 0; j < data.user[i].length; j++) {
+						htmltext += "<td class='user "+hidd+"'>";
+						for (var k = 0; k < data.user[i][j].length; k++) {
+							htmltext += (data.user[i][j][k].name+",");
+						}	
+						htmltext += "</td>";
+					}		
+					htmltext += "</tr>";
+				}
+				$('.personnel').find('table').html(htmltext);
+			}
+		);
+	}
+
+	function selWeek(week){
+		$('#weeks').find("option").each(function(){
+			if($(this).val() != week){
+				$(this).attr("selected",false);
+			}else{
+				$(this).attr("selected",true);
 			}
 		});
 	}
-	getUser();
-	function getUser(){
-		var term = {};
-		$('.foucus>label').each(function(index, el) {
-			var val = $(this).find('input:eq(1)').val();
-			if($(this).find('input:eq(0)').val() == 'position'){
-				term.position = val; 
-			}else if($(this).find('input:eq(0)').val() == 'group_id'){
-				term.group_id = val;
-			}else if($(this).find('input:eq(0)').val() == 'user_id'){
-				term.user_id = val;
-			}
-		});
 
-		$.get("{:url('schedule/getTermUser')}",term,function (data) {
-			var html = "<option value='0'>全部</option>";
-			if(data.length ==1 ) html = "";
-			for (var i = 0; i < data.length; i++) {
-				html += "<option value='"+data[i].user_id+"'>"+data[i].name+"</option>";
-			}
-			$('#term-personnel').html(html);
-        });
-  		
+	function getUserId(){
+		var $grade = [];
+		var $termval = [];
+		var $label = ['post', 'sex', 'grade'];
+		$('#term-group').find('input:checked').each(function(index, element){
+			$grade[index] = $(this).val();
+		});
+		$('#term-post').find('span').each(function(index1, element1){
+            $termval[index1] = [];
+		    $(this).find('input:checked').each(function (index2, element2) {
+                $termval[index1][index2] = $(this).val();
+            });
+		});
+		$('.modal-body').find('button').each(function(index, element){
+			if ($(this).hasClass("selt")) $(this).removeClass('selt');
+	    	for (var i = 0; i < $grade.length; i++) {
+	    		if($grade[i] == $(this).data('group')){
+	    			$(this).addClass('selt');
+	    			break;
+	    		}
+	    	}
+	    	if(!$(this).hasClass("selt")){
+
+	    		for (var i = 0; i < $termval.length; i++) {
+					for(var j = 0; j < $termval[i].length; j++){
+					    console.log("数组："+$termval[i][j]+"数组："+$(this).data($label[i]));
+                        console.log($termval.length);
+					    if($termval[i][j] == $(this).data($label[i])){
+                            $(this).addClass('selt');
+                            break;
+						}
+					}
+	    		}
+	    	}
+	    });
 	}
 </script>
 {/block}

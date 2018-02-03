@@ -2,10 +2,11 @@
 namespace app\index\controller;
 
 use think\Controller;
+use think\Url;
 
 class Index extends Controller{
     public function index(){
-        $this->redirect('/SignSystem2/public/index.php/home/index/index');  
+		$this->redirect(Url::build('home/homepage/index'));
     }
 
 }

@@ -155,78 +155,72 @@ class Attendance extends Base
 
     public function getThisTime(){
         $where =[];
-        $groupid = input('post.group');
-        // $groupid = -1;
-        
-        if($groupid != -1){
-            $where['groups.group_id']= ['EQ', $groupid]; 
-        }
+        $week = count(getNowWeek());
+        input('post.group') && $where['groups.group_id']= ['EQ', input('post.group')]; 
+        input('post.week') && $week = input('post.week');   
 
-        $number_wk=date("w",time())-1;
-        if($number_wk==-1){
-            $number_wk=6;
-        }
-        $number_wOk = 7-$number_wk;
-        $weekStart = strtotime(date('Y-m-d',strtotime("-$number_wk day")));//周一日期时间戳
-        $weekOver = strtotime(date('Y-m-d',strtotime("+$number_wOk day")));//下周一日期时间戳
+        
+        $weekStart = strtotime(getWeekDate($week)[0]." 00:00:00");//周一日期时间戳
+        $weekOver = strtotime(getWeekDate($week)[6]." 23:59:59");//下周一日期时间戳
 
         $where['sign.start_time'] = ['EGT', $weekStart];
         $where['sign.over_time'] = ['LT', $weekOver];
+        $where['sign.state'] = ['NEQ', 0];
 
+        // $list = db('user', [], false)
+        //         ->field('user.user_id,user.name,sign.start_time,sign.over_time,groups.group_name,SUM(sign.over_time-sign.start_time)AS times')
+        //         ->join('sign', 'user.user_id=sign.user_id', 'LEFT')
+        //         ->join('user_group', 'user.user_id=user_group.user_id', 'LEFT')
+        //         ->join('groups', 'user_group.group_id = groups.group_id', 'LEFT')
+        //         ->where($where)
+        //         ->group('user.user_id')
+        //         // ->having('SUM(sign.over_time-sign.start_time)')
+        //         ->order('times desc')
+        //         ->select();
 
-        // $list = Db::query(
-        //     "SELECT user.`user_id`,user.`name`,sign.`start_time`,sign.`over_time`,groups.`group_name`,SUM(sign.`over_time`-sign.`start_time`)AS times 
-        //     FROM user 
-        //     LEFT JOIN sign ON(user.`user_id`=sign.`user_id`) 
-        //     LEFT JOIN user_group ON(user.`user_id`=user_group.`user_id`) 
-        //     LEFT JOIN groups ON(user_group.`group_id` = groups.`group_id`) 
-        //     WHERE sign.`start_time`>=$weekStart and sign.`over_time`<$weekOver 
-        //     GROUP BY user.`user_id` HAVING SUM(sign.`over_time`-sign.`start_time`) 
-        //     ORDER BY times DESC");
-
-        $list = db('user', [], false)
+            $list = db('sign',[], false)
                 ->field('user.user_id,user.name,sign.start_time,sign.over_time,groups.group_name,SUM(sign.over_time-sign.start_time)AS times')
-                ->join('sign', 'user.user_id=sign.user_id', 'LEFT')
-                ->join('user_group', 'user.user_id=user_group.user_id', 'LEFT')
-                ->join('groups', 'user_group.group_id = groups.group_id', 'LEFT')
+                ->join('user', 'sign.user_id=user.user_id')
+                ->join('user_group', 'user.user_id=user_group.user_id')
+                ->join('groups', 'user_group.group_id = groups.group_id')
                 ->where($where)
                 ->group('user.user_id')
-                ->having('SUM(sign.over_time-sign.start_time)')
+                // ->having('SUM(sign.over_time-sign.start_time)')
                 ->order('times desc')
                 ->select();
         return $list;
     }
     public function getNo(){
-        $where =[];
-        $groupid = input('post.group');
-        // $groupid = -1;
-        
-        if($groupid != -1){
-            $where['groups.group_id']= ['EQ', $groupid];
-        }
+        $list = $this->getThisTime();
+        $where=[];
+        input('post.group') && $where['groups.group_id']= ['EQ', input('post.group')];
 
-        $j=0;
-        $listNull = null;
-        $list = db('user', [], false)
-                ->field('user.user_id,user.name,sign.start_time,sign.over_time,groups.group_name')
-                ->join('sign', 'user.user_id=sign.user_id', 'LEFT')
-                ->join('user_group', 'user.user_id=user_group.user_id', 'LEFT')
-                ->join('groups', 'user_group.group_id = groups.group_id', 'LEFT')
+        $list2 = db('user', [], false)
+                ->field('user.user_id,user.name,groups.group_name')
+                ->join('user_group', 'user.user_id=user_group.user_id', 'INNER')
+                ->join('groups', 'user_group.group_id = groups.group_id', 'INNER')
                 ->where($where)
-                ->group('user.user_id')
-                ->order('user.user_id')
+                ->order('groups.group_name')
                 ->select();
+        $listNull = [];
+        $j = 0;
 
-        for ($i=0;$i<count($list);$i++){
-            if(empty($list[$i]['start_time'])){
-                $listNull[$j]['user_id']=$list[$i]['user_id'];
-                $listNull[$j]['name']=$list[$i]['name'];
-                $listNull[$j]['group_name']=$list[$i]['group_name'];
-                $listNull[$j]['time'] = "--";
-                $j++;
+        foreach ($list2 as $key => $value) {
+            $status = false;
+            foreach ($list as $key2 => $value2) {
+
+                if($value2['user_id'] == $value['user_id']){
+                    $status = true;
+                    break;
+                }
+
+            }
+
+            if(!$status) {
+                $listNull[$j] = $value; 
+                $j++;  
             }
         }
-//        return $listNull;
         return json(['list' => $listNull, 'count' => count($listNull)]);
     }
 }

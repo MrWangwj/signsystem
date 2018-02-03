@@ -23,7 +23,7 @@
 				<div class="content-right">
 					<div class="clearfix">
 						<div class="schedule-section">
-							<form action="{:url('Schedule/other','','')}/{$otheruser.user_id}" method="get" id="test">
+							<form action="{:url('home/schedule/other',['otheruser' => $otheruser.user_id])}" method="get" id="test">
 							<ul>
 								<li class="arrow"><img src="{$Think.config.parse_str.__IMAGE__}up.png" id="lastWeek"></li>
 								<div>
@@ -62,9 +62,9 @@
 													<span>{$vo2.classroom}</span>
 												</div>
 												{if condition="$vo2.whether_course == 2"}
-													<img src="{$Think.config.parse_str.__IMAGE__}haveclass.png">
+													<img src="{$Think.config.parse_str.__IMAGE__}haveclass.jpg">
 												{else/}
-													<img src="{$Think.config.parse_str.__IMAGE__}noclass.png">
+													<img src="{$Think.config.parse_str.__IMAGE__}noclass.jpg">
 												{/if}				
 											</td>
 										{/volist}						
@@ -74,101 +74,16 @@
 						</div>						
 					</div>
 					<div>
-						<button type="button" class="btn btn-success" id="input">导入他的课表</button>
+						{if condition="$Think.session.userid!=''"}
+							<button type="button" class="btn btn-success" id="input">导入他的课表</button>
+						{/if}
 						<button type="button" data-toggle="modal" data-target="#myinfo" class="btn btn-danger" >他的信息</button>
-						<!-- <button type="button" class="btn btn-danger">导出</button> -->
 					</div>
 				</div>
 			</div>
 		
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	<!-- <div class="text">
-		<div class="text-week clearfix">
-			<form action="{:url('Schedule/other','','')}/{$otheruser.user_id}" method="get" id="test">
-				<span>当前周：</span>
-				<select class="form-control" id="weeks" name="week">
-					<option value='0'>本周</option>
-					<option value='1'>第1周</option>
-					<option value='2'>第2周</option>
-					<option value='3'>第3周</option>
-					<option value='4'>第4周</option>
-					<option value='5'>第5周</option>
-					<option value='6'>第6周</option>
-					<option value='7'>第7周</option>
-					<option value='8'>第8周</option>
-					<option value='9'>第9周</option>
-					<option value='10'>第10周</option>
-					<option value='11'>第11周</option>
-					<option value='12'>第12周</option>
-					<option value='13'>第13周</option>
-					<option value='14'>第14周</option>
-					<option value='15'>第15周</option>
-					<option value='16'>第16周</option>
-					<option value='17'>第17周</option>
-					<option value='18'>第18周</option>
-					<option value='19'>第19周</option>
-					<option value='20'>第20周</option>
-
-				</select>				
-			</form>
-			<span style="margin-left: 10px;">{$otheruser.name}的课表</span>
-			<div>
-				<a href="" data-toggle="modal" data-target="#myinfo" class="btn btn-danger" style="background-color: #C23001;">他的信息</a>
-				<button type="button" class="btn btn-success" id="input">导入他的课表</button>
-			</div>
-		</div>
-		<div class="table-responsive curriculum">
-  			<table class="table table-bordered schedule">
-				<tr>
-					<th>星期一</th>
-					<th>星期二</th>
-					<th>星期三</th>
-					<th>星期四</th>
-					<th>星期五</th>
-					<th>星期六</th>
-					<th>星期日</th>
-				</tr>
-				{volist name="data" id="vo"}
-					<tr>
-						{volist name="vo" id="vo2"}
-							<td class='{if condition="$vo2.whether_course == 0"}color0{elseif condition="$vo2.whether_course eq 1"/}color1{/if} course' data-toggle="modal" data-target="#myModal" data-id={$vo2.id}>
-								<div >
-									<span>{$vo2.name}</span>
-									<br/>
-									<span>{$vo2.classroom}</span>
-								</div>								
-							</td>
-						{/volist}						
-					</tr>
-				{/volist}
-  			</table>
-		</div> -->
-		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal fade" style="color: black;" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   			<div class="modal-dialog">
     			<div class="modal-content">
       				<div class="modal-header">
@@ -284,6 +199,7 @@
 
 	<script>
 		$('.top>ul>li:eq(3)').addClass('nav_selected');
+
 		var section = 0;
 		var week = 0;
 		var w = "{$week}";
@@ -338,6 +254,8 @@
 				$('#test').submit();
 			}
 		});
+
+		{if condition="$Think.session.userid!=''"}
 		$('#input').on('click', function(event) {
 			var account = "{$otheruser.user_id}";
 			$.get(
@@ -348,7 +266,8 @@
 	   			function(data){
 	   				if(data.code == 2){
 	   					layer.msg(data.msg, {icon: 1}, function(){
-	 							window.location.href = "{:url('Schedule/index')}";
+	   							var $url = "{:url('home/schedule/index')}";
+	 							window.location.href = $url;
 	 						});
 	   				}else{
 	   					layer.msg(data.msg, {icon: 2});
@@ -356,7 +275,7 @@
 	   			}
 			);
 		});	
-
+		{/if}
 
 		$('#lastWeek').on('click', function(){
 			var nowWeek = $('#nowWeek').data('id');
@@ -365,6 +284,7 @@
 				$('#test').submit();
 			
 		});
+
 		$('#nextWeek').on('click', function(){
 			var nowWeek = $('#nowWeek').data('id');
 			$('.schedule-section ul>div').html( getWeekSelect(nowWeek+1));

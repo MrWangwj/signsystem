@@ -15,7 +15,7 @@ class Manager extends Controller
 	}
 	public function remanager($user_id)
 	{
-		$data = Db::table('user') ->where('user_id',$user_id)->find();
+		$data = Db::table('user') ->join('user_group','user.user_id=user_group.user_id')->where('user.user_id',$user_id)->find();
 		$info = Db::table('groups') ->select();
 		$merit = Db::table('positions') ->select();
 		$this -> assign('merit',$merit);
@@ -37,7 +37,7 @@ class Manager extends Controller
 		if(!empty($_POST)){
 			 Db::startTrans();    
 			try{		
-				$rlt_1 = Db::table('user')->insert([ 'name' => $_POST['Username'],'user_id'=>$_POST['User_id'],'sex'=>$_POST['User_sex'],'position'=>$_POST['position'], 'class' => $_POST['class'], 'phone' => $_POST['phone']]);
+				$rlt_1 = Db::table('user')->insert([ 'name' => $_POST['Username'],'user_id'=>$_POST['User_id'],'sex'=>$_POST['User_sex'],'position'=>$_POST['position'], 'class' => $_POST['class'], 'phone' => $_POST['phone'], 'grade'=>$_POST['grade']]);
 				if($rlt_1 === false){
 					Db::rollback();
 					return '添加失败';
@@ -79,6 +79,7 @@ class Manager extends Controller
 			}
 		}
 	}
+	
 	public function addnotice(){
 		if(!empty($_POST)){
 			$result = Db::table('notice') -> insert(['notice'=>$_POST['notice'],'admin_id'=>session('adminid'),'notice_title'=>$_POST['notice_title'],'create_time'=> time()]);
@@ -89,6 +90,7 @@ class Manager extends Controller
 			}
 		}
 	}
+
 	public function updatenotice(){
 		if(!empty($_POST)){
 			$result = Db::table('notice')->where('notice_id',$_POST['id'])->update(['notice'=>$_POST['notice'],'notice_title'=>$_POST['notice_title']]);
@@ -99,6 +101,7 @@ class Manager extends Controller
 			}
 		}
 	}
+
 	public function delete_notice(){
 		if(!empty($_POST)){
 			$result = Db::table('notice') ->where('notice_id',$_POST['id'])->delete();
@@ -109,6 +112,7 @@ class Manager extends Controller
 			}
 		}
 	}
+
 	public function deletes_notice(){
 		if(!empty($_POST)){
 			$result = Db::table('notice') ->where("notice_id in(".$_POST['invalue'].")")->delete();

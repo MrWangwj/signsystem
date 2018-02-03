@@ -60,7 +60,7 @@
 			<div class="row">
 				<div class="col-xs-12">
 					<!-- PAGE CONTENT BEGINS -->
-					<div class="table-responsive" style="overflow: initial;">
+					<div class="table-responsive" style="overflow: scroll;">
 								<table id="sample-table-1" class="table table-striped table-bordered table-hover">
 									<thead>
 										<tr>
@@ -71,7 +71,7 @@
 											</th>
 											<th>管理员姓名</th>
 											<th>公告标题</th>
-											<th class="hidden-480">发布时间</th>
+											<th>发布时间</th>
 											<th></th>
 										</tr>
 									</thead>
@@ -92,7 +92,7 @@
 											<td>{$vo.notice_title}</td>
 											<td style="width:150px;">{$vo.create_time|date='Y-m-d H:i:s',###}</td>														
 											<td style="width:150px;">
-												<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
+												<div class="visible-md visible-lg hidden-sm  btn-group">
 												
 													<button class="btn btn-xs btn-info" type="submit" onclick="update();">
 														<a href="{$Think.config.parse_str.__MODULE__}/Manager/renotice/{$vo.notice_id}"><i class="icon-edit bigger-120"></i></a>
@@ -101,32 +101,6 @@
 													<button class="btn btn-xs btn-danger group_id" value="{$vo.notice_id}">
 														<i class="icon-trash bigger-120"></i>
 													</button>
-												</div>
-
-												<div class="visible-xs visible-sm hidden-md hidden-lg">
-													<div class="inline position-relative">
-														<button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown">
-															<i class="icon-cog icon-only bigger-110"></i>
-														</button>
-
-														<ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
-															<li>
-																<a href="{$Think.config.parse_str.__MODULE__}/Manager/renotice/{$vo.notice_id}" class="tooltip-success" data-rel="tooltip" title="Edit">
-																	<span class="green">
-																		<i class="icon-edit bigger-120"></i>
-																	</span>
-																</a>
-															</li>
-
-															<li>
-																<a href="#" class="tooltip-error group_id" data-rel="tooltip" title="Delete" value={$vo.notice_id}>
-																	<span class="red">
-																		<i class="icon-trash bigger-120"></i>
-																	</span>
-																</a>
-															</li>
-														</ul>
-													</div>
 												</div>
 											</td>
 										</tr>	

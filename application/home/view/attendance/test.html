@@ -10,9 +10,35 @@
     <div class="bg-up"></div>
     <div class="bg-middle">  
         <div class="term">
-            <label>组别：</label>
+            <label>周数：</label>
+            <select class="form-control" name="week" id="weeks">
+                <option value='0'>本周</option>
+                <option value='1'>第1周</option>
+                <option value='2'>第2周</option>
+                <option value='3'>第3周</option>
+                <option value='4'>第4周</option>
+                <option value='5'>第5周</option>
+                <option value='6'>第6周</option>
+                <option value='7'>第7周</option>
+                <option value='8'>第8周</option>
+                <option value='9'>第9周</option>
+                <option value='10'>第10周</option>
+                <option value='11'>第11周</option>
+                <option value='12'>第12周</option>
+                <option value='13'>第13周</option>
+                <option value='14'>第14周</option>
+                <option value='15'>第15周</option>
+                <option value='16'>第16周</option>
+                <option value='17'>第17周</option>
+                <option value='18'>第18周</option>
+                <option value='19'>第19周</option>
+                <option value='20'>第20周</option>
+            </select>
+
+
+            <label style="margin-left: 10px;">组别：</label>
             <select class="form-control" name="group" id="group">
-                <option value="-1">全部</option>
+                <option value="0">全部</option>
                 {volist name="group" id="vo"}
                     <option value='{$vo.group_id}'>{$vo.group_name}</option>
                 {/volist}
@@ -35,11 +61,16 @@
     $('#group').on('change',function(){
         getSign();
     });
+    $('#weeks').on('change',function(){
+        getSign();
+    });
     function getSign(){
         var group = $('#group').val();
-        $.post("{:url('home/attendance/getThisTime')}", { group:group, }, function (data) {
+        var week = $('#weeks').val();
+        $.post("{:url('home/attendance/getThisTime')}", { group:group, week:week,}, function (data) {
+            console.log(data);
             var table = $("#table>tbody");
-            table.html("<tr><th>排名</th><th>组别</th><th>成员</th><th>学号</th><th>在线时长(分钟)</th></tr>");
+            table.html("<tr><th>排名</th><th>组别</th><th>成员</th><th>学号</th><th>在线时长</th></tr>");
             for(var i =0;i<data.length;i++) {
                 table.append(
                         "<tr> " +
@@ -47,28 +78,38 @@
                         "<td>" + data[i]['group_name'] + "</td> " +
                         "<td>" + data[i]['name'] + "</td>" +
                         "<td>" + data[i]['user_id'] + "</td>" +
-                        "<td>" + Math.round(data[i]['times']/60) + "</td>" +
+                        "<td>" + second2time(data[i]['times']) + "</td>" +
                         "</tr>");
             }
-            $.post("{:url('home/attendance/getNo')}", { group:group, }, function (data) {
-                var table = $("#table>tbody");
-                if(data.length==0) return;
-                for(var j =0;j<data.count;j++) {
-                    table.append(
-                            "<tr> " +
-                            "<td>" + "--" +"</td> " +
-                            "<td>" + data.list[j]['group_name'] + "</td> " +
-                            "<td>" + data.list[j]['name'] + "</td>" +
-                            "<td>" + data.list[j]['user_id'] + "</td>" +
-                            "<td>" + data.list[j]['time'] + "</td>" +
-                            "</tr>")
+            $.post("{:url('home/attendance/getNo')}", { group:group, }, function (data2) {
+                    var table = $("#table>tbody");
+                    if(data2.length==0) return;
+                    for(var j =0;j<data2.count;j++) {
+                        table.append(
+                                "<tr> " +
+                                "<td>" + "--" +"</td> " +
+                                "<td>" + data2.list[j]['group_name'] + "</td> " +
+                                "<td>" + data2.list[j]['name'] + "</td>" +
+                                "<td>" + data2.list[j]['user_id'] + "</td>" +
+                                "<td>--</td>" +
+                                "</tr>")
+                    }
                 }
-            })
+            )
         })       
     }
 
 
-    
+    function second2time($seconds){
+        // $seconds = Math.round($seconds);
+        if( $seconds >= 3600 ){    // 如果超过一个小时
+            // $time = explode(':', gmstrftime('%H:%M', $seconds));
+            $format_time = (Math.floor(($seconds/3600)))+'小时'+(Math.floor($seconds%3600/60))+'分钟';
+        }else{
+            $format_time =(Math.floor($seconds/60))+'分钟';
+        }
+        return $format_time;
+    }
 
 </script>
 {/block}

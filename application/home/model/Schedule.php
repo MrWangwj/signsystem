@@ -7,15 +7,15 @@ use think\Validate;
 class Schedule extends Model{
 
     protected $rule =   [
-        'name'  => 'require|max:30',
+        'name'  => 'require|max:40',
         'classroom'   => 'require|max:20',
-        'teacher'   => 'require|max:10',
+        'teacher'   => 'require|max:30',
         'weeks_number' => 'require',    
     ];
 
     protected $msg  =   [
         'name.require' => '名称不能为空',
-        'name.max'     => '名称最多不能超过30个字符',
+        'name.max'     => '名称最多不能超过10个字符',
         'classroom.require' => '教室不能为空',
         'classroom.max'     => '名称最多不能超过20个字符',
         'teacher.require' => '老师不能为空',
@@ -235,48 +235,22 @@ class Schedule extends Model{
 		input('post.week') && $week = input('post.week');
 		input('post.status') && $status = input('post.status');
 		$where = [];
-		input('post.term/a') && $where = input('post.term/a');
+		input('post.term/a') && $where['b.user_id'] = ['IN', input('post.term/a')];
 		$fun = 'getHaveClass';
 		if($status == 2) $fun = 'getNoClass';
 		$data = $this->$fun($week, $where); 
-		return [$data[0], $where,$data[1]];
+		return [$data, $week];
 	}
 
 	public function getHaveClass($weekNum, $where=[]){
-		$term = "";
-		$i = 0;
-		$j = 0;
-		foreach ($where as $key => $value) {
-			if($i != 0) $term .= " OR ";
-			$i++;
-			$term .="(";
-			foreach ($value as $key2 => $value2) {
-				$as = "";
-				$mark = "=";
-				if($value2[0] == 'user_id' || $value2[0] == 'position'){
-					$as = "b.";
-					if($value2[1] != 1 && $value2[0] == 'position'){
-						$mark = "=";
-						// $where[$key][$key2][1] = 1;		
-					}
-				}else if($value2[0] == 'group_id'){
-					$as = "d.";
-				}
-				$where[$key][$key2][0] = $as.$where[$key][$key2][0];
-				$term .=$where[$key][$key2][0].$mark.$where[$key][$key2][1];
-				if($j < count($value)-1) $term.=" AND ";
-				$j++;
-			}
-			$j=0;
-			$term .= ")";
-		}
+		
 		$data = db('schedule', [], false)
 				->alias('a')
-				->field('b.name,c.id,c.weeks_number,c.week,c.section,d.group_id')
+				->field('b.user_id,b.name,c.id,c.weeks_number,c.week,c.section,d.group_id')
 				->join('user AS b', 'a.user_id = b.user_id')
 				->join('user_group AS d', 'a.user_id = d.user_id')
 				->join('curriculum AS c', 'a.curriculum_id = c.id')
-				->where($term)
+				->where($where)
 				->order('c.section,c.week')
 				->select();
 		$names = array();
@@ -287,6 +261,7 @@ class Schedule extends Model{
 		 * 待优化 合并循环
 		 * @var [type]
 		 */
+		
 		foreach ($data as $key => $value) {
 			if($this->whetherCourse($value, $weekNum) == 2){
 				$leng = 0;
@@ -303,67 +278,53 @@ class Schedule extends Model{
 				if(isset($names[$i][$j])) $tables[$i][$j]=$names[$i][$j]; 
 			}
 		}
-		return [$tables,$term];
+		return $tables;
 	}
 
 	public function getNoClass($weekNum,$where = []){
-		$haveclass = $this->getHaveClass($weekNum, [])[0];
-		$term = "";
-		$i = 0;
-		$j = 0;
-		foreach ($where as $key => $value) {
-			if($i != 0) $term .= " OR ";
-			$i++;
-			$term .="(";
-			foreach ($value as $key2 => $value2) {
-				$as = "";
-				$mark = "=";
-				if($value2[0] == 'user_id' || $value2[0] == 'position'){
-					$as = "a.";
-					if($value2[1] != 1 && $value2[0] == 'position'){
-						$mark = "=";
-						// $where[$key][$key2][1] = 1;		
-					}
-				}else if($value2[0] == 'group_id'){
-					$as = "b.";
-				}
-				$where[$key][$key2][0] = $as.$where[$key][$key2][0];
-				$term .=$where[$key][$key2][0].$mark.$where[$key][$key2][1];
-				if($j < count($value)-1) $term.=" AND ";
-				$j++;
-			}
-			$j=0;
-			$term .= ")";
-		}
+		$haveclass = $this->getHaveClass($weekNum, $where);
+		
 		$names = db('user', [], false)
-		->alias('a')
-		->field('a.name')
-		->join('user_group AS b', 'a.user_id = b.user_id')
-		->where($term)
+		->alias('b')
+		->field('b.user_id,b.name')
+		->where($where)
 		->select();
+
 		$data = array();
 		for ($i=0; $i <5 ; $i++) { 
 			for ($j=0; $j <7 ; $j++) { 
 				$data[$i][$j] = $names;
+
 				if(isset($haveclass[$i][$j])){
-					foreach ($data[$i][$j] as $namekey => $namevalue) {
-						foreach ($haveclass[$i][$j] as $key => $value) {
-							if($value['name'] == $namevalue['name'] ){
-								unset($data[$i][$j][$namekey]);
+					foreach ($haveclass[$i][$j] as $key => $value) {
+						foreach ($data[$i][$j] as $namekey => $namevalue) {
+							if($value['user_id'] == $namevalue['user_id'] ){
+								array_splice($data[$i][$j],$namekey,1);
 								break;
 							}
 						}
 					}
 				}
+
 			}
 		}
-		return [$data,$term];
+		return $data;
 	}
 
 	public function getWhere($where){
 		foreach ($where as $key => $value) {
 			
 		}
+	}
+
+	public function getUsers(){
+		$user = db('user', [], false)
+				->alias('a')
+				->field('a.user_id, a.name,a.sex, b.group_id, a.position, a.grade')
+				->join('user_group b','a.user_id = b.user_id')
+				->order('a.name')
+				->select();
+		return $user;
 	}
 }
 

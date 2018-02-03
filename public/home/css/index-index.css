@@ -13,7 +13,7 @@ html, body, .background{
 	position: relative;
 	min-height: 230px;
 	height: 55%;
-	background-image: url(../image/index-bg.png);
+	background-image: url(../image/index-bg.jpg);
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
 }

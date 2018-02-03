@@ -10,10 +10,12 @@ use think\Request;
 class Schedule extends Base{
 	
 	public function index(){
-		$schedule = model('Schedule');
-		$data = $schedule->getCurriculum($schedule->getSchedules(session('userid')),count(getNowWeek()));
-		$this->assign('data',$data[0]);
-		$this->assign('week',$data[1]);
+		if(!empty(session('userid'))){
+			$schedule = model('Schedule');
+			$data = $schedule->getCurriculum($schedule->getSchedules(session('userid')),count(getNowWeek()));
+			$this->assign('data',$data[0]);
+			$this->assign('week',$data[1]);
+		}
 		return $this->fetch();
 	}
 
@@ -32,8 +34,8 @@ class Schedule extends Base{
 		// Db::table('curriculum')->where('id',$data[$i]['id'])->update(['weeks_number' => $w,]);
 		// $w="";
 		// }
-		db('schedule')->where(['user_id' => '2147483647'])->update(['user_id' => '20151515105']);
-		return "";
+		
+		return dump(input('post.term/a'));;
 	}
 
 	public function schedule(){
@@ -48,12 +50,8 @@ class Schedule extends Base{
 	} 
 
 	public function test($week=''){
-		$date = [1];
-		$i = 1;
-		foreach ($date as $key => $value) {
-			$date = [1,2];
-		}
-		return date("w",strtotime('2016-10-10'));
+
+		return dump(config('url_model'));
 	} 
 
 	/**
@@ -96,7 +94,7 @@ class Schedule extends Base{
 		$curriculums = db('curriculum')
 					->where('name', 'like', getLike(input('get.name')))
 					->where(['week' => input('get.week'), 'section' => input('get.section')])
-					->select();
+					->select();  
 		return $curriculums;
 	}
 
@@ -120,7 +118,7 @@ class Schedule extends Base{
 		$user = model('user');
 		if($user->existUser($otheruser)){
 			// $this->redirect(url('Schedule/other','','').'/'.$otheruser);
-			return ['code' => 1, 'msg' => '用户存在', 'url' => url('Schedule/other','','').'/'.$otheruser];
+			return ['code' => 1, 'msg' => '用户存在', 'url' => url('home/schedule/other',['otheruser'=>$otheruser])];
 		};
 		return ['code' => 0, 'msg' => '用户不存在', 'url' => ""];
 	}
@@ -155,21 +153,34 @@ class Schedule extends Base{
 		return $users;
 	}
 
+	public function getUsers(){
+		$schedule = model('Schedule');
+		return $schedule->getUsers();
+	}
+
 	public function count(){
 		$schedule = model('Schedule');
 		$group = db('groups',[], false)->select();
-		$user = db('user', [], false)->field('user_id,name')->order('name')->select();
-		$data = $schedule->getCount();
-		$this->assign('data',$data[0]);
+		$grade = model('User')->getgrade();
+		$user = $schedule->getUsers();
+		// $data = $schedule->getCount();
+		$this->assign('grade',$grade);
 		$this->assign('group',$group);
 		$this->assign('users',$user);
-		$this->assign('term',$data[1]);
-		$this->assign('termtext',$data[2]);
-		$this->assign('termlength',count($data[1]));
-		$this->assign('empty',"<li class='term-label2 foucus'></li>");
+		// $this->assign('term',$data[1]);
+		// $this->assign('termtext',$data[2]);
+		// $this->assign('termlength',count($data[1]));
+		// $this->assign('empty',"<li class='term-label2 foucus'></li>");
 		return $this->fetch();
+		// return input('post.term/a');
+		
 	}
 
+	public function getCount(){
+		$schedule = model('Schedule');
+		$data =  $schedule->getCount();
+		return ['user' => $data[0], 'week' => $data[1]];
+	}
 	public function countterm(){
 		$schedule = model('Schedule');
 		$group = db('group',[], false)->select();

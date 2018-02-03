@@ -66,7 +66,7 @@
 										<div class="col-sm-9">
 											<select name="field" id="group_id" style="width:240px;">
                                     		{volist name="info" id="vo"}
-												<option value="{$vo.group_id}">{$vo.group_name}</option>
+												<option value="{$vo.group_id}" {eq name="vo.group_id" value="$data.group_id"}selected{/eq}>{$vo.group_name}</option>
                                     		{/volist}	
                                 			</select>								
 												<span class="middle">选择匹配的小组名</span>
@@ -81,7 +81,7 @@
 										<div class="col-sm-9">
 											<select name="field" id="position" style="width:170px;">
 											{volist name="merit" id="v"}
-												<option value="{$v.position}">{$v.position_name}</option>
+												<option value="{$v.position}" {eq name="v.position" value="$data.position"}selected{/eq}>{$v.position_name}</option>
                                     		{/volist}
                                 			</select>								
 												<span class="middle">选择匹配的职务</span>
@@ -89,7 +89,18 @@
 									</div>
 
 									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 年&nbsp级 </label>
 
+										<div class="col-sm-9">
+											<input name="grade" type="radio" id="grade-1"  value="0" checked="checked">
+											<label for="grade-1">大一</label>
+              								<input name="grade" type="radio" id="grade-2"  value="0">
+              								<label for="grade-2">大二</label>
+              								<input name="grade" type="radio" id="grade-3"  value="0">
+              								<label for="grade-3">大三</label>
+										</div>
+									</div>
 									<div class="form-group">
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-4">性&nbsp别</label>
 										<div class="col-sm-9" style="margin-top:3px;">
@@ -216,8 +227,27 @@
 		<!-- inline scripts related to this page -->
 		<script src="{$Think.config.parse_str.__PUBLIC__}assets/js/jquery-ui-1.10.3.full.min.js"></script>
 		<script type="text/javascript">
+
+
+
+
 		$(function(){
+    		    var d = new Date();
+		    year = d.getFullYear()+"";
+		    month = d.getMonth();
+		    year2 = year.substr(year.length-2);
+		    grade = [];
+		    if(month>9){
+		        grade = [parseInt(year2),parseInt(year2)-1,parseInt(year2)-2];
+		    }else{
+		        grade = [parseInt(year2-1),parseInt(year2)-2,parseInt(year2)-3];
+		    }
+		    $("input[name='grade']").each(function(index, element){
+		        $(this).val(grade[index]);
+		    });
     		$("input[name='user_sex'][value={$data.sex}]").attr('checked',true);
+    		$("input[name='grade'][value={$data.grade}]").attr('checked',true);
+    		
   		});
 		 function alter(){
 		 	var user_sex = $("input[name='user_sex']:checked").val();
@@ -229,6 +259,7 @@
 				User_sex:user_sex,
 				class:$('#class').val(),
 				phone:$('#phone').val(),
+				grade:$("input[name='grade']:checked").val(),
 			}
 			 var myReg = /^[\u4e00-\u9fa5]+$/;
 			if(!(myReg.test($("#form-field-1").val()) && ($("#form-field-1").val().length<=4))){
