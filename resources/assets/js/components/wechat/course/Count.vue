@@ -631,9 +631,10 @@
                 } else {
 
                     for (let index in all) {
+
                         if ((!groups.length || groups.indexOf(all[index].grouping_id) !== -1) &&
                             (!sexs.length || sexs.indexOf(all[index].sex) !== -1) &&
-                            (!grades.length || grades.indexOf(parseInt(index.substring(2, 4)))!== -1) &&
+                            (!grades.length || grades.indexOf(parseInt(index.substring(3, 5)))!== -1) &&
                             (!locations.length || locations.indexOf(all[index].location_id) !== -1)) {  //判断用户是否符合选择的条件
 
                             let userPositions = all[index].positions;

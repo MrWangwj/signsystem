@@ -16,11 +16,11 @@ var Component = __webpack_require__(9)(
   /* styles */
   injectStyle,
   /* scopeId */
-  "data-v-4fd45aee",
+  "data-v-6faf7e82",
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Applications/MAMP/htdocs/signsystem2.1/resources/assets/js/components/Count.vue"
+Component.options.__file = "/Applications/MAMP/htdocs/signsystem/resources/assets/js/components/Count.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Count.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -31,9 +31,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-4fd45aee", Component.options)
+    hotAPI.createRecord("data-v-6faf7e82", Component.options)
   } else {
-    hotAPI.reload("data-v-4fd45aee", Component.options)
+    hotAPI.reload("data-v-6faf7e82", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -277,13 +277,13 @@ var content = __webpack_require__(175);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(17)("8d7c7406", content, false);
+var update = __webpack_require__(17)("69c1bbae", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4fd45aee\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vux-loader/src/style-loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Count.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4fd45aee\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vux-loader/src/style-loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Count.vue");
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6faf7e82\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vux-loader/src/style-loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Count.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6faf7e82\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vux-loader/src/style-loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Count.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -302,7 +302,7 @@ exports = module.exports = __webpack_require__(7)();
 
 
 // module
-exports.push([module.i, "\n.main[data-v-4fd45aee]{\n    width: 80%;\n    margin: 0 auto;\n    min-width: 1024px;\n}\n.title[data-v-4fd45aee]{\n}\n.content[data-v-4fd45aee]{\n}\n.el-checkbox[data-v-4fd45aee]{\n    margin-left: 0 !important;\n    margin-right: 15px;\n}\n.el-checkbox-group[data-v-4fd45aee]{\n    display: inline-block;\n}\n", ""]);
+exports.push([module.i, "\n.main[data-v-6faf7e82]{\n    width: 80%;\n    margin: 0 auto;\n    min-width: 1024px;\n}\n.title[data-v-6faf7e82]{\n}\n.content[data-v-6faf7e82]{\n}\n.el-checkbox[data-v-6faf7e82]{\n    margin-left: 0 !important;\n    margin-right: 15px;\n}\n.el-checkbox-group[data-v-6faf7e82]{\n    display: inline-block;\n}\n", ""]);
 
 // exports
 
@@ -1028,7 +1028,7 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-4fd45aee", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-6faf7e82", module.exports)
   }
 }
 

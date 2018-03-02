@@ -69447,7 +69447,7 @@ var Component = __webpack_require__(9)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Applications/MAMP/htdocs/signsystem2.1/resources/assets/js/App.vue"
+Component.options.__file = "/Applications/MAMP/htdocs/signsystem/resources/assets/js/App.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] App.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -69458,9 +69458,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-185d9579", Component.options)
+    hotAPI.createRecord("data-v-c818dff0", Component.options)
   } else {
-    hotAPI.reload("data-v-185d9579", Component.options)
+    hotAPI.reload("data-v-c818dff0", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -69509,7 +69509,7 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-185d9579", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-c818dff0", module.exports)
   }
 }
 

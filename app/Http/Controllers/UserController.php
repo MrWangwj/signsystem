@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
+use Overtrue\LaravelPinyin\Facades\Pinyin;
 
 
 class UserController extends Controller
@@ -84,6 +85,11 @@ class UserController extends Controller
         $userData = \request(['id', 'name', 'sex', 'grouping_id', 'email', 'tel']);
         $userData['openid'] = \request('id');
         $userData['password'] = bcrypt(substr(\request('id'),-6));
+
+        $name_py = Pinyin::convert(\request('name'));
+        foreach ( $name_py as $value){
+            $userData['name_py'] .= $value." ";
+        }
 
 
         $user = User::create($userData);
@@ -280,14 +286,28 @@ class UserController extends Controller
     }
 
     public function test(){
-        $users = User::all();
-        $info = [];
-        foreach ($users as $user){
-            if(count($user->courses) == 0)
-                $info[] = $user->id.' '.$user->name.' '.$user->grouping->name;
-        }
+//        $users = User::all();
+//        $info = [];
+//        foreach ($users as $user){
+//            if(count($user->courses) == 0)
+//                $info[] = $user->id.' '.$user->name.' '.$user->grouping->name;
+//        }
+//
+//        dd($info);
 
-        dd($info);
+        $users = User::all();
+
+        foreach ($users as $user) {
+            $name_pys = Pinyin::convert($user->name);
+            $name_py = "";
+            foreach ( $name_pys as $value){
+                $name_py .= $value." ";
+            }
+            echo $name_py;
+            $user->name_py = $name_py;
+            $user->save();
+            echo $user->name;
+        }
     }
 
 

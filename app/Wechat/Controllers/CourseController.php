@@ -188,11 +188,13 @@ class CourseController extends Controller
         $users = User::all();
 
         foreach ($users as $user) {
-            if(substr($user->id,0,4) == 2015){
-                $user->location_id = 2;
-            }else{
-                $user->location_id = 1;
+            $name_pys = Pinyin::convert($user->name);
+            $name_py = "";
+            foreach ( $name_pys as $value){
+                $name_py .= $value." ";
             }
+            echo $name_py;
+            $user->name_py = $name_py;
             $user->save();
             echo $user->name;
         }

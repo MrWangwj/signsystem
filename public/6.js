@@ -16,11 +16,11 @@ var Component = __webpack_require__(9)(
   /* styles */
   injectStyle,
   /* scopeId */
-  "data-v-0112f615",
+  "data-v-8cdf0a34",
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Applications/MAMP/htdocs/signsystem2.1/resources/assets/js/components/nav1/EditUser.vue"
+Component.options.__file = "/Applications/MAMP/htdocs/signsystem/resources/assets/js/components/nav1/EditUser.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] EditUser.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -31,9 +31,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-0112f615", Component.options)
+    hotAPI.createRecord("data-v-8cdf0a34", Component.options)
   } else {
-    hotAPI.reload("data-v-0112f615", Component.options)
+    hotAPI.reload("data-v-8cdf0a34", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -55,13 +55,13 @@ var content = __webpack_require__(183);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(17)("05ea9a2e", content, false);
+var update = __webpack_require__(17)("f9ec9c5c", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0112f615\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vux-loader/src/style-loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./EditUser.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0112f615\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vux-loader/src/style-loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./EditUser.vue");
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-8cdf0a34\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vux-loader/src/style-loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./EditUser.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-8cdf0a34\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vux-loader/src/style-loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./EditUser.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -80,7 +80,7 @@ exports = module.exports = __webpack_require__(7)();
 
 
 // module
-exports.push([module.i, "\n.nameWidth[data-v-0112f615]{\n    width: 22%;\n}\n", ""]);
+exports.push([module.i, "\n.nameWidth[data-v-8cdf0a34]{\n    width: 22%;\n}\n", ""]);
 
 // exports
 
@@ -404,7 +404,7 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-0112f615", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-8cdf0a34", module.exports)
   }
 }
 
