@@ -85,6 +85,8 @@ class UserController extends Controller
         $userData = \request(['id', 'name', 'sex', 'grouping_id', 'email', 'tel']);
         $userData['openid'] = \request('id');
         $userData['password'] = bcrypt(substr(\request('id'),-6));
+        $userData['name_py'] = "";
+
 
         $name_py = Pinyin::convert(\request('name'));
         foreach ( $name_py as $value){
