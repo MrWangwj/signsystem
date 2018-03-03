@@ -919,7 +919,7 @@
 
     .section > div:last-child label {
         display: block;
-        width: 33.3%;
+        min-width: 33.3%;
         float: left;
 
     }

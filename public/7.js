@@ -158,7 +158,7 @@ exports.default = {
         };
 
         var checkTel = function checkTel(rule, value, callback) {
-            if (!/^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/.test(value)) {
+            if (!/^1[34578]\d{9}$/.test(value)) {
                 return callback(new Error('请输入正确的手机号'));
             } else {
                 callback();
