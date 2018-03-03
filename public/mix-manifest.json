@@ -1,9 +1,8 @@
 {
     "/js/admin.js": "/js/admin.js",
-    "/js/login.js": "/js/login.js",
-    "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css",
-    "/js/vendor.js": "/js/vendor.js",
     "/js/wechat.js": "/js/wechat.js",
+    "/css/app.css": "/css/app.css",
+    "/js/home.js": "/js/home.js",
+    "/js/vendor.js": "/js/vendor.js",
     "/js/manifest.js": "/js/manifest.js"
 }
