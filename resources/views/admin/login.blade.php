@@ -102,7 +102,7 @@
                         <input type="text" class="form-control" id="validate" placeholder="验证码" required>
                     </div>
                     <div class="form-group col-md-6">
-                        <img class="validate-img" src="" alt="">
+                        <img class="validate-img" src="{{ captcha_src() }}}" alt="" onclick="this.src='{{captcha_src()}}'+Math.random()">
                     </div>
                 </div>
                 <div>
@@ -275,6 +275,13 @@
     <script src="/extend/jquery-3.3.1.min.js"></script>
 
     <script>
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
         function login(){
             let account = $('#account').val(),
                 password = $('#password').val(),
@@ -292,14 +299,23 @@
                 return;
             }
 
-            $.post('', {
+            let post = $.post('/admin/login', {
                 account: account,
                 password: password,
                 validate: validate
-            }, function (data) {
-                
+            }, function (data, status) {
+                console.log(status);
+                if(data.code === 1){
+                    window.location = '/admin';
+                }else{
+                    $('#msg').text(data.msg);
+                }
+            }).fail(function() {
+                console.log(1111);
+                $('#msg').text("验证码错误");
             });
         }
+
     </script>
 </body>
 

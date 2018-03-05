@@ -15,7 +15,7 @@ class CreateGroupingsTable extends Migration
     {
         Schema::create('groupings', function (Blueprint $table) {
             $table->increments('id')->comment('分组id');
-            $table->string('name', 20)->comment('名称');
+            $table->string('name', 20)->comment('名称')->unique();
             $table->timestamps();
         });
     }

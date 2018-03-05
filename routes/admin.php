@@ -11,6 +11,12 @@ Route::prefix('admin')->group(function (){
     Route::get('/login',function (){
         return view('admin.login');
     });
+    Route::get('/login/validate', function () {
+        return captcha_src();
+    });
+
+    Route::post('/login', 'Admin\LoginController@login');
+
     //页面渲染
     Route::get('/', function (){
         return view('admin.index');
