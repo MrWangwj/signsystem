@@ -153,7 +153,7 @@
                 <thead>
                 <tr>
                     <th>
-                        <span @click="setHasNoCourse(false)">{{ haveNoCourse ? '有课' : '无课' }}</span>
+                        <span @click="setHasNoCourse(true)">{{ haveNoCourse ? '有课' : '无课' }}</span>
                     </th>
                     <th>周一</th>
                     <th>周二</th>
