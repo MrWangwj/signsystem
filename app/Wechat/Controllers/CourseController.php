@@ -157,7 +157,7 @@ class CourseController extends Controller
         foreach ($allStudents->toArray() as $student){
             //获取年级
             $tmpGrade = intval(substr($student['id'], 2,2));
-            if(!in_array($tmpGrade,$grades)) $grades[] = $tmpGrade;
+            if($tmpGrade != 0 && !in_array($tmpGrade,$grades)) $grades[] = $tmpGrade;
 
             $students['s'.$student['id']] = $student;
         }

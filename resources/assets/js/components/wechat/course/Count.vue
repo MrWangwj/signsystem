@@ -1,48 +1,39 @@
 <style>
-
     .title {
         width: 100%;
         height: 45px;
         font-size: small;
     }
-
     .title > div {
         width: 335px;
         margin: 5px auto;
         height: 35px;
     }
-
     .title > div > div {
         float: left;
         height: 100%;
     }
-
     .title > div:after {
         display: block;
         content: '';
         clear: both;
     }
-
     .see-type {
         width: 50px;
         margin-right: 5px;
     }
-
     .now-week-but {
         width: 35px;
         height: 100%;
         margin-right: 5px;
     }
-
     .weeks {
         width: 200px;
     }
-
     .count {
         width: 35px;
         margin-left: 5px;
     }
-
     .see-type, .now-week-but, .count {
         background-color: #227B86;
         border-radius: 5px;
@@ -51,24 +42,18 @@
         color: white;
     }
 </style>
-
 <template>
     <div class="main">
-
         <div class="title">
-
             <div>
                 <div class="see-type">
-                    <label v-if="!type" @click="type = true">格式一</label>
-                    <label v-if="type" @click="type = false">格式二</label>
+                    <label @click="type = !type">{{ type ? '格式一': '格式二'}}</label>
                 </div>
-                <div @click="setNowWeek()" class="now-week-but">
-                    本周
-                </div>
+                <div @click="setNowWeek()" class="now-week-but">本周</div>
                 <div class="weeks">
                     <scroller lock-y :scrollbar-x=false>
                         <div class="box1" id="weeks" :style="{width: set.weeks.length*40+'px'}">
-                            <div :class="{'box1-item':true, 'test':test, 'now-week': get.nowWeek == i.id, 'sel-week': i.sel }"
+                            <div :class="{'box1-item':true, 'test':test, 'now-week': get.nowWeek === i.id, 'sel-week': i.sel }"
                                  @click="addSelWeek(i.id)" v-for="i in set.weeks">
                                 <span>{{' ' + i.id + ' '}}</span>
                             </div>
@@ -85,19 +70,14 @@
         <div v-transfer-dom>
             <popup v-model="count" position="right">
                 <div style="width:300px;">
-
                     <divider>组别</divider>
-
                     <checker
                             v-model="set.selGroups"
                             type="checkbox"
                             default-item-class="group-item"
                             selected-item-class="group-item-selected"
-                            @on-change="getSelStudents"
-                    >
-                        <checker-item v-for="i in get.groups" :key="i.id" :value="i.id" class="group-item">{{ i.name
-                            }}
-                        </checker-item>
+                            @on-change="getSelStudents">
+                        <checker-item v-for="i in get.groups" :key="i.id" :value="i.id" class="group-item">{{ i.name }}</checker-item>
                     </checker>
 
                     <divider>职务</divider>
@@ -106,13 +86,9 @@
                             type="checkbox"
                             default-item-class="group-item"
                             selected-item-class="group-item-selected"
-                            @on-change="getSelStudents"
-                    >
-                        <checker-item v-for="i in get.positions" :key="i.id" :value="i.id" class="group-item">{{ i.name
-                            }}
-                        </checker-item>
+                            @on-change="getSelStudents">
+                        <checker-item v-for="i in get.positions" :key="i.id" :value="i.id" class="group-item">{{ i.name }}</checker-item>
                     </checker>
-
 
                     <divider>性别</divider>
                     <checker
@@ -120,8 +96,7 @@
                             type="checkbox"
                             default-item-class="group-item"
                             selected-item-class="group-item-selected"
-                            @on-change="getSelStudents"
-                    >
+                            @on-change="getSelStudents">
                         <checker-item :key="0" :value="0" class="group-item">男</checker-item>
                         <checker-item :key="1" :value="1" class="group-item">女</checker-item>
                     </checker>
@@ -132,8 +107,7 @@
                             type="checkbox"
                             default-item-class="group-item"
                             selected-item-class="group-item-selected"
-                            @on-change="getSelStudents"
-                    >
+                            @on-change="getSelStudents">
                         <checker-item v-for="i in get.grades" :key="i" :value="i" class="group-item">{{ i }}级
                         </checker-item>
                     </checker>
@@ -144,8 +118,7 @@
                             type="checkbox"
                             default-item-class="group-item"
                             selected-item-class="group-item-selected"
-                            @on-change="getSelStudents"
-                    >
+                            @on-change="getSelStudents">
                         <checker-item v-for="i in get.locations" :key="i.id" :value="i.id" class="group-item">{{ i.name }}</checker-item>
                     </checker>
                     <divider>----</divider>
@@ -154,160 +127,24 @@
             </popup>
         </div>
 
-
-
-
         <carousel-3d v-show="type" :display="5" :perspective="0" space="50" width="250" height="500"
                      :inverseScaling="50" :loop="false" :controlsVisible="true" :minSwipeDistance="50">
-
-
-            <slide :index="0" class="week-day" :style="{backgroundColor: colors[colorIndex[0]].content}">
-                <div class="week-title" :style="{backgroundColor: colors[colorIndex[0]].title}">
-                    星期一（
-                    <span v-if="haveNoCourse" @click="setHasNoCourse(false)">有课</span>
-                    <span v-if="!haveNoCourse" @click="setHasNoCourse(true)">无课</span>
-                    ）
+            <slide v-for="(v, i) in week_day" :index="i" :key="i" class="week-day" :style="{backgroundColor: colors[colorIndex[i]].content}">
+                <div class="week-title" :style="{backgroundColor: colors[colorIndex[i]].title}">
+                    {{ v }}（<span @click="setHasNoCourse(true)">{{ haveNoCourse ? '有课' : '无课' }}</span>）
                 </div>
-
                 <div class="courseContent">
-                    <div style="width: 100%;" class="section" v-for="section in courses[0]">
+                    <div style="width: 100%;" class="section" v-for="section in courses[i]">
                         <div>
-                            <label :style="{backgroundColor: colors[colorIndex[0]].title}">{{ section.id }}</label>
+                            <label :style="{backgroundColor: colors[colorIndex[i]].title}">{{ section.id }}</label>
                         </div>
                         <div>
-                            <label :class="{'sel-user': stu.id == selUserId}" v-for="(stu,index) in section.stus"
-                                   @click="courseInfo(stu.id, stu.course_id)">{{ stu.name }},</label>
+                            <label :class="{'sel-user': stu.id === selUserId}" v-for="(stu,index) in section.stus"
+                                   @click="courseInfo(stu.id, stu.courseInfo)">{{ stu.name }},</label>
                         </div>
                     </div>
                 </div>
             </slide>
-
-            <slide :index="1" class="week-day" :style="{backgroundColor: colors[colorIndex[1]].content}">
-                <div class="week-title" :style="{backgroundColor: colors[colorIndex[1]].title}">
-                    星期二（
-                    <span v-if="haveNoCourse" @click="setHasNoCourse(false)">有课</span>
-                    <span v-if="!haveNoCourse" @click="setHasNoCourse(true)">无课</span>
-                    ）
-                </div>
-
-                <div class="courseContent">
-                    <div style="width: 100%;" class="section" v-for="section in courses[1]">
-                        <div>
-                            <label :style="{backgroundColor: colors[colorIndex[1]].title}">{{ section.id }}</label>
-                        </div>
-                        <div>
-                            <label :class="{'sel-user': stu.id == selUserId}" v-for="(stu,index) in section.stus"
-                                   @click="courseInfo(stu.id, stu.course_id)">{{ stu.name }},</label>
-                        </div>
-                    </div>
-                </div>
-            </slide>
-
-            <slide :index="2" class="week-day" :style="{backgroundColor: colors[colorIndex[2]].content}">
-                <div class="week-title" :style="{backgroundColor: colors[colorIndex[2]].title}">
-                    星期三（
-                    <span v-if="haveNoCourse" @click="setHasNoCourse(false)">有课</span>
-                    <span v-if="!haveNoCourse" @click="setHasNoCourse(true)">无课</span>
-                    ）
-                </div>
-
-                <div class="courseContent">
-                    <div style="width: 100%;" class="section" v-for="section in courses[2]">
-                        <div>
-                            <label :style="{backgroundColor: colors[colorIndex[2]].title}">{{ section.id }}</label>
-                        </div>
-                        <div>
-                            <label :class="{'sel-user': stu.id == selUserId}" v-for="(stu,index) in section.stus"
-                                   @click="courseInfo(stu.id, stu.course_id)">{{ stu.name }},</label>
-                        </div>
-                    </div>
-                </div>
-            </slide>
-
-            <slide :index="3" class="week-day" :style="{backgroundColor: colors[colorIndex[3]].content}">
-                <div class="week-title" :style="{backgroundColor: colors[colorIndex[3]].title}">
-                    星期四（
-                    <span v-if="haveNoCourse" @click="setHasNoCourse(false)">有课</span>
-                    <span v-if="!haveNoCourse" @click="setHasNoCourse(true)">无课</span>
-                    ）
-                </div>
-
-                <div class="courseContent">
-                    <div style="width: 100%;" class="section" v-for="section in courses[3]">
-                        <div>
-                            <label :style="{backgroundColor: colors[colorIndex[3]].title}">{{ section.id }}</label>
-                        </div>
-                        <div>
-                            <label :class="{'sel-user': stu.id == selUserId}" v-for="(stu,index) in section.stus"
-                                   @click="courseInfo(stu.id, stu.course_id)">{{ stu.name }},</label>
-                        </div>
-                    </div>
-                </div>
-            </slide>
-
-            <slide :index="4" class="week-day" :style="{backgroundColor: colors[colorIndex[4]].content}">
-                <div class="week-title" :style="{backgroundColor: colors[colorIndex[4]].title}">
-                    星期五（
-                    <span v-if="haveNoCourse" @click="setHasNoCourse(false)">有课</span>
-                    <span v-if="!haveNoCourse" @click="setHasNoCourse(true)">无课</span>
-                    ）
-                </div>
-
-                <div class="courseContent">
-                    <div style="width: 100%;" class="section" v-for="section in courses[4]">
-                        <div>
-                            <label :style="{backgroundColor: colors[colorIndex[4]].title}">{{ section.id }}</label>
-                        </div>
-                        <div>
-                            <label :class="{'sel-user': stu.id == selUserId}" v-for="(stu,index) in section.stus"
-                                   @click="courseInfo(stu.id, stu.course_id)">{{ stu.name }},</label>
-                        </div>
-                    </div>
-                </div>
-            </slide>
-
-            <slide :index="5" class="week-day" :style="{backgroundColor: colors[colorIndex[5]].content}">
-                <div class="week-title" :style="{backgroundColor: colors[colorIndex[5]].title}">
-                    星期六（
-                    <span v-if="haveNoCourse" @click="setHasNoCourse(false)">有课</span>
-                    <span v-if="!haveNoCourse" @click="setHasNoCourse(true)">无课</span>
-                    ）
-                </div>
-
-                <div class="courseContent">
-                    <div style="width: 100%;" class="section" v-for="section in courses[5]">
-                        <div>
-                            <label :style="{backgroundColor: colors[colorIndex[5]].title}">{{ section.id }}</label>
-                        </div>
-                        <div>
-                            <label :class="{'sel-user': stu.id == selUserId}" v-for="(stu,index) in section.stus"
-                                   @click="courseInfo(stu.id, stu.course_id)">{{ stu.name }},</label>
-                        </div>
-                    </div>
-                </div>
-            </slide>
-
-            <slide :index="6" class="week-day" :style="{backgroundColor: colors[colorIndex[6]].content}">
-                <div class="week-title" :style="{backgroundColor: colors[colorIndex[6]].title}">
-                    星期日（
-                    <span v-if="haveNoCourse" @click="setHasNoCourse(false)">有课</span>
-                    <span v-if="!haveNoCourse" @click="setHasNoCourse(true)">无课</span>
-                    ）
-                </div>
-
-                <div class="courseContent">
-                    <div style="width: 100%;" class="section" v-for="section in courses[6]">
-                        <div>
-                            <label :style="{backgroundColor: colors[colorIndex[6]].title}">{{ section.id }}</label>
-                        </div>
-                        <div>
-                            <label :class="{'sel-user': stu.id == selUserId}" v-for="(stu,index) in section.stus"
-                                   @click="courseInfo(stu.id, stu.course_id)">{{ stu.name }},</label>
-                        </div>
-                    </div>
-                </div>
-            </slide>
-
         </carousel-3d>
 
 
@@ -316,8 +153,7 @@
                 <thead>
                 <tr>
                     <th>
-                        <span v-if="haveNoCourse" @click="setHasNoCourse(false)">有课</span>
-                        <span v-if="!haveNoCourse" @click="setHasNoCourse(true)">无课</span>
+                        <span @click="setHasNoCourse(false)">{{ haveNoCourse ? '有课' : '无课' }}</span>
                     </th>
                     <th>周一</th>
                     <th>周二</th>
@@ -353,9 +189,9 @@
                                 </p>
                             </div>
                             <div class="label-stu">
-                                <label :class="{'sel-user': stu.id == selUserId}"
+                                <label :class="{'sel-user': stu.id === selUserId}"
                                        v-for="(stu,index) in courses[type2Data.x].length > 0?courses[type2Data.x][type2Data.y].stus:[]"
-                                       @click="courseInfo(stu.id, stu.course_id)">{{ stu.name }},</label>
+                                       @click="courseInfo(stu.id, stu.courseInfo)">{{ stu.name }},</label>
                             </div>
                         </div>
                     </div>
@@ -379,11 +215,12 @@
                         <div style="padding-top: 40px;overflow: scroll;height: 300px;">
                                 <checker
                                         v-model="selStu.students"
-                                        :type="'checkbox'"
-                                        :default-item-class="'group-item'"
-                                        :selected-item-class="'group-item-selected'"
+                                        type="'checkbox'"
+                                        default-item-class="'group-item'"
+                                        selected-item-class="'group-item-selected'"
+                                        @on-change="selStuFun"
                                 >
-                                    <checker-item @click.native="selStuFun" v-for="i in get.students" :key="'s'+i.id" :value="'s'+i.id" class="group-item">{{ i.name }}</checker-item>
+                                    <checker-item v-for="i in get.students" :key="'s'+i.id" :value="'s'+i.id" class="group-item">{{ i.name }}</checker-item>
                                 </checker>
                         </div>
                     </div>
@@ -439,6 +276,15 @@
         },
         data() {
             return {
+                week_day: [
+                    '星期一',
+                    '星期二',
+                    '星期三',
+                    '星期四',
+                    '星期五',
+                    '星期六',
+                    '星期日'
+                ],
                 get: {
                     nowWeek: 0,      //当前周
                     groups: [],     //所有分组
@@ -459,18 +305,11 @@
                 },
                 count: false,           //是否打开统计页面
                 haveNoCourse: true,     //是否有课
-                courses: [
-                    [],
-                    [],
-                    [],
-                    [],
-                    [],
-                    [],
-                    [],
-                ],    //统计的课表人员信息
+                courses: [],    //统计的课表人员信息
+                haveCourse: [],
+                noCourse: [],
                 test: true,
                 colorIndex: [0, 1, 2, 3, 4, 5, 6],
-
                 type2Data: {
                     showHideOnBlur: false,
                     title: '',
@@ -478,7 +317,6 @@
                     y: 0,
                 },
                 type: true,
-
                 colors: [
                     {
                         title: '#1A9053',
@@ -522,14 +360,12 @@
             info() {
 
                 document.getElementsByTagName('html')[0].style.background = '#89E4DF';
-
                 let maxWeek = 20; // 最大周
                 this.$vux.loading.show({
                     text: '正在加载数据',
                 });
                 axios.get('/wechat/course/count').then(response => {
-                    console.log(response.data);
-
+                    // console.log(response.data);
                     //设置数据
                     let data = response.data;
                     this.get.nowWeek = data.nowWeek;        //当前周
@@ -538,47 +374,39 @@
                     this.get.grades = data.grades;          //年级情况
                     this.get.students = data.students;      //学生
                     this.get.locations = data.locations;    //地点
-
                     if (this.get.nowWeek > 20) maxWeek = this.get.nowWeek;   //判断若用户大于20周，则以当前为最大
-
                     for (let i = 1; i <= maxWeek; i++) {
-                        this.set.weeks[i - 1] = {
+                        this.set.weeks.push({
                             id: i,
-                        };
-
-                        if (this.get.nowWeek === i) {
-                            this.set.weeks[i - 1].sel = true;
-                        } else {
-                            this.set.weeks[i - 1].sel = false;
-                        }
+                            sel: false,
+                        });
                     }
-
                     this.set.selWeek = this.get.nowWeek;
-
-                    this.getSelStudents();
-
-
+                    //返回当前周
+                    this.setNowWeek();
                     //选中今天
                     let nowWeekDay = (new Date().getDay() + 6) % 7;
                     this.$children[2].goSlide(nowWeekDay);
-
-                    //返回当前周
-                    this.setNowWeek();
-
+                    this.getSelStudents();
                     this.$vux.loading.hide();
-
-
                 });
-
                 //初始化颜色板
                 this.colorIndex.sort(this.randomsort)
-
             },
 
             //设置有课无课
             setHasNoCourse(bool) {
-                this.haveNoCourse = bool;
-                this.getCourses();
+                if(bool) this.haveNoCourse = !this.haveNoCourse;
+                this.courses = [];
+                if(this.haveNoCourse){
+                    for (let i = 0; i < this.haveCourse.length; i++){
+                        this.courses.push(this.haveCourse[i]);
+                    }
+                }else{
+                    for (let i = 0; i < this.noCourse.length; i++){
+                        this.courses.push(this.noCourse[i]);
+                    }
+                }
             },
 
             //用户选择周数
@@ -594,32 +422,27 @@
             },
             //返回当前周
             setNowWeek() {
-
                 this.set.weeks[this.set.selWeek - 1].sel = false;
                 this.set.selWeek = this.get.nowWeek;
                 this.set.weeks[this.get.nowWeek - 1].sel = true;
-
                 this.test = !this.test;
-                document.getElementById('weeks').style.transform = 'translate(' + ((this.get.nowWeek - 3) * -40) + 'px, 0)';
-                this.getCourses();
+
+                let translate = (this.get.nowWeek - 3) * -40;
+                translate = Math.min(0, translate);
+                translate = Math.max(((this.set.weeks.length - 5) * -40), translate);
+                document.getElementById('weeks').style.transform = 'translate(' + translate + 'px, 0)';
 
             },
 
-
             //获取当前选择的用户
             getSelStudents() {
-
                 this.set.selStudent = [];
-                this.selStu.students = [];
-
-
                 let all = this.get.students,
                     groups = this.set.selGroups,
                     sexs = this.set.selSexs,
                     positions = this.set.selPositions,
                     grades = this.set.selGrades,
                     locations = this.set.selLocations;
-
                 //当用户没有选择条件是默认为全部人员
                 if (groups.length === 0 && positions.length === 0 && sexs.length === 0 && grades.length === 0 && locations.length === 0) {
                     for (let index in all) {
@@ -629,20 +452,14 @@
                         });
                     }
                 } else {
-
                     for (let index in all) {
-
                         if ((!groups.length || groups.indexOf(all[index].grouping_id) !== -1) &&
                             (!sexs.length || sexs.indexOf(all[index].sex) !== -1) &&
                             (!grades.length || grades.indexOf(parseInt(index.substring(3, 5)))!== -1) &&
                             (!locations.length || locations.indexOf(all[index].location_id) !== -1)) {  //判断用户是否符合选择的条件
-
                             let userPositions = all[index].positions;
                             for (let position in userPositions) {
                                 if (!positions.length || positions.indexOf(userPositions[position].id) !== -1) {
-
-                                    this.selStu.students.push(index);
-
                                     this.set.selStudent.push({
                                         id: index,
                                         name: all[index].name,
@@ -653,16 +470,23 @@
                         }
                     }
                 }
-
                 this.getCourses();
             },
 
             getCourses() {
-                let tmpCourses = [];
-
+                this.haveCourse = [];
+                this.noCourse = [];
                 for (let i = 0; i < 7; i++) {
-//                    this.courses[i] = dayCourse;
-                    tmpCourses[i] = [
+                    this.haveCourse[i] = [
+                        {id: '1-2', stus: [],},
+                        {id: '3-4', stus: [],},
+                        {id: '5', stus: [],},
+                        {id: '6-7', stus: [],},
+                        {id: '8-9', stus: [],},
+                        {id: '10-11', stus: [],},
+                        {id: '12', stus: [],},
+                    ];
+                    this.noCourse[i] = [
                         {id: '1-2', stus: [],},
                         {id: '3-4', stus: [],},
                         {id: '5', stus: [],},
@@ -672,12 +496,9 @@
                         {id: '12', stus: [],},
                     ];
                 }
-//                console.log(this.set.selStudent);
-
                 let all = this.get.students,    //所有用户信息
                     selStu = this.set.selStudent,  //选中的用户信息
-                    selWeek = this.set.selWeek,     //选中的周
-                    hasCourse = this.haveNoCourse;  //是否有课
+                    selWeek = this.set.selWeek;     //选中的周
 
                 for (let i in selStu) {  //循环选中用户
                     for (let course in all[selStu[i].id].courses) {  // 循环用户的课表
@@ -685,118 +506,75 @@
                         if ((tempCourse.start_week <= selWeek && selWeek <= tempCourse.end_week) && (tempCourse.status === 0 || selWeek % 2 === tempCourse.status % 2)) {
 
                             for (let n = tempCourse.start_section; n <= tempCourse.end_section; n++) {
+                                let sectionNum = -1;
                                 switch (n) {
-                                    case 1: {
-                                        tmpCourses[tempCourse.week_day - 1][0].stus.push({
-                                            id: selStu[i].id,
-                                            name: selStu[i].name,
-                                            course_id: course,
-                                        });
-                                        continue;
-
-                                    }
-                                    case 3: {
-                                        tmpCourses[tempCourse.week_day - 1][1].stus.push({
-                                            id: selStu[i].id,
-                                            name: selStu[i].name,
-                                            course_id: course,
-                                        });
-                                        continue;
+                                    case 1:
+                                        sectionNum = 0;
                                         break;
-                                    }
-                                    case 5: {
-                                        tmpCourses[tempCourse.week_day - 1][2].stus.push({
-                                            id: selStu[i].id,
-                                            name: selStu[i].name,
-                                            course_id: course,
-                                        });
+                                    case 3:
+                                        sectionNum = 1;
                                         break;
-                                    }
-                                    case 6: {
-                                        tmpCourses[tempCourse.week_day - 1][3].stus.push({
-                                            id: selStu[i].id,
-                                            name: selStu[i].name,
-                                            course_id: course,
-                                        });
-                                        continue;
+                                    case 5:
+                                        sectionNum = 2;
                                         break;
-                                    }
-                                    case 8: {
-                                        tmpCourses[tempCourse.week_day - 1][4].stus.push({
-                                            id: selStu[i].id,
-                                            name: selStu[i].name,
-                                            course_id: course,
-                                        });
-                                        continue;
+                                    case 6:
+                                        sectionNum = 3;
                                         break;
-                                    }
-                                    case 10: {
-                                        tmpCourses[tempCourse.week_day - 1][5].stus.push({
-                                            id: selStu[i].id,
-                                            name: selStu[i].name,
-                                            course_id: course,
-                                        });
-                                        continue;
+                                    case 8:
+                                        sectionNum = 4;
                                         break;
-                                    }
-                                    case 12: {
-                                        tmpCourses[tempCourse.week_day - 1][6].stus.push({
-                                            id: selStu[i].id,
-                                            name: selStu[i].name,
-                                            course_id: course,
-                                        });
+                                    case 10:
+                                        sectionNum = 5;
                                         break;
-                                    }
+                                    case 12:
+                                        sectionNum = 6;
+                                        break;
                                 }
-
-
-                            }
-                        }
-                    }
-                }
-//                console.log(this.courses);
-
-                if (!hasCourse) {
-                    for (let i = 0; i < 7; i++) {
-                        for (let j = 0; j < 7; j++) {
-
-                            let tmpStus = tmpCourses[i][j].stus.slice();
-                            tmpCourses[i][j].stus = [];
-                            for (let stu in selStu) {
-                                let id = selStu[stu].id;
-                                let status = false;
-                                for (let tmpStu in tmpStus) {
-                                    if (id === tmpStus[tmpStu].id) {
-                                        status = true;
-                                        break;
-                                    }
-                                }
-
-                                if (!status) {
-                                    tmpCourses[i][j].stus.push({
-                                        id: selStu[stu].id,
-                                        name: selStu[stu].name,
-                                        course_id: 0,
+                                if(sectionNum !== -1) {
+                                    this.haveCourse[tempCourse.week_day - 1][sectionNum].stus.push({
+                                        id: selStu[i].id,
+                                        name: selStu[i].name,
+                                        courseInfo: tempCourse.name + '/' + tempCourse.location,
                                     });
+                                    if (!(sectionNum === 5 || sectionNum === 12))
+                                        continue;
                                 }
                             }
                         }
                     }
                 }
 
+                for (let i = 0; i < 7; i++) {
+                    for (let j = 0; j < 7; j++) {
+                        let tmpStus = this.haveCourse[i][j].stus;
+                        for (let stu in selStu) {
+                            let id = selStu[stu].id;
+                            let status = false;
+                            for (let tmpStu in tmpStus) {
+                                if (id === tmpStus[tmpStu].id) {
+                                    status = true;
+                                    break;
+                                }
+                            }
+                            if (!status) {
+                                this.noCourse[i][j].stus.push({
+                                    id: selStu[stu].id,
+                                    name: selStu[stu].name,
+                                    courseInfo: '',
+                                });
+                            }
+                        }
+                    }
+                }
 
-                this.courses = tmpCourses;
-
+                this.setHasNoCourse(false);
             },
 
             //点击用户显示课程
-            courseInfo(user_id, course_id) {
+            courseInfo(user_id, courseInfo) {
                 this.selUserId = user_id;
-
                 if (this.haveNoCourse) {
-                    let course = this.get.students[user_id].courses[course_id];
-
-                    this.$vux.toast.text(course.name + '/' + course.location, 'top')
+                    this.$vux.toast.text(courseInfo, 'top')
                 }
             },
 
@@ -807,9 +585,7 @@
 
             //单击表格时
             selTd(i, j) {
-
                 let weeks = ['周一', '周二', '周三', '周四', '周五', '周六', '周日'];
-
                 this.type2Data.title = weeks[i] + this.courses[i][j].id;
                 this.type2Data.x = i;
                 this.type2Data.y = j;
@@ -818,23 +594,19 @@
 
             //单击选择人员按钮
             selStuBut(){
-
                 this.count = false;
                 this.selStu.showHideOnBlur = true;
             },
 
             //选择人员
             selStuFun(){
-
                 this.set.selStudent = [];
-
                 for( let i in this.selStu.students){
                     this.set.selStudent.push({
                         id: this.selStu.students[i],
                         name: this.get.students[this.selStu.students[i]].name,
                     });
                 }
-
                 this.getCourses();
             },
             selAllStu(){
@@ -931,7 +703,7 @@
     }
 
     .group-item {
-        width: 90px;
+        padding: 0 10px;
         height: 26px;
         line-height: 26px;
         text-align: center;
