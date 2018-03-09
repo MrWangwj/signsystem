@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+
 include_once 'home.php';
 include_once 'wechat.php';
 include_once 'admin.php';

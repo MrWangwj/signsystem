@@ -16,9 +16,19 @@ Route::prefix('admin')->group(function (){
     });
 
     Route::post('/login', 'Admin\LoginController@login');
+    Route::get('/logout', 'Admin\LoginController@logout');
+
 
     //页面渲染
-    Route::get('/', function (){
-        return view('admin.index');
+
+    Route::group(['middleware' => ['user.login']], function (){
+        Route::get('/', function (){
+            return view('admin.index');
+        });
+
+        Route::get('/nodes','SettingController@nodes');
+
     });
+
+
 });

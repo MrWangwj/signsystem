@@ -26,4 +26,9 @@ class LoginController extends Controller
 
         return $this->returnJSON(0, '账号或密码错误');
     }
+
+    function logout(Request $request){
+        $request->session()->forget('user');
+        return redirect('/admin/login');
+    }
 }

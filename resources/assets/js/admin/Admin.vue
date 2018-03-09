@@ -7,41 +7,24 @@
                         <i :class="isCollapse?'el-icon-d-arrow-right':'el-icon-d-arrow-left'" ></i>
                     </div>
                     <el-menu :class="'menu'"
-                             default-active="1-4-1"
-                             class="el-menu-vertical-demo"
-                             @open="handleOpen"
-                             @close="handleClose"
                              :collapse="isCollapse"
                              background-color="#545c64"
                              text-color="#fff"
                              active-text-color="#ffd04b"
+                             :unique-opened="true"
+                             :router="true"
                     >
-                        <el-submenu index="1">
+                        <el-submenu v-for="(v,index) in nodes" :index="index+''" :key="index" :router="true">
                             <template slot="title">
-                                <i class="el-icon-location"></i>
-                                <span slot="title">导航一</span>
+                                <i :class="v.icon"></i>
+                                <span slot="title">{{ v.name }}</span>
                             </template>
-                            <el-menu-item-group>
-                                <span slot="title">分组一</span>
-                                <el-menu-item index="1-1">选项1</el-menu-item>
-                                <el-menu-item index="1-2">选项2</el-menu-item>
-                            </el-menu-item-group>
-                            <el-menu-item-group title="分组2">
-                                <el-menu-item index="1-3">选项3</el-menu-item>
-                            </el-menu-item-group>
-                            <el-submenu index="1-4">
-                                <span slot="title">选项4</span>
-                                <el-menu-item index="1-4-1">选项1</el-menu-item>
-                            </el-submenu>
+                            <el-menu-item v-for="(vv,index2) in v.nodes" :index="vv.path" :key="index+'-'+index2" >
+                                <i :class="vv.icon"></i>
+                                {{ vv.name }}
+                            </el-menu-item>
                         </el-submenu>
-                        <el-menu-item index="2">
-                            <i class="el-icon-menu"></i>
-                            <span slot="title">导航二</span>
-                        </el-menu-item>
-                        <el-menu-item index="3">
-                            <i class="el-icon-setting"></i>
-                            <span slot="title">导航三</span>
-                        </el-menu-item>
+
                     </el-menu>
                 </div>
             </el-aside>
@@ -52,7 +35,7 @@
                             <img src="" alt="">
                         </span>
                         <el-dropdown-menu slot="dropdown">
-                            <el-dropdown-item>退出登录</el-dropdown-item>
+                            <el-dropdown-item @click.native="logout">退出登录</el-dropdown-item>
                         </el-dropdown-menu>
                     </el-dropdown>
                 </el-header>
@@ -163,6 +146,7 @@
                 tabWidth: 200,
                 test1: 1,
                 intelval: null,
+                nodes: [],
             };
         },
         methods: {
@@ -185,7 +169,47 @@
                     this.tabWidth = 200;
                 }
                 this.isCollapse = !this.isCollapse;
+            },
+            logout(){
+                window.location = '/admin/logout';
+
+            },
+            getNodes(){
+                axios.get('/admin/nodes').then(res => {
+                    let data = res.data;
+                    for (let i = 0; i < data.length; i++){
+                        if(data[i].pid === 0){
+                            this.nodes.push({
+                                id: data[i].id,
+                                name: data[i].name,
+                                icon: data[i].icon,
+                                nodes: []
+                            });
+                        }
+                    }
+                    for (let i = 0; i < data.length; i++){
+                        if(data[i].pid !== 0){
+                            for (let j = 0; j < data.length; j++){
+                                if(this.nodes[j].id === data[i].pid){
+                                    this.nodes[j].nodes.push({
+                                        id: data[i].id,
+                                        name: data[i].name,
+                                        icon: data[i].icon,
+                                        path: data[i].path,
+                                    });
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                    // console.log(this.nodes);
+                });
             }
+        },
+
+        created(){
+            this.getNodes();
         }
     }
 </script>

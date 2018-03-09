@@ -102,7 +102,7 @@
                         <input type="text" class="form-control" id="validate" placeholder="验证码" required>
                     </div>
                     <div class="form-group col-md-6">
-                        <img class="validate-img" src="{{ captcha_src() }}}" alt="" onclick="this.src='{{captcha_src()}}'+Math.random()">
+                        <img class="validate-img" src="{{ captcha_src() }}}" alt="" onclick="this.src='{{captcha_src()}}'+Math.random()" id="">
                     </div>
                 </div>
                 <div>
@@ -308,7 +308,9 @@
                 if(data.code === 1){
                     window.location = '/admin';
                 }else{
+
                     $('#msg').text(data.msg);
+
                 }
             }).fail(function() {
                 console.log(1111);
