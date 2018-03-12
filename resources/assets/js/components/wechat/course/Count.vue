@@ -47,7 +47,7 @@
         <div class="title">
             <div>
                 <div class="see-type">
-                    <label @click="type = !type">{{ type ? '格式一': '格式二'}}</label>
+                    <label @click="type = !type">{{ type ? '统计': '课表'}}</label>
                 </div>
                 <div @click="setNowWeek()" class="now-week-but">本周</div>
                 <div class="weeks">
@@ -61,7 +61,7 @@
                     </scroller>
                 </div>
                 <div @click="count = true" class="count">
-                    统计
+                    筛选
                 </div>
             </div>
 
@@ -122,7 +122,7 @@
                         <checker-item v-for="i in get.locations" :key="i.id" :value="i.id" class="group-item">{{ i.name }}</checker-item>
                     </checker>
                     <divider>----</divider>
-                    <x-button style="background-color:#ff4a00;color: white;"  @click.native="selStuBut">选择人员</x-button>
+                    <x-button style="background-color:#ff4a00;color: white;"  @click.native="selStuBut">高级筛选</x-button>
                 </div>
             </popup>
         </div>
@@ -152,8 +152,8 @@
             <x-table full-bordered style="background-color:#fff;">
                 <thead>
                 <tr>
-                    <th>
-                        <span @click="setHasNoCourse(true)">{{ haveNoCourse ? '有课' : '无课' }}</span>
+                    <th @click="setHasNoCourse(true)" :style="{backgroundColor: haveNoCourse?'#1AAD19':'#E64340',color: 'white',borderRadius: '10px'}">
+                        <span >{{ haveNoCourse ? '有课':'无课' }}</span>
                     </th>
                     <th>周一</th>
                     <th>周二</th>
@@ -166,9 +166,9 @@
                 </thead>
                 <tbody>
                 <tr v-for="i in 7">
-                    <td>{{ courses[i - 1].length > 0 ? courses[0][i - 1].id : 0 }}节</td>
+                    <td>{{ (courses.hasOwnProperty(i-1)&&courses[i- 1].hasOwnProperty(0)&&courses[i - 1][0].hasOwnProperty('id')) ? courses[0][i - 1].id : 0 }}节</td>
                     <td v-for="j in 7" @click="selTd(j-1, i-1)">
-                        {{ courses[j - 1].length > 0 ? courses[j - 1][i - 1].stus.length : 0 }}
+                        {{ (courses.hasOwnProperty(j-1)&&courses[j - 1].hasOwnProperty(i-1)&&courses[j - 1][i - 1].hasOwnProperty('stus')) ? courses[j - 1][i - 1].stus.length : 0 }}
                     </td>
                 </tr>
                 </tbody>
@@ -190,7 +190,7 @@
                             </div>
                             <div class="label-stu">
                                 <label :class="{'sel-user': stu.id === selUserId}"
-                                       v-for="(stu,index) in courses[type2Data.x].length > 0?courses[type2Data.x][type2Data.y].stus:[]"
+                                       v-for="(stu,index) in (courses.hasOwnProperty(type2Data.x) && courses[type2Data.x].hasOwnProperty(type2Data.y) && courses[type2Data.x][type2Data.y].hasOwnProperty('stus'))?courses[type2Data.x][type2Data.y].stus:[]"
                                        @click="courseInfo(stu.id, stu.courseInfo)">{{ stu.name }},</label>
                             </div>
                         </div>
@@ -316,7 +316,7 @@
                     x: 0,
                     y: 0,
                 },
-                type: true,
+                type: false,
                 colors: [
                     {
                         title: '#1A9053',
