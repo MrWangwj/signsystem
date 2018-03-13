@@ -215,9 +215,9 @@
                         <div style="padding-top: 40px;overflow: scroll;height: 300px;">
                                 <checker
                                         v-model="selStu.students"
-                                        type="'checkbox'"
-                                        default-item-class="'group-item'"
-                                        selected-item-class="'group-item-selected'"
+                                        type="checkbox"
+                                        default-item-class="group-item"
+                                        selected-item-class="group-item-selected"
                                         @on-change="selStuFun"
                                 >
                                     <checker-item v-for="i in get.students" :key="'s'+i.id" :value="'s'+i.id" class="group-item">{{ i.name }}</checker-item>
@@ -437,6 +437,7 @@
             //获取当前选择的用户
             getSelStudents() {
                 this.set.selStudent = [];
+                this.selStu.students = [];
                 let all = this.get.students,
                     groups = this.set.selGroups,
                     sexs = this.set.selSexs,
@@ -464,6 +465,7 @@
                                         id: index,
                                         name: all[index].name,
                                     });
+                                    this.selStu.students.push(index);
                                     break;
                                 }
                             }
@@ -600,14 +602,16 @@
 
             //选择人员
             selStuFun(){
-                this.set.selStudent = [];
-                for( let i in this.selStu.students){
-                    this.set.selStudent.push({
-                        id: this.selStu.students[i],
-                        name: this.get.students[this.selStu.students[i]].name,
-                    });
+                if(this.selStu.showHideOnBlur === true){
+                    this.set.selStudent = [];
+                    for( let i in this.selStu.students){
+                        this.set.selStudent.push({
+                            id: this.selStu.students[i],
+                            name: this.get.students[this.selStu.students[i]].name,
+                        });
+                    }
+                    this.getCourses();
                 }
-                this.getCourses();
             },
             selAllStu(){
                 console.log(this.selStu.allType);
